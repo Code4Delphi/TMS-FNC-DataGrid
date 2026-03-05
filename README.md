@@ -1,5 +1,5 @@
 # TMS FNC DataGrid
-Demos para utilização do TMS FNC DataGrid
+Demos, vídeos e informações para utilização do TMS FNC DataGrid.
 
 O **TMS FNC DataGrid** é um grid avançado e altamente configurável para aplicações Delphi, utilizado para visualização e edição de grandes volumes de dados com alto desempenho. Ele oferece recursos como ordenar, filtrar, agrupar e editar dados, além de data binding com bancos de dados e suporte a master-detail. Também permite personalização visual das células, inclusão de controles dentro delas e exportação ou importação de dados em vários formatos, como CSV, XLSX, JSON e PDF.
 
