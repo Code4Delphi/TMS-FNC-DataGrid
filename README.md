@@ -16,7 +16,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 <br>
 
 ## Multiplataforma
-<img width="524" height="124" alt="VCL-FMX-Web-FNC" src="https://github.com/user-attachments/assets/e7922764-035d-4e01-b907-6ab8737080d2" />
+<img width="524" height="124" alt="VCL-FMX-Web-FNC" src="https://github.com/user-attachments/assets/17b23899-0e26-4901-810e-f9a03e38deae" />
 
 ## Screenshots
 <img width="1510" height="927" alt="image" src="https://github.com/user-attachments/assets/0578e2ac-53e7-4ccb-bbf4-b199ff7efdbc" />
