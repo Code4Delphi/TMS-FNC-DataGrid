@@ -5,7 +5,7 @@ O **TMS FNC DataGrid** é um grid avançado e altamente configurável para aplic
 
 O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataforma**, funcionando em **VCL, FMX e aplicações web** com a mesma base de código.
 
-## Links uteis
+## Links úteis
 - [Site oficial do TMS FNC DataGrid](https://www.tmssoftware.com/site/tmsfncuipack-grid.asp)
 - [Documentação](https://download.tmssoftware.com/doc/tmsfncuipack/components/ttmsfncgrid/)
 
