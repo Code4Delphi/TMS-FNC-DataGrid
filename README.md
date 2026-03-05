@@ -14,6 +14,15 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 
 <br>
 
+## Screenshots
+<img width="1510" height="927" alt="image" src="https://github.com/user-attachments/assets/0578e2ac-53e7-4ccb-bbf4-b199ff7efdbc" />
+
+<img width="1961" height="1156" alt="image" src="https://github.com/user-attachments/assets/3a9acad5-7349-4cc2-bb89-6a1b51e62434" />
+
+<img width="1271" height="653" alt="image" src="https://github.com/user-attachments/assets/1b97d8d2-87ee-4a23-9f7f-6613b9c1a8ed" />
+
+<img width="1339" height="800" alt="image" src="https://github.com/user-attachments/assets/c014157b-6a8a-4a75-b33a-194188b23463" />
+
 ## 📞 Contatos
 [![Telegram](https://img.shields.io/badge/Telegram-Join-blue?logo=telegram)](https://t.me/Code4Delphi)
 [![YouTube](https://img.shields.io/badge/YouTube-Join-red?logo=youtube&logoColor=red)](https://www.youtube.com/@code4delphi)
