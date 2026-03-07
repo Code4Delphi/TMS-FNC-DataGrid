@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{93BE3BE9-A6F1-4EFC-9728-CC38920C8060}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FNC-DataGrid-Demo01\FNC_DataGrid_Demo01.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FNC_DataGrid_Demo01">
+        <MSBuild Projects="FNC-DataGrid-Demo01\FNC_DataGrid_Demo01.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Demo01:Clean">
+        <MSBuild Projects="FNC-DataGrid-Demo01\FNC_DataGrid_Demo01.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Demo01:Make">
+        <MSBuild Projects="FNC-DataGrid-Demo01\FNC_DataGrid_Demo01.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FNC_DataGrid_Demo01"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
