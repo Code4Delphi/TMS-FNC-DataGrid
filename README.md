@@ -12,7 +12,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [Vídeo de utilização básica do componente](https://www.youtube.com/watch?v=gB2Fz69LlDs&list=PLLHSz4dOnnN2Xlf7OX47cF20gbmz9-9z0)
 
 ## Vídeos de demonstração
-\* Em breve
+- [DataGrid Delphi 01 - Conhecendo a TMS FNC DataGrid](https://www.youtube.com/watch?v=Lr52JK1uGuE&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
