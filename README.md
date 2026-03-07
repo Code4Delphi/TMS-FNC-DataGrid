@@ -7,6 +7,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 
 ## Links úteis
 - [Site oficial / onde baixar](https://www.tmssoftware.com/site/tmsfncuipack-grid.asp)
+- [Vídeo como instalar](https://www.youtube.com/watch?v=IyVQWe5quRo)
 - [Documentação](https://download.tmssoftware.com/doc/tmsfncuipack/components/ttmsfncgrid/)
 - [Vídeo de utilização básica do componente](https://www.youtube.com/watch?v=gB2Fz69LlDs&list=PLLHSz4dOnnN2Xlf7OX47cF20gbmz9-9z0)
 
