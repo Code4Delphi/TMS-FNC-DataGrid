@@ -76,6 +76,9 @@ begin
 
   TMSFNCDataGrid1.Options.IO.StartColumn := 0;
   TMSFNCDataGrid1.Options.IO.StartRow := 0;
+
+  TMSFNCDataGrid1.DefaultColumnWidth := 200;
+  TMSFNCDataGrid1.DefaultRowHeight := 24;
 end;
 
 procedure TLoadingDataCSVView.btnClearClick(Sender: TObject);
@@ -92,8 +95,6 @@ end;
 procedure TLoadingDataCSVView.btnImportDepartmentsClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.LoadFromCSVData('../Data/Departments.csv');
-  TMSFNCDataGrid1.DefaultColumnWidth := 200;
-  TMSFNCDataGrid1.DefaultRowHeight := 24;
 end;
 
 procedure TLoadingDataCSVView.btnImportFileClick(Sender: TObject);

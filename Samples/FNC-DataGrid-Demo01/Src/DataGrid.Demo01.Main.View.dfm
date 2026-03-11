@@ -120,8 +120,6 @@ object DataGridDemo01MainView: TDataGridDemo01MainView
     FilterAppearance.Font.Style = []
     OnGetCellData = TMSFNCDataGrid1GetCellData
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
-    ExplicitWidth = 1398
-    ExplicitHeight = 619
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 760
       Top = 160
@@ -3280,7 +3278,6 @@ object DataGridDemo01MainView: TDataGridDemo01MainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitWidth = 1398
     object gBoxConfig: TGroupBox
       Left = 0
       Top = 0

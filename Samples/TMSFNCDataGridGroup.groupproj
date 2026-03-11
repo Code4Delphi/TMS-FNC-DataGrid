@@ -9,6 +9,9 @@
         <Projects Include="FNC-DataGrid-LoadingData\FNC_DataGrid_LoadingData.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNC-DataGrid-Calculations\FNC_DataGrid_Calculations.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="FNC_DataGrid_LoadingData:Make">
         <MSBuild Projects="FNC-DataGrid-LoadingData\FNC_DataGrid_LoadingData.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNC_DataGrid_Calculations">
+        <MSBuild Projects="FNC-DataGrid-Calculations\FNC_DataGrid_Calculations.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Calculations:Clean">
+        <MSBuild Projects="FNC-DataGrid-Calculations\FNC_DataGrid_Calculations.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Calculations:Make">
+        <MSBuild Projects="FNC-DataGrid-Calculations\FNC_DataGrid_Calculations.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -16,7 +16,8 @@ uses
   Vcl.ExtCtrls,
   LoadingData.Manual.View,
   LoadingData.CSV.View,
-  LoadingData.Excel.View;
+  LoadingData.Excel.View,
+  LoadingData.Database.View;
 
 type
   TLoadingDataMainView = class(TForm)
@@ -24,9 +25,11 @@ type
     btnManualData: TButton;
     btnExcelData: TButton;
     btnCSVData: TButton;
+    btnDatabaseData: TButton;
     procedure btnManualDataClick(Sender: TObject);
     procedure btnExcelDataClick(Sender: TObject);
     procedure btnCSVDataClick(Sender: TObject);
+    procedure btnDatabaseDataClick(Sender: TObject);
   private
 
   public
@@ -54,5 +57,11 @@ procedure TLoadingDataMainView.btnExcelDataClick(Sender: TObject);
 begin
   LoadingDataExcelView.ShowModal;
 end;
+
+procedure TLoadingDataMainView.btnDatabaseDataClick(Sender: TObject);
+begin
+  LoadingDataDatabaseView.ShowModal;
+end;
+
 
 end.

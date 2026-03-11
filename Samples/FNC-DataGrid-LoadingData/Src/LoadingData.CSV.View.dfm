@@ -21,7 +21,6 @@ object LoadingDataCSVView: TLoadingDataCSVView
     Height = 57
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object btnClear: TButton
       Left = 24
       Top = 17
@@ -353,6 +352,5 @@ object LoadingDataCSVView: TLoadingDataCSVView
     Options.Sorting.Enabled = True
     Options.Mouse.ColumnSizing = True
     Options.Mouse.ColumnSizingMode = gszmTwoSided
-    ExplicitTop = 63
   end
 end

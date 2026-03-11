@@ -352,6 +352,7 @@ object LoadingDataExcelView: TLoadingDataExcelView
     Options.Sorting.Enabled = True
     Options.Mouse.ColumnSizing = True
     Options.Mouse.ColumnSizingMode = gszmTwoSided
+    ExplicitTop = 63
     object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
       Left = 328
       Top = 176
