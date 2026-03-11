@@ -3,7 +3,7 @@ object CalculationsMainView: TCalculationsMainView
   Top = 0
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Calculations'
-  ClientHeight = 654
+  ClientHeight = 737
   ClientWidth = 1249
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,17 +19,36 @@ object CalculationsMainView: TCalculationsMainView
     Left = 0
     Top = 0
     Width = 1249
-    Height = 105
+    Height = 65
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 855
+    ExplicitLeft = 72
+    ExplicitTop = -6
+    object btnCSV: TButton
+      Left = 24
+      Top = 21
+      Width = 145
+      Height = 25
+      Caption = 'Open in Excel (csv)'
+      TabOrder = 0
+      OnClick = btnCSVClick
+    end
+    object btnOpenXLS: TButton
+      Left = 175
+      Top = 21
+      Width = 145
+      Height = 25
+      Caption = 'Open in Excel (xls)'
+      TabOrder = 1
+      OnClick = btnOpenXLSClick
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 105
+    Top = 65
     Width = 1249
-    Height = 549
+    Height = 672
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -100,6 +119,8 @@ object CalculationsMainView: TCalculationsMainView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
+    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     ExplicitLeft = 168
     ExplicitTop = 216
     ExplicitWidth = 660

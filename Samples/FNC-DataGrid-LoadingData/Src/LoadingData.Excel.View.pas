@@ -106,7 +106,6 @@ begin
   TMSFNCDataGridExcelIO1.DataGridStartCol := 1;
 end;
 
-
 procedure TLoadingDataExcelView.btnClearClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.BeginUpdate;
@@ -139,8 +138,8 @@ procedure TLoadingDataExcelView.btnExportXLSClick(Sender: TObject);
 begin
   Self.ConfigDataGridExcelExport;
 
-  TMSFNCDataGridExcelIO1.XLSExport('TestMy.xls');
-  TTMSFNCUtils.OpenFile('TestMy.xls');
+  TMSFNCDataGridExcelIO1.XLSExport('Temp.xls');
+  TTMSFNCUtils.OpenFile('Temp.xls');
 end;
 
 end.
