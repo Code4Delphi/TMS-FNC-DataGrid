@@ -1,4 +1,4 @@
-unit DataGrid.LoadingData.Main.View;
+unit LoadingData.Database.View;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
 
 type
-  TDataGridLoadingDataMainView = class(TForm)
+  TLoadingDataDatabaseView = class(TForm)
   private
     { Private declarations }
   public
@@ -15,7 +15,7 @@ type
   end;
 
 var
-  DataGridLoadingDataMainView: TDataGridLoadingDataMainView;
+  LoadingDataDatabaseView: TLoadingDataDatabaseView;
 
 implementation
 

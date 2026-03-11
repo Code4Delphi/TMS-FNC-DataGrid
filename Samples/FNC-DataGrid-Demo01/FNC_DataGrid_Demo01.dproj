@@ -158,7 +158,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="Win32\Debug\FNC_DataGrid_Demo01.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Bin\FNC_DataGrid_Demo01.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>FNC_DataGrid_Demo01.exe</RemoteName>
                         <Overwrite>true</Overwrite>

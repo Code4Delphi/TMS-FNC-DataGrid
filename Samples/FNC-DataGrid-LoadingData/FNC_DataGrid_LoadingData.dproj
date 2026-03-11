@@ -127,8 +127,25 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\DataGrid.LoadingData.Main.View.pas">
-            <Form>DataGridLoadingDataMainView</Form>
+        <DCCReference Include="Src\LoadingData.Main.View.pas">
+            <Form>LoadingDataMainView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\LoadingData.Manual.View.pas">
+            <Form>LoadingDataManualView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\LoadingData.CSV.View.pas">
+            <Form>LoadingDataCSVView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\LoadingData.Utils.pas"/>
+        <DCCReference Include="Src\LoadingData.Excel.View.pas">
+            <Form>LoadingDataExcelView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\LoadingData.Database.View.pas">
+            <Form>LoadingDataDatabaseView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
@@ -158,7 +175,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="Win32\Debug\FNC_DataGrid_LoadingData.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Bin\FNC_DataGrid_LoadingData.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>FNC_DataGrid_LoadingData.exe</RemoteName>
                         <Overwrite>true</Overwrite>
