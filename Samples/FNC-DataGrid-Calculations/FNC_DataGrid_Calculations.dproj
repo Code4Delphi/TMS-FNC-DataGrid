@@ -127,8 +127,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="Src\Calculations.SumMonths.View.pas">
+            <Form>CalculationsSumMonthsView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="Src\Calculations.Main.View.pas">
             <Form>CalculationsMainView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\Calculations.AggregateFunctions.View.pas">
+            <Form>CalculationsAggregateFunctionsView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
@@ -158,7 +166,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="Win32\Debug\FNC_DataGrid_Calculations.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Bin\FNC_DataGrid_Calculations.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>FNC_DataGrid_Calculations.exe</RemoteName>
                         <Overwrite>true</Overwrite>

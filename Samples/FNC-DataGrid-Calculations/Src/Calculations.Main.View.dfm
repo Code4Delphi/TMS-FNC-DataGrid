@@ -1,10 +1,9 @@
 object CalculationsMainView: TCalculationsMainView
   Left = 0
   Top = 0
-  ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Calculations'
-  ClientHeight = 737
-  ClientWidth = 1249
+  ClientHeight = 326
+  ClientWidth = 521
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,112 +12,33 @@ object CalculationsMainView: TCalculationsMainView
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
-  OnCreate = FormCreate
   TextHeight = 15
-  object pnTop: TPanel
+  object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1249
-    Height = 65
-    Align = alTop
+    Width = 521
+    Height = 326
+    Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    object btnCSV: TButton
-      Left = 24
-      Top = 21
-      Width = 145
+    ExplicitLeft = 8
+    object btnCalculationsSumMonths: TButton
+      Left = 86
+      Top = 129
+      Width = 329
       Height = 25
-      Caption = 'Open in Excel (csv)'
+      Caption = 'Sum Months Calculations'
       TabOrder = 0
-      OnClick = btnCSVClick
+      OnClick = btnCalculationsSumMonthsClick
     end
-    object ckCalcAutoSizeColumns: TCheckBox
-      Left = 200
-      Top = 25
-      Width = 289
-      Height = 17
-      Caption = 'Automatic column resizing when editing values'
-      Checked = True
-      State = cbChecked
+    object btnCalculationsAggregateFunctionsView: TButton
+      Left = 86
+      Top = 160
+      Width = 329
+      Height = 25
+      Caption = 'Aggregate Functions'
       TabOrder = 1
+      OnClick = btnCalculationsAggregateFunctionsViewClick
     end
-  end
-  object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Left = 0
-    Top = 65
-    Width = 1249
-    Height = 672
-    Align = alClient
-    ParentDoubleBuffered = False
-    DoubleBuffered = True
-    TabOrder = 1
-    ShowAcceleratorChar = False
-    Footer.Bar.Buttons = <>
-    Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
-    Header.VisualGrouping.Layout.Font.Color = clWindowText
-    Header.VisualGrouping.Layout.Font.Height = -12
-    Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
-    Header.VisualGrouping.Layout.Font.Style = []
-    Header.Bar.Buttons = <>
-    CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterMatchLayout.Font.Color = clWindowText
-    CellAppearance.FilterMatchLayout.Font.Height = -12
-    CellAppearance.FilterMatchLayout.Font.Name = 'Segoe UI'
-    CellAppearance.FilterMatchLayout.Font.Style = []
-    CellAppearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterInverseMatchLayout.Font.Color = clWindowText
-    CellAppearance.FilterInverseMatchLayout.Font.Height = -12
-    CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
-    CellAppearance.FilterInverseMatchLayout.Font.Style = []
-    CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clBlack
-    CellAppearance.BandLayout.Font.Height = -12
-    CellAppearance.BandLayout.Font.Name = 'Segoe UI'
-    CellAppearance.BandLayout.Font.Style = []
-    CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clBlack
-    CellAppearance.FixedLayout.Font.Height = -12
-    CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
-    CellAppearance.FixedLayout.Font.Style = []
-    CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clBlack
-    CellAppearance.FixedSelectedLayout.Font.Height = -12
-    CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
-    CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clBlack
-    CellAppearance.FocusedLayout.Font.Height = -12
-    CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
-    CellAppearance.FocusedLayout.Font.Style = []
-    CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clBlack
-    CellAppearance.GroupLayout.Font.Height = -12
-    CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
-    CellAppearance.GroupLayout.Font.Style = []
-    CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clBlack
-    CellAppearance.NormalLayout.Font.Height = -12
-    CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
-    CellAppearance.NormalLayout.Font.Style = []
-    CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clBlack
-    CellAppearance.SelectedLayout.Font.Height = -12
-    CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
-    CellAppearance.SelectedLayout.Font.Style = []
-    CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clBlack
-    CellAppearance.SummaryLayout.Font.Height = -12
-    CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
-    CellAppearance.SummaryLayout.Font.Style = []
-    ColumnCount = 0
-    Columns = <>
-    FilterActions = <>
-    FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clBlack
-    FilterAppearance.Font.Height = -12
-    FilterAppearance.Font.Name = 'Segoe UI'
-    FilterAppearance.Font.Style = []
-    OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
-    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
   end
 end

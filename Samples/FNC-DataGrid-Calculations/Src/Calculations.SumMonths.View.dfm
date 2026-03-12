@@ -1,10 +1,9 @@
-object LoadingDataDatabaseView: TLoadingDataDatabaseView
+object CalculationsSumMonthsView: TCalculationsSumMonthsView
   Left = 0
   Top = 0
-  ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Loading database data'
-  ClientHeight = 684
-  ClientWidth = 1204
+  Caption = 'TMS FNC DataGrid - Sum Months Calculations'
+  ClientHeight = 737
+  ClientWidth = 1249
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,57 +17,36 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1204
-    Height = 90
+    Width = 1249
+    Height = 65
     Align = alTop
+    BevelOuter = bvNone
     TabOrder = 0
-    object Label1: TLabel
-      Left = 263
-      Top = 17
-      Width = 181
-      Height = 15
-      Caption = 'Filter Department and Description '
-    end
-    object btnClose: TButton
+    object btnCSV: TButton
       Left = 24
-      Top = 17
-      Width = 208
+      Top = 21
+      Width = 145
       Height = 25
-      Caption = 'Close'
+      Caption = 'Open in Excel (csv)'
       TabOrder = 0
-      OnClick = btnCloseClick
+      OnClick = btnCSVClick
     end
-    object btnOpenQuery: TButton
-      Left = 24
-      Top = 48
-      Width = 208
-      Height = 25
-      Caption = 'Open query'
+    object ckCalcAutoSizeColumns: TCheckBox
+      Left = 200
+      Top = 25
+      Width = 289
+      Height = 17
+      Caption = 'Automatic column resizing when editing values'
+      Checked = True
+      State = cbChecked
       TabOrder = 1
-      OnClick = btnOpenQueryClick
-    end
-    object btnFilter: TButton
-      Left = 534
-      Top = 35
-      Width = 177
-      Height = 25
-      Caption = 'Filter'
-      TabOrder = 2
-      OnClick = btnFilterClick
-    end
-    object edtFilter: TEdit
-      Left = 263
-      Top = 36
-      Width = 265
-      Height = 23
-      TabOrder = 3
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 90
-    Width = 1204
-    Height = 575
+    Top = 65
+    Width = 1249
+    Height = 672
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -81,7 +59,6 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
     Header.VisualGrouping.Layout.Font.Style = []
     Header.Bar.Buttons = <>
-    Adapter = TMSFNCDataGridDatabaseAdapter1
     CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FilterMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterMatchLayout.Font.Height = -12
@@ -416,85 +393,5 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     Stroke.Color = clDarkgray
-    ExplicitLeft = -8
-    ExplicitTop = 96
-  end
-  object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 760
-    Top = 264
-    Width = 26
-    Height = 26
-    Visible = True
-    Columns = <>
-    DataSource = DataSource1
-  end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 665
-    Width = 1204
-    Height = 19
-    Panels = <
-      item
-        Width = 300
-      end
-      item
-        Width = 50
-      end>
-  end
-  object DataSource1: TDataSource
-    DataSet = FDQuery1
-    OnDataChange = DataSource1DataChange
-    Left = 760
-    Top = 198
-  end
-  object FDQuery1: TFDQuery
-    Connection = FDConnection1
-    SQL.Strings = (
-      'select * from departments')
-    Left = 760
-    Top = 142
-    object FDQuery1Id: TIntegerField
-      FieldName = 'Id'
-      Origin = 'Id'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      DisplayFormat = '000000'
-    end
-    object FDQuery1Department: TWideStringField
-      FieldName = 'Department'
-      Origin = 'Department'
-      Size = 40
-    end
-    object FDQuery1Description: TWideStringField
-      FieldName = 'Description'
-      Origin = 'Description'
-      Size = 40
-    end
-    object FDQuery1Number: TIntegerField
-      FieldName = 'Number'
-      Origin = 'Number'
-    end
-    object FDQuery1RegistrationDate: TWideStringField
-      FieldName = 'RegistrationDate'
-      Origin = 'RegistrationDate'
-      Size = 10
-    end
-    object FDQuery1LimitValue: TFloatField
-      FieldName = 'LimitValue'
-      Origin = 'LimitValue'
-    end
-    object FDQuery1Status: TIntegerField
-      FieldName = 'Status'
-      Origin = 'Status'
-    end
-  end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'DriverID=SQLite')
-    FetchOptions.AssignedValues = [evMode, evCursorKind]
-    FetchOptions.Mode = fmAll
-    FetchOptions.CursorKind = ckForwardOnly
-    LoginPrompt = False
-    Left = 760
-    Top = 86
   end
 end
