@@ -69,7 +69,7 @@ begin
     TMSFNCDataGrid1.ColumnCount := 8;
     TMSFNCDataGrid1.RowCount := 3;
 
-    // Headers
+    //Headers
     TMSFNCDataGrid1.Columns[0].Header := 'Sequential';
     TMSFNCDataGrid1.Columns[1].Header := 'Department';
     TMSFNCDataGrid1.Columns[2].Header := 'Description';
@@ -79,10 +79,10 @@ begin
     TMSFNCDataGrid1.Columns[6].Header := 'Status';
     TMSFNCDataGrid1.Columns[7].Header := 'HTMLEditor';
 
-    // Sequential Auto Number
+    //Sequential Auto Number
     TMSFNCDataGrid1.AutoNumberColumn(0, 1, 1);
 
-    // Record 1
+    //Record 1
     TMSFNCDataGrid1.Cells[1, 1] := 'Deliveries';
     TMSFNCDataGrid1.Cells[2, 1] := 'Description 17';
     TMSFNCDataGrid1.Cells[3, 1] := 5;
@@ -91,7 +91,7 @@ begin
     TMSFNCDataGrid1.Cells[6, 1] := False;
     TMSFNCDataGrid1.Cells[7, 1] := '<b>This</b> is <i><a href="https://www.code4delphi.com.br">HTML link</a></i>';
 
-    // Record 2
+    //Record 2
     TMSFNCDataGrid1.Cells[1, 2] := 'Human resources';
     TMSFNCDataGrid1.Cells[2, 2] := 'Description 92';
     TMSFNCDataGrid1.Cells[3, 2] := 7;

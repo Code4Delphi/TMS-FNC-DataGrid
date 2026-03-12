@@ -72,11 +72,11 @@ type
     btnFilter: TButton;
     Label1: TLabel;
     edtFilter: TEdit;
-    procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnFilterClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -92,7 +92,7 @@ implementation
 
 procedure TLoadingDataDatabaseView.FormCreate(Sender: TObject);
 begin
-  TMSFNCDataGrid1.Clear;
+  FDConnection1.Params.Database := '..\Data\Departments.db';
 end;
 
 procedure TLoadingDataDatabaseView.btnCloseClick(Sender: TObject);

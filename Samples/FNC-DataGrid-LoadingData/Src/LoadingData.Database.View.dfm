@@ -416,8 +416,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     Stroke.Color = clDarkgray
-    ExplicitTop = 97
-    ExplicitHeight = 568
+    ExplicitTop = 84
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 760
@@ -489,9 +488,6 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      
-        'Database=C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataG' +
-        'rid-LoadingData\Data\Departments.db'
       'DriverID=SQLite')
     FetchOptions.AssignedValues = [evMode, evCursorKind]
     FetchOptions.Mode = fmAll
