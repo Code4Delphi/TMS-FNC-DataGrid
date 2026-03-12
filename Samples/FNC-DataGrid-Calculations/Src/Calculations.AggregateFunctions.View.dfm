@@ -56,6 +56,7 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
     CellAppearance.BandLayout.Font.Height = -12
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
+    CellAppearance.FixedLayout.Fill.Color = clCream
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FixedLayout.Font.Color = clBlack
     CellAppearance.FixedLayout.Font.Height = -12
@@ -99,7 +100,12 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
+    OnGetCellFormatting = TMSFNCDataGrid1GetCellFormatting
+    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Banding.Enabled = True
+    Options.Mouse.ColumnSizing = True
+    Options.Mouse.FixedColumnSizing = True
     ExplicitTop = 71
   end
 end

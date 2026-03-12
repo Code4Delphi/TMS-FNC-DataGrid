@@ -105,7 +105,7 @@ begin
   if ACancel then
     Exit;
 
-  //WHEN THE VALUE OF A CELL IS CHANGED, THE TOTALS ARE RECALCULATED
+  //VALUE OF A CELL IS CHANGED, THE TOTALS ARE RECALCULATED / VALOR DE UMA CELULA E ALTERADO, OS TOTAIS SAO RECALCULADOS
   TMSFNCDataGrid1.UpdateCalculations;
 
   if ckCalcAutoSizeColumns.Checked then
@@ -128,14 +128,14 @@ begin
   if ACell.Row = Pred(TMSFNCDataGrid1.RowCount) then
   begin
     ACell.Layout.Font.Style := [fsBold];
-    ACell.Layout.Fill.Color := gcLightgray;
+    ACell.Layout.Fill.Color := clCream;
   end;
 
   //LAST COLUMN
   if ACell.Column = Pred(TMSFNCDataGrid1.ColumnCount) then
   begin
     ACell.Layout.Font.Style := [fsBold];
-    ACell.Layout.Fill.Color := gcLightgray;
+    ACell.Layout.Fill.Color := clCream;
   end;
 
   //ROW OR COLUMN IS FIXED
@@ -144,7 +144,7 @@ begin
     //COLUMN 1 ALIGNED TO THE LEFT AND THE REST TO THE RIGHT
     ACell.Layout.TextAlign := gtaTrailing;
     if ACell.Column = 0 then
-      ACell.Layout.TextAlign := gtaLeading
+      ACell.Layout.TextAlign := gtaLeading;
   end;
 end;
 
