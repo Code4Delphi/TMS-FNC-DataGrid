@@ -12,6 +12,7 @@ type
   TCalculationsAggregateFunctionsView = class(TForm)
     pnTop: TPanel;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
+    Label1: TLabel;
     procedure TMSFNCDataGrid1CanEditCell(Sender: TObject; AColumn, ARow: Integer; var ACanEdit: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord; ACancel: Boolean;
@@ -21,10 +22,8 @@ type
       AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
       var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
   private
-    procedure AddColumnSUM;
-    procedure AddColumnAVG;
+    procedure AddColumnCalculation(const AHeader: string; AMethod: TTMSFNCDataGridDataCalculationMethod);
     procedure RowCalculation;
-    procedure AddColumnMAX;
   public
 
   end;
@@ -40,9 +39,15 @@ procedure TCalculationsAggregateFunctionsView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
   TMSFNCDataGrid1.LoadFromCSVData('../Data/AggregateFunctions.csv');
-  Self.AddColumnSUM;
-  Self.AddColumnAVG;
-  Self.AddColumnMAX;
+
+  Self.AddColumnCalculation('SUM', gcmSum);
+  Self.AddColumnCalculation('AVG', gcmAverage);
+  Self.AddColumnCalculation('MAX', gcmMax);
+  Self.AddColumnCalculation('MIN', gcmMin);
+  Self.AddColumnCalculation('Count', gcmCount);
+  Self.AddColumnCalculation('Distinct', gcmDistinct);
+  Self.AddColumnCalculation('StandardDeviation', gcmStandardDeviation);
+
   Self.RowCalculation;
 end;
 
@@ -63,37 +68,15 @@ begin
     and (ARow >= TMSFNCDataGrid1.FixedRowCount) and (ARow <= TMSFNCDataGrid1.RowCount - 2);
 end;
 
-procedure TCalculationsAggregateFunctionsView.AddColumnSUM;
+procedure TCalculationsAggregateFunctionsView.AddColumnCalculation(const AHeader: string; AMethod: TTMSFNCDataGridDataCalculationMethod);
 begin
   TMSFNCDataGrid1.ColumnCount := Succ(TMSFNCDataGrid1.ColumnCount);
   TMSFNCDataGrid1.FixedRightColumnCount := Succ(TMSFNCDataGrid1.FixedRightColumnCount);
 
   for var I := 1 to TMSFNCDataGrid1.RowCount do
-    TMSFNCDataGrid1.RowCalculations[I, 'SUM'] := [CreateRowCalculation(gcmSum, nil, nil, -1, -1, Pred(TMSFNCDataGrid1.ColumnCount))];
+    TMSFNCDataGrid1.RowCalculations[I, AHeader] := [CreateRowCalculation(AMethod, nil, nil, -1, -1, Pred(TMSFNCDataGrid1.ColumnCount))];
 
-  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'Sum Row';
-end;
-
-procedure TCalculationsAggregateFunctionsView.AddColumnAVG;
-begin
-  TMSFNCDataGrid1.ColumnCount := Succ(TMSFNCDataGrid1.ColumnCount);
-  TMSFNCDataGrid1.FixedRightColumnCount := Succ(TMSFNCDataGrid1.FixedRightColumnCount);
-
-  for var I := 1 to TMSFNCDataGrid1.RowCount do
-    TMSFNCDataGrid1.RowCalculations[I, 'AVG'] := [CreateRowCalculation(gcmAverage, nil, nil, -1, -1, Pred(TMSFNCDataGrid1.ColumnCount))];
-
-  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'AVG Row';
-end;
-
-procedure TCalculationsAggregateFunctionsView.AddColumnMAX;
-begin
-  TMSFNCDataGrid1.ColumnCount := Succ(TMSFNCDataGrid1.ColumnCount);
-  TMSFNCDataGrid1.FixedRightColumnCount := Succ(TMSFNCDataGrid1.FixedRightColumnCount);
-
-  for var I := 1 to TMSFNCDataGrid1.RowCount do
-    TMSFNCDataGrid1.RowCalculations[I, 'MAX'] := [CreateRowCalculation(gcmMax, nil, nil, -1, -1, Pred(TMSFNCDataGrid1.ColumnCount))];
-
-  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'MAX Row';
+  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := AHeader;
 end;
 
 procedure TCalculationsAggregateFunctionsView.TMSFNCDataGrid1GetCellFormatting(Sender: TObject;

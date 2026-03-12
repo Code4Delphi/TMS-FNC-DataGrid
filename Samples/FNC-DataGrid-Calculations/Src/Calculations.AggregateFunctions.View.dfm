@@ -22,6 +22,27 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    object Label1: TLabel
+      Left = 704
+      Top = 8
+      Width = 583
+      Height = 51
+      Hint = 
+        'Standard Deviation: Calcula o desvio padr'#227'o, mede o quanto os va' +
+        'lores est'#227'o dispersos em rela'#231#227'o '#224' m'#233'dia. Quanto maior o desvio ' +
+        'padr'#227'o, mais os valores est'#227'o espalhados, quanto menor, mais pr'#243 +
+        'ximos da m'#233'dia.'
+      AutoSize = False
+      Caption = 
+        'Standard Deviation: Calculates the standard deviation, measuring' +
+        ' how dispersed the values '#8203#8203'are in relation to the mean. The lar' +
+        'ger the standard deviation, the more spread out the values '#8203#8203'are' +
+        '; the smaller the standard deviation, the closer they are to the' +
+        ' mean.'
+      ParentShowHint = False
+      ShowHint = True
+      WordWrap = True
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
