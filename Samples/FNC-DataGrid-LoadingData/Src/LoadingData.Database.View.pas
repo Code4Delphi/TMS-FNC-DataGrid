@@ -43,14 +43,13 @@ uses
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
-  VCL.TMSFNCBitmapContainer,
-  VCL.TMSFNCDataGridExcelIO,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
   VCL.TMSFNCCustomComponent,
   VCL.TMSFNCDataGridDatabaseAdapter,
   VCL.TMSFNCCustomControl,
-  VCL.TMSFNCDataGrid,
-  Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.ComCtrls;
+  VCL.TMSFNCDataGrid;
 
 type
   TLoadingDataDatabaseView = class(TForm)
@@ -59,8 +58,6 @@ type
     btnOpenQuery: TButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
-    TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO;
-    TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     DataSource1: TDataSource;
     FDQuery1: TFDQuery;
     FDConnection1: TFDConnection;
