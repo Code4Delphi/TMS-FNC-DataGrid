@@ -133,6 +133,7 @@ object LoadingDataExcelView: TLoadingDataExcelView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Mouse.ColumnSizing = True

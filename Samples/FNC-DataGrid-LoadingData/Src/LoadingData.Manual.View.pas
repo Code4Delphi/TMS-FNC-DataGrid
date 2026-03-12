@@ -85,19 +85,19 @@ begin
     // Record 1
     TMSFNCDataGrid1.Cells[1, 1] := 'Deliveries';
     TMSFNCDataGrid1.Cells[2, 1] := 'Description 17';
-    TMSFNCDataGrid1.Cells[3, 1] := '5';
-    TMSFNCDataGrid1.Cells[4, 1] := '15/11/2026';
-    TMSFNCDataGrid1.Cells[5, 1] := '6163.91';
-    TMSFNCDataGrid1.Cells[6, 1] := 'False';
+    TMSFNCDataGrid1.Cells[3, 1] := 5;
+    TMSFNCDataGrid1.Cells[4, 1] := StrToDate('15/11/2026');
+    TMSFNCDataGrid1.Cells[5, 1] := 6163.91;
+    TMSFNCDataGrid1.Cells[6, 1] := False;
     TMSFNCDataGrid1.Cells[7, 1] := '<b>This</b> is <i><a href="https://www.code4delphi.com.br">HTML link</a></i>';
 
     // Record 2
     TMSFNCDataGrid1.Cells[1, 2] := 'Human resources';
     TMSFNCDataGrid1.Cells[2, 2] := 'Description 92';
-    TMSFNCDataGrid1.Cells[3, 2] := '7';
-    TMSFNCDataGrid1.Cells[4, 2] := '21/10/2025';
-    TMSFNCDataGrid1.Cells[5, 2] := '249.25';
-    TMSFNCDataGrid1.Cells[6, 2] := 'False';
+    TMSFNCDataGrid1.Cells[3, 2] := 7;
+    TMSFNCDataGrid1.Cells[4, 2] := StrToDate('21/10/2025');
+    TMSFNCDataGrid1.Cells[5, 2] := 249.25;
+    TMSFNCDataGrid1.Cells[6, 2] := False;
     TMSFNCDataGrid1.Cells[7, 2] := '<b>This</b> is <i><a href="https://www.tmssoftware.com/site/tmsfncuipack-grid.asp">HTML link</a></i>';
   finally
     TMSFNCDataGrid1.EndUpdate;

@@ -63,20 +63,22 @@ end;
 
 procedure TLoadingDataCSVView.ConfigGrid;
 begin
-  //Allows you to resize the column widths using the mouse
+  //Permite redimensionar a largura das colunas usando o mouse / Allows you to resize the column widths using the mouse
   TMSFNCDataGrid1.Options.Mouse.ColumnSizing := True;
-  //It allows you to resize columns even when the mouse is over the header (fixed cells)
+  //Permite redimensionar as colunas mesmo quando o cursor esta sobre o cabeçalho (celulas fixas) / It allows you to resize columns even when the mouse is over the header (fixed cells)
   TMSFNCDataGrid1.Options.Mouse.FixedColumnSizing := True;
-  //Defines the resizing mode: gszmOneSided only changes the current column
+  //Define o modo de redimensionamento: gszmOneSided altera apenas a coluna atual / Defines the resizing mode: gszmOneSided only changes the current column
   TMSFNCDataGrid1.Options.Mouse.ColumnSizingMode := gszmOneSided;
-  //Allows you to drag the column headers to rearrange their order
+  //Permite arrastar os cabeçalhos das colunas para reorganizar a ordem / Allows you to drag the column headers to rearrange their order
   TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
-  //It causes the grid columns to automatically adjust to fill the entire available width of the component.
+  //Colunas da grade se ajustem automaticamente para preencher toda a largura disponível do componente / Grid columns to automatically adjust to fill the entire available width of the component
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := False;
 
+  //Define a coluna inicial (indice 0) do grid a partir da qual os dados serao importados ou exportados / Defines the starting column (index 0) of the grid from which data will be imported or exported.
   TMSFNCDataGrid1.Options.IO.StartColumn := 0;
   TMSFNCDataGrid1.Options.IO.StartRow := 0;
 
+  //Defines the default width and height of columns and rows
   TMSFNCDataGrid1.DefaultColumnWidth := 200;
   TMSFNCDataGrid1.DefaultRowHeight := 24;
 

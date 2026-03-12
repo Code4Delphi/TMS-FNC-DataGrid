@@ -44,10 +44,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnExportXLSClick(Sender: TObject);
     procedure btnImportFileClick(Sender: TObject);
+    procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
   private
     procedure ConfigGrid;
-    procedure ConfigDataGridExcelImport;
-    procedure ConfigDataGridExcelExport;
+    procedure ConfigDataGridExcel;
   public
 
   end;
@@ -88,7 +88,24 @@ begin
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := Darker(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 20);
 end;
 
-procedure TLoadingDataExcelView.ConfigDataGridExcelImport;
+procedure TLoadingDataExcelView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
+begin
+  //ROW OR COLUMN IS FIXED
+  if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
+  begin
+     ACell.Layout.Fill.Color := gcLightgray;
+     Exit;
+  end;
+
+  //COLUMN STATUS
+  if ACell.Column = 5 then //OR: if TMSFNCDataGrid1.Columns[ACell.Column].Header = 'Status' then
+  begin
+    if TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString = 'False' then
+      ACell.Layout.Fill.Color := gcLightcoral;
+  end;
+end;
+
+procedure TLoadingDataExcelView.ConfigDataGridExcel;
 begin
   //Linha e coluna inicial que seram pegos ao importar de um arquivo XLS / Initial row and column that will be retrieved when importing from an XLS file.
   TMSFNCDataGridExcelIO1.XlsStartRow := 0;
@@ -97,17 +114,6 @@ begin
   //Linha e coluna inicial no DataGrid de onde os dados serão adicionados / Starting row and column in the DataGrid from where the data will be added.
   TMSFNCDataGridExcelIO1.DataGridStartRow := 0;
   TMSFNCDataGridExcelIO1.DataGridStartCol := 0;
-end;
-
-procedure TLoadingDataExcelView.ConfigDataGridExcelExport;
-begin
-  //Linha e coluna inicial que seram pegos ao importar de um arquivo XLS / Initial row and column that will be retrieved when importing from an XLS file.
-  TMSFNCDataGridExcelIO1.XlsStartRow := 0;
-  TMSFNCDataGridExcelIO1.XlsStartCol := 0;
-
-  //Linha e coluna inicial no DataGrid de onde os dados serão adicionados / Starting row and column in the DataGrid from where the data will be added.
-  TMSFNCDataGridExcelIO1.DataGridStartRow := 1;
-  TMSFNCDataGridExcelIO1.DataGridStartCol := 1;
 end;
 
 procedure TLoadingDataExcelView.btnClearClick(Sender: TObject);
@@ -123,7 +129,7 @@ end;
 
 procedure TLoadingDataExcelView.btnImportDepartmentsClick(Sender: TObject);
 begin
-  Self.ConfigDataGridExcelImport;
+  Self.ConfigDataGridExcel;
   TMSFNCDataGridExcelIO1.XLSImport('../Data/Departments.xls');
 end;
 
@@ -131,7 +137,7 @@ procedure TLoadingDataExcelView.btnImportFileClick(Sender: TObject);
 var
   LFileName: string;
 begin
-  Self.ConfigDataGridExcelImport;
+  Self.ConfigDataGridExcel;
 
   LFileName := TUtils.GetNameFileXLS;
   if not LFileName.IsEmpty then
@@ -140,8 +146,9 @@ end;
 
 procedure TLoadingDataExcelView.btnExportXLSClick(Sender: TObject);
 begin
-  Self.ConfigDataGridExcelExport;
+  Self.ConfigDataGridExcel;
 
+  DeleteFile('Temp.xls');
   TMSFNCDataGridExcelIO1.XLSExport('Temp.xls');
   TTMSFNCUtils.OpenFile('Temp.xls');
 end;
