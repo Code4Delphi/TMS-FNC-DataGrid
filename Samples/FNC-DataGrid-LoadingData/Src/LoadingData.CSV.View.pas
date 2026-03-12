@@ -105,19 +105,15 @@ begin
 end;
 
 procedure TLoadingDataCSVView.btnImportFileClick(Sender: TObject);
-var
-  LFileName: string;
 begin
-  LFileName := TUtils.GetNameFileCSV;
+  var LFileName := TUtils.GetNameFileCSV;
   if not LFileName.IsEmpty then
     TMSFNCDataGrid1.LoadFromCSVData(LFileName);
 end;
 
 procedure TLoadingDataCSVView.btnExportCSVClick(Sender: TObject);
-var
-  LFileName: string;
 begin
-  LFileName := TUtils.GetNameFileCSV;
+  var LFileName := TUtils.GetNameFileCSV;
   if not LFileName.IsEmpty then
     TMSFNCDataGrid1.SaveToCSVData(LFileName);
 end;

@@ -107,11 +107,11 @@ end;
 
 procedure TLoadingDataExcelView.ConfigDataGridExcel;
 begin
-  //Linha e coluna inicial que seram pegos ao importar de um arquivo XLS / Initial row and column that will be retrieved when importing from an XLS file.
+  //Linha e coluna inicial que seram pegos ao importar de um XLS / Initial row and column that will be retrieved when importing from an XLS
   TMSFNCDataGridExcelIO1.XlsStartRow := 0;
   TMSFNCDataGridExcelIO1.XlsStartCol := 0;
 
-  //Linha e coluna inicial no DataGrid de onde os dados serão adicionados / Starting row and column in the DataGrid from where the data will be added.
+  //Linha e coluna inicial no DataGrid de onde os dados serao adicionados / Starting row and column in the DataGrid from where the data will be added
   TMSFNCDataGridExcelIO1.DataGridStartRow := 0;
   TMSFNCDataGridExcelIO1.DataGridStartCol := 0;
 end;
@@ -134,12 +134,10 @@ begin
 end;
 
 procedure TLoadingDataExcelView.btnImportFileClick(Sender: TObject);
-var
-  LFileName: string;
 begin
   Self.ConfigDataGridExcel;
 
-  LFileName := TUtils.GetNameFileXLS;
+  var LFileName := TUtils.GetNameFileXLS;
   if not LFileName.IsEmpty then
     TMSFNCDataGridExcelIO1.XLSImport(LFileName);
 end;

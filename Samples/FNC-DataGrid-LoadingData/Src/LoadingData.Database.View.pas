@@ -72,7 +72,6 @@ type
     btnFilter: TButton;
     Label1: TLabel;
     edtFilter: TEdit;
-    procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnFilterClick(Sender: TObject);
@@ -89,11 +88,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TLoadingDataDatabaseView.FormCreate(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Clear;
-end;
 
 procedure TLoadingDataDatabaseView.btnCloseClick(Sender: TObject);
 begin

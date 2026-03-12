@@ -13,7 +13,6 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
-  OnCreate = FormCreate
   TextHeight = 15
   object pnTop: TPanel
     Left = 0
@@ -416,8 +415,6 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     Stroke.Color = clDarkgray
-    ExplicitTop = 97
-    ExplicitHeight = 568
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 760
