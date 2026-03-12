@@ -50,6 +50,11 @@ begin
   TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
   //It causes the grid columns to automatically adjust to fill the entire available width of the component.
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
+
+  //Banding (zebra effect) on the grid, that is, it applies alternating colors to the
+  TMSFNCDataGrid1.Options.Banding.Enabled := True;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := Lighter(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 50);
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := Darker(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 20);
 end;
 
 procedure TLoadingDataManualView.btnLoadClick(Sender: TObject);

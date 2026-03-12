@@ -4,7 +4,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Loading database data'
   ClientHeight = 684
-  ClientWidth = 988
+  ClientWidth = 1204
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,13 +18,13 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 988
+    Width = 1204
     Height = 97
     Align = alTop
     TabOrder = 0
     object Label1: TLabel
       Left = 263
-      Top = 15
+      Top = 17
       Width = 181
       Height = 15
       Caption = 'Filter Department and Description '
@@ -67,7 +67,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 97
-    Width = 988
+    Width = 1204
     Height = 568
     Align = alClient
     ParentDoubleBuffered = False
@@ -93,6 +93,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     CellAppearance.FilterInverseMatchLayout.Font.Height = -12
     CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterInverseMatchLayout.Font.Style = []
+    CellAppearance.BandLayout.Fill.Color = clLightgray
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.BandLayout.Font.Color = clBlack
     CellAppearance.BandLayout.Font.Height = -11
@@ -127,12 +128,14 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.GroupLayout.Stroke.Color = 15987699
+    CellAppearance.NormalLayout.Fill.Color = clActiveBorder
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.NormalLayout.Font.Color = clBlack
     CellAppearance.NormalLayout.Font.Height = -11
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
     CellAppearance.NormalLayout.Stroke.Color = 15987699
+    CellAppearance.SelectedLayout.Fill.Color = clGray
     CellAppearance.SelectedLayout.Fill.ColorTo = 15385233
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.SelectedLayout.Font.Color = clBlack
@@ -407,6 +410,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
       32222F3E3C2F673E3C2F7376673E}
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
+    Options.Banding.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
     Options.Mouse.ColumnSizing = True
@@ -3587,7 +3591,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   object StatusBar1: TStatusBar
     Left = 0
     Top = 665
-    Width = 988
+    Width = 1204
     Height = 19
     Panels = <
       item

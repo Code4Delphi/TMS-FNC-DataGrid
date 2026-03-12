@@ -23,8 +23,6 @@ object CalculationsMainView: TCalculationsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 72
-    ExplicitTop = -6
     object btnCSV: TButton
       Left = 24
       Top = 21
@@ -34,14 +32,15 @@ object CalculationsMainView: TCalculationsMainView
       TabOrder = 0
       OnClick = btnCSVClick
     end
-    object btnOpenXLS: TButton
-      Left = 175
-      Top = 21
-      Width = 145
-      Height = 25
-      Caption = 'Open in Excel (xls)'
+    object ckCalcAutoSizeColumns: TCheckBox
+      Left = 200
+      Top = 25
+      Width = 289
+      Height = 17
+      Caption = 'Automatic column resizing when editing values'
+      Checked = True
+      State = cbChecked
       TabOrder = 1
-      OnClick = btnOpenXLSClick
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
@@ -121,9 +120,5 @@ object CalculationsMainView: TCalculationsMainView
     FilterAppearance.Font.Style = []
     OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
-    ExplicitLeft = 168
-    ExplicitTop = 216
-    ExplicitWidth = 660
-    ExplicitHeight = 400
   end
 end

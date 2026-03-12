@@ -78,10 +78,14 @@ begin
   //It causes the grid columns to automatically adjust to fill the entire available width of the component
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := False;
 
-  //Defines the starting column (index 0) from which data will be imported or exported
+  //Defines the starting column / row (index 0) from which data will be imported or exported
   TMSFNCDataGrid1.Options.IO.StartColumn := 0;
-  //Defines the starting row (index 0) from which data will be imported or exported
   TMSFNCDataGrid1.Options.IO.StartRow := 0;
+
+  //Banding (zebra effect) on the grid, that is, it applies alternating colors to the
+  TMSFNCDataGrid1.Options.Banding.Enabled := True;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := Lighter(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 50);
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := Darker(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 20);
 end;
 
 procedure TLoadingDataExcelView.ConfigDataGridExcelImport;

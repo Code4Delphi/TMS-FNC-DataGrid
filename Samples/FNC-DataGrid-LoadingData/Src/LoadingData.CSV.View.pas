@@ -79,6 +79,11 @@ begin
 
   TMSFNCDataGrid1.DefaultColumnWidth := 200;
   TMSFNCDataGrid1.DefaultRowHeight := 24;
+
+  //banding (zebra effect) on the grid, that is, it applies alternating colors to the
+  TMSFNCDataGrid1.Options.Banding.Enabled := True;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := Lighter(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 50);
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := Darker(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 20);
 end;
 
 procedure TLoadingDataCSVView.btnClearClick(Sender: TObject);

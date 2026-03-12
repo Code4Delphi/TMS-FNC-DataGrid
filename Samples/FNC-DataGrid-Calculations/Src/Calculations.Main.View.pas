@@ -11,27 +11,40 @@ uses
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
-  Vcl.Dialogs, Vcl.ExtCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, System.Rtti,
-  VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid, Vcl.StdCtrls;
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  VCL.TMSFNCTypes,
+  VCL.TMSFNCUtils,
+  VCL.TMSFNCGraphics,
+  VCL.TMSFNCGraphicsTypes,
+  System.Rtti,
+  VCL.TMSFNCDataGridCell,
+  VCL.TMSFNCDataGridData,
+  VCL.TMSFNCDataGridBase,
+  VCL.TMSFNCDataGridCore,
+  VCL.TMSFNCDataGridRenderer,
+  VCL.TMSFNCCustomControl,
+  VCL.TMSFNCDataGrid,
+  Vcl.StdCtrls,
+  VCL.TMSFNCCustomComponent;
 
 type
   TCalculationsMainView = class(TForm)
     pnTop: TPanel;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     btnCSV: TButton;
-    btnOpenXLS: TButton;
+    ckCalcAutoSizeColumns: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
     procedure TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord; ACancel: Boolean;
       AValue: TTMSFNCDataGridCellValue);
     procedure btnCSVClick(Sender: TObject);
-    procedure btnOpenXLSClick(Sender: TObject);
   private
     procedure LoadDataCSV;
     procedure ConfigDataGrid;
     procedure ColumnCalculation;
     procedure RowCalculation;
+    procedure CalcAutoSizeColumns;
   public
 
   end;
@@ -64,7 +77,9 @@ begin
   TMSFNCDataGrid1.Options.Keyboard.ArrowKeyDirectEdit := True;
   TMSFNCDataGrid1.Options.Keyboard.EnterKeyDirectEdit := True;
 
+  TMSFNCDataGrid1.Options.Column.Stretching.Mode := gstmProportional;
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
+
   TMSFNCDataGrid1.Options.Banding.Enabled := True;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := Lighter(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 50);
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := Darker(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 20);
@@ -86,8 +101,24 @@ end;
 procedure TCalculationsMainView.TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
   ACancel: Boolean; AValue: TTMSFNCDataGridCellValue);
 begin
+  if ACancel then
+    Exit;
+
   //WHEN THE VALUE OF A CELL IS CHANGED, THE TOTALS ARE RECALCULATED
   TMSFNCDataGrid1.UpdateCalculations;
+
+  if ckCalcAutoSizeColumns.Checked then
+    Self.CalcAutoSizeColumns;
+
+  //It automatically adjusts only the edited column
+  //TMSFNCDataGrid1.AutoSizeColumn(ACell.Column, gamAllCells, 8);
+end;
+
+procedure TCalculationsMainView.CalcAutoSizeColumns;
+begin
+  //Automatic column resizing
+  TMSFNCDataGrid1.AutoSizeRows(gamAllCells, 10);
+  TMSFNCDataGrid1.AutoSizeColumns(gamAllCells, 10);
 end;
 
 procedure TCalculationsMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
@@ -118,13 +149,8 @@ end;
 
 procedure TCalculationsMainView.btnCSVClick(Sender: TObject);
 begin
-  TMSFNCDataGrid1.SaveToCSVData('Temp.xls');
-  TTMSFNCUtils.OpenFile('Temp.xls');
-end;
-
-procedure TCalculationsMainView.btnOpenXLSClick(Sender: TObject);
-begin
-  //
+  TMSFNCDataGrid1.SaveToCSVData('Temp.csv');
+  TTMSFNCUtils.OpenFile('Temp.csv');
 end;
 
 procedure TCalculationsMainView.ColumnCalculation;
@@ -135,8 +161,7 @@ begin
   for var I := 1 to TMSFNCDataGrid1.ColumnCount do
     TMSFNCDataGrid1.ColumnCalculations[I, 'SUM'] := [CreateNormalColumnCalculation(gcmSum)];
 
-  TMSFNCDataGrid1.Cells[0, Pred(TMSFNCDataGrid1.RowCount)] := 'SUM';
-  TMSFNCDataGrid1.UpdateCalculations;
+  TMSFNCDataGrid1.Cells[0, Pred(TMSFNCDataGrid1.RowCount)] := 'Sum Col';
 end;
 
 procedure TCalculationsMainView.RowCalculation;
@@ -147,8 +172,7 @@ begin
   for var I := 1 to TMSFNCDataGrid1.RowCount do
     TMSFNCDataGrid1.RowCalculations[I, 'SUM'] := [CreateRowCalculation(gcmSum)];
 
-  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'SUM';
-  TMSFNCDataGrid1.UpdateCalculations;
+  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'Sum Row';
 end;
 
 end.

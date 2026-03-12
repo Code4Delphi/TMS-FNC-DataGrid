@@ -20,7 +20,6 @@ object LoadingDataMainView: TLoadingDataMainView
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 450
     object btnManualData: TButton
       Left = 62
       Top = 57

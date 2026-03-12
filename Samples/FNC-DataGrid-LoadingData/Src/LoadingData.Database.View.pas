@@ -95,12 +95,7 @@ implementation
 
 procedure TLoadingDataDatabaseView.FormCreate(Sender: TObject);
 begin
-  TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.Clear;
-  TMSFNCDataGrid1.Options.Banding.Enabled := True;
-  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := Lighter(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 50);
-  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := Darker(TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color, 20);
-  TMSFNCDataGrid1.EndUpdate;
 end;
 
 procedure TLoadingDataDatabaseView.btnCloseClick(Sender: TObject);
