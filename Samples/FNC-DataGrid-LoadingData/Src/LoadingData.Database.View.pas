@@ -76,6 +76,7 @@ type
     procedure btnCloseClick(Sender: TObject);
     procedure btnFilterClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -88,6 +89,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TLoadingDataDatabaseView.FormCreate(Sender: TObject);
+begin
+  FDConnection1.Params.Database := '..\Data\Departments.db';
+end;
 
 procedure TLoadingDataDatabaseView.btnCloseClick(Sender: TObject);
 begin

@@ -119,5 +119,6 @@ object LoadingDataManualView: TLoadingDataManualView
     Options.Sorting.Enabled = True
     Options.Mouse.ColumnSizing = True
     Options.Mouse.ColumnSizingMode = gszmTwoSided
+    ExplicitTop = 63
   end
 end

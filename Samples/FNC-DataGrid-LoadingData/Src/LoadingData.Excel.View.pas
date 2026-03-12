@@ -107,7 +107,7 @@ end;
 
 procedure TLoadingDataExcelView.ConfigDataGridExcel;
 begin
-  //Linha e coluna inicial que seram pegos ao importar de um XLS / Initial row and column that will be retrieved when importing from an XLS
+  //Linha e coluna inicial que seram pegos ao importar e exportar de um XLS / Initial row and column that will be retrieved when importing from an XLS
   TMSFNCDataGridExcelIO1.XlsStartRow := 0;
   TMSFNCDataGridExcelIO1.XlsStartCol := 0;
 
