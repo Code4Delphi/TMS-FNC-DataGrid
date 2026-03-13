@@ -1,7 +1,7 @@
 object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
   Left = 0
   Top = 0
-  Caption = 'CalculationsAggregateFunctionsView'
+  Caption = 'TMS FNC DataGrid - Aggregate Functions Calculations'
   ClientHeight = 689
   ClientWidth = 1287
   Color = clBtnFace
