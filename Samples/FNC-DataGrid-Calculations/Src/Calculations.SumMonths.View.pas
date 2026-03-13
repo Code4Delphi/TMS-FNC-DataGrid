@@ -31,14 +31,12 @@ uses
 type
   TCalculationsSumMonthsView = class(TForm)
     pnTop: TPanel;
-    btnCSV: TButton;
     ckCalcAutoSizeColumns: TCheckBox;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
     procedure TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord; ACancel: Boolean;
       AValue: TTMSFNCDataGridCellValue);
-    procedure btnCSVClick(Sender: TObject);
   private
     procedure LoadDataCSV;
     procedure ConfigDataGrid;
@@ -92,11 +90,34 @@ begin
   TMSFNCDataGrid1.Options.Selection.Mode := TTMSFNCDataGridSelectionMode.gsmSingleCell;
   TMSFNCDataGrid1.Options.URL.AutoDetect := True;
   TMSFNCDataGrid1.Options.URL.AutoOpen := True;
+  TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
 end;
 
 procedure TCalculationsSumMonthsView.LoadDataCSV;
 begin
   TMSFNCDataGrid1.LoadFromCSVData('../Data/Productos.csv');
+end;
+
+procedure TCalculationsSumMonthsView.ColumnCalculation;
+begin
+  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
+  TMSFNCDataGrid1.FixedRightColumnCount := 1;
+
+  for var I := 1 to TMSFNCDataGrid1.RowCount do
+    TMSFNCDataGrid1.RowCalculations[I, 'SUM'] := [CreateRowCalculation(gcmSum)];
+
+  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'Sum Row';
+end;
+
+procedure TCalculationsSumMonthsView.RowCalculation;
+begin
+  TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 1;
+  TMSFNCDataGrid1.FixedBottomRowCount := 1;
+
+  for var I := 1 to TMSFNCDataGrid1.ColumnCount do
+    TMSFNCDataGrid1.ColumnCalculations[I, 'SUM'] := [CreateNormalColumnCalculation(gcmSum)];
+
+  TMSFNCDataGrid1.Cells[0, Pred(TMSFNCDataGrid1.RowCount)] := 'Sum Col';
 end;
 
 procedure TCalculationsSumMonthsView.TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
@@ -146,34 +167,6 @@ begin
     if ACell.Column = 0 then
       ACell.Layout.TextAlign := gtaLeading;
   end;
-end;
-
-procedure TCalculationsSumMonthsView.btnCSVClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.SaveToCSVData('Temp.csv');
-  TTMSFNCUtils.OpenFile('Temp.csv');
-end;
-
-procedure TCalculationsSumMonthsView.ColumnCalculation;
-begin
-  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
-  TMSFNCDataGrid1.FixedRightColumnCount := 1;
-
-  for var I := 1 to TMSFNCDataGrid1.RowCount do
-    TMSFNCDataGrid1.RowCalculations[I, 'SUM'] := [CreateRowCalculation(gcmSum)];
-
-  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'Sum Row';
-end;
-
-procedure TCalculationsSumMonthsView.RowCalculation;
-begin
-  TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 1;
-  TMSFNCDataGrid1.FixedBottomRowCount := 1;
-
-  for var I := 1 to TMSFNCDataGrid1.ColumnCount do
-    TMSFNCDataGrid1.ColumnCalculations[I, 'SUM'] := [CreateNormalColumnCalculation(gcmSum)];
-
-  TMSFNCDataGrid1.Cells[0, Pred(TMSFNCDataGrid1.RowCount)] := 'Sum Col';
 end;
 
 end.
