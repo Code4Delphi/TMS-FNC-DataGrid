@@ -22,24 +22,15 @@ object CalculationsSumMonthsView: TCalculationsSumMonthsView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    object btnCSV: TButton
-      Left = 24
-      Top = 21
-      Width = 145
-      Height = 25
-      Caption = 'Open in Excel (csv)'
-      TabOrder = 0
-      OnClick = btnCSVClick
-    end
     object ckCalcAutoSizeColumns: TCheckBox
-      Left = 200
+      Left = 24
       Top = 25
       Width = 289
       Height = 17
       Caption = 'Automatic column resizing when editing values'
       Checked = True
       State = cbChecked
-      TabOrder = 1
+      TabOrder = 0
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
@@ -119,5 +110,9 @@ object CalculationsSumMonthsView: TCalculationsSumMonthsView
     FilterAppearance.Font.Style = []
     OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
+    Options.Keyboard.ArrowKeyDirectEdit = True
+    Options.Keyboard.EnterKeyDirectEdit = True
+    Options.Keyboard.EnterKeyHandling = gekhNextRow
+    ExplicitTop = 71
   end
 end

@@ -41,7 +41,7 @@ type
       var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
   private
     procedure AddColumnCalculation(const AHeader: string; AMethod: TTMSFNCDataGridDataCalculationMethod);
-    procedure AddRowCalculation(const AHeader: string; AMethod: TTMSFNCDataGridDataCalculationMethod);
+    procedure AddRowCalculation;
   public
 
   end;
@@ -66,13 +66,13 @@ begin
   Self.AddColumnCalculation('Distinct', gcmDistinct);
   Self.AddColumnCalculation('StdDeviation', gcmStandardDeviation);
 
-  Self.AddRowCalculation('SUM', gcmSum);
+  Self.AddRowCalculation;
   TMSFNCDataGrid1.UpdateCalculations;
 end;
 
 procedure TCalculationsAggregateFunctionsView.AddColumnCalculation(const AHeader: string; AMethod: TTMSFNCDataGridDataCalculationMethod);
 begin
-  TMSFNCDataGrid1.ColumnCount := Succ(TMSFNCDataGrid1.ColumnCount);
+  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
   TMSFNCDataGrid1.FixedRightColumnCount := Succ(TMSFNCDataGrid1.FixedRightColumnCount);
 
   for var I := 1 to TMSFNCDataGrid1.RowCount do
@@ -81,7 +81,7 @@ begin
   TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := AHeader;
 end;
 
-procedure TCalculationsAggregateFunctionsView.AddRowCalculation(const AHeader: string; AMethod: TTMSFNCDataGridDataCalculationMethod);
+procedure TCalculationsAggregateFunctionsView.AddRowCalculation;
 begin
   TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 2;
   TMSFNCDataGrid1.FixedBottomRowCount := 2;

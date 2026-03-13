@@ -12,6 +12,9 @@
         <Projects Include="FNC-DataGrid-Calculations\FNC_DataGrid_Calculations.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNC_DataGrid_Calculations_FMX\FNC_DataGrid_Calculations_FMX.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="FNC_DataGrid_Calculations:Make">
         <MSBuild Projects="FNC-DataGrid-Calculations\FNC_DataGrid_Calculations.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNC_DataGrid_Calculations_FMX">
+        <MSBuild Projects="FNC_DataGrid_Calculations_FMX\FNC_DataGrid_Calculations_FMX.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Calculations_FMX:Clean">
+        <MSBuild Projects="FNC_DataGrid_Calculations_FMX\FNC_DataGrid_Calculations_FMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Calculations_FMX:Make">
+        <MSBuild Projects="FNC_DataGrid_Calculations_FMX\FNC_DataGrid_Calculations_FMX.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
