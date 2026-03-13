@@ -2,8 +2,8 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
   Left = 0
   Top = 0
   Caption = 'TMS FNC DataGrid - Aggregate Functions Calculations'
-  ClientHeight = 689
-  ClientWidth = 1287
+  ClientHeight = 682
+  ClientWidth = 868
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1287
+    Width = 868
     Height = 65
     Align = alTop
     BevelOuter = bvNone
@@ -47,8 +47,8 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 65
-    Width = 1287
-    Height = 624
+    Width = 868
+    Height = 617
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -125,7 +125,12 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
     OnGetCellFormatting = TMSFNCDataGrid1GetCellFormatting
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Banding.Enabled = True
+    Options.Keyboard.ArrowKeyDirectEdit = True
+    Options.Keyboard.EnterKeyDirectEdit = True
+    Options.Keyboard.EnterKeyHandling = gekhNextRow
+    Options.Keyboard.TabKeyDirectEdit = True
     Options.Mouse.ColumnSizing = True
     Options.Mouse.FixedColumnSizing = True
+    ExplicitHeight = 624
   end
 end

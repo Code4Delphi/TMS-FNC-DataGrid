@@ -56,11 +56,12 @@ implementation
 
 procedure TCalculationsSumMonthsView.FormCreate(Sender: TObject);
 begin
-  FormatSettings.DecimalSeparator := ',';
+  FormatSettings.DecimalSeparator := '.';
   Self.ConfigDataGrid;
   Self.LoadDataCSV;
   Self.ColumnCalculation;
   Self.RowCalculation;
+  TMSFNCDataGrid1.UpdateCalculations;
   Self.CalcAutoSizeColumns;
 end;
 
@@ -75,6 +76,7 @@ begin
   TMSFNCDataGrid1.Options.Keyboard.TabKeyDirectEdit := True;
   TMSFNCDataGrid1.Options.Keyboard.ArrowKeyDirectEdit := True;
   TMSFNCDataGrid1.Options.Keyboard.EnterKeyDirectEdit := True;
+  TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRow;
 
   TMSFNCDataGrid1.Options.Column.Stretching.Mode := gstmProportional;
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
