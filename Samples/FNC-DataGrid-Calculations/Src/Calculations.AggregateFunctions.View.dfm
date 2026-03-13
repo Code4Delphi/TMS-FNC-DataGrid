@@ -127,6 +127,5 @@ object CalculationsAggregateFunctionsView: TCalculationsAggregateFunctionsView
     Options.Banding.Enabled = True
     Options.Mouse.ColumnSizing = True
     Options.Mouse.FixedColumnSizing = True
-    ExplicitTop = 71
   end
 end

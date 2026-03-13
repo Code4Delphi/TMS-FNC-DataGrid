@@ -119,7 +119,5 @@ object CalculationsSumMonthsView: TCalculationsSumMonthsView
     FilterAppearance.Font.Style = []
     OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
-    ExplicitLeft = 8
-    ExplicitTop = 71
   end
 end
