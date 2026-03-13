@@ -129,7 +129,7 @@ end;
 procedure TCalculationsCustomView.btnColumnSumClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.ColumnCalculations[1, 'SUM'] :=
-    [CreateNormalColumnCalculation(gcmSum ,
+    [CreateNormalColumnCalculation(gcmSum,
     procedure(AColumn: Integer; ALevel: Integer; var AOptions: TTMSFNCDataGridDataColumnCalculationOptions) {OPTIONAL: calculation options}
     begin
       AOptions.CalculationFormat := 'SUM: %g';

@@ -113,5 +113,6 @@ object CalculationsSumMonthsView: TCalculationsSumMonthsView
     Options.Keyboard.ArrowKeyDirectEdit = True
     Options.Keyboard.EnterKeyDirectEdit = True
     Options.Keyboard.EnterKeyHandling = gekhNextRow
+    ExplicitTop = 71
   end
 end
