@@ -15,6 +15,9 @@
         <Projects Include="FNC_DataGrid_Calculations_FMX\FNC_DataGrid_Calculations_FMX.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNC-DataGrid-Filtering\FNC_DataGrid_Filtering.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="FNC_DataGrid_Calculations_FMX:Make">
         <MSBuild Projects="FNC_DataGrid_Calculations_FMX\FNC_DataGrid_Calculations_FMX.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNC_DataGrid_Filtering">
+        <MSBuild Projects="FNC-DataGrid-Filtering\FNC_DataGrid_Filtering.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Filtering:Clean">
+        <MSBuild Projects="FNC-DataGrid-Filtering\FNC_DataGrid_Filtering.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Filtering:Make">
+        <MSBuild Projects="FNC-DataGrid-Filtering\FNC_DataGrid_Filtering.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
