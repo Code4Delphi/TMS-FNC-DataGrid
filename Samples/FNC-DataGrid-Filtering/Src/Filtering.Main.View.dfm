@@ -1,6 +1,7 @@
 object FilteringMainView: TFilteringMainView
   Left = 0
   Top = 0
+  ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Filtering'
   ClientHeight = 648
   ClientWidth = 1513
@@ -21,18 +22,15 @@ object FilteringMainView: TFilteringMainView
     Height = 121
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object gBoxConfigs: TGroupBox
-      Left = 201
+      Left = 195
       Top = 1
-      Width = 200
+      Width = 194
       Height = 119
       Align = alLeft
       Caption = ' Configs Filters '
       TabOrder = 0
-      ExplicitLeft = 204
-      ExplicitTop = -4
-      ExplicitHeight = 111
+      ExplicitLeft = 137
       object ckFilter: TCheckBox
         Left = 12
         Top = 20
@@ -75,9 +73,9 @@ object FilteringMainView: TFilteringMainView
       end
     end
     object btnClearFilter: TButton
-      Left = 966
-      Top = 38
-      Width = 177
+      Left = 1375
+      Top = 42
+      Width = 119
       Height = 25
       Caption = 'Clear Filter'
       TabOrder = 1
@@ -86,14 +84,11 @@ object FilteringMainView: TFilteringMainView
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
-      Width = 200
+      Width = 194
       Height = 119
       Align = alLeft
       Caption = ' Configs Grid '
       TabOrder = 2
-      ExplicitLeft = 3
-      ExplicitTop = -4
-      ExplicitHeight = 111
       object ckStretching: TCheckBox
         Left = 12
         Top = 23
@@ -115,20 +110,18 @@ object FilteringMainView: TFilteringMainView
       end
     end
     object GroupBox2: TGroupBox
-      Left = 401
+      Left = 389
       Top = 1
-      Width = 200
+      Width = 136
       Height = 119
       Align = alLeft
       Caption = ' Query '
       TabOrder = 3
-      ExplicitLeft = 407
-      ExplicitTop = -4
-      ExplicitHeight = 111
+      ExplicitLeft = 401
       object btnClose: TButton
         Left = 9
         Top = 19
-        Width = 183
+        Width = 107
         Height = 25
         Caption = 'Close'
         TabOrder = 0
@@ -137,7 +130,7 @@ object FilteringMainView: TFilteringMainView
       object btnOpenQuery: TButton
         Left = 9
         Top = 47
-        Width = 183
+        Width = 107
         Height = 25
         Caption = 'Open query'
         TabOrder = 1
@@ -145,35 +138,117 @@ object FilteringMainView: TFilteringMainView
       end
     end
     object GroupBox3: TGroupBox
-      Left = 601
+      Left = 525
       Top = 1
-      Width = 352
+      Width = 337
       Height = 119
       Align = alLeft
-      Caption = 'GroupBox3'
+      Caption = ' Add filters via code '
       TabOrder = 4
+      ExplicitLeft = 530
+      ExplicitTop = -4
       object Label1: TLabel
         Left = 12
-        Top = 23
+        Top = 21
         Width = 181
         Height = 15
         Caption = 'Filter Department and Description '
       end
       object btnFilter: TButton
-        Left = 257
-        Top = 39
-        Width = 78
+        Left = 255
+        Top = 37
+        Width = 66
         Height = 25
         Caption = 'Filter'
         TabOrder = 0
         OnClick = btnFilterClick
       end
       object edtFilter: TEdit
-        Left = 6
-        Top = 42
-        Width = 245
+        Left = 12
+        Top = 38
+        Width = 240
         Height = 23
         TabOrder = 1
+      end
+    end
+    object GroupBox4: TGroupBox
+      Left = 862
+      Top = 1
+      Width = 507
+      Height = 119
+      Align = alLeft
+      Caption = ' Custom filter '
+      TabOrder = 5
+      ExplicitTop = -4
+      object Label2: TLabel
+        Left = 11
+        Top = 24
+        Width = 43
+        Height = 15
+        Caption = 'Column'
+      end
+      object Label3: TLabel
+        Left = 163
+        Top = 24
+        Width = 54
+        Height = 15
+        Caption = 'Filter Type'
+      end
+      object Label4: TLabel
+        Left = 282
+        Top = 25
+        Width = 48
+        Height = 15
+        Caption = 'Text filter'
+      end
+      object cBoxColumns: TComboBox
+        Left = 11
+        Top = 42
+        Width = 150
+        Height = 23
+        Style = csDropDownList
+        DropDownCount = 30
+        TabOrder = 0
+      end
+      object cBoxFilterType: TComboBox
+        Left = 163
+        Top = 42
+        Width = 116
+        Height = 23
+        Style = csDropDownList
+        DropDownCount = 30
+        ItemIndex = 2
+        TabOrder = 1
+        Text = 'Contains'
+        Items.Strings = (
+          'StartsWith'
+          'EndsWith'
+          'Contains'
+          'NotContains'
+          'Equal'
+          'NotEqual'
+          'Empty'
+          'NotEmpty'
+          'LargerThan'
+          'SmallerThan'
+          'LargerOrEqualThan'
+          'SmallerOrEqualThan')
+      end
+      object edtTextFilter: TEdit
+        Left = 282
+        Top = 42
+        Width = 206
+        Height = 23
+        TabOrder = 2
+      end
+      object btnCustomFilter: TButton
+        Left = 423
+        Top = 71
+        Width = 66
+        Height = 25
+        Caption = 'Filter'
+        TabOrder = 3
+        OnClick = btnCustomFilterClick
       end
     end
   end
@@ -189,7 +264,6 @@ object FilteringMainView: TFilteringMainView
       item
         Width = 50
       end>
-    ExplicitWidth = 1135
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 760
@@ -280,7 +354,8 @@ object FilteringMainView: TFilteringMainView
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     RowCount = 1
-    ExplicitWidth = 1135
+    ExplicitLeft = 1
+    ExplicitTop = 115
   end
   object TMSFNCDataGrid2: TTMSFNCDataGrid
     Left = 232

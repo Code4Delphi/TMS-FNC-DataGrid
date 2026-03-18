@@ -53,6 +53,14 @@ type
     Label1: TLabel;
     btnFilter: TButton;
     edtFilter: TEdit;
+    GroupBox4: TGroupBox;
+    cBoxColumns: TComboBox;
+    Label2: TLabel;
+    cBoxFilterType: TComboBox;
+    Label3: TLabel;
+    Label4: TLabel;
+    edtTextFilter: TEdit;
+    btnCustomFilter: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
@@ -61,9 +69,12 @@ type
     procedure ckFilterClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnClearFilterClick(Sender: TObject);
+    procedure btnCustomFilterClick(Sender: TObject);
   private
     procedure Search;
     procedure ConfigDataGrid;
+    procedure FillcBoxColumns;
+    //procedure FillcBoxFilterType;
 
   public
 
@@ -80,6 +91,7 @@ procedure TFilteringMainView.FormCreate(Sender: TObject);
 begin
   FDConnection1.Params.Database := '..\Data\Departments.db';
 
+  //Self.FillcBoxFilterType;
   Self.ConfigDataGrid;
 end;
 
@@ -120,6 +132,21 @@ end;
 procedure TFilteringMainView.btnOpenQueryClick(Sender: TObject);
 begin
   Self.Search;
+
+  Self.FillcBoxColumns;
+end;
+
+procedure TFilteringMainView.FillcBoxColumns;
+var
+  i: Integer;
+  LColumn: TTMSFNCDataGridColumn;
+begin
+  cBoxColumns.Items.Clear;
+  for i := 0 to Pred(TMSFNCDataGrid1.Columns.Count) do
+  begin
+    LColumn := TMSFNCDataGrid1.Columns[i];
+    cBoxColumns.Items.Add(LColumn.Header);
+  end;
 end;
 
 procedure TFilteringMainView.btnCloseClick(Sender: TObject);
@@ -151,6 +178,19 @@ begin
   FDQuery1.Open;
   TMSFNCDataGrid1.Columns[4].AddSetting(gcsFormatting);
   TMSFNCDataGrid1.Columns[4].Formatting.&Type := gdftDate;
+end;
+
+procedure TFilteringMainView.btnCustomFilterClick(Sender: TObject);
+var
+  LFilter: TTMSFNCDataGridDataFilterData;
+begin
+  TMSFNCDataGrid1.ClearFilter;
+
+  LFilter := TMSFNCDataGrid1.Filter.Add;
+  LFilter.&Type := TTMSFNCDataGridDataFilterType(cBoxFilterType.ItemIndex);
+  LFilter.Column := cBoxColumns.ItemIndex;
+  LFilter.Condition := edtTextFilter.Text;
+  TMSFNCDataGrid1.ApplyFilter;
 end;
 
 end.
