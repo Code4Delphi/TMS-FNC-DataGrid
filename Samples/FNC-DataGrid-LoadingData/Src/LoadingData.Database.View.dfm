@@ -22,6 +22,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Height = 90
     Align = alTop
     TabOrder = 0
+    ExplicitTop = -6
     object Label1: TLabel
       Left = 263
       Top = 17
@@ -416,8 +417,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     Stroke.Color = clDarkgray
-    ExplicitLeft = -8
-    ExplicitTop = 96
+    ExplicitTop = 84
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 760
