@@ -8,21 +8,53 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.Rtti,
+  Data.DB,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef,
+  FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteWrapper.Stat,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
-  Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
-  VCL.TMSFNCGraphicsTypes, System.Rtti, VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase,
-  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid, FireDAC.Stan.Intf,
-  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
-  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
-  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, VCL.TMSFNCCustomComponent, VCL.TMSFNCDataGridDatabaseAdapter, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.ComCtrls;
+  Vcl.Dialogs,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  VCL.TMSFNCTypes,
+  VCL.TMSFNCUtils,
+  VCL.TMSFNCGraphics,
+  VCL.TMSFNCGraphicsTypes,  
+  VCL.TMSFNCDataGridCell,
+  VCL.TMSFNCDataGridData,
+  VCL.TMSFNCDataGridBase,
+  VCL.TMSFNCDataGridCore,
+  VCL.TMSFNCDataGridRenderer,
+  VCL.TMSFNCCustomControl,
+  VCL.TMSFNCDataGrid,  
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCDataGridDatabaseAdapter,    
+  TMS.TMSFNCFilterBuilder;
 
 type
   TFilteringMainView = class(TForm)
-    pnTop: TPanel;
+    pnTop1: TPanel;
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDQuery1Id: TIntegerField;
@@ -39,11 +71,9 @@ type
     ckFilter: TCheckBox;
     ckAdvancedFilter: TCheckBox;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    TMSFNCDataGrid2: TTMSFNCDataGrid;
     btnClearFilter: TButton;
     GroupBox1: TGroupBox;
     ckStretching: TCheckBox;
-    CheckBox2: TCheckBox;
     ckShowControlButton: TCheckBox;
     ckShowControlEditor: TCheckBox;
     GroupBox2: TGroupBox;
@@ -59,23 +89,32 @@ type
     cBoxFilterType: TComboBox;
     Label3: TLabel;
     Label4: TLabel;
-    edtTextFilter: TEdit;
+    edtTextCustomFilter: TEdit;
     btnCustomFilter: TButton;
+    pnTop2: TPanel;
+    GroupBox5: TGroupBox;
+    Label5: TLabel;
+    edtTextFilter: TEdit;
+    btnTextFilter: TButton;
+    GroupBox6: TGroupBox;
+    btnShowFilterDialog: TButton;
+    GroupBox7: TGroupBox;
+    btnAddExpression: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure btnFilterClick(Sender: TObject);
     procedure ckFilterClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure btnClearFilterClick(Sender: TObject);
     procedure btnCustomFilterClick(Sender: TObject);
+    procedure btnTextFilterClick(Sender: TObject);
+    procedure btnShowFilterDialogClick(Sender: TObject);
+    procedure btnAddExpressionClick(Sender: TObject);
   private
     procedure Search;
     procedure ConfigDataGrid;
     procedure FillcBoxColumns;
-    //procedure FillcBoxFilterType;
-
   public
 
   end;
@@ -91,13 +130,7 @@ procedure TFilteringMainView.FormCreate(Sender: TObject);
 begin
   FDConnection1.Params.Database := '..\Data\Departments.db';
 
-  //Self.FillcBoxFilterType;
   Self.ConfigDataGrid;
-end;
-
-procedure TFilteringMainView.FormShow(Sender: TObject);
-begin
-  //
 end;
 
 procedure TFilteringMainView.ckFilterClick(Sender: TObject);
@@ -155,8 +188,15 @@ begin
 end;
 
 procedure TFilteringMainView.DataSource1DataChange(Sender: TObject; Field: TField);
+var
+  LTotal: Integer;
+  LVisible: Integer;
 begin
-  StatusBar1.Panels[0].Text := 'Total: ' + FormatFloat('#,##0', FDQuery1.RecordCount);
+  StatusBar1.Panels[0].Text := 'Total query: ' + FormatFloat('#,##0', FDQuery1.RecordCount);
+
+  LTotal := TMSFNCDataGrid1.RowCount - TMSFNCDataGrid1.FixedRowCount;
+  LVisible := TMSFNCDataGrid1.VisibleRowCount - TMSFNCDataGrid1.FixedRowCount;
+  StatusBar1.Panels[1].Text := Format('Total Grid: %d of %s rows shown', [LVisible, FormatFloat('#,##0', LTotal)]);
 end;
 
 procedure TFilteringMainView.btnFilterClick(Sender: TObject);
@@ -189,8 +229,41 @@ begin
   LFilter := TMSFNCDataGrid1.Filter.Add;
   LFilter.&Type := TTMSFNCDataGridDataFilterType(cBoxFilterType.ItemIndex);
   LFilter.Column := cBoxColumns.ItemIndex;
-  LFilter.Condition := edtTextFilter.Text;
+  LFilter.Condition := edtTextCustomFilter.Text;
   TMSFNCDataGrid1.ApplyFilter;
 end;
+
+procedure TFilteringMainView.btnTextFilterClick(Sender: TObject);
+begin
+  if not ckAdvancedFilter.Checked then
+    raise Exception.Create('Only if advanced filter is checked');
+  
+  TMSFNCDataGrid1.ClearFilter;
+  TMSFNCDataGrid1.FilterBuilder.FilterText := edtTextFilter.Text;
+  TMSFNCDataGrid1.ApplyFilter;
+end;
+
+procedure TFilteringMainView.btnShowFilterDialogClick(Sender: TObject);
+begin
+  if not ckAdvancedFilter.Checked then
+    raise Exception.Create('Only if advanced filter is checked');
+  
+  TMSFNCDataGrid1.ShowFilterDialog;
+end;
+
+procedure TFilteringMainView.btnAddExpressionClick(Sender: TObject);
+var
+  LFilter: TTMSFNCFilterBuilder; 
+begin
+  if not ckAdvancedFilter.Checked then
+    raise Exception.Create('Only if advanced filter is checked');
+  
+  TMSFNCDataGrid1.ClearFilter;
+  LFilter := TMSFNCDataGrid1.FilterBuilder;
+  LFilter.Filter.AddExpression('Department', feoContains, 'Financial');
+  LFilter.Filter.AddExpression('Description', feoEqual, 'Description 2');
+  TMSFNCDataGrid1.ApplyFilter;
+end;
+
 
 end.
