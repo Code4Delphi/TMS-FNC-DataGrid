@@ -224,7 +224,7 @@ procedure TFilteringMainView.btnCustomFilterClick(Sender: TObject);
 var
   LFilter: TTMSFNCDataGridDataFilterData;
 begin
-  TMSFNCDataGrid1.ClearFilter;
+  //TMSFNCDataGrid1.ClearFilter;
 
   LFilter := TMSFNCDataGrid1.Filter.Add;
   LFilter.&Type := TTMSFNCDataGridDataFilterType(cBoxFilterType.ItemIndex);

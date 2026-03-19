@@ -21,7 +21,6 @@ object FilteringMainView: TFilteringMainView
     Height = 121
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object gBoxConfigs: TGroupBox
       Left = 137
       Top = 1
@@ -117,8 +116,6 @@ object FilteringMainView: TFilteringMainView
       Padding.Top = 2
       Padding.Right = 4
       TabOrder = 3
-      ExplicitLeft = 316
-      ExplicitTop = -3
       object btnClose: TButton
         AlignWithMargins = True
         Left = 6
@@ -132,9 +129,6 @@ object FilteringMainView: TFilteringMainView
         Caption = 'Close'
         TabOrder = 0
         OnClick = btnCloseClick
-        ExplicitLeft = 17
-        ExplicitTop = 71
-        ExplicitWidth = 107
       end
       object btnOpenQuery: TButton
         AlignWithMargins = True
@@ -149,8 +143,6 @@ object FilteringMainView: TFilteringMainView
         Caption = 'Open query'
         TabOrder = 1
         OnClick = btnOpenQueryClick
-        ExplicitTop = 16
-        ExplicitWidth = 107
       end
     end
     object GroupBox3: TGroupBox
@@ -193,7 +185,6 @@ object FilteringMainView: TFilteringMainView
       Align = alLeft
       Caption = ' Custom filter '
       TabOrder = 5
-      ExplicitLeft = 862
       object Label2: TLabel
         Left = 11
         Top = 24
@@ -278,8 +269,6 @@ object FilteringMainView: TFilteringMainView
       item
         Width = 50
       end>
-    ExplicitTop = 629
-    ExplicitWidth = 1513
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 760
@@ -370,8 +359,7 @@ object FilteringMainView: TFilteringMainView
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     RowCount = 1
-    ExplicitLeft = 1
-    ExplicitTop = 194
+    ExplicitTop = 201
   end
   object pnTop2: TPanel
     Left = 0
@@ -381,8 +369,6 @@ object FilteringMainView: TFilteringMainView
     Align = alTop
     Padding.Bottom = 4
     TabOrder = 5
-    ExplicitLeft = 1
-    ExplicitTop = 126
     object GroupBox5: TGroupBox
       Left = 1
       Top = 1
@@ -391,8 +377,6 @@ object FilteringMainView: TFilteringMainView
       Align = alLeft
       Caption = ' Text filter (only if advanced filter is checked) '
       TabOrder = 0
-      ExplicitLeft = -63
-      ExplicitTop = 0
       object Label5: TLabel
         Left = 12
         Top = 20
@@ -419,14 +403,13 @@ object FilteringMainView: TFilteringMainView
       end
     end
     object GroupBox6: TGroupBox
-      Left = 443
+      Left = 673
       Top = 1
       Width = 230
       Height = 73
       Align = alLeft
       Caption = ' Filter Dialog '
       TabOrder = 1
-      ExplicitTop = 0
       object btnShowFilterDialog: TButton
         Left = 6
         Top = 35
@@ -444,15 +427,13 @@ object FilteringMainView: TFilteringMainView
       end
     end
     object GroupBox7: TGroupBox
-      Left = 673
+      Left = 443
       Top = 1
       Width = 230
       Height = 73
       Align = alLeft
       Caption = ' Filter expressions '
       TabOrder = 2
-      ExplicitLeft = 668
-      ExplicitTop = 0
       object btnAddExpression: TButton
         Left = 6
         Top = 35
