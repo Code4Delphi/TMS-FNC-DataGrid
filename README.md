@@ -16,6 +16,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 02 - Instalando componente (Trial, .exe site TMS, Smart Setup e TMS Dashboard)](https://www.youtube.com/watch?v=IyVQWe5quRo&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 03 - Carregando 500.000 registros | Dados de diversas fontes | Configurações da Grid](https://www.youtube.com/watch?v=4lR47ywKydY&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 04 - Cálculos: SUM, AVG, MIN, MAX, ... | Agregações na Grid](https://www.youtube.com/watch?v=8PL2aZEKYjQ&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 05 - Filtering | Filtros via UI e Código: do Básico ao Avançado](https://www.youtube.com/watch?v=du7ssyfgu78&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
