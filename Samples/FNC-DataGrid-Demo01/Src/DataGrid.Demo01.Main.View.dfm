@@ -3336,6 +3336,7 @@ object DataGridDemo01MainView: TDataGridDemo01MainView
         Width = 215
         Height = 23
         Style = csDropDownList
+        DropDownCount = 30
         TabOrder = 3
         OnChange = cBoxSelectionModeChange
       end

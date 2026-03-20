@@ -1,122 +1,58 @@
-object FilteringMainView: TFilteringMainView
+object SortingMainView: TSortingMainView
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Filtering'
-  ClientHeight = 638
-  ClientWidth = 1324
+  Caption = 'TMS FNC DataGrid - Sorting'
+  ClientHeight = 612
+  ClientWidth = 1248
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object pnTop1: TPanel
+  object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1324
-    Height = 121
+    Width = 1248
+    Height = 131
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -5
     object gBoxConfigs: TGroupBox
-      Left = 137
-      Top = 1
-      Width = 176
-      Height = 119
-      Align = alLeft
-      Caption = ' Configs Filters '
-      TabOrder = 0
-      object ckFilter: TCheckBox
-        Left = 12
-        Top = 20
-        Width = 97
-        Height = 17
-        Caption = 'Enabled Filter'
-        Checked = True
-        State = cbChecked
-        TabOrder = 0
-        OnClick = ckFilterClick
-      end
-      object ckAdvancedFilter: TCheckBox
-        Left = 12
-        Top = 89
-        Width = 107
-        Height = 17
-        Caption = 'Advanced Filter'
-        TabOrder = 1
-        OnClick = ckFilterClick
-      end
-      object ckShowControlButton: TCheckBox
-        Left = 30
-        Top = 41
-        Width = 136
-        Height = 17
-        Caption = 'Show control button'
-        Checked = True
-        State = cbChecked
-        TabOrder = 2
-        OnClick = ckFilterClick
-      end
-      object ckShowControlEditor: TCheckBox
-        Left = 30
-        Top = 60
-        Width = 134
-        Height = 17
-        Caption = 'Show Control Editor'
-        TabOrder = 3
-        OnClick = ckFilterClick
-      end
-    end
-    object btnClearFilter: TButton
-      Left = 1186
-      Top = 41
-      Width = 127
-      Height = 25
-      Caption = 'Clear Filter'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 1
-      OnClick = btnClearFilterClick
-    end
-    object GroupBox1: TGroupBox
       Left = 1
       Top = 1
-      Width = 136
-      Height = 119
+      Width = 144
+      Height = 129
       Align = alLeft
-      Caption = ' Configs Grid '
-      TabOrder = 2
-      object ckStretching: TCheckBox
+      Caption = ' Configs sorting '
+      TabOrder = 0
+      object ckSorting: TCheckBox
         Left = 12
-        Top = 23
-        Width = 98
+        Top = 20
+        Width = 106
         Height = 17
-        Caption = 'Stretching'
+        Caption = 'Enabled sorting'
         Checked = True
         State = cbChecked
         TabOrder = 0
-        OnClick = ckFilterClick
+        OnClick = ckSortingClick
       end
     end
     object GroupBox2: TGroupBox
-      Left = 313
+      Left = 145
       Top = 1
       Width = 130
-      Height = 119
+      Height = 129
       Align = alLeft
       Caption = ' Query '
       Padding.Left = 4
       Padding.Top = 2
       Padding.Right = 4
-      TabOrder = 3
+      TabOrder = 1
       object btnClose: TButton
         AlignWithMargins = True
         Left = 6
@@ -146,47 +82,14 @@ object FilteringMainView: TFilteringMainView
         OnClick = btnOpenQueryClick
       end
     end
-    object GroupBox3: TGroupBox
-      Left = 443
-      Top = 1
-      Width = 230
-      Height = 119
-      Align = alLeft
-      Caption = ' Add filters via code '
-      TabOrder = 4
-      object Label1: TLabel
-        Left = 9
-        Top = 24
-        Width = 181
-        Height = 15
-        Caption = 'Filter Department and Description '
-      end
-      object btnFilter: TButton
-        Left = 154
-        Top = 71
-        Width = 66
-        Height = 25
-        Caption = 'Filter'
-        TabOrder = 0
-        OnClick = btnFilterClick
-      end
-      object edtFilter: TEdit
-        Left = 9
-        Top = 42
-        Width = 210
-        Height = 23
-        TabOrder = 1
-      end
-    end
     object GroupBox4: TGroupBox
-      Left = 673
+      Left = 275
       Top = 1
-      Width = 507
-      Height = 119
+      Width = 294
+      Height = 129
       Align = alLeft
-      Caption = ' Custom filter '
-      TabOrder = 5
-      ExplicitTop = -3
+      Caption = ' Custom sorting'
+      TabOrder = 2
       object Label2: TLabel
         Left = 11
         Top = 24
@@ -197,18 +100,11 @@ object FilteringMainView: TFilteringMainView
       object Label3: TLabel
         Left = 163
         Top = 24
-        Width = 54
-        Height = 15
-        Caption = 'Filter Type'
-      end
-      object Label4: TLabel
-        Left = 282
-        Top = 24
         Width = 48
         Height = 15
-        Caption = 'Text filter'
+        Caption = 'Direction'
       end
-      object cBoxColumns: TComboBox
+      object cBoxColumn: TComboBox
         Left = 11
         Top = 42
         Width = 150
@@ -217,70 +113,99 @@ object FilteringMainView: TFilteringMainView
         DropDownCount = 30
         TabOrder = 0
       end
-      object cBoxFilterType: TComboBox
+      object cBoxDirection: TComboBox
         Left = 163
         Top = 42
         Width = 116
         Height = 23
         Style = csDropDownList
         DropDownCount = 30
-        ItemIndex = 2
+        ItemIndex = 1
         TabOrder = 1
-        Text = 'Contains'
+        Text = 'Ascending'
         Items.Strings = (
-          'StartsWith'
-          'EndsWith'
-          'Contains'
-          'NotContains'
-          'Equal'
-          'NotEqual'
-          'Empty'
-          'NotEmpty'
-          'LargerThan'
-          'SmallerThan'
-          'LargerOrEqualThan'
-          'SmallerOrEqualThan')
+          'None'
+          'Ascending'
+          'Descending')
       end
-      object edtTextCustomFilter: TEdit
-        Left = 282
-        Top = 42
-        Width = 210
-        Height = 23
-        TabOrder = 2
-      end
-      object btnCustomFilter: TButton
-        Left = 426
+      object btnSort: TButton
+        Left = 215
         Top = 71
         Width = 66
         Height = 25
-        Caption = 'Filter'
-        TabOrder = 3
-        OnClick = btnCustomFilterClick
+        Caption = 'Sort'
+        TabOrder = 2
+        OnClick = btnSortClick
+      end
+    end
+    object GroupBox1: TGroupBox
+      Left = 569
+      Top = 1
+      Width = 240
+      Height = 129
+      Margins.Right = 0
+      Align = alLeft
+      Caption = ' Sorting '
+      Padding.Left = 4
+      Padding.Top = 2
+      Padding.Right = 4
+      TabOrder = 3
+      object btnSortByDepartment: TButton
+        AlignWithMargins = True
+        Left = 6
+        Top = 19
+        Width = 228
+        Height = 25
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        Caption = 'Sort by Department column'
+        TabOrder = 0
+        OnClick = btnSortByDepartmentClick
+      end
+      object btnSortingMultiple: TButton
+        AlignWithMargins = True
+        Left = 6
+        Top = 47
+        Width = 228
+        Height = 25
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        Caption = 'Sorting with Multiple Columns'
+        TabOrder = 1
+        OnClick = btnSortingMultipleClick
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 809
+      Top = 1
+      Width = 256
+      Height = 129
+      Align = alLeft
+      Caption = ' Custom Sorting Logic '
+      TabOrder = 4
+      object ckCustomSortingLogic: TCheckBox
+        Left = 11
+        Top = 23
+        Width = 150
+        Height = 17
+        Caption = 'Custom Sorting Logic'
+        TabOrder = 0
       end
     end
   end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 619
-    Width = 1324
-    Height = 19
-    Panels = <
-      item
-        Width = 300
-      end
-      item
-        Width = 50
-      end>
-  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 200
-    Width = 1324
-    Height = 419
+    Top = 131
+    Width = 1248
+    Height = 481
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 3
+    TabOrder = 1
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -340,112 +265,75 @@ object FilteringMainView: TFilteringMainView
     CellAppearance.SummaryLayout.Font.Height = -12
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
-    ColumnCount = 0
-    Columns = <>
+    ColumnCount = 1
+    Columns = <
+      item
+        Appearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.FilterMatchLayout.Font.Color = clWindowText
+        Appearance.FilterMatchLayout.Font.Height = -12
+        Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
+        Appearance.FilterMatchLayout.Font.Style = []
+        Appearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.FilterInverseMatchLayout.Font.Color = clWindowText
+        Appearance.FilterInverseMatchLayout.Font.Height = -12
+        Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
+        Appearance.FilterInverseMatchLayout.Font.Style = []
+        Appearance.BandLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.BandLayout.Font.Color = clBlack
+        Appearance.BandLayout.Font.Height = -12
+        Appearance.BandLayout.Font.Name = 'Segoe UI'
+        Appearance.BandLayout.Font.Style = []
+        Appearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.FixedLayout.Font.Color = clBlack
+        Appearance.FixedLayout.Font.Height = -12
+        Appearance.FixedLayout.Font.Name = 'Segoe UI'
+        Appearance.FixedLayout.Font.Style = []
+        Appearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.FixedSelectedLayout.Font.Color = clBlack
+        Appearance.FixedSelectedLayout.Font.Height = -12
+        Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
+        Appearance.FixedSelectedLayout.Font.Style = []
+        Appearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.FocusedLayout.Font.Color = clBlack
+        Appearance.FocusedLayout.Font.Height = -12
+        Appearance.FocusedLayout.Font.Name = 'Segoe UI'
+        Appearance.FocusedLayout.Font.Style = []
+        Appearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.GroupLayout.Font.Color = clBlack
+        Appearance.GroupLayout.Font.Height = -12
+        Appearance.GroupLayout.Font.Name = 'Segoe UI'
+        Appearance.GroupLayout.Font.Style = []
+        Appearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.NormalLayout.Font.Color = clBlack
+        Appearance.NormalLayout.Font.Height = -12
+        Appearance.NormalLayout.Font.Name = 'Segoe UI'
+        Appearance.NormalLayout.Font.Style = []
+        Appearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.SelectedLayout.Font.Color = clBlack
+        Appearance.SelectedLayout.Font.Height = -12
+        Appearance.SelectedLayout.Font.Name = 'Segoe UI'
+        Appearance.SelectedLayout.Font.Style = []
+        Appearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
+        Appearance.SummaryLayout.Font.Color = clBlack
+        Appearance.SummaryLayout.Font.Height = -12
+        Appearance.SummaryLayout.Font.Name = 'Segoe UI'
+        Appearance.SummaryLayout.Font.Style = []
+        Header = 'ID'
+        Width = 1129.000000000000000000
+      end>
     FilterActions = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
     FilterAppearance.Font.Color = clBlack
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    Options.Filtering.Controls = []
-    Options.Filtering.Enabled = True
-    Options.Sorting.Enabled = True
+    OnCustomCompare = TMSFNCDataGrid1CustomCompare
+    Options.Column.Stretching.Enabled = True
     RowCount = 1
   end
-  object pnTop2: TPanel
-    Left = 0
-    Top = 121
-    Width = 1324
-    Height = 79
-    Align = alTop
-    Padding.Bottom = 4
-    TabOrder = 5
-    object GroupBox5: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 442
-      Height = 73
-      Align = alLeft
-      Caption = ' Text filter (only if advanced filter is checked) '
-      TabOrder = 0
-      object Label5: TLabel
-        Left = 12
-        Top = 20
-        Width = 21
-        Height = 15
-        Caption = 'Text'
-      end
-      object edtTextFilter: TEdit
-        Left = 12
-        Top = 36
-        Width = 352
-        Height = 23
-        TabOrder = 0
-        Text = '([Status] = 1)'
-      end
-      object btnTextFilter: TButton
-        Left = 370
-        Top = 36
-        Width = 66
-        Height = 25
-        Caption = 'Text filter'
-        TabOrder = 1
-        OnClick = btnTextFilterClick
-      end
-    end
-    object GroupBox6: TGroupBox
-      Left = 673
-      Top = 1
-      Width = 230
-      Height = 73
-      Align = alLeft
-      Caption = ' Filter Dialog '
-      TabOrder = 1
-      object btnShowFilterDialog: TButton
-        Left = 6
-        Top = 35
-        Width = 213
-        Height = 25
-        Caption = ' Show Filter Dialog '
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 0
-        OnClick = btnShowFilterDialogClick
-      end
-    end
-    object GroupBox7: TGroupBox
-      Left = 443
-      Top = 1
-      Width = 230
-      Height = 73
-      Align = alLeft
-      Caption = ' Filter expressions '
-      TabOrder = 2
-      object btnAddExpression: TButton
-        Left = 6
-        Top = 35
-        Width = 213
-        Height = 25
-        Caption = 'Add Expression'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 0
-        OnClick = btnAddExpressionClick
-      end
-    end
-  end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 768
-    Top = 408
+    Left = 272
+    Top = 368
     Width = 26
     Height = 26
     Visible = True
@@ -459,15 +347,15 @@ object FilteringMainView: TFilteringMainView
     FetchOptions.Mode = fmAll
     FetchOptions.CursorKind = ckForwardOnly
     LoginPrompt = False
-    Left = 768
-    Top = 238
+    Left = 272
+    Top = 198
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
       'select * from departments')
-    Left = 768
-    Top = 294
+    Left = 272
+    Top = 254
     object FDQuery1Id: TIntegerField
       FieldName = 'Id'
       Origin = 'Id'
@@ -504,8 +392,7 @@ object FilteringMainView: TFilteringMainView
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    OnDataChange = DataSource1DataChange
-    Left = 768
-    Top = 350
+    Left = 272
+    Top = 310
   end
 end
