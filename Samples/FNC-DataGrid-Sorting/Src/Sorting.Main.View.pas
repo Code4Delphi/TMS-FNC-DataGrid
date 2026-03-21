@@ -167,6 +167,7 @@ end;
 function TSortingMainView.TMSFNCDataGrid1CustomCompare(Sender: TObject; AColumn, ARow1, ARow2: Integer;
   AData1, AData2: TTMSFNCDataGridCellValue; ALevel: Integer): Integer;
 begin
+  Result := 0;
 //  // Custom comparison logic for sorting
 //  if TMSFNCDataGrid1.Floats[AColumn, ARow1] > TMSFNCDataGrid1.Floats[AColumn, ARow2] then
 //    Result := 1
