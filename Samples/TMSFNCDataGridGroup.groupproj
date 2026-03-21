@@ -21,6 +21,12 @@
         <Projects Include="FNC-DataGrid-Sorting\FNC_DataGrid_Sorting.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNC-DataGrid-Localization\FNC_DataGrid_Localization.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FNC-DataGrid-Pagination\FNC_DataGrid_Pagination.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -83,14 +89,32 @@
     <Target Name="FNC_DataGrid_Sorting:Make">
         <MSBuild Projects="FNC-DataGrid-Sorting\FNC_DataGrid_Sorting.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNC_DataGrid_Localization">
+        <MSBuild Projects="FNC-DataGrid-Localization\FNC_DataGrid_Localization.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Localization:Clean">
+        <MSBuild Projects="FNC-DataGrid-Localization\FNC_DataGrid_Localization.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Localization:Make">
+        <MSBuild Projects="FNC-DataGrid-Localization\FNC_DataGrid_Localization.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Pagination">
+        <MSBuild Projects="FNC-DataGrid-Pagination\FNC_DataGrid_Pagination.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Pagination:Clean">
+        <MSBuild Projects="FNC-DataGrid-Pagination\FNC_DataGrid_Pagination.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Pagination:Make">
+        <MSBuild Projects="FNC-DataGrid-Pagination\FNC_DataGrid_Pagination.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering;FNC_DataGrid_Sorting"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering;FNC_DataGrid_Sorting;FNC_DataGrid_Localization;FNC_DataGrid_Pagination"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean;FNC_DataGrid_Sorting:Clean"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean;FNC_DataGrid_Sorting:Clean;FNC_DataGrid_Localization:Clean;FNC_DataGrid_Pagination:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make;FNC_DataGrid_Sorting:Make"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make;FNC_DataGrid_Sorting:Make;FNC_DataGrid_Localization:Make;FNC_DataGrid_Pagination:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
