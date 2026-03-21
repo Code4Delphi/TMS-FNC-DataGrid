@@ -1,4 +1,4 @@
-# FNC DataGrid - Localization
+# FNC DataGrid - Localization (Language)
 
 ### Official documentation / Documentação oficial
 
