@@ -30,7 +30,6 @@ uses
 
 type
   TLocalizationDepartmentsView = class(TForm)
-    pnTop: TPanel;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormShow(Sender: TObject);
   private

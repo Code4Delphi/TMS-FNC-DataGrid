@@ -80,8 +80,6 @@ type
     GroupBox1: TGroupBox;
     btnSortByDepartment: TButton;
     btnSortingMultiple: TButton;
-    GroupBox3: TGroupBox;
-    ckCustomSortingLogic: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure ckSortingClick(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);

@@ -14,23 +14,15 @@ object LocalizationDepartmentsView: TLocalizationDepartmentsView
   Position = poScreenCenter
   OnShow = FormShow
   TextHeight = 15
-  object pnTop: TPanel
+  object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 0
     Width = 1151
-    Height = 41
-    Align = alTop
-    TabOrder = 0
-  end
-  object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Left = 0
-    Top = 41
-    Width = 1151
-    Height = 577
+    Height = 618
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 0
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -312,7 +304,7 @@ object LocalizationDepartmentsView: TLocalizationDepartmentsView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    ExplicitTop = 97
-    ExplicitHeight = 521
+    ExplicitTop = 41
+    ExplicitHeight = 577
   end
 end

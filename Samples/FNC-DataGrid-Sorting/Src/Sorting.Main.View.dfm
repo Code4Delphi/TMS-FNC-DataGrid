@@ -83,13 +83,14 @@ object SortingMainView: TSortingMainView
       end
     end
     object GroupBox4: TGroupBox
-      Left = 275
+      Left = 515
       Top = 1
       Width = 294
       Height = 129
       Align = alLeft
       Caption = ' Custom sorting'
       TabOrder = 2
+      ExplicitLeft = 275
       object Label2: TLabel
         Left = 11
         Top = 24
@@ -139,7 +140,7 @@ object SortingMainView: TSortingMainView
       end
     end
     object GroupBox1: TGroupBox
-      Left = 569
+      Left = 275
       Top = 1
       Width = 240
       Height = 129
@@ -150,6 +151,8 @@ object SortingMainView: TSortingMainView
       Padding.Top = 2
       Padding.Right = 4
       TabOrder = 3
+      ExplicitLeft = 272
+      ExplicitTop = 2
       object btnSortByDepartment: TButton
         AlignWithMargins = True
         Left = 6
@@ -177,23 +180,6 @@ object SortingMainView: TSortingMainView
         Caption = 'Sorting with Multiple Columns'
         TabOrder = 1
         OnClick = btnSortingMultipleClick
-      end
-    end
-    object GroupBox3: TGroupBox
-      Left = 809
-      Top = 1
-      Width = 256
-      Height = 129
-      Align = alLeft
-      Caption = ' Custom Sorting Logic '
-      TabOrder = 4
-      object ckCustomSortingLogic: TCheckBox
-        Left = 11
-        Top = 23
-        Width = 150
-        Height = 17
-        Caption = 'Custom Sorting Logic'
-        TabOrder = 0
       end
     end
   end
@@ -330,10 +316,12 @@ object SortingMainView: TSortingMainView
     OnCustomCompare = TMSFNCDataGrid1CustomCompare
     Options.Column.Stretching.Enabled = True
     RowCount = 1
+    ExplicitLeft = 1
+    ExplicitTop = 136
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 272
-    Top = 368
+    Left = 464
+    Top = 440
     Width = 26
     Height = 26
     Visible = True
@@ -347,15 +335,15 @@ object SortingMainView: TSortingMainView
     FetchOptions.Mode = fmAll
     FetchOptions.CursorKind = ckForwardOnly
     LoginPrompt = False
-    Left = 272
-    Top = 198
+    Left = 464
+    Top = 270
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
       'select * from departments')
-    Left = 272
-    Top = 254
+    Left = 464
+    Top = 326
     object FDQuery1Id: TIntegerField
       FieldName = 'Id'
       Origin = 'Id'
@@ -392,7 +380,7 @@ object SortingMainView: TSortingMainView
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 272
-    Top = 310
+    Left = 464
+    Top = 382
   end
 end

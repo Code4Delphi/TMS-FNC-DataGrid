@@ -24,7 +24,6 @@ object LocalizationMainView: TLocalizationMainView
     Padding.Top = 7
     Padding.Right = 10
     TabOrder = 0
-    ExplicitHeight = 212
     object btnSetLocalizationToPortuguese: TButton
       AlignWithMargins = True
       Left = 12
