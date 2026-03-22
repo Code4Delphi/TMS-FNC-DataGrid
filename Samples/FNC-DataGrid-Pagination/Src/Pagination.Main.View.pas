@@ -40,10 +40,21 @@ type
     FDQuery1Status: TIntegerField;
     DataSource1: TDataSource;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
+    GroupBox1: TGroupBox;
+    ckVisibleFooter: TCheckBox;
+    ckShowPageSelector: TCheckBox;
+    ckShowPageInfo: TCheckBox;
+    btnShowNavigationButtons: TCheckBox;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    edtPageInfoFormat: TEdit;
+    Label2: TLabel;
+    edtPageSelectorFormat: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure ckPagingClick(Sender: TObject);
+    procedure GroupBox3Exit(Sender: TObject);
   private
     procedure ConfigDataGrid;
 
@@ -64,6 +75,11 @@ begin
   FDConnection1.Params.Database := '..\Data\Departments.db';
 end;
 
+procedure TPaginationMainView.GroupBox3Exit(Sender: TObject);
+begin
+  Self.ConfigDataGrid;
+end;
+
 procedure TPaginationMainView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
@@ -76,8 +92,27 @@ begin
 
   //Pagination
   TMSFNCDataGrid1.Paging := ckPaging.Checked;
-  TMSFNCDataGrid1.Footer.Visible := TMSFNCDataGrid1.Paging;
-  TMSFNCDataGrid1.Footer.Paging.Visible := TMSFNCDataGrid1.Paging;
+
+  // Make the footer and paging visible
+  TMSFNCDataGrid1.Footer.Visible := ckVisibleFooter.Checked;
+  TMSFNCDataGrid1.Footer.Paging.Visible := ckVisibleFooter.Checked;
+
+  // Configure paging control size and spacing
+  TMSFNCDataGrid1.Footer.Paging.Size := 30; // Height of the paging area
+
+  // Control which elements are shown
+  TMSFNCDataGrid1.Footer.Paging.ShowPageSelector := ckShowPageSelector.Checked; // Dropdown to select page
+  TMSFNCDataGrid1.Footer.Paging.ShowPageInfo := ckShowPageInfo.Checked; // Text showing current page info
+  TMSFNCDataGrid1.Footer.Paging.ShowNavigationButtons := btnShowNavigationButtons.Checked; // First/Previous/Next/Last buttons
+
+  // Customize widths of paging controls
+  TMSFNCDataGrid1.Footer.Paging.PageSelectorWidth := 100; // Width of page dropdown
+  TMSFNCDataGrid1.Footer.Paging.NavigationButtonWidth := 25; // Width of navigation buttons
+  TMSFNCDataGrid1.Footer.Paging.PageInfoWidth := 150; // Width of page info text
+
+  // Formats
+  TMSFNCDataGrid1.Footer.Paging.PageInfoFormat := edtPageInfoFormat.Text;
+  TMSFNCDataGrid1.Footer.Paging.PageSelectorFormat := edtPageSelectorFormat.Text;
 
   TMSFNCDataGrid1.EndUpdate;
 end;
