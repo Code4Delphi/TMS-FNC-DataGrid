@@ -1,9 +1,10 @@
-object PaginationMainView: TPaginationMainView
+object PaginationIntegratedFooter: TPaginationIntegratedFooter
   Left = 0
   Top = 0
+  Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Pagination'
-  ClientHeight = 623
+  Caption = 'TMS FNC DataGrid - Integrated controls in the footer '
+  ClientHeight = 671
   ClientWidth = 1188
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -30,17 +31,28 @@ object PaginationMainView: TPaginationMainView
       Align = alLeft
       Caption = ' Configs sorting '
       TabOrder = 0
+      ExplicitLeft = 4
       ExplicitTop = -4
       object ckPaging: TCheckBox
         Left = 12
         Top = 20
         Width = 110
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Enabled Paging'
         Checked = True
         State = cbChecked
         TabOrder = 0
         OnClick = ckPagingClick
+      end
+      object Button1: TButton
+        Left = 12
+        Top = 84
+        Width = 110
+        Height = 25
+        Caption = 'Button1'
+        TabOrder = 1
+        OnClick = Button1Click
       end
     end
     object GroupBox2: TGroupBox
@@ -54,13 +66,13 @@ object PaginationMainView: TPaginationMainView
       Padding.Top = 2
       Padding.Right = 4
       TabOrder = 1
-      ExplicitTop = -4
       object btnClose: TButton
         AlignWithMargins = True
         Left = 6
         Top = 47
         Width = 128
         Height = 25
+        Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -68,7 +80,6 @@ object PaginationMainView: TPaginationMainView
         Caption = 'Close'
         TabOrder = 0
         OnClick = btnCloseClick
-        ExplicitWidth = 118
       end
       object btnOpenQuery: TButton
         AlignWithMargins = True
@@ -76,6 +87,7 @@ object PaginationMainView: TPaginationMainView
         Top = 19
         Width = 128
         Height = 25
+        Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -83,7 +95,6 @@ object PaginationMainView: TPaginationMainView
         Caption = 'Open query'
         TabOrder = 1
         OnClick = btnOpenQueryClick
-        ExplicitWidth = 118
       end
     end
     object GroupBox1: TGroupBox
@@ -94,12 +105,14 @@ object PaginationMainView: TPaginationMainView
       Align = alLeft
       Caption = ' Integrated controls in the footer '
       TabOrder = 2
-      ExplicitLeft = 421
+      ExplicitLeft = 462
+      ExplicitTop = -4
       object ckVisibleFooter: TCheckBox
         Left = 16
         Top = 20
         Width = 97
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Visible footer'
         Checked = True
         State = cbChecked
@@ -111,6 +124,7 @@ object PaginationMainView: TPaginationMainView
         Top = 44
         Width = 130
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Show Page Selector'
         Checked = True
         State = cbChecked
@@ -122,6 +136,7 @@ object PaginationMainView: TPaginationMainView
         Top = 67
         Width = 108
         Height = 16
+        Cursor = crHandPoint
         Caption = 'Show Page Info'
         Checked = True
         State = cbChecked
@@ -133,6 +148,7 @@ object PaginationMainView: TPaginationMainView
         Top = 89
         Width = 160
         Height = 16
+        Cursor = crHandPoint
         Caption = 'Show Navigation Buttons'
         Checked = True
         State = cbChecked
@@ -149,8 +165,6 @@ object PaginationMainView: TPaginationMainView
       Caption = ' Formats '
       TabOrder = 3
       OnExit = GroupBox3Exit
-      ExplicitLeft = 278
-      ExplicitTop = -4
       object Label1: TLabel
         Left = 16
         Top = 25
@@ -182,12 +196,40 @@ object PaginationMainView: TPaginationMainView
         Text = 'Page %d'
       end
     end
+    object GroupBox4: TGroupBox
+      Left = 729
+      Top = 1
+      Width = 432
+      Height = 129
+      Align = alLeft
+      Caption = ' Logs '
+      Padding.Left = 5
+      Padding.Right = 5
+      Padding.Bottom = 5
+      TabOrder = 4
+      ExplicitLeft = 733
+      ExplicitTop = -4
+      object mmLog: TMemo
+        Left = 7
+        Top = 17
+        Width = 418
+        Height = 105
+        Align = alClient
+        BorderStyle = bsNone
+        Lines.Strings = (
+          '')
+        ScrollBars = ssVertical
+        TabOrder = 0
+        ExplicitLeft = 6
+        ExplicitTop = 16
+      end
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 131
     Width = 1188
-    Height = 492
+    Height = 521
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -259,9 +301,11 @@ object PaginationMainView: TPaginationMainView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnPageChanged = TMSFNCDataGrid1PageChanged
+    OnFooterPageSelectorChange = TMSFNCDataGrid1FooterPageSelectorChange
     RowCount = 1
-    ExplicitLeft = -8
-    ExplicitTop = 136
+    ExplicitLeft = 1
+    ExplicitTop = 129
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 552
@@ -271,6 +315,22 @@ object PaginationMainView: TPaginationMainView
     Visible = True
     Columns = <>
     DataSource = DataSource1
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 652
+    Width = 1188
+    Height = 19
+    Panels = <
+      item
+        Width = 500
+      end
+      item
+        Width = 50
+      end>
+    ExplicitLeft = 600
+    ExplicitTop = 320
+    ExplicitWidth = 0
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

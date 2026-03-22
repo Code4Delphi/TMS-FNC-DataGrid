@@ -2,15 +2,17 @@ program FNC_DataGrid_Pagination;
 
 uses
   Vcl.Forms,
-  Pagination.Programmatic.View in 'Src\Pagination.Programmatic.View.pas' {PaginationProgrammaticView},
-  Pagination.Main.View in 'Src\Pagination.Main.View.pas' {PaginationMainView};
+  Pagination.Programmatic in 'Src\Pagination.Programmatic.pas' {PaginationProgrammatic},
+  Pagination.IntegratedFooter in 'Src\Pagination.IntegratedFooter.pas' {PaginationIntegratedFooter},
+  Pagination.Main in 'Src\Pagination.Main.pas' {PaginationMain};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TPaginationProgrammaticView, PaginationProgrammaticView);
-  Application.CreateForm(TPaginationMainView, PaginationMainView);
+  Application.CreateForm(TPaginationMain, PaginationMain);
+  Application.CreateForm(TPaginationProgrammatic, PaginationProgrammatic);
+  Application.CreateForm(TPaginationIntegratedFooter, PaginationIntegratedFooter);
   Application.Run;
 end.

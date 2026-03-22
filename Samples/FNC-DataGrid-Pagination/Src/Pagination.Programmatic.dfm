@@ -1,9 +1,10 @@
-object PaginationProgrammaticView: TPaginationProgrammaticView
+object PaginationProgrammatic: TPaginationProgrammatic
   Left = 0
   Top = 0
+  Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Programmatic Navigation'
-  ClientHeight = 623
+  ClientHeight = 647
   ClientWidth = 1188
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -35,6 +36,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
         Top = 20
         Width = 110
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Enabled Paging'
         Checked = True
         State = cbChecked
@@ -59,6 +61,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
         Top = 47
         Width = 128
         Height = 25
+        Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -73,6 +76,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
         Top = 19
         Width = 128
         Height = 25
+        Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -80,6 +84,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
         Caption = 'Open query'
         TabOrder = 1
         OnClick = btnOpenQueryClick
+        ExplicitLeft = 8
       end
     end
     object GroupBox1: TGroupBox
@@ -105,6 +110,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
           Top = 0
           Width = 30
           Height = 30
+          Cursor = crHandPoint
           Align = alLeft
           Glyph.Data = {
             DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -132,6 +138,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
           Top = 0
           Width = 30
           Height = 30
+          Cursor = crHandPoint
           Align = alLeft
           Glyph.Data = {
             DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -160,6 +167,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
           Top = 0
           Width = 30
           Height = 30
+          Cursor = crHandPoint
           Align = alRight
           Glyph.Data = {
             DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -188,6 +196,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
           Top = 0
           Width = 30
           Height = 30
+          Cursor = crHandPoint
           Align = alRight
           Glyph.Data = {
             DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -241,13 +250,6 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
         Height = 15
         Caption = 'Page Info Format'
       end
-      object Label2: TLabel
-        Left = 16
-        Top = 73
-        Width = 112
-        Height = 15
-        Caption = 'Page Selector Format'
-      end
       object edtPageInfoFormat: TEdit
         Left = 16
         Top = 44
@@ -256,13 +258,34 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
         TabOrder = 0
         Text = 'Page %d of %d'
       end
-      object edtPageSelectorFormat: TEdit
-        Left = 16
-        Top = 90
-        Width = 149
-        Height = 23
-        TabOrder = 1
-        Text = 'Page %d'
+    end
+    object GroupBox4: TGroupBox
+      Left = 729
+      Top = 1
+      Width = 432
+      Height = 129
+      Align = alLeft
+      Caption = ' Logs '
+      Padding.Left = 5
+      Padding.Right = 5
+      Padding.Bottom = 5
+      TabOrder = 4
+      ExplicitLeft = 733
+      ExplicitTop = -4
+      object mmLog: TMemo
+        Left = 7
+        Top = 17
+        Width = 418
+        Height = 105
+        Align = alClient
+        BorderStyle = bsNone
+        Lines.Strings = (
+          '')
+        ScrollBars = ssVertical
+        TabOrder = 0
+        ExplicitLeft = 2
+        ExplicitWidth = 428
+        ExplicitHeight = 110
       end
     end
   end
@@ -270,7 +293,8 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
     Left = 0
     Top = 131
     Width = 1188
-    Height = 492
+    Height = 497
+    Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -342,8 +366,9 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnPageChanged = TMSFNCDataGrid1PageChanged
     RowCount = 1
-    ExplicitTop = 136
+    ExplicitTop = 129
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 552
@@ -353,6 +378,20 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
     Visible = True
     Columns = <>
     DataSource = DataSource1
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 628
+    Width = 1188
+    Height = 19
+    Panels = <
+      item
+        Width = 500
+      end
+      item
+        Width = 50
+      end>
+    ExplicitTop = 604
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -406,6 +445,7 @@ object PaginationProgrammaticView: TPaginationProgrammaticView
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
+    OnDataChange = DataSource1DataChange
     Left = 552
     Top = 302
   end

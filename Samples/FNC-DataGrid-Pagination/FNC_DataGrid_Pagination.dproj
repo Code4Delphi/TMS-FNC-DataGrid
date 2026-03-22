@@ -127,12 +127,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\Pagination.Programmatic.View.pas">
-            <Form>PaginationProgrammaticView</Form>
+        <DCCReference Include="Src\Pagination.Programmatic.pas">
+            <Form>PaginationProgrammatic</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Src\Pagination.Main.View.pas">
-            <Form>PaginationMainView</Form>
+        <DCCReference Include="Src\Pagination.IntegratedFooter.pas">
+            <Form>PaginationIntegratedFooter</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\Pagination.Main.pas">
+            <Form>PaginationMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

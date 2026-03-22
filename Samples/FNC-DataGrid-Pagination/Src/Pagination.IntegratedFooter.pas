@@ -1,4 +1,4 @@
-unit Pagination.Main.View;
+unit Pagination.IntegratedFooter;
 
 interface
 
@@ -49,10 +49,10 @@ uses
   Data.DB,
   FireDAC.Comp.DataSet,
   FireDAC.Comp.Client,
-  FireDAC.Comp.UI;
+  FireDAC.Comp.UI, Vcl.ComCtrls;
 
 type
-  TPaginationMainView = class(TForm)
+  TPaginationIntegratedFooter = class(TForm)
     pnTop: TPanel;
     gBoxConfigs: TGroupBox;
     ckPaging: TCheckBox;
@@ -81,11 +81,18 @@ type
     edtPageInfoFormat: TEdit;
     Label2: TLabel;
     edtPageSelectorFormat: TEdit;
+    GroupBox4: TGroupBox;
+    mmLog: TMemo;
+    StatusBar1: TStatusBar;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure ckPagingClick(Sender: TObject);
     procedure GroupBox3Exit(Sender: TObject);
+    procedure TMSFNCDataGrid1PageChanged(Sender: TObject; AOldPageIndex, ANewPageIndex: Integer);
+    procedure TMSFNCDataGrid1FooterPageSelectorChange(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure ConfigDataGrid;
 
@@ -94,24 +101,24 @@ type
   end;
 
 var
-  PaginationMainView: TPaginationMainView;
+  PaginationIntegratedFooter: TPaginationIntegratedFooter;
 
 implementation
 
 {$R *.dfm}
 
-procedure TPaginationMainView.FormCreate(Sender: TObject);
+procedure TPaginationIntegratedFooter.FormCreate(Sender: TObject);
 begin
   Self.ConfigDataGrid;
   FDConnection1.Params.Database := '..\Data\Departments.db';
 end;
 
-procedure TPaginationMainView.GroupBox3Exit(Sender: TObject);
+procedure TPaginationIntegratedFooter.GroupBox3Exit(Sender: TObject);
 begin
   Self.ConfigDataGrid;
 end;
 
-procedure TPaginationMainView.ConfigDataGrid;
+procedure TPaginationIntegratedFooter.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.Clear;
@@ -148,19 +155,49 @@ begin
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TPaginationMainView.btnOpenQueryClick(Sender: TObject);
+procedure TPaginationIntegratedFooter.btnOpenQueryClick(Sender: TObject);
 begin
   FDQuery1.Open;
+  StatusBar1.Panels[0].Text := 'Total: ' + FDQuery1.RecordCount.ToString;
 end;
 
-procedure TPaginationMainView.ckPagingClick(Sender: TObject);
+procedure TPaginationIntegratedFooter.Button1Click(Sender: TObject);
+begin
+  // Access the page selector dropdown
+  TMSFNCDataGrid1.FooterPageSelector.DropDown;
+
+  // Access the page info text display
+  mmLog.Lines.Add(TMSFNCDataGrid1.FooterPageInfo.Text);
+  TMSFNCDataGrid1.FooterPageInfo.Text := 'Test';
+
+  // Access navigation buttons
+  TMSFNCDataGrid1.FooterFirstPageButton.Text := '|<';
+  TMSFNCDataGrid1.FooterFirstPageButton.BitmapVisible := False;
+  //TMSFNCDataGrid1.FooterPreviousPageButton.Text := '|<';
+  //TMSFNCDataGrid1.FooterNextPageButton.Text := '|<';
+  //TMSFNCDataGrid1.FooterLastPageButton.Text := '|<';
+end;
+
+procedure TPaginationIntegratedFooter.ckPagingClick(Sender: TObject);
 begin
   Self.ConfigDataGrid;
 end;
 
-procedure TPaginationMainView.btnCloseClick(Sender: TObject);
+procedure TPaginationIntegratedFooter.btnCloseClick(Sender: TObject);
 begin
   FDQuery1.Close;
+end;
+
+// Triggered when the page changes
+procedure TPaginationIntegratedFooter.TMSFNCDataGrid1PageChanged(Sender: TObject; AOldPageIndex, ANewPageIndex: Integer);
+begin
+  mmLog.Lines.Add('Changed from page ' + IntToStr(AOldPageIndex + 1) + ' to page ' + IntToStr(ANewPageIndex + 1));
+end;
+
+// Triggered when the page selector dropdown changes
+procedure TPaginationIntegratedFooter.TMSFNCDataGrid1FooterPageSelectorChange(Sender: TObject);
+begin
+  mmLog.Lines.Add('Page selector changed to: ' + IntToStr(TMSFNCDataGrid1.PageIndex + 1));
 end;
 
 end.
