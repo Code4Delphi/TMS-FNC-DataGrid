@@ -127,6 +127,10 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="Src\Pagination.Programmatic.View.pas">
+            <Form>PaginationProgrammaticView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="Src\Pagination.Main.View.pas">
             <Form>PaginationMainView</Form>
             <FormType>dfm</FormType>
@@ -158,7 +162,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="Win32\Debug\FNC_DataGrid_Pagination.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Bin\FNC_DataGrid_Pagination.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>FNC_DataGrid_Pagination.exe</RemoteName>
                         <Overwrite>true</Overwrite>

@@ -1,4 +1,4 @@
-unit Pagination.Main.View;
+unit Pagination.Programmatic.View;
 
 interface
 
@@ -49,10 +49,11 @@ uses
   Data.DB,
   FireDAC.Comp.DataSet,
   FireDAC.Comp.Client,
-  FireDAC.Comp.UI;
+  FireDAC.Comp.UI,
+  Vcl.Buttons;
 
 type
-  TPaginationMainView = class(TForm)
+  TPaginationProgrammaticView = class(TForm)
     pnTop: TPanel;
     gBoxConfigs: TGroupBox;
     ckPaging: TCheckBox;
@@ -72,46 +73,54 @@ type
     DataSource1: TDataSource;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     GroupBox1: TGroupBox;
-    ckVisibleFooter: TCheckBox;
-    ckShowPageSelector: TCheckBox;
-    ckShowPageInfo: TCheckBox;
-    btnShowNavigationButtons: TCheckBox;
     GroupBox3: TGroupBox;
     Label1: TLabel;
     edtPageInfoFormat: TEdit;
     Label2: TLabel;
     edtPageSelectorFormat: TEdit;
+    Panel1: TPanel;
+    btnFirstPage: TSpeedButton;
+    btnPreviousPage: TSpeedButton;
+    btnNextPage: TSpeedButton;
+    btnLastPage: TSpeedButton;
+    lbPageInfoFormat: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure ckPagingClick(Sender: TObject);
     procedure GroupBox3Exit(Sender: TObject);
+    procedure btnFirstPageClick(Sender: TObject);
+    procedure btnLastPageClick(Sender: TObject);
+    procedure btnNextPageClick(Sender: TObject);
+    procedure btnPreviousPageClick(Sender: TObject);
   private
     procedure ConfigDataGrid;
+    procedure ConfigPagination;
 
   public
 
   end;
 
 var
-  PaginationMainView: TPaginationMainView;
+  PaginationProgrammaticView: TPaginationProgrammaticView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TPaginationMainView.FormCreate(Sender: TObject);
+procedure TPaginationProgrammaticView.FormCreate(Sender: TObject);
 begin
   Self.ConfigDataGrid;
   FDConnection1.Params.Database := '..\Data\Departments.db';
+  lbPageInfoFormat.Caption := '';
 end;
 
-procedure TPaginationMainView.GroupBox3Exit(Sender: TObject);
+procedure TPaginationProgrammaticView.GroupBox3Exit(Sender: TObject);
 begin
   Self.ConfigDataGrid;
 end;
 
-procedure TPaginationMainView.ConfigDataGrid;
+procedure TPaginationProgrammaticView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.Clear;
@@ -124,43 +133,77 @@ begin
   //Pagination
   TMSFNCDataGrid1.Paging := ckPaging.Checked;
 
-  // Make the footer and paging visible
-  TMSFNCDataGrid1.Footer.Visible := ckVisibleFooter.Checked;
-  TMSFNCDataGrid1.Footer.Paging.Visible := ckVisibleFooter.Checked;
-
-  // Configure paging control size and spacing
-  TMSFNCDataGrid1.Footer.Paging.Size := 30; // Height of the paging area
-
-  // Control which elements are shown
-  TMSFNCDataGrid1.Footer.Paging.ShowPageSelector := ckShowPageSelector.Checked; // Dropdown to select page
-  TMSFNCDataGrid1.Footer.Paging.ShowPageInfo := ckShowPageInfo.Checked; // Text showing current page info
-  TMSFNCDataGrid1.Footer.Paging.ShowNavigationButtons := btnShowNavigationButtons.Checked; // First/Previous/Next/Last buttons
-
-  // Customize widths of paging controls
-  TMSFNCDataGrid1.Footer.Paging.PageSelectorWidth := 100; // Width of page dropdown
-  TMSFNCDataGrid1.Footer.Paging.NavigationButtonWidth := 25; // Width of navigation buttons
-  TMSFNCDataGrid1.Footer.Paging.PageInfoWidth := 150; // Width of page info text
-
-  // Formats
-  TMSFNCDataGrid1.Footer.Paging.PageInfoFormat := edtPageInfoFormat.Text;
-  TMSFNCDataGrid1.Footer.Paging.PageSelectorFormat := edtPageSelectorFormat.Text;
-
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TPaginationMainView.btnOpenQueryClick(Sender: TObject);
+procedure TPaginationProgrammaticView.btnOpenQueryClick(Sender: TObject);
 begin
   FDQuery1.Open;
+  Self.ConfigPagination;
 end;
 
-procedure TPaginationMainView.ckPagingClick(Sender: TObject);
+procedure TPaginationProgrammaticView.ckPagingClick(Sender: TObject);
 begin
   Self.ConfigDataGrid;
 end;
 
-procedure TPaginationMainView.btnCloseClick(Sender: TObject);
+procedure TPaginationProgrammaticView.btnCloseClick(Sender: TObject);
 begin
   FDQuery1.Close;
+end;
+
+procedure TPaginationProgrammaticView.btnFirstPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.FirstPage;
+  Self.ConfigPagination;
+end;
+
+procedure TPaginationProgrammaticView.btnPreviousPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.PreviousPage;
+  Self.ConfigPagination;
+end;
+
+procedure TPaginationProgrammaticView.btnNextPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.NextPage;
+  Self.ConfigPagination;
+end;
+
+procedure TPaginationProgrammaticView.btnLastPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.LastPage;
+  Self.ConfigPagination;
+end;
+
+procedure TPaginationProgrammaticView.ConfigPagination;
+var
+  LCurrentPage: Integer;
+  LTotalPages: Integer;
+begin
+  btnFirstPage.Enabled := True;
+  btnPreviousPage.Enabled := True;
+  btnNextPage.Enabled := True;
+  btnLastPage.Enabled := True;
+
+  LCurrentPage := TMSFNCDataGrid1.PageIndex;
+  LTotalPages := TMSFNCDataGrid1.PageCount;
+
+  lbPageInfoFormat.Caption := Format(edtPageInfoFormat.Text, [LCurrentPage + 1, LTotalPages]);
+  
+  //On first page
+  if LCurrentPage = 0 then
+  begin
+    btnFirstPage.Enabled := False;
+    btnPreviousPage.Enabled := False;
+  end;
+
+  //On last page
+  if LCurrentPage = Pred(LTotalPages) then
+  begin
+    btnNextPage.Enabled := False;
+    btnLastPage.Enabled := False;
+  end;
 end;
 
 end.
