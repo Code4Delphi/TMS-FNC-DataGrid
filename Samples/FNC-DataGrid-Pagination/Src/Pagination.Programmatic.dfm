@@ -128,7 +128,7 @@ object PaginationProgrammatic: TPaginationProgrammatic
             0000}
           NumGlyphs = 2
           OnClick = btnFirstPageClick
-          ExplicitHeight = 27
+          ExplicitLeft = 4
         end
         object btnPreviousPage: TSpeedButton
           Left = 30

@@ -31,8 +31,10 @@ object PaginationIntegratedFooter: TPaginationIntegratedFooter
       Align = alLeft
       Caption = ' Configs sorting '
       TabOrder = 0
+      ExplicitLeft = 4
+      ExplicitTop = -4
       object ckPaging: TCheckBox
-        Left = 12
+        Left = 18
         Top = 20
         Width = 110
         Height = 17
@@ -295,13 +297,13 @@ object PaginationIntegratedFooter: TPaginationIntegratedFooter
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     OnPageChanged = TMSFNCDataGrid1PageChanged
-    OnFooterPageSelectorChange = TMSFNCDataGrid1FooterPageSelectorChange
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Banding.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
+    ExplicitLeft = 1
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 552

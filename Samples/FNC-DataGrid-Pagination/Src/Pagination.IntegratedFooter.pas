@@ -90,7 +90,6 @@ type
     procedure btnCloseClick(Sender: TObject);
     procedure ckPagingClick(Sender: TObject);
     procedure TMSFNCDataGrid1PageChanged(Sender: TObject; AOldPageIndex, ANewPageIndex: Integer);
-    procedure TMSFNCDataGrid1FooterPageSelectorChange(Sender: TObject);
     procedure btnInteractiongFooterControlsClick(Sender: TObject);
     procedure edtPageInfoFormatExit(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
@@ -174,11 +173,6 @@ begin
 end;
 
 // Triggered when the page selector dropdown changes
-procedure TPaginationIntegratedFooter.TMSFNCDataGrid1FooterPageSelectorChange(Sender: TObject);
-begin
-  mmLog.Lines.Add('Page selector changed to: ' + IntToStr(TMSFNCDataGrid1.PageIndex + 1));
-end;
-
 procedure TPaginationIntegratedFooter.btnInteractiongFooterControlsClick(Sender: TObject);
 begin
   // Access the page selector dropdown

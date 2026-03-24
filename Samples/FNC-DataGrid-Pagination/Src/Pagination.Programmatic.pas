@@ -150,14 +150,14 @@ begin
 
   lbPageInfoFormat.Caption := Format(edtPageInfoFormat.Text, [LCurrentPage + 1, LTotalPages]);
 
-  //On first page
+  //On not first page
   if LCurrentPage > 0 then
   begin
     btnFirstPage.Enabled := True;
     btnPreviousPage.Enabled := True;
   end;
 
-  //On last page
+  //On not last page
   if LCurrentPage <> Pred(LTotalPages) then
   begin
     btnNextPage.Enabled := True;
