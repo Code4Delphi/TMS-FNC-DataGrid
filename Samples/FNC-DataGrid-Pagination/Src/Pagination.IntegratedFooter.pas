@@ -127,7 +127,6 @@ end;
 procedure TPaginationIntegratedFooter.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
-  //TMSFNCDataGrid1.Clear;
 
   //Pagination
   TMSFNCDataGrid1.Paging := ckPaging.Checked;
