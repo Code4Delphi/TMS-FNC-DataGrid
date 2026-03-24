@@ -89,7 +89,6 @@ type
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure ckPagingClick(Sender: TObject);
-    procedure GroupBox3Exit(Sender: TObject);
     procedure btnFirstPageClick(Sender: TObject);
     procedure btnLastPageClick(Sender: TObject);
     procedure btnNextPageClick(Sender: TObject);
@@ -118,7 +117,7 @@ begin
   Self.ConfigPagination;
 end;
 
-procedure TPaginationProgrammatic.GroupBox3Exit(Sender: TObject);
+procedure TPaginationProgrammatic.ckPagingClick(Sender: TObject);
 begin
   Self.ConfigDataGrid;
 end;
@@ -126,52 +125,8 @@ end;
 procedure TPaginationProgrammatic.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
-  TMSFNCDataGrid1.Clear;
-  TMSFNCDataGrid1.Options.Filtering.Enabled := True;
-  TMSFNCDataGrid1.Options.Sorting.Enabled := True;
-  TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
-  TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
-  TMSFNCDataGrid1.Options.Banding.Enabled := True;
-
-  //Pagination
   TMSFNCDataGrid1.Paging := ckPaging.Checked;
-
   TMSFNCDataGrid1.EndUpdate;
-end;
-
-procedure TPaginationProgrammatic.btnOpenQueryClick(Sender: TObject);
-begin
-  FDQuery1.Open;
-end;
-
-procedure TPaginationProgrammatic.ckPagingClick(Sender: TObject);
-begin
-  Self.ConfigDataGrid;
-end;
-
-procedure TPaginationProgrammatic.btnCloseClick(Sender: TObject);
-begin
-  FDQuery1.Close;
-end;
-
-procedure TPaginationProgrammatic.btnFirstPageClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.FirstPage;
-end;
-
-procedure TPaginationProgrammatic.btnPreviousPageClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.PreviousPage;
-end;
-
-procedure TPaginationProgrammatic.btnNextPageClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.NextPage;
-end;
-
-procedure TPaginationProgrammatic.btnLastPageClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.LastPage;
 end;
 
 procedure TPaginationProgrammatic.ConfigPagination;
@@ -194,7 +149,7 @@ begin
   LTotalPages := TMSFNCDataGrid1.PageCount;
 
   lbPageInfoFormat.Caption := Format(edtPageInfoFormat.Text, [LCurrentPage + 1, LTotalPages]);
-  
+
   //On first page
   if LCurrentPage > 0 then
   begin
@@ -214,6 +169,37 @@ procedure TPaginationProgrammatic.DataSource1DataChange(Sender: TObject; Field: 
 begin
   StatusBar1.Panels[0].Text := 'Total: ' + FDQuery1.RecordCount.ToString;
   Self.ConfigPagination;
+end;
+
+procedure TPaginationProgrammatic.btnOpenQueryClick(Sender: TObject);
+begin
+  FDQuery1.Open;
+end;
+
+procedure TPaginationProgrammatic.btnCloseClick(Sender: TObject);
+begin
+  FDQuery1.Close;
+  Self.ConfigPagination;
+end;
+
+procedure TPaginationProgrammatic.btnFirstPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.FirstPage;
+end;
+
+procedure TPaginationProgrammatic.btnPreviousPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.PreviousPage;
+end;
+
+procedure TPaginationProgrammatic.btnNextPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.NextPage;
+end;
+
+procedure TPaginationProgrammatic.btnLastPageClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.LastPage;
 end;
 
 // Triggered when the page changes

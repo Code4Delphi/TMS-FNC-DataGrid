@@ -2,7 +2,7 @@ object PaginationMain: TPaginationMain
   Left = 0
   Top = 0
   Caption = 'TMS FNC DataGrid - Pagination'
-  ClientHeight = 156
+  ClientHeight = 148
   ClientWidth = 467
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,16 +16,14 @@ object PaginationMain: TPaginationMain
     Left = 0
     Top = 0
     Width = 467
-    Height = 156
+    Height = 148
     Align = alClient
     BevelOuter = bvNone
     Padding.Left = 10
     Padding.Top = 30
     Padding.Right = 10
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitWidth = 476
-    ExplicitHeight = 232
+    ExplicitHeight = 156
     object btnPaginationIntegratedFooter: TButton
       AlignWithMargins = True
       Left = 10
@@ -40,9 +38,6 @@ object PaginationMain: TPaginationMain
       Caption = 'Pagination integrated into the footer'
       TabOrder = 0
       OnClick = btnPaginationIntegratedFooterClick
-      ExplicitLeft = 3
-      ExplicitTop = 3
-      ExplicitWidth = 470
     end
     object btnPaginationProgrammatic: TButton
       AlignWithMargins = True
@@ -58,9 +53,6 @@ object PaginationMain: TPaginationMain
       Caption = 'Programmatic pagination'
       TabOrder = 1
       OnClick = btnPaginationProgrammaticClick
-      ExplicitLeft = 3
-      ExplicitTop = 48
-      ExplicitWidth = 470
     end
   end
 end

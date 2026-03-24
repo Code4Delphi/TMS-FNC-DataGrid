@@ -84,15 +84,16 @@ type
     GroupBox4: TGroupBox;
     mmLog: TMemo;
     StatusBar1: TStatusBar;
-    Button1: TButton;
+    btnInteractiongFooterControls: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure ckPagingClick(Sender: TObject);
-    procedure GroupBox3Exit(Sender: TObject);
     procedure TMSFNCDataGrid1PageChanged(Sender: TObject; AOldPageIndex, ANewPageIndex: Integer);
     procedure TMSFNCDataGrid1FooterPageSelectorChange(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnInteractiongFooterControlsClick(Sender: TObject);
+    procedure edtPageInfoFormatExit(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
   private
     procedure ConfigDataGrid;
 
@@ -113,7 +114,12 @@ begin
   FDConnection1.Params.Database := '..\Data\Departments.db';
 end;
 
-procedure TPaginationIntegratedFooter.GroupBox3Exit(Sender: TObject);
+procedure TPaginationIntegratedFooter.ckPagingClick(Sender: TObject);
+begin
+  Self.ConfigDataGrid;
+end;
+
+procedure TPaginationIntegratedFooter.edtPageInfoFormatExit(Sender: TObject);
 begin
   Self.ConfigDataGrid;
 end;
@@ -121,12 +127,7 @@ end;
 procedure TPaginationIntegratedFooter.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
-  TMSFNCDataGrid1.Clear;
-  TMSFNCDataGrid1.Options.Filtering.Enabled := True;
-  TMSFNCDataGrid1.Options.Sorting.Enabled := True;
-  TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
-  TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
-  TMSFNCDataGrid1.Options.Banding.Enabled := True;
+  //TMSFNCDataGrid1.Clear;
 
   //Pagination
   TMSFNCDataGrid1.Paging := ckPaging.Checked;
@@ -137,17 +138,14 @@ begin
 
   // Configure paging control size and spacing
   TMSFNCDataGrid1.Footer.Paging.Size := 30; // Height of the paging area
-
   // Control which elements are shown
   TMSFNCDataGrid1.Footer.Paging.ShowPageSelector := ckShowPageSelector.Checked; // Dropdown to select page
   TMSFNCDataGrid1.Footer.Paging.ShowPageInfo := ckShowPageInfo.Checked; // Text showing current page info
   TMSFNCDataGrid1.Footer.Paging.ShowNavigationButtons := btnShowNavigationButtons.Checked; // First/Previous/Next/Last buttons
-
   // Customize widths of paging controls
   TMSFNCDataGrid1.Footer.Paging.PageSelectorWidth := 100; // Width of page dropdown
   TMSFNCDataGrid1.Footer.Paging.NavigationButtonWidth := 25; // Width of navigation buttons
   TMSFNCDataGrid1.Footer.Paging.PageInfoWidth := 150; // Width of page info text
-
   // Formats
   TMSFNCDataGrid1.Footer.Paging.PageInfoFormat := edtPageInfoFormat.Text;
   TMSFNCDataGrid1.Footer.Paging.PageSelectorFormat := edtPageSelectorFormat.Text;
@@ -155,32 +153,14 @@ begin
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TPaginationIntegratedFooter.btnOpenQueryClick(Sender: TObject);
+procedure TPaginationIntegratedFooter.DataSource1DataChange(Sender: TObject; Field: TField);
 begin
-  FDQuery1.Open;
   StatusBar1.Panels[0].Text := 'Total: ' + FDQuery1.RecordCount.ToString;
 end;
 
-procedure TPaginationIntegratedFooter.Button1Click(Sender: TObject);
+procedure TPaginationIntegratedFooter.btnOpenQueryClick(Sender: TObject);
 begin
-  // Access the page selector dropdown
-  TMSFNCDataGrid1.FooterPageSelector.DropDown;
-
-  // Access the page info text display
-  mmLog.Lines.Add(TMSFNCDataGrid1.FooterPageInfo.Text);
-  TMSFNCDataGrid1.FooterPageInfo.Text := 'Test';
-
-  // Access navigation buttons
-  TMSFNCDataGrid1.FooterFirstPageButton.Text := '|<';
-  TMSFNCDataGrid1.FooterFirstPageButton.BitmapVisible := False;
-  //TMSFNCDataGrid1.FooterPreviousPageButton.Text := '|<';
-  //TMSFNCDataGrid1.FooterNextPageButton.Text := '|<';
-  //TMSFNCDataGrid1.FooterLastPageButton.Text := '|<';
-end;
-
-procedure TPaginationIntegratedFooter.ckPagingClick(Sender: TObject);
-begin
-  Self.ConfigDataGrid;
+  FDQuery1.Open;
 end;
 
 procedure TPaginationIntegratedFooter.btnCloseClick(Sender: TObject);
@@ -198,6 +178,24 @@ end;
 procedure TPaginationIntegratedFooter.TMSFNCDataGrid1FooterPageSelectorChange(Sender: TObject);
 begin
   mmLog.Lines.Add('Page selector changed to: ' + IntToStr(TMSFNCDataGrid1.PageIndex + 1));
+end;
+
+procedure TPaginationIntegratedFooter.btnInteractiongFooterControlsClick(Sender: TObject);
+begin
+  // Access the page selector dropdown
+  TMSFNCDataGrid1.FooterPageSelector.DropDown;
+
+  // Access the page info text display
+  mmLog.Lines.Add(TMSFNCDataGrid1.FooterPageInfo.Text);
+  TMSFNCDataGrid1.FooterPageInfo.Text := 'Test';
+
+  // Access navigation buttons
+  TMSFNCDataGrid1.Footer.Paging.NavigationButtonWidth := 120;
+  TMSFNCDataGrid1.FooterFirstPageButton.Text := '<< First';
+  TMSFNCDataGrid1.FooterFirstPageButton.BitmapVisible := False;
+  TMSFNCDataGrid1.FooterPreviousPageButton.Text := 'Previous';
+  TMSFNCDataGrid1.FooterNextPageButton.Text := 'Next';
+  TMSFNCDataGrid1.FooterLastPageButton.Text := 'Last';
 end;
 
 end.

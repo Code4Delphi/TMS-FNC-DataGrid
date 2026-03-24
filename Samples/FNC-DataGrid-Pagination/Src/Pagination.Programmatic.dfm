@@ -84,7 +84,6 @@ object PaginationProgrammatic: TPaginationProgrammatic
         Caption = 'Open query'
         TabOrder = 1
         OnClick = btnOpenQueryClick
-        ExplicitLeft = 8
       end
     end
     object GroupBox1: TGroupBox
@@ -95,8 +94,6 @@ object PaginationProgrammatic: TPaginationProgrammatic
       Align = alLeft
       Caption = ' Programmatic Controls '
       TabOrder = 2
-      ExplicitLeft = 467
-      ExplicitTop = -4
       object Panel1: TPanel
         Left = 2
         Top = 17
@@ -229,8 +226,8 @@ object PaginationProgrammatic: TPaginationProgrammatic
           Alignment = taCenter
           Caption = 'lbPageInfoFormat'
           Layout = tlCenter
-          ExplicitLeft = 66
-          ExplicitHeight = 27
+          ExplicitWidth = 95
+          ExplicitHeight = 15
         end
       end
     end
@@ -242,7 +239,6 @@ object PaginationProgrammatic: TPaginationProgrammatic
       Align = alLeft
       Caption = ' Formats '
       TabOrder = 3
-      OnExit = GroupBox3Exit
       object Label1: TLabel
         Left = 16
         Top = 25
@@ -270,8 +266,6 @@ object PaginationProgrammatic: TPaginationProgrammatic
       Padding.Right = 5
       Padding.Bottom = 5
       TabOrder = 4
-      ExplicitLeft = 733
-      ExplicitTop = -4
       object mmLog: TMemo
         Left = 7
         Top = 17
@@ -283,9 +277,6 @@ object PaginationProgrammatic: TPaginationProgrammatic
           '')
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitLeft = 2
-        ExplicitWidth = 428
-        ExplicitHeight = 110
       end
     end
   end
@@ -367,8 +358,12 @@ object PaginationProgrammatic: TPaginationProgrammatic
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     OnPageChanged = TMSFNCDataGrid1PageChanged
+    Options.Filtering.Enabled = True
+    Options.Sorting.Enabled = True
+    Options.Banding.Enabled = True
+    Options.Column.Stretching.Enabled = True
+    Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    ExplicitTop = 129
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 552
@@ -391,7 +386,6 @@ object PaginationProgrammatic: TPaginationProgrammatic
       item
         Width = 50
       end>
-    ExplicitTop = 604
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
