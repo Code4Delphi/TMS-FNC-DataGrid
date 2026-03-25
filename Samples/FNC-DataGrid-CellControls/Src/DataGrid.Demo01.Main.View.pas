@@ -31,17 +31,11 @@ uses
   VCL.TMSFNCBitmapContainer;
 
 type
-  TDataGridDemo01MainView = class(TForm)
+  TDataGridCellControlsMainView = class(TForm)
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     gBoxConfig: TGroupBox;
-    ckFiltering: TCheckBox;
-    ckSorting: TCheckBox;
-    ckEditing: TCheckBox;
-    Label1: TLabel;
-    cBoxSelectionMode: TComboBox;
     ckURLAutoDetect: TCheckBox;
     ckURLAutoOpen: TCheckBox;
-    ckFilterEditor: TCheckBox;
     pnTop: TPanel;
     gBoxColumnCustomized: TGroupBox;
     btnColumnCustomizedButton: TButton;
@@ -50,63 +44,51 @@ type
     cBoxTypeRange: TComboBox;
     btnColumnCustomizedProgressBar: TButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    ckBanding: TCheckBox;
     btnColumnCustomizedRadioButton: TButton;
     procedure FormCreate(Sender: TObject);
-    procedure ckFilteringClick(Sender: TObject);
-    procedure ckSortingClick(Sender: TObject);
-    procedure ckEditingClick(Sender: TObject);
-    procedure cBoxSelectionModeChange(Sender: TObject);
     procedure ckURLAutoDetectClick(Sender: TObject);
-    procedure ckURLAutoOpenClick(Sender: TObject);
-    procedure ckFilterEditorClick(Sender: TObject);
     procedure btnColumnCustomizedButtonClick(Sender: TObject);
     procedure btnColumnCustomizedCheckBoxClick(Sender: TObject);
     procedure cBoxTypeRangeChange(Sender: TObject);
     procedure btnColumnCustomizedProgressBarClick(Sender: TObject);
     procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-    procedure TMSFNCDataGrid1GetCellData(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
-      var AData: TTMSFNCDataGridCellValue);
-    procedure ckBandingClick(Sender: TObject);
+    procedure TMSFNCDataGrid1GetCellData(Sender: TObject; ACell: TTMSFNCDataGridCellCoord; var AData: TTMSFNCDataGridCellValue);
     procedure btnColumnCustomizedRadioButtonClick(Sender: TObject);
   private
     procedure ConfigDataGrid;
     procedure AddHeaderRows;
     procedure ConfigColumns;
-    procedure LoadDataCSV;
-    procedure FillcBoxSelectionMode;
   public
 
   end;
 
 var
-  DataGridDemo01MainView: TDataGridDemo01MainView;
+  DataGridCellControlsMainView: TDataGridCellControlsMainView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TDataGridDemo01MainView.FormCreate(Sender: TObject);
+procedure TDataGridCellControlsMainView.FormCreate(Sender: TObject);
 begin
-  Self.FillcBoxSelectionMode;
   Self.ConfigDataGrid;
   Self.AddHeaderRows;
-  Self.LoadDataCSV;
+  TMSFNCDataGrid1.LoadFromCSVData('../Data/Departments.csv');
   Self.ConfigColumns;
 end;
 
-procedure TDataGridDemo01MainView.FillcBoxSelectionMode;
-var
-  LMode: TTMSFNCDataGridSelectionMode;
+procedure TDataGridCellControlsMainView.ckURLAutoDetectClick(Sender: TObject);
 begin
-  cBoxSelectionMode.Items.Clear;
-  for LMode := Low(TTMSFNCDataGridSelectionMode) to High(TTMSFNCDataGridSelectionMode) do
-    cBoxSelectionMode.Items.Add(GetEnumName(TypeInfo(TTMSFNCDataGridSelectionMode), Ord(LMode)));
-
-  cBoxSelectionMode.ItemIndex := Integer(TMSFNCDataGrid1.Options.Selection.Mode);
+  Self.ConfigDataGrid;
 end;
 
-procedure TDataGridDemo01MainView.AddHeaderRows;
+procedure TDataGridCellControlsMainView.ConfigDataGrid;
+begin
+  TMSFNCDataGrid1.Options.URL.AutoDetect := ckURLAutoDetect.Checked;
+  TMSFNCDataGrid1.Options.URL.AutoOpen := ckURLAutoOpen.Checked;
+end;
+
+procedure TDataGridCellControlsMainView.AddHeaderRows;
 begin
   TMSFNCDataGrid1.ColumnCount := 11;
   TMSFNCDataGrid1.Cells[0, 0] := 'Sequential';
@@ -122,7 +104,7 @@ begin
   TMSFNCDataGrid1.Cells[10, 0] := 'Empty';
 end;
 
-procedure TDataGridDemo01MainView.ConfigColumns;
+procedure TDataGridCellControlsMainView.ConfigColumns;
 begin
   //Sequential AutoNumber
   //TMSFNCDataGrid1.Cells[0, 0] := 'Sequential';
@@ -170,14 +152,7 @@ begin
   end;
 end;
 
-procedure TDataGridDemo01MainView.LoadDataCSV;
-begin
-  TMSFNCDataGrid1.LoadFromCSVData('../Data/Departments.csv');
-  TMSFNCDataGrid1.DefaultColumnWidth := 100;
-  TMSFNCDataGrid1.DefaultRowHeight := 24;
-end;
-
-procedure TDataGridDemo01MainView.TMSFNCDataGrid1GetCellData(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+procedure TDataGridCellControlsMainView.TMSFNCDataGrid1GetCellData(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
   var AData: TTMSFNCDataGridCellValue);
 begin
   //IF ROW OR COLUMN IS FIXED
@@ -189,9 +164,7 @@ begin
   end;
 end;
 
-procedure TDataGridDemo01MainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-var
-  LValorColunaLimite: Double;
+procedure TDataGridCellControlsMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
   //IF ROW OR COLUMN IS FIXED
   if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Column < TMSFNCDataGrid1.FixedColumnCount) then
@@ -205,9 +178,7 @@ begin
   if ACell.Column = 6 then
   begin
     ACell.Layout.Font.Color := clGreen;
-
-    LValorColunaLimite := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
-    if LValorColunaLimite < 200 then
+    if TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row] < 200 then
       ACell.Layout.Font.Color := clRed
   end;
 
@@ -215,7 +186,7 @@ begin
   if ACell.Column = 7 then
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
 
-   //IF Customized COLUMN
+  //IF Customized COLUMN
   if ACell.Column = 9 then
   begin
     if ACell.IsProgressBarCell then
@@ -223,117 +194,55 @@ begin
   end;
 end;
 
-procedure TDataGridDemo01MainView.ckFilteringClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.Filtering.Enabled := ckFiltering.Checked;
-end;
-
-procedure TDataGridDemo01MainView.ckSortingClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.Sorting.Enabled := ckSorting.Checked;
-end;
-
-procedure TDataGridDemo01MainView.ckEditingClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.Editing.Enabled := ckEditing.Checked;
-end;
-
-procedure TDataGridDemo01MainView.ckBandingClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.Banding.Enabled := ckBanding.Checked;
-end;
-
-procedure TDataGridDemo01MainView.cBoxSelectionModeChange(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.Selection.Mode := TTMSFNCDataGridSelectionMode(cBoxSelectionMode.ItemIndex);
-end;
-
-procedure TDataGridDemo01MainView.ckURLAutoDetectClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.URL.AutoDetect := ckURLAutoDetect.Checked;
-end;
-
-procedure TDataGridDemo01MainView.ckFilterEditorClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Columns[2].FilterEditor := ckFilterEditor.Checked;
-  TMSFNCDataGrid1.Columns[2].AddSetting(gcsFilterEditor);
-end;
-
-procedure TDataGridDemo01MainView.ckURLAutoOpenClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.URL.AutoOpen := ckURLAutoOpen.Checked;
-end;
-
-procedure TDataGridDemo01MainView.ConfigDataGrid;
-begin
-  TMSFNCDataGrid1.Options.IO.StartColumn := 1;
-  TMSFNCDataGrid1.Options.IO.StartRow := 1;
-
-  TMSFNCDataGrid1.Options.Keyboard.TabKeyDirectEdit := True;
-  TMSFNCDataGrid1.Options.Keyboard.ArrowKeyDirectEdit := True;
-  TMSFNCDataGrid1.Options.Keyboard.EnterKeyDirectEdit := True;
-
-  TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
-
-  //CONFIGS FORMS
-  TMSFNCDataGrid1.Options.Filtering.Enabled := ckFiltering.Checked;
-  TMSFNCDataGrid1.Options.Sorting.Enabled := ckSorting.Checked;
-  TMSFNCDataGrid1.Options.Editing.Enabled := ckEditing.Checked;
-  TMSFNCDataGrid1.Options.Banding.Enabled := ckBanding.Checked;
-  TMSFNCDataGrid1.Options.Selection.Mode := TTMSFNCDataGridSelectionMode(cBoxSelectionMode.ItemIndex);
-  TMSFNCDataGrid1.Options.URL.AutoDetect := ckURLAutoDetect.Checked;
-  TMSFNCDataGrid1.Options.URL.AutoOpen := ckURLAutoOpen.Checked;
-end;
-
-procedure TDataGridDemo01MainView.cBoxTypeRangeChange(Sender: TObject);
+procedure TDataGridCellControlsMainView.cBoxTypeRangeChange(Sender: TObject);
 begin
   TMSFNCDataGrid1.Columns[9].TypeRange := TTMSFNCDataGridCellItemTypeRange(cBoxTypeRange.ItemIndex);
 end;
 
-procedure TDataGridDemo01MainView.btnColumnCustomizedButtonClick(Sender: TObject);
+procedure TDataGridCellControlsMainView.btnColumnCustomizedButtonClick(Sender: TObject);
 begin
-  var LCoumn := TMSFNCDataGrid1.Columns[9];
-  LCoumn.Settings := [gcsType];
-  LCoumn.&Type := gcitButton;
+  var LColumn := TMSFNCDataGrid1.Columns[9];
+  LColumn.Settings := [gcsType];
+  LColumn.&Type := gcitButton;
 
-  LCoumn.AddSetting(gcsControlText);
-  LCoumn.ControlText := 'Edit';
+  LColumn.AddSetting(gcsControlText);
+  LColumn.ControlText := 'Edit';
 
   for var I := 1 to Pred(TMSFNCDataGrid1.RowCount) do
     TMSFNCDataGrid1.Cells[9, I] := '';
 end;
 
-procedure TDataGridDemo01MainView.btnColumnCustomizedCheckBoxClick(Sender: TObject);
+procedure TDataGridCellControlsMainView.btnColumnCustomizedCheckBoxClick(Sender: TObject);
 begin
-  var LCoumn := TMSFNCDataGrid1.Columns[9];
-  LCoumn.AddSetting(gcsType);
-  LCoumn.&Type := gcitCheckBox;
+  var LColumn := TMSFNCDataGrid1.Columns[9];
+  LColumn.AddSetting(gcsType);
+  LColumn.&Type := gcitCheckBox;
 
-  LCoumn.AddSetting(gcsControlAlign);
-  LCoumn.ControlAlign := gcaLeft;
+  LColumn.AddSetting(gcsControlAlign);
+  LColumn.ControlAlign := gcaLeft;
 
-  LCoumn.AddSetting(gcsControlPosition);
-  LCoumn.ControlPosition := gcpCenterLeft;
+  LColumn.AddSetting(gcsControlPosition);
+  LColumn.ControlPosition := gcpCenterLeft;
 
   for var I := 1 to Pred(TMSFNCDataGrid1.RowCount) do
     TMSFNCDataGrid1.Cells[9, I] := 'Active';
 end;
 
-procedure TDataGridDemo01MainView.btnColumnCustomizedRadioButtonClick(Sender: TObject);
+procedure TDataGridCellControlsMainView.btnColumnCustomizedRadioButtonClick(Sender: TObject);
 begin
-  var LCoumn := TMSFNCDataGrid1.Columns[9];
-  LCoumn.AddSetting(gcsType);
-  LCoumn.&Type := gcitRadioButton;
+  var LColumn := TMSFNCDataGrid1.Columns[9];
+  LColumn.AddSetting(gcsType);
+  LColumn.&Type := gcitRadioButton;
 
   for var I := 1 to Pred(TMSFNCDataGrid1.RowCount) do
     TMSFNCDataGrid1.Cells[9, I] := 'Select';
 end;
 
-procedure TDataGridDemo01MainView.btnColumnCustomizedProgressBarClick(Sender: TObject);
+procedure TDataGridCellControlsMainView.btnColumnCustomizedProgressBarClick(Sender: TObject);
 begin
-  var LCoumn := TMSFNCDataGrid1.Columns[9];
-  LCoumn.Settings := [gcsType];
-  LCoumn.&Type := gcitDataProgressBar;
+  var LColumn := TMSFNCDataGrid1.Columns[9];
+  LColumn.Settings := [gcsType];
+  LColumn.&Type := gcitDataProgressBar;
 
   for var I := 1 to Pred(TMSFNCDataGrid1.RowCount) do
     TMSFNCDataGrid1.Cells[9, I] := '';
