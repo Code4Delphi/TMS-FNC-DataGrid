@@ -18,6 +18,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 04 - Cálculos: SUM, AVG, MIN, MAX, ... | Agregações na Grid](https://www.youtube.com/watch?v=8PL2aZEKYjQ&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 05 - Filtering | Filtros via UI e Código: do Básico ao Avançado](https://www.youtube.com/watch?v=du7ssyfgu78&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 06 - Sorting & Localization | Ordenação e Tradução do Componente](https://www.youtube.com/watch?v=ik0iVxtF22s&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 07 - Paginação completa e customizável: automática ou via código](https://www.youtube.com/watch?v=PJCS9H_ud70&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
