@@ -3288,7 +3288,6 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = -6
     object gBoxConfig: TGroupBox
       Left = 0
       Top = 0
@@ -3393,43 +3392,35 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
       end
     end
     object GroupBox1: TGroupBox
-      Left = 745
+      Left = 697
       Top = 0
-      Width = 336
+      Width = 416
       Height = 145
       Align = alLeft
       Caption = ' Logs '
       TabOrder = 2
-      ExplicitLeft = 465
       object mmLog: TMemo
         Left = 2
         Top = 17
-        Width = 332
+        Width = 412
         Height = 126
         Align = alClient
         Lines.Strings = (
           '')
         TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = 13
+        ExplicitWidth = 332
       end
-    end
-    object Button1: TButton
-      Left = 1120
-      Top = 59
-      Width = 75
-      Height = 29
-      Caption = 'Button1'
-      TabOrder = 3
-      OnClick = Button1Click
     end
     object GroupBox2: TGroupBox
       Left = 417
       Top = 0
-      Width = 328
+      Width = 280
       Height = 145
       Align = alLeft
       Caption = 'Column Customized 2 '
-      TabOrder = 4
-      ExplicitLeft = 465
+      TabOrder = 3
       object btnCustomized2Button: TButton
         Left = 16
         Top = 32
@@ -3477,6 +3468,15 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
         TabOrder = 4
         OnClick = btnCustomized2CustomClick
       end
+      object btnCustomized2Subgrid: TButton
+        Left = 136
+        Top = 90
+        Width = 116
+        Height = 25
+        Caption = 'Add SubGrid'
+        TabOrder = 5
+        OnClick = btnCustomized2SubgridClick
+      end
     end
   end
   object PageControl1: TPageControl
@@ -3489,10 +3489,62 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     Visible = False
     object TabSheet1: TTabSheet
       Caption = 'TabSheet1'
+      DesignSize = (
+        153
+        123)
+      object RadioButton1: TRadioButton
+        Left = 6
+        Top = 8
+        Width = 113
+        Height = 17
+        Caption = 'RadioButton1'
+        Checked = True
+        TabOrder = 0
+        TabStop = True
+      end
+      object RadioButton2: TRadioButton
+        Left = 6
+        Top = 32
+        Width = 113
+        Height = 17
+        Caption = 'RadioButton2'
+        TabOrder = 1
+      end
+      object edtValueColumnEdit: TEdit
+        Left = 6
+        Top = 55
+        Width = 137
+        Height = 23
+        Anchors = [akLeft, akTop, akRight]
+        TabOrder = 2
+        Text = 'edtValueColumnEdit'
+      end
+      object btnGetEdtValueColumn: TButton
+        Left = 3
+        Top = 84
+        Width = 75
+        Height = 25
+        Caption = 'Get value'
+        TabOrder = 3
+        OnClick = btnGetEdtValueColumnClick
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'TabSheet2'
       ImageIndex = 1
+      object Memo1: TMemo
+        Left = 0
+        Top = 0
+        Width = 153
+        Height = 123
+        Align = alClient
+        Lines.Strings = (
+          'Memo1')
+        TabOrder = 0
+        ExplicitTop = 31
+        ExplicitWidth = 185
+        ExplicitHeight = 89
+      end
     end
   end
 end

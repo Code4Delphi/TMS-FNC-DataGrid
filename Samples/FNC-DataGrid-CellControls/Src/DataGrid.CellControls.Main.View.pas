@@ -48,7 +48,6 @@ type
     btnCustomized1RadioButton: TButton;
     GroupBox1: TGroupBox;
     mmLog: TMemo;
-    Button1: TButton;
     GroupBox2: TGroupBox;
     btnCustomized2Button: TButton;
     btnCustomized2CheckBox: TButton;
@@ -58,6 +57,12 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     btnCustomized2Custom: TButton;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    edtValueColumnEdit: TEdit;
+    Memo1: TMemo;
+    btnGetEdtValueColumn: TButton;
+    btnCustomized2Subgrid: TButton;
     procedure FormCreate(Sender: TObject);
     procedure ckURLAutoDetectClick(Sender: TObject);
     procedure btnCustomized1ButtonClick(Sender: TObject);
@@ -70,12 +75,13 @@ type
     procedure TMSFNCDataGrid1CellButtonClick(Sender: TObject; AColumn, ARow: Integer);
     procedure TMSFNCDataGrid1CellCheckBoxChange(Sender: TObject; AColumn, ARow: Integer);
     procedure TMSFNCDataGrid1CellRadioButtonChange(Sender: TObject; AColumn, ARow: Integer);
-    procedure Button1Click(Sender: TObject);
     procedure btnCustomized2ButtonClick(Sender: TObject);
     procedure btnCustomized2CheckBoxClick(Sender: TObject);
     procedure btnCustomized2ProgressBarClick(Sender: TObject);
     procedure btnCustomized2RadioButtonClick(Sender: TObject);
     procedure btnCustomized2CustomClick(Sender: TObject);
+    procedure btnGetEdtValueColumnClick(Sender: TObject);
+    procedure btnCustomized2SubgridClick(Sender: TObject);
   private
     FCustomizedColumn1: TTMSFNCDataGridColumn;
     FCustomizedColumn2: TTMSFNCDataGridColumn;
@@ -97,11 +103,11 @@ implementation
 procedure TDataGridCellControlsMainView.FormCreate(Sender: TObject);
 begin
   TMSFNCDataGrid1.Clear;
-  Self.ConfigDataGrid;
   TMSFNCDataGrid1.LoadFromCSVData('../Data/Departments.csv');
   Self.AddExtraColumns;
   Self.ConfigColumns;
   Self.LoadStatusBitmaps;
+  Self.ConfigDataGrid;
 end;
 
 procedure TDataGridCellControlsMainView.ckURLAutoDetectClick(Sender: TObject);
@@ -112,8 +118,7 @@ end;
 procedure TDataGridCellControlsMainView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
-  TMSFNCDataGrid1.Clear;
-  TMSFNCDataGrid1.DefaultColumnWidth := 130;
+  TMSFNCDataGrid1.DefaultColumnWidth := 100;
 
   TMSFNCDataGrid1.Options.URL.AutoDetect := ckURLAutoDetect.Checked;
   TMSFNCDataGrid1.Options.URL.AutoOpen := ckURLAutoOpen.Checked;
@@ -349,17 +354,6 @@ begin
     TMSFNCDataGrid1.Cells[FCustomizedColumn2.Index, I] := False;
 end;
 
-procedure TDataGridCellControlsMainView.btnCustomized2CustomClick(Sender: TObject);
-begin
-  PageControl1.Visible := True;
-  TMSFNCDataGrid1.Controls[FCustomizedColumn2.Index, 2] := PageControl1;
-  TMSFNCDataGrid1.AutoSizeRow(2);
-  TMSFNCDataGrid1.AutoSizeColumn(FCustomizedColumn2.Index);
-
-
-  TMSFNCDataGrid1.ControlAligns[FCustomizedColumn2.Index, 2] := gcaBottom;
-end;
-
 procedure TDataGridCellControlsMainView.LoadStatusBitmaps;
 var
   LRow: Integer;
@@ -379,10 +373,34 @@ begin
   end;
 end;
 
-procedure TDataGridCellControlsMainView.Button1Click(Sender: TObject);
+procedure TDataGridCellControlsMainView.btnGetEdtValueColumnClick(Sender: TObject);
+var
+  LRow: Integer;
+  LColEdit: Integer;
 begin
-  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
-  TMSFNCDataGrid1.Cells[Pred(TMSFNCDataGrid1.ColumnCount), 0] := 'Customized';
+  LRow := TButton(Sender).Tag;
+  LColEdit := TMSFNCDataGrid1.ColumnIndexByHeader('Edit');
+
+  if LRow >= TMSFNCDataGrid1.FixedRowCount then
+    ShowMessage(TMSFNCDataGrid1.ValueToString(TMSFNCDataGrid1.Cells[LColEdit, LRow]));
+end;
+
+procedure TDataGridCellControlsMainView.btnCustomized2CustomClick(Sender: TObject);
+const
+  ROW = 2;
+begin
+  PageControl1.Visible := True;
+  btnGetEdtValueColumn.Tag := ROW;
+  TMSFNCDataGrid1.Controls[FCustomizedColumn2.Index, ROW] := PageControl1;
+  TMSFNCDataGrid1.AutoSizeRow(ROW);
+  TMSFNCDataGrid1.AutoSizeColumn(FCustomizedColumn2.Index);
+  TMSFNCDataGrid1.ControlAligns[FCustomizedColumn2.Index, ROW] := gcaBottom;
+end;
+
+procedure TDataGridCellControlsMainView.btnCustomized2SubgridClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.AddGrid(MakeCell(FCustomizedColumn2.Index, 4)).LoadSampleData;
+  TMSFNCDataGrid1.RowHeights[4] := 300;
 end;
 
 end.
