@@ -25,7 +25,10 @@ uses
   VCL.TMSFNCDataGridRenderer,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCDataGrid,
-  Vcl.ExtCtrls, Vcl.StdCtrls, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer;
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCBitmapContainer;
 
 type
   TDataGridDemo01MainView = class(TForm)

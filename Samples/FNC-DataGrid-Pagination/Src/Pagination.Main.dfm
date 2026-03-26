@@ -23,7 +23,6 @@ object PaginationMain: TPaginationMain
     Padding.Top = 30
     Padding.Right = 10
     TabOrder = 0
-    ExplicitHeight = 156
     object btnPaginationIntegratedFooter: TButton
       AlignWithMargins = True
       Left = 10
