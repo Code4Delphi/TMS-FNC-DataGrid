@@ -127,7 +127,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\DataGrid.Demo01.Main.View.pas">
+        <DCCReference Include="Src\DataGrid.CellControls.Main.View.pas">
             <Form>DataGridCellControlsMainView</Form>
             <FormType>dfm</FormType>
         </DCCReference>

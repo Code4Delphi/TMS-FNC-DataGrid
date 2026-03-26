@@ -118,17 +118,18 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnCellButtonClick = TMSFNCDataGrid1CellButtonClick
+    OnCellCheckBoxChange = TMSFNCDataGrid1CellCheckBoxChange
+    OnCellRadioButtonChange = TMSFNCDataGrid1CellRadioButtonChange
     OnGetCellData = TMSFNCDataGrid1GetCellData
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
-    Options.IO.StartColumn = 1
-    Options.IO.StartRow = 1
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Keyboard.ArrowKeyDirectEdit = True
     Options.Keyboard.EnterKeyDirectEdit = True
     Options.Keyboard.TabKeyDirectEdit = True
-    Options.Selection.Mode = gsmSingleRow
+    ExplicitTop = 149
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 760
       Top = 160
@@ -3287,6 +3288,7 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitTop = -6
     object gBoxConfig: TGroupBox
       Left = 0
       Top = 0
@@ -3324,12 +3326,11 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     object gBoxColumnCustomized: TGroupBox
       Left = 143
       Top = 0
-      Width = 552
+      Width = 274
       Height = 145
       Align = alLeft
-      Caption = ' Column Customized '
+      Caption = 'Column Customized 1 '
       TabOrder = 1
-      ExplicitLeft = 571
       object Label2: TLabel
         Left = 16
         Top = 20
@@ -3337,28 +3338,28 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
         Height = 15
         Caption = 'TypeRange (local)'
       end
-      object btnColumnCustomizedButton: TButton
+      object btnCustomized1Button: TButton
         Left = 16
         Top = 68
-        Width = 139
+        Width = 116
         Height = 25
         Caption = 'Type Button'
         TabOrder = 0
-        OnClick = btnColumnCustomizedButtonClick
+        OnClick = btnCustomized1ButtonClick
       end
-      object btnColumnCustomizedCheckBox: TButton
-        Left = 16
-        Top = 97
-        Width = 139
+      object btnCustomized1CheckBox: TButton
+        Left = 14
+        Top = 99
+        Width = 116
         Height = 25
         Caption = 'Type CheckBox'
         TabOrder = 1
-        OnClick = btnColumnCustomizedCheckBoxClick
+        OnClick = btnCustomized1CheckBoxClick
       end
       object cBoxTypeRange: TComboBox
         Left = 16
         Top = 37
-        Width = 233
+        Width = 236
         Height = 23
         Style = csDropDownList
         ItemIndex = 2
@@ -3370,26 +3371,128 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
           'gcirFixed (Header column only)'
           'gcirAll (Header and data column)')
       end
-      object btnColumnCustomizedProgressBar: TButton
-        Left = 161
+      object btnCustomized1ProgressBar: TButton
+        Left = 136
         Top = 68
-        Width = 139
+        Width = 116
         Height = 25
         Caption = 'Type ProgressBar'
         TabOrder = 3
-        OnClick = btnColumnCustomizedProgressBarClick
+        OnClick = btnCustomized1ProgressBarClick
       end
-      object btnColumnCustomizedRadioButton: TButton
-        Left = 161
+      object btnCustomized1RadioButton: TButton
+        Left = 136
         Top = 99
-        Width = 139
+        Width = 116
         Height = 25
         BiDiMode = bdLeftToRight
         Caption = 'Type RadioButton'
         ParentBiDiMode = False
         TabOrder = 4
-        OnClick = btnColumnCustomizedRadioButtonClick
+        OnClick = btnCustomized1RadioButtonClick
       end
+    end
+    object GroupBox1: TGroupBox
+      Left = 745
+      Top = 0
+      Width = 336
+      Height = 145
+      Align = alLeft
+      Caption = ' Logs '
+      TabOrder = 2
+      ExplicitLeft = 465
+      object mmLog: TMemo
+        Left = 2
+        Top = 17
+        Width = 332
+        Height = 126
+        Align = alClient
+        Lines.Strings = (
+          '')
+        TabOrder = 0
+      end
+    end
+    object Button1: TButton
+      Left = 1120
+      Top = 59
+      Width = 75
+      Height = 29
+      Caption = 'Button1'
+      TabOrder = 3
+      OnClick = Button1Click
+    end
+    object GroupBox2: TGroupBox
+      Left = 417
+      Top = 0
+      Width = 328
+      Height = 145
+      Align = alLeft
+      Caption = 'Column Customized 2 '
+      TabOrder = 4
+      ExplicitLeft = 465
+      object btnCustomized2Button: TButton
+        Left = 16
+        Top = 32
+        Width = 116
+        Height = 25
+        Caption = 'Type Button'
+        TabOrder = 0
+        OnClick = btnCustomized2ButtonClick
+      end
+      object btnCustomized2CheckBox: TButton
+        Left = 16
+        Top = 61
+        Width = 116
+        Height = 25
+        Caption = 'Type CheckBox'
+        TabOrder = 1
+        OnClick = btnCustomized2CheckBoxClick
+      end
+      object btnCustomized2ProgressBar: TButton
+        Left = 136
+        Top = 32
+        Width = 116
+        Height = 25
+        Caption = 'Type ProgressBar'
+        TabOrder = 2
+        OnClick = btnCustomized2ProgressBarClick
+      end
+      object btnCustomized2RadioButton: TButton
+        Left = 136
+        Top = 61
+        Width = 116
+        Height = 25
+        BiDiMode = bdLeftToRight
+        Caption = 'Type RadioButton'
+        ParentBiDiMode = False
+        TabOrder = 3
+        OnClick = btnCustomized2RadioButtonClick
+      end
+      object btnCustomized2Custom: TButton
+        Left = 16
+        Top = 90
+        Width = 116
+        Height = 25
+        Caption = 'Custom Control'
+        TabOrder = 4
+        OnClick = btnCustomized2CustomClick
+      end
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 216
+    Top = 392
+    Width = 161
+    Height = 153
+    ActivePage = TabSheet1
+    TabOrder = 3
+    Visible = False
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+      ImageIndex = 1
     end
   end
 end

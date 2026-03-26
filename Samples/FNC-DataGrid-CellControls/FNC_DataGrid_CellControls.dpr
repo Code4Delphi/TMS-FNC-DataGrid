@@ -2,7 +2,7 @@ program FNC_DataGrid_CellControls;
 
 uses
   Vcl.Forms,
-  DataGrid.Demo01.Main.View in 'Src\DataGrid.Demo01.Main.View.pas' {DataGridCellControlsMainView};
+  DataGrid.CellControls.Main.View in 'Src\DataGrid.CellControls.Main.View.pas' {DataGridCellControlsMainView};
 
 {$R *.res}
 
