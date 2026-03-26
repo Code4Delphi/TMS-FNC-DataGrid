@@ -34,8 +34,6 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 
 <img width="1179" height="900" alt="image" src="https://github.com/user-attachments/assets/502ed339-397d-4bf3-a74c-8b31ac556fb4" />
 
-[Cell Controls documentation](https://download.tmssoftware.com/doc/tmsfncuipack/components/ttmsfncdatagrid/#cell-controls)
-
 <img width="1339" height="800" alt="image" src="https://github.com/user-attachments/assets/c014157b-6a8a-4a75-b33a-194188b23463" />
 
 ## 📞 Contatos
