@@ -1,7 +1,8 @@
 # FNC DataGrid - Cell Controls
 
 ### Screenshots
-<img width="1452" height="895" alt="image" src="https://github.com/user-attachments/assets/c1ae8796-4fe2-4f54-9650-72d44e7e6131" />
+
+<img width="1176" height="892" alt="image" src="https://github.com/user-attachments/assets/34788a69-6110-4f5e-ac62-f71e2785d13e" />
 
 ### Official documentation / Documentação oficial
 
