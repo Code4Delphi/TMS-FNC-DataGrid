@@ -69,8 +69,6 @@ type
     procedure btnCustomized1CheckBoxClick(Sender: TObject);
     procedure cBoxTypeRangeChange(Sender: TObject);
     procedure btnCustomized1ProgressBarClick(Sender: TObject);
-    procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-    procedure TMSFNCDataGrid1GetCellData(Sender: TObject; ACell: TTMSFNCDataGridCellCoord; var AData: TTMSFNCDataGridCellValue);
     procedure btnCustomized1RadioButtonClick(Sender: TObject);
     procedure TMSFNCDataGrid1CellButtonClick(Sender: TObject; AColumn, ARow: Integer);
     procedure TMSFNCDataGrid1CellCheckBoxChange(Sender: TObject; AColumn, ARow: Integer);
@@ -150,7 +148,6 @@ var
   LColumn: TTMSFNCDataGridColumn;
 begin
   //ComboBox
-  //TMSFNCDataGrid1.Cells[1, 0] := 'ComboBox';
   LColumn := TMSFNCDataGrid1.Columns[TMSFNCDataGrid1.ColumnIndexByHeader('ComboBox')];
   LColumn.AddSetting(gcsEditor);
   LColumn.AddSetting(gcsEditor);
@@ -211,68 +208,6 @@ end;
 procedure TDataGridCellControlsMainView.TMSFNCDataGrid1CellRadioButtonChange(Sender: TObject; AColumn, ARow: Integer);
 begin
   mmLog.Lines.Add(Format('CellRadioButtonChange. Column %d Row %d', [AColumn, ARow]));
-end;
-
-procedure TDataGridCellControlsMainView.TMSFNCDataGrid1GetCellData(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
-  var AData: TTMSFNCDataGridCellValue);
-begin
-//
-//  //IF ROW OR COLUMN IS FIXED
-//  if ACell.Row >= TMSFNCDataGrid1.FixedRowCount then
-//  begin
-//    //IF Status COLUMN
-//    if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Status') then
-//    begin
-//      //var LValue: string;
-//      //LValue := TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
-//
-//      TMSFNCDataGrid1.AddBitmap(ACell.Column, ACell.Row, 'True'); //AData.AsString
-//
-//      //TMSFNCDataGrid1.AddBitmap(ACell.Column, ACell.Row, TMSFNCBitmapContainer1.Bitmaps[R]);
-//    end;
-//  end;
-end;
-
-procedure TDataGridCellControlsMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-begin
-//  //IF ROW OR COLUMN IS FIXED
-//  if ACell.Row >= TMSFNCDataGrid1.FixedRowCount then
-//  begin
-//    //IF Status COLUMN
-//    if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Status') then
-//    begin
-//      var LValue: string;
-//      LValue := TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
-//      //TMSFNCDataGrid1.AddBitmap(ACell.Column, ACell.Row, 'True'); //AData.AsString
-//    end;
-//  end;
-
-{  //IF ROW OR COLUMN IS FIXED
-  if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Column < TMSFNCDataGrid1.FixedColumnCount) then
-  begin
-    ACell.Layout.Font.Color := clHotLight;
-    ACell.Layout.Font.Style := [TFontStyle.fsBold];
-    Exit;
-  end;
-
-  //IF SpinBox COLUMN
-  if ACell.Column = 6 then
-  begin
-    ACell.Layout.Font.Color := clGreen;
-    if TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row] < 200 then
-      ACell.Layout.Font.Color := clRed
-  end;
-
-  //IF Status COLUMN
-  if ACell.Column = 7 then
-    ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
-
-  //IF Customized COLUMN
-  if ACell.Column = 9 then
-  begin
-    if ACell.IsProgressBarCell then
-      ACell.AsProgressBarCell.Value := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
-  end;}
 end;
 
 procedure TDataGridCellControlsMainView.cBoxTypeRangeChange(Sender: TObject);

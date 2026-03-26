@@ -121,15 +121,12 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     OnCellButtonClick = TMSFNCDataGrid1CellButtonClick
     OnCellCheckBoxChange = TMSFNCDataGrid1CellCheckBoxChange
     OnCellRadioButtonChange = TMSFNCDataGrid1CellRadioButtonChange
-    OnGetCellData = TMSFNCDataGrid1GetCellData
-    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Keyboard.ArrowKeyDirectEdit = True
     Options.Keyboard.EnterKeyDirectEdit = True
     Options.Keyboard.TabKeyDirectEdit = True
-    ExplicitTop = 149
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 760
       Top = 160
@@ -3408,9 +3405,6 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
         Lines.Strings = (
           '')
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 13
-        ExplicitWidth = 332
       end
     end
     object GroupBox2: TGroupBox
@@ -3541,9 +3535,6 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
         Lines.Strings = (
           'Memo1')
         TabOrder = 0
-        ExplicitTop = 31
-        ExplicitWidth = 185
-        ExplicitHeight = 89
       end
     end
   end
