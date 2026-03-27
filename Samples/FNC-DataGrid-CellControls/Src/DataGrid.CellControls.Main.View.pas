@@ -9,16 +9,19 @@ uses
   System.Variants,
   System.Classes,
   System.TypInfo,
+  System.Rtti,
   System.Math,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  Vcl.ComCtrls,
   VCL.TMSFNCTypes,
   VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
-  System.Rtti,
   VCL.TMSFNCDataGridCell,
   VCL.TMSFNCDataGridData,
   VCL.TMSFNCDataGridBase,
@@ -26,10 +29,8 @@ uses
   VCL.TMSFNCDataGridRenderer,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCDataGrid,
-  Vcl.ExtCtrls,
-  Vcl.StdCtrls,
   VCL.TMSFNCCustomComponent,
-  VCL.TMSFNCBitmapContainer, Vcl.ComCtrls;
+  VCL.TMSFNCBitmapContainer;
 
 type
   TDataGridCellControlsMainView = class(TForm)
@@ -108,9 +109,15 @@ begin
   Self.ConfigDataGrid;
 end;
 
-procedure TDataGridCellControlsMainView.ckURLAutoDetectClick(Sender: TObject);
+procedure TDataGridCellControlsMainView.AddExtraColumns;
 begin
-  Self.ConfigDataGrid;
+  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
+  FCustomizedColumn1 := TMSFNCDataGrid1.Columns[Pred(TMSFNCDataGrid1.ColumnCount)];
+  FCustomizedColumn1.Header := 'Customized 1';
+
+  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
+  FCustomizedColumn2 := TMSFNCDataGrid1.Columns[Pred(TMSFNCDataGrid1.ColumnCount)];
+  FCustomizedColumn2.Header := 'Customized 2';
 end;
 
 procedure TDataGridCellControlsMainView.ConfigDataGrid;
@@ -131,25 +138,12 @@ begin
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TDataGridCellControlsMainView.AddExtraColumns;
-begin
-  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
-  FCustomizedColumn1 := TMSFNCDataGrid1.Columns[Pred(TMSFNCDataGrid1.ColumnCount)];
-  FCustomizedColumn1.Header := 'Customized 1';
-
-  TMSFNCDataGrid1.ColumnCount := TMSFNCDataGrid1.ColumnCount + 1;
-  FCustomizedColumn2 := TMSFNCDataGrid1.Columns[Pred(TMSFNCDataGrid1.ColumnCount)];
-  FCustomizedColumn2.Header := 'Customized 2';
-  //TMSFNCDataGrid1.Cells[8, 0] := 'Customized';
-end;
-
 procedure TDataGridCellControlsMainView.ConfigColumns;
 var
   LColumn: TTMSFNCDataGridColumn;
 begin
   //ComboBox
   LColumn := TMSFNCDataGrid1.Columns[TMSFNCDataGrid1.ColumnIndexByHeader('ComboBox')];
-  LColumn.AddSetting(gcsEditor);
   LColumn.AddSetting(gcsEditor);
   LColumn.AddSetting(gcsEditorItems);
   LColumn.Editor := getComboBox;
@@ -193,6 +187,11 @@ begin
     TMSFNCDataGrid1.Layouts[LIndex, I].Fill.Kind := gfkSolid;
     TMSFNCDataGrid1.Layouts[LIndex, I].Fill.Color := TColor(StrToInt(TMSFNCDataGrid1.Cells[LIndex, I].ToString)); //MakeGraphicsColor(Random(255), Random(255), Random(255)); //$00A87200
   end;
+end;
+
+procedure TDataGridCellControlsMainView.ckURLAutoDetectClick(Sender: TObject);
+begin
+  Self.ConfigDataGrid;
 end;
 
 procedure TDataGridCellControlsMainView.TMSFNCDataGrid1CellButtonClick(Sender: TObject; AColumn, ARow: Integer);

@@ -127,6 +127,7 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
     Options.Keyboard.ArrowKeyDirectEdit = True
     Options.Keyboard.EnterKeyDirectEdit = True
     Options.Keyboard.TabKeyDirectEdit = True
+    ExplicitTop = 149
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 760
       Top = 160
@@ -5136,8 +5137,8 @@ object DataGridCellControlsMainView: TDataGridCellControlsMainView
         OnClick = btnCustomized2RadioButtonClick
       end
       object btnCustomized2Custom: TButton
-        Left = 16
-        Top = 90
+        Left = 14
+        Top = 92
         Width = 116
         Height = 25
         Caption = 'Custom Control'
