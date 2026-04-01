@@ -73,7 +73,7 @@ type
     FDQuery1cost_price: TFloatField;
     FDQuery1sale_price: TFloatField;
     FDQuery1condition: TWideMemoField;
-    btnGroupBasic: TButton;
+    btnGroup: TButton;
     GroupBox1: TGroupBox;
     ckGroupingHideColumns: TCheckBox;
     btnUngroup: TButton;
@@ -84,7 +84,7 @@ type
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
-    procedure btnGroupBasicClick(Sender: TObject);
+    procedure btnGroupClick(Sender: TObject);
     procedure btnUngroupClick(Sender: TObject);
     procedure btnExpandAllNodesClick(Sender: TObject);
     procedure btnCollapseAllNodesClick(Sender: TObject);
@@ -106,6 +106,10 @@ implementation
 procedure TGroupingAdvanced.FormCreate(Sender: TObject);
 begin
   Self.ConfigDataGrid;
+
+  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
+  TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
+
   FDConnection1.Params.Database := '..\Data\Products.db';
 end;
 
@@ -117,44 +121,10 @@ begin
   TMSFNCDataGrid1.Options.Filtering.Enabled := True;
   TMSFNCDataGrid1.Options.Filtering.MultiColumn := True;
   TMSFNCDataGrid1.Options.Sorting.Enabled := True;
-
-  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
-  TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
-
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TGroupingAdvanced.DataSource1DataChange(Sender: TObject; Field: TField);
-begin
-  StatusBar1.Panels[0].Text := 'Total: ' + FDQuery1.RecordCount.ToString;
-end;
-
-procedure TGroupingAdvanced.btnOpenQueryClick(Sender: TObject);
-begin
-  FDQuery1.Open;
-end;
-
-procedure TGroupingAdvanced.btnCloseClick(Sender: TObject);
-begin
-  FDQuery1.Close;
-end;
-
-procedure TGroupingAdvanced.btnUngroupClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.UnGroup;
-end;
-
-procedure TGroupingAdvanced.btnCollapseAllNodesClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.CollapseAllNodes;
-end;
-
-procedure TGroupingAdvanced.btnExpandAllNodesClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.ExpandAllNodes;
-end;
-
-procedure TGroupingAdvanced.btnGroupBasicClick(Sender: TObject);
+procedure TGroupingAdvanced.btnGroupClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.UnGroup;
@@ -220,6 +190,36 @@ begin
     else
       AGroup := '<img src="used.svg" height="95%"/> ' + AGroup
   end;
+end;
+
+procedure TGroupingAdvanced.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+  StatusBar1.Panels[0].Text := 'Total: ' + FDQuery1.RecordCount.ToString;
+end;
+
+procedure TGroupingAdvanced.btnOpenQueryClick(Sender: TObject);
+begin
+  FDQuery1.Open;
+end;
+
+procedure TGroupingAdvanced.btnCloseClick(Sender: TObject);
+begin
+  FDQuery1.Close;
+end;
+
+procedure TGroupingAdvanced.btnUngroupClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.UnGroup;
+end;
+
+procedure TGroupingAdvanced.btnCollapseAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.CollapseAllNodes;
+end;
+
+procedure TGroupingAdvanced.btnExpandAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ExpandAllNodes;
 end;
 
 end.

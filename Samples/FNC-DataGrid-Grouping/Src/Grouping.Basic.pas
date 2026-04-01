@@ -69,21 +69,6 @@ begin
   TMSFNCDataGrid1.LoadFromCSVData('../Data/products.csv');
 end;
 
-procedure TGroupingBasic.btnUngroupClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.UnGroup;
-end;
-
-procedure TGroupingBasic.btnExpandAllNodesClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.ExpandAllNodes;
-end;
-
-procedure TGroupingBasic.btnCollapseAllNodesClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.CollapseAllNodes;
-end;
-
 procedure TGroupingBasic.btnGroupBasicClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.Group(2);
@@ -99,6 +84,21 @@ end;
 procedure TGroupingBasic.btnGroupMultipleColumnsClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.Group([2, 3]);
+end;
+
+procedure TGroupingBasic.btnUngroupClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.UnGroup;
+end;
+
+procedure TGroupingBasic.btnExpandAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ExpandAllNodes;
+end;
+
+procedure TGroupingBasic.btnCollapseAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.CollapseAllNodes;
 end;
 
 end.

@@ -155,8 +155,11 @@ begin
 end;
 
 procedure TGroupingVisualView.btnGroupBasicClick(Sender: TObject);
+var
+  LGridButton: TTMSFNCDataGridButton;
 begin
   TMSFNCDataGrid1.BeginUpdate;
+  TMSFNCDataGrid1.Clear;
   TMSFNCDataGrid1.UnGroup;
   TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 1;
   TMSFNCDataGrid1.FixedBottomRowCount := 1;
@@ -205,6 +208,29 @@ begin
   TMSFNCDataGrid1.AutoSizeColumns;
   TMSFNCDataGrid1.RowHeights[TMSFNCDataGrid1.RowCount - TMSFNCDataGrid1.FixedBottomRowCount] := 50;
   TMSFNCDataGrid1.Options.Calculations.IncludeHiddenRows := True;
+
+  //SETTINGS FOR VISUAL GROUP
+  TMSFNCDataGrid1.Options.Mouse.TouchScrolling := True;
+  TMSFNCDataGrid1.Header.Visible := True;
+  TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
+  TMSFNCDataGrid1.Header.Bar.Visible := True;
+  TMSFNCDataGrid1.Header.Bar.Size := 35;
+
+  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+  LGridButton.OnClick := btnCollapseAllNodesClick;
+  LGridButton.Width := 100;
+  LGridButton.Text := 'Collapse';
+
+  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+  LGridButton.OnClick := btnExpandAllNodesClick;
+  LGridButton.Width := 100;
+  LGridButton.Text := 'Expand';
+
+  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+  LGridButton.OnClick := btnUngroupClick;
+  LGridButton.Width := 100;
+  LGridButton.Text := 'Ungroup';
+
   TMSFNCDataGrid1.EndUpdate;
 end;
 

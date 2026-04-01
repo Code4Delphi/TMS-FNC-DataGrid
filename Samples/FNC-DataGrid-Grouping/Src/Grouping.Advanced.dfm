@@ -76,7 +76,7 @@ object GroupingAdvanced: TGroupingAdvanced
       DesignSize = (
         652
         129)
-      object btnGroupBasic: TButton
+      object btnGroup: TButton
         Left = 16
         Top = 19
         Width = 449
@@ -85,7 +85,7 @@ object GroupingAdvanced: TGroupingAdvanced
           'Group by multiple columns (Group code,  Brand name and Condition' +
           ')'
         TabOrder = 0
-        OnClick = btnGroupBasicClick
+        OnClick = btnGroupClick
       end
       object btnUngroup: TButton
         Left = 516
@@ -145,9 +145,9 @@ object GroupingAdvanced: TGroupingAdvanced
       Caption = ' Grouping configs '
       TabOrder = 2
       object ckGroupingHideColumns: TCheckBox
-        Left = 6
+        Left = 9
         Top = 23
-        Width = 176
+        Width = 151
         Height = 17
         Caption = 'Hide Grouped Columns'
         TabOrder = 0
@@ -239,7 +239,6 @@ object GroupingAdvanced: TGroupingAdvanced
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    ExplicitHeight = 572
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 784
       Top = 229
@@ -573,7 +572,6 @@ object GroupingAdvanced: TGroupingAdvanced
       item
         Width = 50
       end>
-    ExplicitTop = 703
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

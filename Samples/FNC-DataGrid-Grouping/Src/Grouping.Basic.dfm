@@ -36,7 +36,7 @@ object GroupingBasic: TGroupingBasic
         135)
       object btnGroupBasic: TButton
         Left = 16
-        Top = 23
+        Top = 20
         Width = 390
         Height = 25
         Caption = 'Group basic (Column Group Code)'
@@ -204,6 +204,5 @@ object GroupingBasic: TGroupingBasic
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 131
   end
 end
