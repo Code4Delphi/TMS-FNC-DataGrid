@@ -1,4 +1,4 @@
-unit Grouping.Advanced;
+unit Grouping.Visual.View;
 
 interface
 
@@ -53,7 +53,7 @@ uses
   Vcl.Buttons, Vcl.ComCtrls, VCL.TMSFNCBitmapContainer;
 
 type
-  TGroupingAdvanced = class(TForm)
+  TGroupingVisualView = class(TForm)
     pnTop: TPanel;
     GroupBox2: TGroupBox;
     btnClose: TButton;
@@ -97,19 +97,19 @@ type
   end;
 
 var
-  GroupingAdvanced: TGroupingAdvanced;
+  GroupingVisualView: TGroupingVisualView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TGroupingAdvanced.FormCreate(Sender: TObject);
+procedure TGroupingVisualView.FormCreate(Sender: TObject);
 begin
   Self.ConfigDataGrid;
   FDConnection1.Params.Database := '..\Data\Products.db';
 end;
 
-procedure TGroupingAdvanced.ConfigDataGrid;
+procedure TGroupingVisualView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 2;
@@ -124,37 +124,37 @@ begin
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TGroupingAdvanced.DataSource1DataChange(Sender: TObject; Field: TField);
+procedure TGroupingVisualView.DataSource1DataChange(Sender: TObject; Field: TField);
 begin
   StatusBar1.Panels[0].Text := 'Total: ' + FDQuery1.RecordCount.ToString;
 end;
 
-procedure TGroupingAdvanced.btnOpenQueryClick(Sender: TObject);
+procedure TGroupingVisualView.btnOpenQueryClick(Sender: TObject);
 begin
   FDQuery1.Open;
 end;
 
-procedure TGroupingAdvanced.btnCloseClick(Sender: TObject);
+procedure TGroupingVisualView.btnCloseClick(Sender: TObject);
 begin
   FDQuery1.Close;
 end;
 
-procedure TGroupingAdvanced.btnUngroupClick(Sender: TObject);
+procedure TGroupingVisualView.btnUngroupClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.UnGroup;
 end;
 
-procedure TGroupingAdvanced.btnCollapseAllNodesClick(Sender: TObject);
+procedure TGroupingVisualView.btnCollapseAllNodesClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.CollapseAllNodes;
 end;
 
-procedure TGroupingAdvanced.btnExpandAllNodesClick(Sender: TObject);
+procedure TGroupingVisualView.btnExpandAllNodesClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.ExpandAllNodes;
 end;
 
-procedure TGroupingAdvanced.btnGroupBasicClick(Sender: TObject);
+procedure TGroupingVisualView.btnGroupBasicClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.UnGroup;
@@ -208,7 +208,7 @@ begin
   TMSFNCDataGrid1.EndUpdate;
 end;
 
-procedure TGroupingAdvanced.TMSFNCDataGrid1GetCustomGroup(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+procedure TGroupingVisualView.TMSFNCDataGrid1GetCustomGroup(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
   AData: TTMSFNCDataGridCellValue; ALevel: Integer; var AGroup: string);
 begin
   if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Group code') then

@@ -1,9 +1,9 @@
-object GroupingAdvanced: TGroupingAdvanced
+object GroupingVisualView: TGroupingVisualView
   Left = 0
   Top = 0
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Grouping advanced'
+  Caption = 'TMS FNC DataGrid - Visual Grouping'
   ClientHeight = 709
   ClientWidth = 1188
   Color = clBtnFace
@@ -239,7 +239,6 @@ object GroupingAdvanced: TGroupingAdvanced
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    ExplicitHeight = 572
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 784
       Top = 229
@@ -573,7 +572,6 @@ object GroupingAdvanced: TGroupingAdvanced
       item
         Width = 50
       end>
-    ExplicitTop = 703
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
