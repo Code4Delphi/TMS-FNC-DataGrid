@@ -105,9 +105,7 @@ object GroupingBasic: TGroupingBasic
         Top = 97
         Width = 390
         Height = 25
-        Caption = 
-          'Group by multiple columns (Group code,  Brand name and Condition' +
-          ')'
+        Caption = 'Group by multiple columns (Group code,  Brand name)'
         TabOrder = 5
         OnClick = btnGroupMultipleColumnsClick
       end
@@ -204,5 +202,7 @@ object GroupingBasic: TGroupingBasic
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
+    ExplicitLeft = 1
+    ExplicitTop = 142
   end
 end
