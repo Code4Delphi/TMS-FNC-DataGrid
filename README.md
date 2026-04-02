@@ -20,6 +20,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 06 - Sorting & Localization | Ordenação e Tradução do Componente](https://www.youtube.com/watch?v=ik0iVxtF22s&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 07 - Paginação completa e customizável: automática ou via código](https://www.youtube.com/watch?v=PJCS9H_ud70&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 08 - Componentes nas células | Inserindo e interagindo (CellControls)](https://www.youtube.com/watch?v=DYfzgZ6gNK4&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 09 - Agrupamentos do básico ao avançado | Agrupamento rápido, simples e organizado](https://www.youtube.com/watch?v=x88NitmQjK4&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
