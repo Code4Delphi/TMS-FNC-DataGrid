@@ -73,25 +73,33 @@ type
     FDQuery1cost_price: TFloatField;
     FDQuery1sale_price: TFloatField;
     FDQuery1condition: TWideMemoField;
-    btnGroupBasic: TButton;
+    btnGroup: TButton;
     GroupBox1: TGroupBox;
     ckGroupingHideColumns: TCheckBox;
     btnUngroup: TButton;
     btnExpandAllNodes: TButton;
     btnCollapseAllNodes: TButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
+    GroupBox4: TGroupBox;
+    btnSortingInventoryColumnAsc: TButton;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
-    procedure btnGroupBasicClick(Sender: TObject);
+    procedure btnGroupClick(Sender: TObject);
     procedure btnUngroupClick(Sender: TObject);
     procedure btnExpandAllNodesClick(Sender: TObject);
     procedure btnCollapseAllNodesClick(Sender: TObject);
     procedure TMSFNCDataGrid1GetCustomGroup(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
       AData: TTMSFNCDataGridCellValue; ALevel: Integer; var AGroup: string);
+    procedure btnSortingInventoryColumnAscClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure ConfigDataGrid;
+    procedure DoUngroupClick(Sender: TObject);
+    procedure DoCollapseAllNodesClick(Sender: TObject);
+    procedure DoExpandAllNodesClick(Sender: TObject);
   public
 
   end;
@@ -112,12 +120,43 @@ end;
 procedure TGroupingVisualView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
-  TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 2;
-  TMSFNCDataGrid1.FixedBottomRowCount := 2;
-  TMSFNCDataGrid1.Options.Filtering.Enabled := True;
-  TMSFNCDataGrid1.Options.Filtering.MultiColumn := True;
-  TMSFNCDataGrid1.Options.Sorting.Enabled := True;
 
+  //SETTINGS FOR VISUAL GROUP
+  TMSFNCDataGrid1.Options.Mouse.TouchScrolling := True;
+  TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
+  TMSFNCDataGrid1.Header.Visible := True;
+  TMSFNCDataGrid1.Header.Bar.Visible := True;
+  TMSFNCDataGrid1.Header.Bar.Size := 35;
+
+  //Group Level Colors
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Color := $00F9E9DB;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationStroke.Color := clSkyBlue;
+
+  //Connection lines
+  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionLines := True;
+  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionStroke.Color := clGradientActiveCaption;
+
+  //Group card configurations
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.TextAlign := gtaCenter;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Fill.Color := gcLightgray;
+
+  //Buttons displayed below group links
+  var LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+  LGridButton.OnClick := DoCollapseAllNodesClick;
+  LGridButton.Width := 100;
+  LGridButton.Text := 'Collapse';
+
+  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+  LGridButton.OnClick := DoExpandAllNodesClick;
+  LGridButton.Width := 100;
+  LGridButton.Text := 'Expand';
+
+  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+  LGridButton.OnClick := DoUngroupClick;
+  LGridButton.Width := 100;
+  LGridButton.Text := 'Ungroup';
+
+  //DatabaseAdapter
   TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
   TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
 
@@ -139,24 +178,7 @@ begin
   FDQuery1.Close;
 end;
 
-procedure TGroupingVisualView.btnUngroupClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.UnGroup;
-end;
-
-procedure TGroupingVisualView.btnCollapseAllNodesClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.CollapseAllNodes;
-end;
-
-procedure TGroupingVisualView.btnExpandAllNodesClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.ExpandAllNodes;
-end;
-
-procedure TGroupingVisualView.btnGroupBasicClick(Sender: TObject);
-var
-  LGridButton: TTMSFNCDataGridButton;
+procedure TGroupingVisualView.btnGroupClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.Clear;
@@ -209,29 +231,37 @@ begin
   TMSFNCDataGrid1.RowHeights[TMSFNCDataGrid1.RowCount - TMSFNCDataGrid1.FixedBottomRowCount] := 50;
   TMSFNCDataGrid1.Options.Calculations.IncludeHiddenRows := True;
 
-  //SETTINGS FOR VISUAL GROUP
-  TMSFNCDataGrid1.Options.Mouse.TouchScrolling := True;
-  TMSFNCDataGrid1.Header.Visible := True;
-  TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
-  TMSFNCDataGrid1.Header.Bar.Visible := True;
-  TMSFNCDataGrid1.Header.Bar.Size := 35;
-
-  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
-  LGridButton.OnClick := btnCollapseAllNodesClick;
-  LGridButton.Width := 100;
-  LGridButton.Text := 'Collapse';
-
-  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
-  LGridButton.OnClick := btnExpandAllNodesClick;
-  LGridButton.Width := 100;
-  LGridButton.Text := 'Expand';
-
-  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
-  LGridButton.OnClick := btnUngroupClick;
-  LGridButton.Width := 100;
-  LGridButton.Text := 'Ungroup';
-
   TMSFNCDataGrid1.EndUpdate;
+end;
+
+procedure TGroupingVisualView.DoCollapseAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.CollapseAllNodes;
+end;
+
+procedure TGroupingVisualView.DoExpandAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ExpandAllNodes;
+end;
+
+procedure TGroupingVisualView.DoUngroupClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.UnGroup;
+end;
+
+procedure TGroupingVisualView.btnCollapseAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.CollapseAllNodes;
+end;
+
+procedure TGroupingVisualView.btnExpandAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ExpandAllNodes;
+end;
+
+procedure TGroupingVisualView.btnUngroupClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.UnGroup;
 end;
 
 procedure TGroupingVisualView.TMSFNCDataGrid1GetCustomGroup(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
@@ -246,6 +276,16 @@ begin
     else
       AGroup := '<img src="used.svg" height="95%"/> ' + AGroup
   end;
+end;
+
+procedure TGroupingVisualView.btnSortingInventoryColumnAscClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.GroupSort(4, gsdAscending);
+end;
+
+procedure TGroupingVisualView.Button1Click(Sender: TObject);
+begin
+  TMSFNCDataGrid1.GroupSort([3, 7], [gsdAscending, gsdDescending]);
 end;
 
 end.
