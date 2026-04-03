@@ -68,31 +68,27 @@ object GroupingVisualView: TGroupingVisualView
     object GroupBox3: TGroupBox
       Left = 326
       Top = 1
-      Width = 652
+      Width = 443
       Height = 129
       Align = alLeft
       Caption = ' Grouping '
       TabOrder = 1
-      DesignSize = (
-        652
-        129)
-      object btnGroupBasic: TButton
+      object btnGroup: TButton
         Left = 16
         Top = 19
-        Width = 449
+        Width = 401
         Height = 25
         Caption = 
           'Group by multiple columns (Group code,  Brand name and Condition' +
           ')'
         TabOrder = 0
-        OnClick = btnGroupBasicClick
+        OnClick = btnGroupClick
       end
       object btnUngroup: TButton
-        Left = 516
-        Top = 19
+        Left = 16
+        Top = 46
         Width = 130
         Height = 25
-        Anchors = [akTop, akRight]
         Caption = 'Ungroup'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -104,11 +100,10 @@ object GroupingVisualView: TGroupingVisualView
         OnClick = btnUngroupClick
       end
       object btnExpandAllNodes: TButton
-        Left = 516
-        Top = 50
+        Left = 16
+        Top = 73
         Width = 130
         Height = 25
-        Anchors = [akTop, akRight]
         Caption = 'Expand All Nodes'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -120,11 +115,10 @@ object GroupingVisualView: TGroupingVisualView
         OnClick = btnExpandAllNodesClick
       end
       object btnCollapseAllNodes: TButton
-        Left = 516
-        Top = 81
+        Left = 16
+        Top = 100
         Width = 130
         Height = 25
-        Anchors = [akTop, akRight]
         Caption = 'Collapse All Nodes'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -153,6 +147,33 @@ object GroupingVisualView: TGroupingVisualView
         TabOrder = 0
       end
     end
+    object GroupBox4: TGroupBox
+      Left = 769
+      Top = 1
+      Width = 378
+      Height = 129
+      Align = alLeft
+      Caption = ' Group Sort '
+      TabOrder = 3
+      object btnSortingInventoryColumnAsc: TButton
+        Left = 16
+        Top = 19
+        Width = 342
+        Height = 25
+        Caption = 'Sorting by Inventory column (asc)'
+        TabOrder = 0
+        OnClick = btnSortingInventoryColumnAscClick
+      end
+      object Button1: TButton
+        Left = 16
+        Top = 47
+        Width = 342
+        Height = 25
+        Caption = 'Sort by the BrandNname column (asc) and Condition (desc)'
+        TabOrder = 1
+        OnClick = Button1Click
+      end
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
@@ -171,6 +192,8 @@ object GroupingVisualView: TGroupingVisualView
     Header.VisualGrouping.Layout.Font.Height = -12
     Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
     Header.VisualGrouping.Layout.Font.Style = []
+    Header.VisualGrouping.LevelActiveIndicationFill.Color = clGradientActiveCaption
+    Header.VisualGrouping.LevelActiveIndicationStroke.Color = clSilver
     Header.Bar.Buttons = <>
     Adapter = TMSFNCDataGridDatabaseAdapter1
     BitmapContainer = TMSFNCBitmapContainer1
