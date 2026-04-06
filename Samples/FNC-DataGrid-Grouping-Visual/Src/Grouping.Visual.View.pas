@@ -50,7 +50,8 @@ uses
   FireDAC.Comp.DataSet,
   FireDAC.Comp.Client,
   FireDAC.Comp.UI,
-  Vcl.Buttons, Vcl.ComCtrls, VCL.TMSFNCBitmapContainer;
+  Vcl.Buttons,
+  Vcl.ComCtrls, VCL.TMSFNCBitmapContainer;
 
 type
   TGroupingVisualView = class(TForm)
@@ -101,7 +102,6 @@ type
     procedure DoCollapseAllNodesClick(Sender: TObject);
     procedure DoExpandAllNodesClick(Sender: TObject);
   public
-
   end;
 
 var
@@ -122,23 +122,10 @@ begin
   TMSFNCDataGrid1.BeginUpdate;
 
   //SETTINGS FOR VISUAL GROUP
-  TMSFNCDataGrid1.Options.Mouse.TouchScrolling := True;
   TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
   TMSFNCDataGrid1.Header.Visible := True;
   TMSFNCDataGrid1.Header.Bar.Visible := True;
   TMSFNCDataGrid1.Header.Bar.Size := 35;
-
-  //Group Level Colors
-  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Color := $00F9E9DB;
-  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationStroke.Color := clSkyBlue;
-
-  //Connection lines
-  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionLines := True;
-  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionStroke.Color := clGradientActiveCaption;
-
-  //Group card configurations
-  TMSFNCDataGrid1.Header.VisualGrouping.Layout.TextAlign := gtaCenter;
-  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Fill.Color := gcLightgray;
 
   //Buttons displayed below group links
   var LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
@@ -156,8 +143,21 @@ begin
   LGridButton.Width := 100;
   LGridButton.Text := 'Ungroup';
 
+  //Group Level Colors
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Color := $00F9E9DB;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationStroke.Color := clSkyBlue;
+
+  //Connection lines
+  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionLines := True;
+  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionStroke.Color := clGradientActiveCaption;
+
+  //Group card configurations
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.TextAlign := gtaCenter;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Fill.Color := gcLightgray;
+
   //DatabaseAdapter
   TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
+  //Required for use in grouping
   TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
 
   TMSFNCDataGrid1.EndUpdate;

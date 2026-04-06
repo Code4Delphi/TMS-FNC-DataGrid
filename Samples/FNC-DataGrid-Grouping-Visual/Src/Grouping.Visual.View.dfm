@@ -262,6 +262,8 @@ object GroupingVisualView: TGroupingVisualView
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
+    ExplicitLeft = 1
+    ExplicitTop = 132
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 784
       Top = 229
