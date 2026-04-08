@@ -104,6 +104,7 @@ begin
     ACell.Layout.TextAlign := gtaCenter;
     ACell.Layout.Font.Style := [TFontStyle.fsBold];
 
+    //if TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString = 'New' then
     if ACell.Data.Value.AsString = 'New' then
       ACell.Layout.Fill.Color := gcLightgreen
     else
