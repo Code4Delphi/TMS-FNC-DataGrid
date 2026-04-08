@@ -1,4 +1,4 @@
-# FNC DataGrid - Dynamic Cell Coloring
+# FNC DataGrid - Dynamic cell coloring by events and filtering
 
 ### Official documentation / Documentação oficial
 
