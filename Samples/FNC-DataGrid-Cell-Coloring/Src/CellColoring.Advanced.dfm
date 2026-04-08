@@ -1,9 +1,9 @@
-object GroupingAdvanced: TGroupingAdvanced
+object CellColoringAdvanced: TCellColoringAdvanced
   Left = 0
   Top = 0
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Grouping advanced'
+  Caption = 'TMS FNC DataGrid - Dynamic Cell Coloring'
   ClientHeight = 709
   ClientWidth = 1188
   Color = clBtnFace
@@ -239,7 +239,6 @@ object GroupingAdvanced: TGroupingAdvanced
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    ExplicitTop = 125
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 784
       Top = 229

@@ -39,6 +39,9 @@
         <Projects Include="FNC-DataGrid-Master-Detail\FNC_DataGrid_Master_Detail.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNC-DataGrid-Cell-Coloring\FNC_DataGrid_Cell_Coloring.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -155,14 +158,23 @@
     <Target Name="FNC_DataGrid_Master_Detail:Make">
         <MSBuild Projects="FNC-DataGrid-Master-Detail\FNC_DataGrid_Master_Detail.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNC_DataGrid_Cell_Coloring">
+        <MSBuild Projects="FNC-DataGrid-Cell-Coloring\FNC_DataGrid_Cell_Coloring.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Cell_Coloring:Clean">
+        <MSBuild Projects="FNC-DataGrid-Cell-Coloring\FNC_DataGrid_Cell_Coloring.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Cell_Coloring:Make">
+        <MSBuild Projects="FNC-DataGrid-Cell-Coloring\FNC_DataGrid_Cell_Coloring.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering;FNC_DataGrid_Sorting;FNC_DataGrid_Localization;FNC_DataGrid_Pagination;FNC_DataGrid_CellControls;FNC_DataGrid_Grouping;FNC_DataGrid_Grouping_Visual;FNC_DataGrid_Master_Detail"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering;FNC_DataGrid_Sorting;FNC_DataGrid_Localization;FNC_DataGrid_Pagination;FNC_DataGrid_CellControls;FNC_DataGrid_Grouping;FNC_DataGrid_Grouping_Visual;FNC_DataGrid_Master_Detail;FNC_DataGrid_Cell_Coloring"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean;FNC_DataGrid_Sorting:Clean;FNC_DataGrid_Localization:Clean;FNC_DataGrid_Pagination:Clean;FNC_DataGrid_CellControls:Clean;FNC_DataGrid_Grouping:Clean;FNC_DataGrid_Grouping_Visual:Clean;FNC_DataGrid_Master_Detail:Clean"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean;FNC_DataGrid_Sorting:Clean;FNC_DataGrid_Localization:Clean;FNC_DataGrid_Pagination:Clean;FNC_DataGrid_CellControls:Clean;FNC_DataGrid_Grouping:Clean;FNC_DataGrid_Grouping_Visual:Clean;FNC_DataGrid_Master_Detail:Clean;FNC_DataGrid_Cell_Coloring:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make;FNC_DataGrid_Sorting:Make;FNC_DataGrid_Localization:Make;FNC_DataGrid_Pagination:Make;FNC_DataGrid_CellControls:Make;FNC_DataGrid_Grouping:Make;FNC_DataGrid_Grouping_Visual:Make;FNC_DataGrid_Master_Detail:Make"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make;FNC_DataGrid_Sorting:Make;FNC_DataGrid_Localization:Make;FNC_DataGrid_Pagination:Make;FNC_DataGrid_CellControls:Make;FNC_DataGrid_Grouping:Make;FNC_DataGrid_Grouping_Visual:Make;FNC_DataGrid_Master_Detail:Make;FNC_DataGrid_Cell_Coloring:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
