@@ -1,4 +1,4 @@
-unit LoadingData.Utils;
+unit ImportExport.Utils;
 
 interface
 
@@ -10,7 +10,6 @@ uses
 type
   TUtils = class
   private
-
   public
     class function GetNameFileCSV: string;
     class function GetNameFile(const AExtensao: string): string;
