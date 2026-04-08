@@ -198,7 +198,6 @@ object MasterDetailView: TMasterDetailView
       Padding.Top = 2
       Padding.Right = 4
       TabOrder = 0
-      ExplicitHeight = 129
       object btnClose: TButton
         AlignWithMargins = True
         Left = 6
@@ -213,7 +212,6 @@ object MasterDetailView: TMasterDetailView
         Caption = 'Close'
         TabOrder = 0
         OnClick = btnCloseClick
-        ExplicitWidth = 128
       end
       object btnOpenQuery: TButton
         AlignWithMargins = True
@@ -229,7 +227,6 @@ object MasterDetailView: TMasterDetailView
         Caption = 'Open query'
         TabOrder = 1
         OnClick = btnOpenQueryClick
-        ExplicitWidth = 128
       end
     end
   end
