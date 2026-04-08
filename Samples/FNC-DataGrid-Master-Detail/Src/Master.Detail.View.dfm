@@ -99,86 +99,148 @@ object MasterDetailView: TMasterDetailView
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
     RowCount = 1
-    ExplicitTop = 83
-    object TMSFNCDataGrid2: TTMSFNCDataGrid
+    object pnItems: TPanel
       Left = 173
-      Top = 352
-      Width = 900
-      Height = 225
-      ParentDoubleBuffered = False
-      DoubleBuffered = True
+      Top = 303
+      Width = 577
+      Height = 209
       TabOrder = 1
-      ShowAcceleratorChar = False
-      Footer.Bar.Buttons = <>
-      Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
-      Header.VisualGrouping.Layout.Font.Color = clWindowText
-      Header.VisualGrouping.Layout.Font.Height = -12
-      Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
-      Header.VisualGrouping.Layout.Font.Style = []
-      Header.Bar.Buttons = <>
-      Adapter = TMSFNCDataGridDatabaseAdapter2
-      CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FilterMatchLayout.Font.Color = clWindowText
-      CellAppearance.FilterMatchLayout.Font.Height = -12
-      CellAppearance.FilterMatchLayout.Font.Name = 'Segoe UI'
-      CellAppearance.FilterMatchLayout.Font.Style = []
-      CellAppearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FilterInverseMatchLayout.Font.Color = clWindowText
-      CellAppearance.FilterInverseMatchLayout.Font.Height = -12
-      CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
-      CellAppearance.FilterInverseMatchLayout.Font.Style = []
-      CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.BandLayout.Font.Color = clBlack
-      CellAppearance.BandLayout.Font.Height = -12
-      CellAppearance.BandLayout.Font.Name = 'Segoe UI'
-      CellAppearance.BandLayout.Font.Style = []
-      CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FixedLayout.Font.Color = clBlack
-      CellAppearance.FixedLayout.Font.Height = -12
-      CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
-      CellAppearance.FixedLayout.Font.Style = []
-      CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FixedSelectedLayout.Font.Color = clBlack
-      CellAppearance.FixedSelectedLayout.Font.Height = -12
-      CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
-      CellAppearance.FixedSelectedLayout.Font.Style = []
-      CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FocusedLayout.Font.Color = clBlack
-      CellAppearance.FocusedLayout.Font.Height = -12
-      CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
-      CellAppearance.FocusedLayout.Font.Style = []
-      CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.GroupLayout.Font.Color = clBlack
-      CellAppearance.GroupLayout.Font.Height = -12
-      CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
-      CellAppearance.GroupLayout.Font.Style = []
-      CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.NormalLayout.Font.Color = clBlack
-      CellAppearance.NormalLayout.Font.Height = -12
-      CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
-      CellAppearance.NormalLayout.Font.Style = []
-      CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.SelectedLayout.Font.Color = clBlack
-      CellAppearance.SelectedLayout.Font.Height = -12
-      CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
-      CellAppearance.SelectedLayout.Font.Style = []
-      CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.SummaryLayout.Font.Color = clBlack
-      CellAppearance.SummaryLayout.Font.Height = -12
-      CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
-      CellAppearance.SummaryLayout.Font.Style = []
-      ColumnCount = 0
-      Columns = <>
-      FilterActions = <>
-      FilterAppearance.Font.Charset = DEFAULT_CHARSET
-      FilterAppearance.Font.Color = clBlack
-      FilterAppearance.Font.Height = -12
-      FilterAppearance.Font.Name = 'Segoe UI'
-      FilterAppearance.Font.Style = []
-      Options.Banding.Enabled = True
-      Options.Column.Stretching.Enabled = True
-      Options.Editing.Enabled = False
-      RowCount = 1
+      object TMSFNCDataGrid2: TTMSFNCDataGrid
+        Left = 1
+        Top = 1
+        Width = 575
+        Height = 179
+        Align = alClient
+        ParentDoubleBuffered = False
+        DoubleBuffered = True
+        TabOrder = 0
+        ShowAcceleratorChar = False
+        Footer.Bar.Buttons = <>
+        Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
+        Header.VisualGrouping.Layout.Font.Color = clWindowText
+        Header.VisualGrouping.Layout.Font.Height = -12
+        Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
+        Header.VisualGrouping.Layout.Font.Style = []
+        Header.Bar.Buttons = <>
+        Adapter = TMSFNCDataGridDatabaseAdapter2
+        CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.FilterMatchLayout.Font.Color = clWindowText
+        CellAppearance.FilterMatchLayout.Font.Height = -12
+        CellAppearance.FilterMatchLayout.Font.Name = 'Segoe UI'
+        CellAppearance.FilterMatchLayout.Font.Style = []
+        CellAppearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.FilterInverseMatchLayout.Font.Color = clWindowText
+        CellAppearance.FilterInverseMatchLayout.Font.Height = -12
+        CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
+        CellAppearance.FilterInverseMatchLayout.Font.Style = []
+        CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.BandLayout.Font.Color = clBlack
+        CellAppearance.BandLayout.Font.Height = -12
+        CellAppearance.BandLayout.Font.Name = 'Segoe UI'
+        CellAppearance.BandLayout.Font.Style = []
+        CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.FixedLayout.Font.Color = clBlack
+        CellAppearance.FixedLayout.Font.Height = -12
+        CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
+        CellAppearance.FixedLayout.Font.Style = []
+        CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.FixedSelectedLayout.Font.Color = clBlack
+        CellAppearance.FixedSelectedLayout.Font.Height = -12
+        CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
+        CellAppearance.FixedSelectedLayout.Font.Style = []
+        CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.FocusedLayout.Font.Color = clBlack
+        CellAppearance.FocusedLayout.Font.Height = -12
+        CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
+        CellAppearance.FocusedLayout.Font.Style = []
+        CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.GroupLayout.Font.Color = clBlack
+        CellAppearance.GroupLayout.Font.Height = -12
+        CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
+        CellAppearance.GroupLayout.Font.Style = []
+        CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.NormalLayout.Font.Color = clBlack
+        CellAppearance.NormalLayout.Font.Height = -12
+        CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
+        CellAppearance.NormalLayout.Font.Style = []
+        CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.SelectedLayout.Font.Color = clBlack
+        CellAppearance.SelectedLayout.Font.Height = -12
+        CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
+        CellAppearance.SelectedLayout.Font.Style = []
+        CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
+        CellAppearance.SummaryLayout.Font.Color = clBlack
+        CellAppearance.SummaryLayout.Font.Height = -12
+        CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
+        CellAppearance.SummaryLayout.Font.Style = []
+        ColumnCount = 0
+        Columns = <>
+        FilterActions = <>
+        FilterAppearance.Font.Charset = DEFAULT_CHARSET
+        FilterAppearance.Font.Color = clBlack
+        FilterAppearance.Font.Height = -12
+        FilterAppearance.Font.Name = 'Segoe UI'
+        FilterAppearance.Font.Style = []
+        Options.Banding.Enabled = True
+        Options.Column.Stretching.Enabled = True
+        Options.Editing.Enabled = False
+        RowCount = 1
+      end
+      object Panel1: TPanel
+        Left = 1
+        Top = 180
+        Width = 575
+        Height = 28
+        Align = alBottom
+        BevelOuter = bvNone
+        Padding.Left = 1
+        Padding.Top = 1
+        Padding.Right = 5
+        Padding.Bottom = 1
+        TabOrder = 1
+        ExplicitTop = 186
+        object lbCount: TLabel
+          Left = 525
+          Top = 1
+          Width = 45
+          Height = 26
+          Align = alRight
+          Caption = 'Count: 0'
+          Layout = tlCenter
+          ExplicitLeft = 532
+          ExplicitHeight = 15
+        end
+        object btnBanding: TButton
+          Left = 1
+          Top = 1
+          Width = 136
+          Height = 26
+          Align = alLeft
+          Caption = 'Banding (zebrar)'
+          TabOrder = 0
+          OnClick = btnBandingClick
+        end
+        object btnStretching: TButton
+          Left = 137
+          Top = 1
+          Width = 136
+          Height = 26
+          Align = alLeft
+          Caption = 'Stretching'
+          TabOrder = 1
+          OnClick = btnStretchingClick
+        end
+        object btnShowItem: TButton
+          Left = 273
+          Top = 1
+          Width = 136
+          Height = 26
+          Align = alLeft
+          Caption = 'Show Item'
+          TabOrder = 2
+          OnClick = btnShowItemClick
+        end
+      end
     end
   end
   object pnTop: TPanel
@@ -239,7 +301,7 @@ object MasterDetailView: TMasterDetailView
     Visible = True
     Columns = <>
     DataSource = DataSource1
-    DetailControl = TMSFNCDataGrid2
+    DetailControl = pnItems
     ShowMemoFields = True
   end
   object StatusBar1: TStatusBar
@@ -392,6 +454,7 @@ object MasterDetailView: TMasterDetailView
   end
   object DataSource2: TDataSource
     DataSet = FDItems
+    OnDataChange = DataSource2DataChange
     Left = 768
     Top = 304
   end

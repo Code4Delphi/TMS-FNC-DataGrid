@@ -9,6 +9,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'TMS FNC DataGrid - Master Detail';
   Application.CreateForm(TMasterDetailView, MasterDetailView);
   Application.Run;
 end.

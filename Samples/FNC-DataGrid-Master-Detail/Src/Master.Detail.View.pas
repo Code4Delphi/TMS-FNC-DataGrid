@@ -83,9 +83,19 @@ type
     FDItemsprice: TFloatField;
     FDItemstotal: TFloatField;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    pnItems: TPanel;
+    Panel1: TPanel;
+    btnBanding: TButton;
+    btnStretching: TButton;
+    btnShowItem: TButton;
+    lbCount: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure btnBandingClick(Sender: TObject);
+    procedure btnStretchingClick(Sender: TObject);
+    procedure btnShowItemClick(Sender: TObject);
+    procedure DataSource2DataChange(Sender: TObject; Field: TField);
   private
   public
   end;
@@ -111,6 +121,27 @@ end;
 procedure TMasterDetailView.btnCloseClick(Sender: TObject);
 begin
   FDOrders.Close;
+end;
+
+procedure TMasterDetailView.DataSource2DataChange(Sender: TObject; Field: TField);
+begin
+  lbCount.Caption := 'Count: ' + FDItems.RecordCount.ToString;
+end;
+
+procedure TMasterDetailView.btnBandingClick(Sender: TObject);
+begin
+  TMSFNCDataGrid2.Options.Banding.Enabled := not TMSFNCDataGrid2.Options.Banding.Enabled;
+end;
+
+procedure TMasterDetailView.btnStretchingClick(Sender: TObject);
+begin
+  TMSFNCDataGrid2.Options.Column.Stretching.Enabled := not TMSFNCDataGrid2.Options.Column.Stretching.Enabled;
+  TMSFNCDataGrid2.AutoSizeColumns;
+end;
+
+procedure TMasterDetailView.btnShowItemClick(Sender: TObject);
+begin
+  ShowMessage(FDItemsId.AsString + ' - ' + FDItemsproduct_name.AsString);
 end;
 
 end.
