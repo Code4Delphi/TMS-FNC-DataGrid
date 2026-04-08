@@ -82,6 +82,7 @@ type
     FDItemsquantity: TFloatField;
     FDItemsprice: TFloatField;
     FDItemstotal: TFloatField;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);

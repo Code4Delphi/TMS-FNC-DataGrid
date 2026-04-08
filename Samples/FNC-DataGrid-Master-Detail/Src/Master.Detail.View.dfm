@@ -99,6 +99,7 @@ object MasterDetailView: TMasterDetailView
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
     RowCount = 1
+    ExplicitTop = 83
     object TMSFNCDataGrid2: TTMSFNCDataGrid
       Left = 173
       Top = 352
@@ -393,5 +394,11 @@ object MasterDetailView: TMasterDetailView
     DataSet = FDItems
     Left = 768
     Top = 304
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    ScreenCursor = gcrHourGlass
+    Left = 1112
+    Top = 337
   end
 end
