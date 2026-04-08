@@ -1,11 +1,11 @@
-object CellColoringEvents: TCellColoringEvents
+object CellFormattingView: TCellFormattingView
   Left = 0
   Top = 0
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Dynamic Cell Coloring with events'
-  ClientHeight = 671
-  ClientWidth = 1261
+  Caption = 'TMS FNC DataGrid - Cell Formatting'
+  ClientHeight = 709
+  ClientWidth = 1188
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,29 +16,16 @@ object CellColoringEvents: TCellColoringEvents
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 652
-    Width = 1261
-    Height = 19
-    Panels = <
-      item
-        Width = 500
-      end
-      item
-        Width = 50
-      end>
-  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 0
-    Width = 1261
-    Height = 652
+    Width = 1188
+    Height = 709
+    Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
-    Color = 15000804
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 0
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -46,6 +33,8 @@ object CellColoringEvents: TCellColoringEvents
     Header.VisualGrouping.Layout.Font.Height = -12
     Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
     Header.VisualGrouping.Layout.Font.Style = []
+    Header.VisualGrouping.LevelActiveIndicationFill.Color = clGradientActiveCaption
+    Header.VisualGrouping.LevelActiveIndicationStroke.Color = clSilver
     Header.Bar.Buttons = <>
     CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FilterMatchLayout.Font.Color = clWindowText
@@ -105,9 +94,12 @@ object CellColoringEvents: TCellColoringEvents
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
+    OnGetCellFormatting = TMSFNCDataGrid1GetCellFormatting
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
+    Options.Banding.Enabled = True
     Options.Column.Stretching.Enabled = True
+    Options.Selection.Mode = gsmSingleRow
+    RowCount = 1
   end
 end

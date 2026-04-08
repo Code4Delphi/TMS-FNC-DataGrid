@@ -1,11 +1,10 @@
-object CellColoringEvents: TCellColoringEvents
+object CellColoringFilters: TCellColoringFilters
   Left = 0
   Top = 0
   Cursor = crHandPoint
-  ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Dynamic Cell Coloring with events'
-  ClientHeight = 671
-  ClientWidth = 1261
+  Caption = 'TMS FNC DataGrid - Dynamic Cell Coloring With Filters'
+  ClientHeight = 709
+  ClientWidth = 1188
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,24 +15,124 @@ object CellColoringEvents: TCellColoringEvents
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object StatusBar1: TStatusBar
+  object pnTop: TPanel
     Left = 0
-    Top = 652
-    Width = 1261
-    Height = 19
-    Panels = <
-      item
-        Width = 500
+    Top = 0
+    Width = 1188
+    Height = 97
+    Align = alTop
+    TabOrder = 0
+    object GroupBox4: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 688
+      Height = 95
+      Align = alLeft
+      Caption = ' Custom filter '
+      TabOrder = 0
+      object Label2: TLabel
+        Left = 11
+        Top = 24
+        Width = 43
+        Height = 15
+        Caption = 'Column'
       end
-      item
-        Width = 50
-      end>
+      object Label3: TLabel
+        Left = 163
+        Top = 24
+        Width = 54
+        Height = 15
+        Caption = 'Filter Type'
+      end
+      object Label4: TLabel
+        Left = 282
+        Top = 24
+        Width = 48
+        Height = 15
+        Caption = 'Text filter'
+      end
+      object cBoxColumns: TComboBox
+        Left = 11
+        Top = 42
+        Width = 150
+        Height = 23
+        Style = csDropDownList
+        DropDownCount = 30
+        ItemIndex = 1
+        TabOrder = 0
+        Text = 'Name'
+        Items.Strings = (
+          'Product code'
+          'Name'
+          'Group code'
+          'Brand name'
+          'Inventory'
+          'Cost price'
+          'Sale price'
+          'Condition')
+      end
+      object cBoxFilterType: TComboBox
+        Left = 163
+        Top = 42
+        Width = 116
+        Height = 23
+        Style = csDropDownList
+        DropDownCount = 30
+        ItemIndex = 2
+        TabOrder = 1
+        Text = 'Contains'
+        Items.Strings = (
+          'StartsWith'
+          'EndsWith'
+          'Contains'
+          'NotContains'
+          'Equal'
+          'NotEqual'
+          'Empty'
+          'NotEmpty'
+          'LargerThan'
+          'SmallerThan'
+          'LargerOrEqualThan'
+          'SmallerOrEqualThan')
+      end
+      object edtTextCustomFilter: TEdit
+        Left = 282
+        Top = 42
+        Width = 210
+        Height = 23
+        TabOrder = 2
+      end
+      object btnFilter: TButton
+        Left = 498
+        Top = 41
+        Width = 66
+        Height = 25
+        Caption = 'Filter'
+        TabOrder = 3
+        OnClick = btnFilterClick
+      end
+      object btnClearFilter: TButton
+        Left = 570
+        Top = 41
+        Width = 80
+        Height = 25
+        Caption = 'Clear Filter'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+        OnClick = btnClearFilterClick
+      end
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 0
-    Width = 1261
-    Height = 652
+    Top = 97
+    Width = 1188
+    Height = 612
     Align = alClient
     ParentDoubleBuffered = False
     Color = 15000804
@@ -105,9 +204,9 @@ object CellColoringEvents: TCellColoringEvents
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
+    ExplicitTop = 102
   end
 end

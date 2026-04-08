@@ -15,15 +15,15 @@ uses
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
   CellColoring.Events,
-  CellColoring.Advanced;
+  CellColoring.Filters;
 
 type
   TCellColoringMain = class(TForm)
     Panel1: TPanel;
-    btnGroupingBasic: TButton;
-    btnGroupingAdvanced: TButton;
-    procedure btnGroupingBasicClick(Sender: TObject);
-    procedure btnGroupingAdvancedClick(Sender: TObject);
+    btnEvents: TButton;
+    btnFIlters: TButton;
+    procedure btnEventsClick(Sender: TObject);
+    procedure btnFIltersClick(Sender: TObject);
   private
 
   public
@@ -37,14 +37,14 @@ implementation
 
 {$R *.dfm}
 
-procedure TCellColoringMain.btnGroupingBasicClick(Sender: TObject);
+procedure TCellColoringMain.btnEventsClick(Sender: TObject);
 begin
   CellColoringEvents.ShowModal;
 end;
 
-procedure TCellColoringMain.btnGroupingAdvancedClick(Sender: TObject);
+procedure TCellColoringMain.btnFIltersClick(Sender: TObject);
 begin
-  CellColoringAdvanced.ShowModal;
+  CellColoringFilters.ShowModal;
 end;
 
 end.

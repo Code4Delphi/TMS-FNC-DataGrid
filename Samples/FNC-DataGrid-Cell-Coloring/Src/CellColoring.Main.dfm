@@ -23,7 +23,7 @@ object CellColoringMain: TCellColoringMain
     Padding.Top = 30
     Padding.Right = 10
     TabOrder = 0
-    object btnGroupingBasic: TButton
+    object btnEvents: TButton
       AlignWithMargins = True
       Left = 10
       Top = 30
@@ -34,11 +34,11 @@ object CellColoringMain: TCellColoringMain
       Margins.Top = 0
       Margins.Right = 0
       Align = alTop
-      Caption = 'With Events'
+      Caption = 'Cell Coloring With Events'
       TabOrder = 0
-      OnClick = btnGroupingBasicClick
+      OnClick = btnEventsClick
     end
-    object btnGroupingAdvanced: TButton
+    object btnFIlters: TButton
       AlignWithMargins = True
       Left = 10
       Top = 72
@@ -49,9 +49,9 @@ object CellColoringMain: TCellColoringMain
       Margins.Top = 0
       Margins.Right = 0
       Align = alTop
-      Caption = 'Grouping Advanced'
+      Caption = 'Cell Coloring With Filters'
       TabOrder = 1
-      OnClick = btnGroupingAdvancedClick
+      OnClick = btnFIltersClick
     end
   end
 end

@@ -1,15 +1,15 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{A2106C7F-21A5-490E-A05D-79A2E514B44B}</ProjectGuid>
+        <ProjectGuid>{31E43813-4944-4B7E-8D11-21D5C7454EC0}</ProjectGuid>
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <ProjectName Condition="'$(ProjectName)'==''">FNC_DataGrid_Cell_Coloring</ProjectName>
+        <ProjectName Condition="'$(ProjectName)'==''">FNC_DataGrid_Cell_Formatting</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
-        <MainSource>FNC_DataGrid_Cell_Coloring.dpr</MainSource>
+        <MainSource>FNC_DataGrid_Cell_Formatting.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -70,7 +70,7 @@
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <SanitizedProjectName>FNC_DataGrid_Cell_Coloring</SanitizedProjectName>
+        <SanitizedProjectName>FNC_DataGrid_Cell_Formatting</SanitizedProjectName>
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
@@ -127,16 +127,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\CellColoring.Filters.pas">
-            <Form>CellColoringFilters</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="Src\CellColoring.Events.pas">
-            <Form>CellColoringEvents</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="Src\CellColoring.Main.pas">
-            <Form>CellColoringMain</Form>
+        <DCCReference Include="Src\Cell.Formatting.View.pas">
+            <Form>CellFormattingView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
@@ -157,7 +149,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">FNC_DataGrid_Cell_Coloring.dpr</Source>
+                    <Source Name="MainSource">FNC_DataGrid_Cell_Formatting.dpr</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="C:\Users\Cesar\Documents\tmssoftware\TMS XData\packages\d12\.\Win32\Release\dclxdata290.bpl">TMS XData - Design-Time Package</Excluded_Packages>
@@ -166,9 +158,9 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="Bin\FNC_DataGrid_Cell_Coloring.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Bin\FNC_DataGrid_Cell_Formatting.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>FNC_DataGrid_Cell_Coloring.exe</RemoteName>
+                        <RemoteName>FNC_DataGrid_Cell_Formatting.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
