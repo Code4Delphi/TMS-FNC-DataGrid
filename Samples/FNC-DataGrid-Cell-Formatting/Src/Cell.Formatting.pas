@@ -1,4 +1,4 @@
-unit Cell.Formatting.View;
+unit Cell.Formatting;
 
 interface
 
@@ -54,7 +54,7 @@ uses
   Vcl.ComCtrls, VCL.TMSFNCBitmapContainer;
 
 type
-  TCellFormattingView = class(TForm)
+  TCellFormatting = class(TForm)
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
@@ -66,21 +66,20 @@ type
   end;
 
 var
-  CellFormattingView: TCellFormattingView;
+  CellFormatting: TCellFormatting;
 
 implementation
 
 {$R *.dfm}
 
-procedure TCellFormattingView.FormCreate(Sender: TObject);
+procedure TCellFormatting.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
-
   TMSFNCDataGrid1.Clear;
   TMSFNCDataGrid1.LoadFromCSVData('../Data/products.csv');
 end;
 
-procedure TCellFormattingView.TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+procedure TCellFormatting.TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
   AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
   var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
 begin
@@ -115,21 +114,21 @@ begin
   end;
 
   //FORMAT FLOAT
-  if ACell.Column = 4 then
+  if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Inventory') then
   begin
-    AFormatting.Format := '#,##0.00';
-    AFormatting.&Type := gdftFloat;
-    AConvertSettings.CurrencyString := '$';
-    AConvertSettings.DecimalSeparator := '.';
-    AConvertSettings.ThousandSeparator := ',';
+    //AFormatting.Format := '%.2f';
+    AFormatting.Format := '%' + FormatSettings.DecimalSeparator + '2f';
+    AFormatting.&Type := gdftNumber;
   end;
 
   //FORMAT FLOAT
   if ACell.Column = 5 then
   begin
-    //AFormatting.Format := '%.2f';
-    AFormatting.Format := '%' + FormatSettings.DecimalSeparator + '2f';
-    AFormatting.&Type := gdftNumber;
+    AFormatting.Format := '#,##0.00 $';
+    AFormatting.&Type := gdftFloat;
+    AConvertSettings.CurrencyString := '$';
+    AConvertSettings.DecimalSeparator := '.';
+    AConvertSettings.ThousandSeparator := ',';
   end;
 
   //FORMAT AS BOOLEAN WITH CUSTOM TRUE/FALSE TEXT

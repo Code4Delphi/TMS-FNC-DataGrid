@@ -1,4 +1,4 @@
-object CellFormattingView: TCellFormattingView
+object CellFormatting: TCellFormatting
   Left = 0
   Top = 0
   Cursor = crHandPoint

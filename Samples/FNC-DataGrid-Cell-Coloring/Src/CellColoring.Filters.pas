@@ -69,14 +69,14 @@ procedure TCellColoringFilters.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
 
+  //CONFIGURATION TO CHANGE THE APPEARANCE OF THE LINES THAT MATCH THE FILTER CONDITIONS
+  TMSFNCDataGrid1.Options.Filtering.Actions := [gdfaApplyAppearance];
+
   //ROWS THAT MATCH THE FILTER CONDITION
   TMSFNCDataGrid1.CellAppearance.FilterMatchLayout.Fill.Color := gcMoneyGreen;
 
   //ROWS THAT DO NOT MATCH THE FILTER CONDITIONS
-  TMSFNCDataGrid1.CellAppearance.FilterInverseMatchLayout.Fill.Color := $00DFDFFF; //$00C4C4FF;
-
-  //CONFIGURATION TO CHANGE THE APPEARANCE OF THE LINES THAT MATCH THE FILTER CONDITIONS
-  TMSFNCDataGrid1.Options.Filtering.Actions := [gdfaApplyAppearance];
+  TMSFNCDataGrid1.CellAppearance.FilterInverseMatchLayout.Fill.Color := $00DFDFFF;
 
   TMSFNCDataGrid1.EndUpdate;
 end;

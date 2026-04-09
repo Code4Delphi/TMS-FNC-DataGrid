@@ -127,8 +127,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\Cell.Formatting.View.pas">
-            <Form>CellFormattingView</Form>
+        <DCCReference Include="Src\Cell.Formatting.pas">
+            <Form>CellFormatting</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

@@ -15,6 +15,8 @@ type
     class function GetNameFile(const AExtensao: string): string;
     class function GetNameFileHTML: string;
     class function GetNameFileXLS: string;
+    class function GetNameFilePDF: string;
+    class function GetNameFileProprietary: string;
   end;
 
 implementation
@@ -26,13 +28,21 @@ begin
   Result := '';
   LSaveDialog := TSaveDialog.Create(nil);
   try
-    LSaveDialog.Filter := Format('Files %s (*.%s)|*.%s', [UpperCase(AExtensao), AExtensao, AExtensao]);
-    LSaveDialog.DefaultExt := AExtensao;
+    if AExtensao.IsEmpty then
+      LSaveDialog.Filter := 'All Files (*.*)|*.*'
+    else
+    begin
+      LSaveDialog.Filter := Format('Files %s (*.%s)|*.%s|All Files (*.*)|*.*', [UpperCase(AExtensao), AExtensao, AExtensao]);
+      LSaveDialog.DefaultExt := AExtensao;
+    end;
+
     LSaveDialog.Title := 'Save file ' + AExtensao;
     LSaveDialog.InitialDir :=  ExtractFileDir(ParamStr(0)).Replace('\Bin', '') + '\Data\';
 
-    if LSaveDialog.Execute then
-      Result := LSaveDialog.FileName
+    if not LSaveDialog.Execute then
+      Abort;
+
+    Result := LSaveDialog.FileName
   finally
     LSaveDialog.Free;
   end;
@@ -51,6 +61,16 @@ end;
 class function TUtils.GetNameFileXLS: string;
 begin
   Result := Self.GetNameFile('xls');
+end;
+
+class function TUtils.GetNameFilePDF: string;
+begin
+  Result := Self.GetNameFile('pdf');
+end;
+
+class function TUtils.GetNameFileProprietary: string;
+begin
+  Result := Self.GetNameFile('');
 end;
 
 end.

@@ -51,8 +51,6 @@ implementation
 
 procedure TCellColoringEvents.FormCreate(Sender: TObject);
 begin
-  FormatSettings.DecimalSeparator := '.';
-
   TMSFNCDataGrid1.Clear;
   TMSFNCDataGrid1.LoadFromCSVData('../Data/products.csv');
 end;
