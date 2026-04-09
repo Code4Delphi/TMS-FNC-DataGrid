@@ -207,6 +207,5 @@ object CellColoringFilters: TCellColoringFilters
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 102
   end
 end
