@@ -23,6 +23,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 09 - Agrupamentos do básico ao avançado | Agrupamento rápido, simples e organizado](https://www.youtube.com/watch?v=x88NitmQjK4&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 10 - Agrupamento Visual](https://www.youtube.com/watch?v=BWyPb2i-nLI&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 11 - Mestre Detalhe com Grid dentro de grid: exibindo dados relacionados](https://www.youtube.com/watch?v=HN4RDobFr8U&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 12 - Coloração dinâmica de células por eventos e filtragem | Formatação de células](https://www.youtube.com/watch?v=ltGrcw3Wka0&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
