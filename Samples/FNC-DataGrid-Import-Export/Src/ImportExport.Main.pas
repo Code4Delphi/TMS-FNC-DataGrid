@@ -29,11 +29,14 @@ uses
   VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer,
   VCL.TMSFNCCustomControl,
-  VCL.TMSFNCDataGrid, VCL.TMSFNCCustomComponent, VCL.TMSFNCDataGridExcelIO, VCL.TMSFNCPDFIO, VCL.TMSFNCDataGridPDFIO;
+  VCL.TMSFNCDataGrid,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCDataGridExcelIO,
+  VCL.TMSFNCPDFIO,
+  VCL.TMSFNCDataGridPDFIO;
 
 type
   TImportExportMain = class(TForm)
-    StatusBar1: TStatusBar;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     Panel1: TPanel;
     GroupBox1: TGroupBox;
@@ -88,6 +91,7 @@ begin
   FormatSettings.DecimalSeparator := '.';
   TMSFNCDataGrid1.Options.IO.OpenAfterCreation := ckOpenAfterCreation.Checked;
   TMSFNCDataGrid1.Clear;
+
   TMSFNCDataGrid1.LoadFromCSVData('..\Data\products.csv');
 end;
 
@@ -163,16 +167,12 @@ end;
 
 procedure TImportExportMain.btnImportProprietaryClick(Sender: TObject);
 begin
-  var LFileName := TUtils.GetNameFileProprietary;
-  if not LFileName.IsEmpty then
-    TMSFNCDataGrid1.LoadFromFileData(LFileName);
+  TMSFNCDataGrid1.LoadFromFileData(TUtils.GetNameFileProprietary);
 end;
 
 procedure TImportExportMain.btnExportProprietaryClick(Sender: TObject);
 begin
-  var LFileName := TUtils.GetNameFileProprietary;
-  if not LFileName.IsEmpty then
-    TMSFNCDataGrid1.SaveToFileData(LFileName);
+  TMSFNCDataGrid1.SaveToFileData(TUtils.GetNameFileProprietary);
 end;
 
 procedure TImportExportMain.btnImportCSVClick(Sender: TObject);
@@ -180,9 +180,7 @@ begin
   TMSFNCDataGrid1.Options.IO.StartColumn := 0;
   TMSFNCDataGrid1.Options.IO.StartRow := 0;
 
-  var LFileName := TUtils.GetNameFileCSV;
-  if not LFileName.IsEmpty then
-    TMSFNCDataGrid1.LoadFromCSVData(LFileName);
+  TMSFNCDataGrid1.LoadFromCSVData(TUtils.GetNameFileCSV);
 end;
 
 procedure TImportExportMain.btnExportCSVClick(Sender: TObject);
@@ -191,18 +189,14 @@ begin
   //When set to true, an empty cell in the CSV file is saved as "". If false, no characters are written for empty cells
   TMSFNCDataGrid1.Options.IO.QuoteEmptyCells := ckQuoteEmptyCells.Checked;
 
-  var LFileName := TUtils.GetNameFileCSV;
-  if not LFileName.IsEmpty then
-    TMSFNCDataGrid1.SaveToCSVData(LFileName);
+  TMSFNCDataGrid1.SaveToCSVData(TUtils.GetNameFileCSV);
 end;
 
 procedure TImportExportMain.btnImportarExcelClick(Sender: TObject);
 begin
   Self.ConfigDataGridExcel;
 
-  var LFileName := TUtils.GetNameFileXLS;
-  if not LFileName.IsEmpty then
-    TMSFNCDataGridExcelIO1.XLSImport(LFileName);
+  TMSFNCDataGridExcelIO1.XLSImport(TUtils.GetNameFileXLS);
 end;
 
 procedure TImportExportMain.btnExportExcelClick(Sender: TObject);
@@ -213,7 +207,7 @@ begin
   if not LFileName.IsEmpty then
     TMSFNCDataGridExcelIO1.XLSExport(LFileName);
 
-  //TTMSFNCUtils.OpenFile(LFileName);
+  //TMSFNCUtils.OpenFile(LFileName);
 end;
 
 procedure TImportExportMain.ConfigDataGridExcel;
@@ -229,17 +223,19 @@ end;
 
 procedure TImportExportMain.btnExportHTMLClick(Sender: TObject);
 begin
-  //utilizing TMSFNCDataGrid1.Options.IO.HTML for various export settings
-  TMSFNCDataGrid1.Options.IO.HTML.TableBorderSize := 1;
+  //Use TMSFNCDataGrid1.Options.IO.HTML for various export settings
+  TMSFNCDataGrid1.Options.IO.HTML.TableBorderSize := 10;
+  TMSFNCDataGrid1.Options.IO.HTML.HeaderText := '<h1> PDF export DataGrid Youtube </h1>';
 
-  var LFileName := TUtils.GetNameFileHTML;
-  if not LFileName.IsEmpty then
-    TMSFNCDataGrid1.SaveToHTMLData(LFileName);
+  TMSFNCDataGrid1.SaveToHTMLData(TUtils.GetNameFileHTML);
 end;
 
 procedure TImportExportMain.btnExportPDFClick(Sender: TObject);
 begin
+  //Use TMSFNCDataGridPDFIO1.Options and TMSFNCDataGridPDFIO1.Information for various export settings
+  TMSFNCDataGridPDFIO1.Information.Title := 'PDF export DataGrid';
   TMSFNCDataGridPDFIO1.Options.Header := 'PDF export test Code4Delphi';
+
   TMSFNCDataGridPDFIO1.Save(TUtils.GetNameFilePDF);
 end;
 

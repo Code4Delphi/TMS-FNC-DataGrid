@@ -51,6 +51,7 @@ implementation
 
 procedure TCellColoringEvents.FormCreate(Sender: TObject);
 begin
+  FormatSettings.DecimalSeparator := '.';
   TMSFNCDataGrid1.Clear;
   TMSFNCDataGrid1.LoadFromCSVData('../Data/products.csv');
 end;
@@ -88,8 +89,8 @@ begin
   //IF Inventory COLUMN
   if ACell.Column = 4 then
   begin
-    ACell.Layout.Font.Color := clGreen;
     ACell.Layout.Font.Style := [TFontStyle.fsBold];
+    ACell.Layout.Font.Color := clGreen;
 
     var LInventory := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
     if LInventory < 200 then

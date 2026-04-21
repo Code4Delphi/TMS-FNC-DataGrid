@@ -16,29 +16,16 @@ object ImportExportMain: TImportExportMain
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 652
-    Width = 1261
-    Height = 19
-    Panels = <
-      item
-        Width = 500
-      end
-      item
-        Width = 50
-      end>
-  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 129
     Width = 1261
-    Height = 523
+    Height = 542
     Align = alClient
     ParentDoubleBuffered = False
     Color = 15000804
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 0
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -107,8 +94,10 @@ object ImportExportMain: TImportExportMain
     FilterAppearance.Font.Style = []
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
+    Options.IO.HTML.ExportColors = False
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
+    Options.Selection.Mode = gsmSingleRow
     ExplicitTop = 124
   end
   object Panel1: TPanel
@@ -118,19 +107,16 @@ object ImportExportMain: TImportExportMain
     Height = 129
     Align = alTop
     BevelOuter = bvNone
-    TabOrder = 2
-    ExplicitTop = -6
+    TabOrder = 1
     object GroupBox1: TGroupBox
-      Left = 355
+      Left = 185
       Top = 0
       Width = 170
       Height = 129
       Align = alLeft
       Caption = ' CSV '
       TabOrder = 0
-      ExplicitLeft = 171
-      ExplicitTop = -6
-      ExplicitHeight = 113
+      ExplicitLeft = 355
       DesignSize = (
         170
         129)
@@ -150,7 +136,6 @@ object ImportExportMain: TImportExportMain
         Caption = 'Import'
         TabOrder = 0
         OnClick = btnImportCSVClick
-        ExplicitTop = 77
       end
       object btnExportCSV: TButton
         Left = 88
@@ -161,12 +146,11 @@ object ImportExportMain: TImportExportMain
         Caption = 'Export'
         TabOrder = 1
         OnClick = btnExportCSVClick
-        ExplicitTop = 117
       end
       object edtDelimiterCSV: TEdit
         Left = 7
         Top = 37
-        Width = 121
+        Width = 157
         Height = 23
         MaxLength = 1
         TabOrder = 2
@@ -182,14 +166,14 @@ object ImportExportMain: TImportExportMain
       end
     end
     object GroupBox2: TGroupBox
-      Left = 525
+      Left = 355
       Top = 0
       Width = 170
       Height = 129
       Align = alLeft
       Caption = ' Excel (xls) '
       TabOrder = 1
-      ExplicitTop = -6
+      ExplicitLeft = 525
       DesignSize = (
         170
         129)
@@ -215,15 +199,14 @@ object ImportExportMain: TImportExportMain
       end
     end
     object GroupBox3: TGroupBox
-      Left = 185
+      Left = 701
       Top = 0
       Width = 170
       Height = 129
       Align = alLeft
       Caption = ' Proprietary file format '
       TabOrder = 2
-      ExplicitLeft = 8
-      ExplicitHeight = 81
+      ExplicitLeft = 961
       DesignSize = (
         170
         129)
@@ -249,13 +232,14 @@ object ImportExportMain: TImportExportMain
       end
     end
     object GroupBox4: TGroupBox
-      Left = 695
+      Left = 525
       Top = 0
       Width = 88
       Height = 129
       Align = alLeft
       Caption = ' HTML files '
       TabOrder = 3
+      ExplicitLeft = 695
       DesignSize = (
         88
         129)
@@ -276,10 +260,8 @@ object ImportExportMain: TImportExportMain
       Width = 185
       Height = 129
       Align = alLeft
-      Caption = ' Config '
+      Caption = ' Configs general '
       TabOrder = 4
-      ExplicitLeft = 1
-      ExplicitTop = -6
       object ckOpenAfterCreation: TCheckBox
         Left = 13
         Top = 24
@@ -292,7 +274,7 @@ object ImportExportMain: TImportExportMain
       object btnClearGrid: TButton
         Left = 13
         Top = 62
-        Width = 75
+        Width = 124
         Height = 25
         Caption = 'Clear Grid'
         TabOrder = 1
@@ -300,19 +282,20 @@ object ImportExportMain: TImportExportMain
       end
     end
     object GroupBox6: TGroupBox
-      Left = 783
+      Left = 613
       Top = 0
       Width = 88
       Height = 129
       Align = alLeft
       Caption = ' PDF '
       TabOrder = 5
+      ExplicitLeft = 783
       DesignSize = (
         88
         129)
       object btnExportPDF: TButton
         Left = 6
-        Top = 29
+        Top = 20
         Width = 75
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -323,8 +306,8 @@ object ImportExportMain: TImportExportMain
     end
   end
   object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
-    Left = 396
-    Top = 159
+    Left = 411
+    Top = 119
     Width = 26
     Height = 26
     Visible = True
@@ -334,8 +317,8 @@ object ImportExportMain: TImportExportMain
     Version = '3.24'
   end
   object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
-    Left = 839
-    Top = 159
+    Left = 639
+    Top = 119
     Width = 26
     Height = 26
     Visible = True
