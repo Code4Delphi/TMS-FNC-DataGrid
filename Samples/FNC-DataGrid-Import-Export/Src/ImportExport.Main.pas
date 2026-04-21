@@ -29,11 +29,14 @@ uses
   VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer,
   VCL.TMSFNCCustomControl,
-  VCL.TMSFNCDataGrid, VCL.TMSFNCCustomComponent, VCL.TMSFNCDataGridExcelIO, VCL.TMSFNCPDFIO, VCL.TMSFNCDataGridPDFIO;
+  VCL.TMSFNCDataGrid,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCDataGridExcelIO,
+  VCL.TMSFNCPDFIO,
+  VCL.TMSFNCDataGridPDFIO;
 
 type
   TImportExportMain = class(TForm)
-    StatusBar1: TStatusBar;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     Panel1: TPanel;
     GroupBox1: TGroupBox;
@@ -88,6 +91,7 @@ begin
   FormatSettings.DecimalSeparator := '.';
   TMSFNCDataGrid1.Options.IO.OpenAfterCreation := ckOpenAfterCreation.Checked;
   TMSFNCDataGrid1.Clear;
+
   TMSFNCDataGrid1.LoadFromCSVData('..\Data\products.csv');
 end;
 
@@ -203,7 +207,7 @@ begin
   if not LFileName.IsEmpty then
     TMSFNCDataGridExcelIO1.XLSExport(LFileName);
 
-  //TTMSFNCUtils.OpenFile(LFileName);
+  //TMSFNCUtils.OpenFile(LFileName);
 end;
 
 procedure TImportExportMain.ConfigDataGridExcel;
@@ -220,8 +224,8 @@ end;
 procedure TImportExportMain.btnExportHTMLClick(Sender: TObject);
 begin
   //Use TMSFNCDataGrid1.Options.IO.HTML for various export settings
-  TMSFNCDataGrid1.Options.IO.HTML.TableBorderSize := 1;
-  TMSFNCDataGrid1.Options.IO.HTML.HeaderText := '<h1> PDF export DataGrid </h1>';
+  TMSFNCDataGrid1.Options.IO.HTML.TableBorderSize := 10;
+  TMSFNCDataGrid1.Options.IO.HTML.HeaderText := '<h1> PDF export DataGrid Youtube </h1>';
 
   TMSFNCDataGrid1.SaveToHTMLData(TUtils.GetNameFileHTML);
 end;
