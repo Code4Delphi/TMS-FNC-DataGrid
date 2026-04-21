@@ -107,9 +107,9 @@ object ImportExportMain: TImportExportMain
     FilterAppearance.Font.Style = []
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
+    Options.IO.HTML.ExportColors = False
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 124
   end
   object Panel1: TPanel
     Left = 0
@@ -128,9 +128,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' CSV '
       TabOrder = 0
-      ExplicitLeft = 171
-      ExplicitTop = -6
-      ExplicitHeight = 113
       DesignSize = (
         170
         129)
@@ -150,7 +147,6 @@ object ImportExportMain: TImportExportMain
         Caption = 'Import'
         TabOrder = 0
         OnClick = btnImportCSVClick
-        ExplicitTop = 77
       end
       object btnExportCSV: TButton
         Left = 88
@@ -161,7 +157,6 @@ object ImportExportMain: TImportExportMain
         Caption = 'Export'
         TabOrder = 1
         OnClick = btnExportCSVClick
-        ExplicitTop = 117
       end
       object edtDelimiterCSV: TEdit
         Left = 7
@@ -189,7 +184,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' Excel (xls) '
       TabOrder = 1
-      ExplicitTop = -6
       DesignSize = (
         170
         129)
@@ -222,8 +216,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' Proprietary file format '
       TabOrder = 2
-      ExplicitLeft = 8
-      ExplicitHeight = 81
       DesignSize = (
         170
         129)
@@ -276,10 +268,9 @@ object ImportExportMain: TImportExportMain
       Width = 185
       Height = 129
       Align = alLeft
-      Caption = ' Config '
+      Caption = ' Configs general '
       TabOrder = 4
       ExplicitLeft = 1
-      ExplicitTop = -6
       object ckOpenAfterCreation: TCheckBox
         Left = 13
         Top = 24
@@ -292,7 +283,7 @@ object ImportExportMain: TImportExportMain
       object btnClearGrid: TButton
         Left = 13
         Top = 62
-        Width = 75
+        Width = 124
         Height = 25
         Caption = 'Clear Grid'
         TabOrder = 1
@@ -323,8 +314,8 @@ object ImportExportMain: TImportExportMain
     end
   end
   object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
-    Left = 396
-    Top = 159
+    Left = 595
+    Top = 119
     Width = 26
     Height = 26
     Visible = True
@@ -334,8 +325,8 @@ object ImportExportMain: TImportExportMain
     Version = '3.24'
   end
   object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
-    Left = 839
-    Top = 159
+    Left = 815
+    Top = 119
     Width = 26
     Height = 26
     Visible = True
