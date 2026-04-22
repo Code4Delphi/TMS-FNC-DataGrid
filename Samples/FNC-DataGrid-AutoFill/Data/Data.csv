@@ -1,0 +1,3 @@
+Numbers,Floats,Dates,Times,Days,Status,Priority,Item Code,Letters
+1,10.5,2026-01-01,09:00,Monday,TODO,Low,ITEM-001,a
+2,11,2026-01-02,09:15,Tuesday,In Progress,Medium,ITEM-002,b
