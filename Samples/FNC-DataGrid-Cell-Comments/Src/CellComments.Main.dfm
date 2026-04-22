@@ -31,9 +31,9 @@ object CellCommentsMain: TCellCommentsMain
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 73
+    Top = 177
     Width = 1261
-    Height = 579
+    Height = 475
     Align = alClient
     ParentDoubleBuffered = False
     Color = 15000804
@@ -111,23 +111,131 @@ object CellCommentsMain: TCellCommentsMain
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
+    ExplicitTop = 173
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 1261
-    Height = 73
+    Height = 177
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
-    object Button1: TButton
-      Left = 32
-      Top = 25
-      Width = 75
-      Height = 25
-      Caption = 'Button1'
+    ExplicitTop = -6
+    object GroupBox1: TGroupBox
+      Left = 161
+      Top = 0
+      Width = 456
+      Height = 177
+      Align = alLeft
+      Caption = ' Comments Customized '
+      Padding.Left = 5
+      Padding.Top = 2
+      Padding.Right = 5
       TabOrder = 0
-      OnClick = Button1Click
+      ExplicitLeft = 209
+      DesignSize = (
+        456
+        177)
+      object Label3: TLabel
+        Left = 7
+        Top = 63
+        Width = 442
+        Height = 18
+        Align = alTop
+        AutoSize = False
+        Caption = 'Comment (Accepts HTML)'
+        ExplicitLeft = 2
+        ExplicitTop = 61
+        ExplicitWidth = 293
+      end
+      object btnAddCommetCustomized: TButton
+        Left = 377
+        Top = 142
+        Width = 75
+        Height = 25
+        Anchors = [akTop, akRight, akBottom]
+        Caption = 'Add'
+        TabOrder = 0
+        OnClick = btnAddCommetCustomizedClick
+        ExplicitLeft = 218
+      end
+      object mmCommentCustomized: TMemo
+        Left = 7
+        Top = 81
+        Width = 442
+        Height = 56
+        Align = alTop
+        Lines.Strings = (
+          'Test comment in Cell <br>'
+          'Line 2 in <b>bold</b>')
+        TabOrder = 1
+        ExplicitLeft = 2
+        ExplicitTop = 17
+        ExplicitWidth = 293
+      end
+      object Panel2: TPanel
+        Left = 7
+        Top = 19
+        Width = 442
+        Height = 44
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 2
+        ExplicitLeft = 2
+        ExplicitTop = 11
+        ExplicitWidth = 293
+        object Label1: TLabel
+          Left = 1
+          Top = -3
+          Width = 43
+          Height = 15
+          Caption = 'Column'
+        end
+        object Label2: TLabel
+          Left = 96
+          Top = -1
+          Width = 23
+          Height = 15
+          Caption = 'Row'
+        end
+        object edtColumn: TEdit
+          Left = 1
+          Top = 15
+          Width = 93
+          Height = 23
+          NumbersOnly = True
+          TabOrder = 0
+          Text = '3'
+        end
+        object edtRow: TEdit
+          Left = 96
+          Top = 15
+          Width = 93
+          Height = 23
+          NumbersOnly = True
+          TabOrder = 1
+          Text = '5'
+        end
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 0
+      Top = 0
+      Width = 161
+      Height = 177
+      Align = alLeft
+      Caption = ' Comments '
+      TabOrder = 1
+      object btnAdd: TButton
+        Left = 16
+        Top = 29
+        Width = 113
+        Height = 25
+        Caption = 'Add commnet'
+        TabOrder = 0
+        OnClick = btnAddClick
+      end
     end
   end
 end
