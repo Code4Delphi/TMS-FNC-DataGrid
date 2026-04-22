@@ -9,7 +9,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'TMS FNC DataGrid - Import and Export';
+  Application.Title := 'TMS FNC DataGrid - Cell Comments';
   Application.CreateForm(TCellCommentsMain, CellCommentsMain);
   Application.Run;
 end.
