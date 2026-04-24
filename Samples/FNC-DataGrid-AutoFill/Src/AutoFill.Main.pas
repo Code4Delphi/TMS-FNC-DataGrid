@@ -104,13 +104,6 @@ begin
   TMSFNCDataGrid1.FixedColumnCount := 0;
 end;
 
-procedure TAutoFillMain.SetupCustomLists;
-begin
-  TMSFNCDataGrid1.AutoFillCustomListSet('StatusList', ['TODO', 'In Progress', 'Review', 'Done']);
-  TMSFNCDataGrid1.AutoFillCustomListSet('PriorityList', ['Low', 'Medium', 'High', 'Critical']);
-  //TMSFNCDataGrid1.AutoFillCustomListSet('TestList', ['Ruim', 'Bom', 'Ótimo', 'Excelente']);
-end;
-
 procedure TAutoFillMain.btnFillNumbersClick(Sender: TObject);
 begin
   // AutoFill from Source range to Target range / Preenche automatico do intervalo de origem para o destino
@@ -145,6 +138,13 @@ end;
 procedure TAutoFillMain.btnFillLettersClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.AutoFill(MakeCell(8, 1), MakeCell(8, 2), MakeCell(8, 1),  MakeCell(8, 19));
+end;
+
+procedure TAutoFillMain.SetupCustomLists;
+begin
+  TMSFNCDataGrid1.AutoFillCustomListSet('StatusList', ['TODO', 'In Progress', 'Review', 'Done']);
+  TMSFNCDataGrid1.AutoFillCustomListSet('PriorityList', ['Low', 'Medium', 'High', 'Critical']);
+  //TMSFNCDataGrid1.AutoFillCustomListSet('TestList', ['Ruim', 'Bom', 'Ótimo', 'Excelente']);
 end;
 
 procedure TAutoFillMain.TMSFNCDataGrid1AutoFillGetCustomList(Sender: TObject; BaseValue: string;
