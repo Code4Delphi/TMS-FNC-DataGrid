@@ -111,7 +111,6 @@ object CellCommentsMain: TCellCommentsMain
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
-    ExplicitTop = 173
   end
   object Panel1: TPanel
     Left = 0
@@ -121,7 +120,6 @@ object CellCommentsMain: TCellCommentsMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitTop = -6
     object GroupBox1: TGroupBox
       Left = 161
       Top = 0
@@ -133,7 +131,6 @@ object CellCommentsMain: TCellCommentsMain
       Padding.Top = 2
       Padding.Right = 5
       TabOrder = 0
-      ExplicitLeft = 209
       DesignSize = (
         456
         177)
@@ -158,7 +155,6 @@ object CellCommentsMain: TCellCommentsMain
         Caption = 'Add'
         TabOrder = 0
         OnClick = btnAddCommetCustomizedClick
-        ExplicitLeft = 218
       end
       object mmCommentCustomized: TMemo
         Left = 7
@@ -170,9 +166,6 @@ object CellCommentsMain: TCellCommentsMain
           'Test comment in Cell <br>'
           'Line 2 in <b>bold</b>')
         TabOrder = 1
-        ExplicitLeft = 2
-        ExplicitTop = 17
-        ExplicitWidth = 293
       end
       object Panel2: TPanel
         Left = 7
@@ -182,9 +175,6 @@ object CellCommentsMain: TCellCommentsMain
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitLeft = 2
-        ExplicitTop = 11
-        ExplicitWidth = 293
         object Label1: TLabel
           Left = 1
           Top = -3
@@ -230,11 +220,20 @@ object CellCommentsMain: TCellCommentsMain
       object btnAdd: TButton
         Left = 16
         Top = 29
-        Width = 113
+        Width = 129
         Height = 25
         Caption = 'Add commnet'
         TabOrder = 0
         OnClick = btnAddClick
+      end
+      object btnClearComments: TButton
+        Left = 16
+        Top = 77
+        Width = 129
+        Height = 25
+        Caption = 'Clear comments'
+        TabOrder = 1
+        OnClick = btnClearCommentsClick
       end
     end
   end

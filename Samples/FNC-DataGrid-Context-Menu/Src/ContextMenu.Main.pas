@@ -94,7 +94,7 @@ begin
   var LHeader:= TMSFNCDataGrid1.Cells[LCol, 0].AsString;
   var LValue := TMSFNCDataGrid1.Cells[LCol, LRow].AsString;
 
-  ShowMessage(LHeader + ': ' + LValue);
+  ShowMessage('PopupMenuOthers - ' + LHeader + ': ' + LValue);
 end;
 
 procedure TContextMenuMain.TMSFNCDataGrid1CellBeforeShowPopupMenu(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
@@ -107,7 +107,7 @@ begin
     else
       TMSFNCDataGrid1.CellPopupMenu := PopupMenuOthers;
 
-    //suppress on fixed rows
+    //SUPPRESS ON FIXED ROWS
     if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
       ACanShow := False;
   end;
@@ -116,7 +116,7 @@ end;
 procedure TContextMenuMain.TMSFNCDataGrid1CellRightClick(Sender: TObject; AColumn, ARow: Integer);
 begin
   if not ckPopupMenuForAll.Checked then
-    ShowMessage(Format('col %d, row %d, valor %s', [AColumn, ARow, TMSFNCDataGrid1.Cells[AColumn, ARow].AsString]));
+    ShowMessage(Format('Right-clicked col %d, row %d, valor %s', [AColumn, ARow, TMSFNCDataGrid1.Cells[AColumn, ARow].AsString]));
 end;
 
 end.

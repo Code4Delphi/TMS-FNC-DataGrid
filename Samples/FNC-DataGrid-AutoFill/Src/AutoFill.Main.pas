@@ -38,9 +38,10 @@ type
     btnFillNumbers: TButton;
     btnFillDates: TButton;
     lbInstructions: TLabel;
-    btnExportCSV: TButton;
     btnFilITimes: TButton;
     btnFillLetters: TButton;
+    GroupBox1: TGroupBox;
+    mmLog: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure btnResetDataClick(Sender: TObject);
     procedure btnFillNumbersClick(Sender: TObject);
@@ -50,9 +51,16 @@ type
     procedure TMSFNCDataGrid1AutoFillCalculateValue(Sender: TObject; SourceCells: TTMSFNCDataGridCellCoordRange;
       SourceValues: TTMSFNCDataGridDataValues; TargetCells: TTMSFNCDataGridCellCoordRange; FillIndex: Integer;
       Direction: TTMSFNCDataGridDataAutoFillDirection;  var NewValue: TTMSFNCDataGridCellValue; var Handled: Boolean);
-    procedure btnExportCSVClick(Sender: TObject);
     procedure btnFilITimesClick(Sender: TObject);
     procedure btnFillLettersClick(Sender: TObject);
+    procedure TMSFNCDataGrid1BeforeApplyAutoFill(Sender: TObject; SourceCells: TTMSFNCDataGridCellCoordRange;
+      SourceValues: TTMSFNCDataGridDataValues; TargetCells: TTMSFNCDataGridCellCoordRange;
+      TargetCell: TTMSFNCDataGridCellCoord; Direction: TTMSFNCDataGridDataAutoFillDirection;
+      var NewValue: TTMSFNCDataGridCellValue; var Accept: Boolean);
+    procedure TMSFNCDataGrid1AfterApplyAutoFill(Sender: TObject; SourceCells: TTMSFNCDataGridCellCoordRange;
+      SourceValues: TTMSFNCDataGridDataValues; TargetCells: TTMSFNCDataGridCellCoordRange;
+      TargetCell: TTMSFNCDataGridCellCoord; Direction: TTMSFNCDataGridDataAutoFillDirection; OldValue,
+      NewValue: TTMSFNCDataGridCellValue);
   private
     procedure ConfigDataGrid;
     procedure SetupCustomLists;
@@ -79,11 +87,6 @@ procedure TAutoFillMain.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.Options.Selection.Mode := gsmCellRange;
   TMSFNCDataGrid1.Options.Selection.AutoFill := True;
-
-  TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
-
-  //TMSFNCDataGrid1.OnAutoFillGetCustomList := TMSFNCDataGrid1AutoFillGetCustomList;
-  //TMSFNCDataGrid1.OnAutoFillCalculateValue := TMSFNCDataGrid1AutoFillCalculateValue;
 end;
 
 procedure TAutoFillMain.btnResetDataClick(Sender: TObject);
@@ -110,9 +113,9 @@ end;
 
 procedure TAutoFillMain.btnFillNumbersClick(Sender: TObject);
 begin
-  // AutoFill from Source range to Target range
-  // Source: cells (0,1) to (0,2) containing seed values
-  // Target: cells (0,1) to (0,19) where values will be filled
+  // AutoFill from Source range to Target range / Preenche automatico do intervalo de origem para o destino
+  // Source: cells (0,1) to (0,2) containing seed values / contendo valores iniciais
+  // Target: cells (0,1) to (0,19) where values will be filled /onde os valores serão preenchidos
   // MakeCell(Column, Row)
   TMSFNCDataGrid1.AutoFill(
     MakeCell(0, 1),   // Source start
@@ -155,6 +158,26 @@ begin
     Values := TArray<string>.Create('Sales', 'Marketing', 'Engineering', 'Support', 'HR');
     Handled := True;
   end;
+end;
+
+procedure TAutoFillMain.TMSFNCDataGrid1BeforeApplyAutoFill(Sender: TObject; SourceCells: TTMSFNCDataGridCellCoordRange;
+  SourceValues: TTMSFNCDataGridDataValues; TargetCells: TTMSFNCDataGridCellCoordRange;
+  TargetCell: TTMSFNCDataGridCellCoord; Direction: TTMSFNCDataGridDataAutoFillDirection;
+  var NewValue: TTMSFNCDataGridCellValue; var Accept: Boolean);
+begin
+  // Prevent filling into protected rows // Impedir preenchimento em linhas protegidas
+  if TargetCell.Row > 17 then
+    Accept := False;
+end;
+
+procedure TAutoFillMain.TMSFNCDataGrid1AfterApplyAutoFill(Sender: TObject; SourceCells: TTMSFNCDataGridCellCoordRange;
+  SourceValues: TTMSFNCDataGridDataValues; TargetCells: TTMSFNCDataGridCellCoordRange;
+  TargetCell: TTMSFNCDataGridCellCoord; Direction: TTMSFNCDataGridDataAutoFillDirection; OldValue,
+  NewValue: TTMSFNCDataGridCellValue);
+begin
+  // Log the change
+  mmLog.Lines.Add(Format('Cell [%d,%d]: %s -> %s',
+    [TargetCell.Column, TargetCell.Row, OldValue.ToString, NewValue.ToString]));
 end;
 
 procedure TAutoFillMain.TMSFNCDataGrid1AutoFillCalculateValue(Sender: TObject; SourceCells: TTMSFNCDataGridCellCoordRange;
@@ -200,12 +223,6 @@ begin
 
   NewValue := Char(LNewChar);
   Handled := True;
-end;
-
-procedure TAutoFillMain.btnExportCSVClick(Sender: TObject);
-begin
-  TMSFNCDataGrid1.Options.IO.Delimiter := ',';
-  TMSFNCDataGrid1.SaveToCSVData('C:\Temp\DelphiAIDev\Dados.csv');
 end;
 
 end.

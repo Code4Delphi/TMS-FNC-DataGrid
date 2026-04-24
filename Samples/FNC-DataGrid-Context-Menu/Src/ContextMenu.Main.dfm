@@ -112,8 +112,6 @@ object ContextMenuMain: TContextMenuMain
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
-    ExplicitTop = 107
-    ExplicitHeight = 539
   end
   object Panel1: TPanel
     Left = 0
@@ -123,7 +121,6 @@ object ContextMenuMain: TContextMenuMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitTop = -6
     object GroupBox2: TGroupBox
       Left = 0
       Top = 0
@@ -132,7 +129,6 @@ object ContextMenuMain: TContextMenuMain
       Align = alLeft
       Caption = ' PopupMenu '
       TabOrder = 0
-      ExplicitHeight = 113
       object ckPopupMenuForAll: TCheckBox
         Left = 16
         Top = 26

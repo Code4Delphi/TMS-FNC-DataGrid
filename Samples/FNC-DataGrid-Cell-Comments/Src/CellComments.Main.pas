@@ -47,13 +47,15 @@ type
     Label3: TLabel;
     GroupBox2: TGroupBox;
     btnAdd: TButton;
+    btnClearComments: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnClearGridClick(Sender: TObject);
     procedure btnAddCommetCustomizedClick(Sender: TObject);
     procedure TMSFNCDataGrid1GetCellProperties(Sender: TObject; ACell: TTMSFNCDataGridCell);
     procedure btnAddClick(Sender: TObject);
+    procedure btnClearCommentsClick(Sender: TObject);
   private
-
+    procedure ClearAllComments;
   public
 
   end;
@@ -83,6 +85,23 @@ begin
   TMSFNCDataGrid1.Comments[2, 3] := 'Coment C4D';
 end;
 
+procedure TCellCommentsMain.btnClearCommentsClick(Sender: TObject);
+begin
+  Self.ClearAllComments;
+end;
+
+procedure TCellCommentsMain.ClearAllComments;
+begin
+  TMSFNCDataGrid1.BeginUpdate;
+  try
+    for var LRow := 0 to Pred(TMSFNCDataGrid1.RowCount) do
+      for var LCol := 0 to Pred(TMSFNCDataGrid1.ColumnCount) do
+        TMSFNCDataGrid1.Comments[LCol, LRow] := '';
+  finally
+    TMSFNCDataGrid1.EndUpdate;
+  end;
+end;
+
 procedure TCellCommentsMain.btnAddCommetCustomizedClick(Sender: TObject);
 begin
   var LColumn := StrToIntDef(edtColumn.Text, 0);
@@ -93,15 +112,14 @@ end;
 
 procedure TCellCommentsMain.TMSFNCDataGrid1GetCellProperties(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
-  if ACell.Column = 6 then
+  if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Sale price') then
   begin
     ACell.Comment := 'Column value: ' + TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
     ACell.CommentIndicator := True;
 
+    ACell.CommentIndicatorColor := gcOrange;
     if Odd(ACell.Row) then
-      ACell.CommentIndicatorColor := gcBlue
-    else
-      ACell.CommentIndicatorColor := gcOrange;
+      ACell.CommentIndicatorColor := gcBlue;
   end;
 end;
 

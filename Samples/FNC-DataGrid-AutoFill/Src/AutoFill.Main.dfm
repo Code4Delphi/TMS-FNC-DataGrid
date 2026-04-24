@@ -1,9 +1,10 @@
 object AutoFillMain: TAutoFillMain
   Left = 0
   Top = 0
+  ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - AutoFill'
-  ClientHeight = 713
-  ClientWidth = 1000
+  ClientHeight = 725
+  ClientWidth = 1150
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,9 +17,9 @@ object AutoFillMain: TAutoFillMain
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
     Left = 0
-    Top = 129
-    Width = 1000
-    Height = 584
+    Top = 105
+    Width = 1150
+    Height = 620
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -487,23 +488,29 @@ object AutoFillMain: TAutoFillMain
       5F5269676874222F3E3C672F3E3C672F3E3C672F3E3C672F3E3C672F3E3C672F
       3E3C2F7376673E}
     OnAutoFillCalculateValue = TMSFNCDataGrid1AutoFillCalculateValue
+    OnBeforeApplyAutoFill = TMSFNCDataGrid1BeforeApplyAutoFill
+    OnAfterApplyAutoFill = TMSFNCDataGrid1AfterApplyAutoFill
     OnAutoFillGetCustomList = TMSFNCDataGrid1AutoFillGetCustomList
+    Options.Column.Stretching.Enabled = True
     ExplicitLeft = -5
+    ExplicitTop = 124
+    ExplicitWidth = 1000
+    ExplicitHeight = 584
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1000
-    Height = 129
+    Width = 1150
+    Height = 105
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object lbInstructions: TLabel
       AlignWithMargins = True
-      Left = 624
+      Left = 712
       Top = 3
-      Width = 373
-      Height = 123
+      Width = 435
+      Height = 99
       Align = alRight
       Caption = 
         'Tip: Select cells with seed values (rows 1-2), then drag the fil' +
@@ -514,41 +521,45 @@ object AutoFillMain: TAutoFillMain
         'eencher automaticamente. Experimente diferentes colunas para div' +
         'ersos padr'#245'es.'
       WordWrap = True
-      ExplicitLeft = 627
-      ExplicitTop = -3
-      ExplicitHeight = 129
+      ExplicitHeight = 123
     end
     object GroupBox2: TGroupBox
       Left = 0
       Top = 0
-      Width = 337
-      Height = 129
+      Width = 310
+      Height = 105
       Align = alLeft
       Caption = ' AutoFill '
       TabOrder = 0
-      ExplicitHeight = 145
+      ExplicitHeight = 129
       object btnResetData: TButton
         Left = 10
         Top = 30
-        Width = 100
+        Width = 93
         Height = 28
         Caption = 'Reset Data'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsUnderline]
+        ParentFont = False
         TabOrder = 0
         OnClick = btnResetDataClick
       end
       object btnFillNumbers: TButton
-        Left = 116
+        Left = 108
         Top = 30
-        Width = 100
+        Width = 93
         Height = 28
         Caption = 'Fill Numbers'
         TabOrder = 1
         OnClick = btnFillNumbersClick
       end
       object btnFillDates: TButton
-        Left = 222
+        Left = 206
         Top = 30
-        Width = 100
+        Width = 93
         Height = 28
         Caption = 'Fill Dates'
         TabOrder = 2
@@ -557,30 +568,41 @@ object AutoFillMain: TAutoFillMain
       object btnFilITimes: TButton
         Left = 10
         Top = 64
-        Width = 100
+        Width = 93
         Height = 28
         Caption = 'Fill Times'
         TabOrder = 3
         OnClick = btnFilITimesClick
       end
       object btnFillLetters: TButton
-        Left = 116
+        Left = 108
         Top = 64
-        Width = 100
+        Width = 93
         Height = 28
         Caption = 'Fill Letters'
         TabOrder = 4
         OnClick = btnFillLettersClick
       end
     end
-    object btnExportCSV: TButton
-      Left = 359
-      Top = 31
-      Width = 94
-      Height = 25
-      Caption = 'Export to CSV'
+    object GroupBox1: TGroupBox
+      Left = 310
+      Top = 0
+      Width = 379
+      Height = 105
+      Align = alLeft
+      Caption = ' Logs '
       TabOrder = 1
-      OnClick = btnExportCSVClick
+      object mmLog: TMemo
+        Left = 2
+        Top = 17
+        Width = 375
+        Height = 86
+        Align = alClient
+        ScrollBars = ssVertical
+        TabOrder = 0
+        ExplicitWidth = 327
+        ExplicitHeight = 110
+      end
     end
   end
 end
