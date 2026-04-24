@@ -1,9 +1,9 @@
-object CellCommentsMain: TCellCommentsMain
+object ContextMenuMain: TContextMenuMain
   Left = 0
   Top = 0
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Cell Comments'
+  Caption = 'TMS FNC DataGrid - Context-Menu'
   ClientHeight = 671
   ClientWidth = 1261
   Color = clBtnFace
@@ -31,9 +31,9 @@ object CellCommentsMain: TCellCommentsMain
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 177
+    Top = 89
     Width = 1261
-    Height = 475
+    Height = 563
     Align = alClient
     ParentDoubleBuffered = False
     Color = 15000804
@@ -105,136 +105,92 @@ object CellCommentsMain: TCellCommentsMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnGetCellProperties = TMSFNCDataGrid1GetCellProperties
+    OnCellBeforeShowPopupMenu = TMSFNCDataGrid1CellBeforeShowPopupMenu
+    OnCellRightClick = TMSFNCDataGrid1CellRightClick
     Options.Filtering.Enabled = True
     Options.IO.HTML.ExportColors = False
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
-    ExplicitTop = 173
+    ExplicitTop = 107
+    ExplicitHeight = 539
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 1261
-    Height = 177
+    Height = 89
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
     ExplicitTop = -6
-    object GroupBox1: TGroupBox
-      Left = 161
-      Top = 0
-      Width = 456
-      Height = 177
-      Align = alLeft
-      Caption = ' Comments Customized '
-      Padding.Left = 5
-      Padding.Top = 2
-      Padding.Right = 5
-      TabOrder = 0
-      ExplicitLeft = 209
-      DesignSize = (
-        456
-        177)
-      object Label3: TLabel
-        Left = 7
-        Top = 63
-        Width = 442
-        Height = 18
-        Align = alTop
-        AutoSize = False
-        Caption = 'Comment (Accepts HTML)'
-        ExplicitLeft = 2
-        ExplicitTop = 61
-        ExplicitWidth = 293
-      end
-      object btnAddCommetCustomized: TButton
-        Left = 377
-        Top = 142
-        Width = 75
-        Height = 25
-        Anchors = [akTop, akRight, akBottom]
-        Caption = 'Add'
-        TabOrder = 0
-        OnClick = btnAddCommetCustomizedClick
-        ExplicitLeft = 218
-      end
-      object mmCommentCustomized: TMemo
-        Left = 7
-        Top = 81
-        Width = 442
-        Height = 56
-        Align = alTop
-        Lines.Strings = (
-          'Test comment in Cell <br>'
-          'Line 2 in <b>bold</b>')
-        TabOrder = 1
-        ExplicitLeft = 2
-        ExplicitTop = 17
-        ExplicitWidth = 293
-      end
-      object Panel2: TPanel
-        Left = 7
-        Top = 19
-        Width = 442
-        Height = 44
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 2
-        ExplicitLeft = 2
-        ExplicitTop = 11
-        ExplicitWidth = 293
-        object Label1: TLabel
-          Left = 1
-          Top = -3
-          Width = 43
-          Height = 15
-          Caption = 'Column'
-        end
-        object Label2: TLabel
-          Left = 96
-          Top = -1
-          Width = 23
-          Height = 15
-          Caption = 'Row'
-        end
-        object edtColumn: TEdit
-          Left = 1
-          Top = 15
-          Width = 93
-          Height = 23
-          NumbersOnly = True
-          TabOrder = 0
-          Text = '3'
-        end
-        object edtRow: TEdit
-          Left = 96
-          Top = 15
-          Width = 93
-          Height = 23
-          NumbersOnly = True
-          TabOrder = 1
-          Text = '5'
-        end
-      end
-    end
     object GroupBox2: TGroupBox
       Left = 0
       Top = 0
-      Width = 161
-      Height = 177
+      Width = 273
+      Height = 89
       Align = alLeft
-      Caption = ' Comments '
-      TabOrder = 1
-      object btnAdd: TButton
+      Caption = ' PopupMenu '
+      TabOrder = 0
+      ExplicitHeight = 113
+      object ckPopupMenuForAll: TCheckBox
         Left = 16
-        Top = 29
-        Width = 113
-        Height = 25
-        Caption = 'Add commnet'
+        Top = 26
+        Width = 169
+        Height = 17
+        Caption = 'Set PopupMenu for all cells'
         TabOrder = 0
-        OnClick = btnAddClick
+        OnClick = ckPopupMenuForAllClick
+      end
+      object ckUse2DifferentPopupMenus: TCheckBox
+        Left = 16
+        Top = 49
+        Width = 169
+        Height = 17
+        Caption = 'Use 2 different PopupMenus'
+        TabOrder = 1
+      end
+    end
+  end
+  object PopupMenuOthers: TPopupMenu
+    Left = 621
+    Top = 273
+    object PupupMenuOthers1: TMenuItem
+      Caption = 'PupupMenu Others'
+    end
+    object GetHeaderAndValueOuther1: TMenuItem
+      Caption = 'Get Header and Value'
+      OnClick = GetHeaderAndValueOuther1Click
+    end
+    object Item031: TMenuItem
+      Caption = 'Item 03'
+      object Subitem011: TMenuItem
+        Caption = 'Subitem 01'
+      end
+      object Subitem021: TMenuItem
+        Caption = 'Subitem 02'
+      end
+    end
+  end
+  object PopupMenuSalePrice: TPopupMenu
+    Left = 757
+    Top = 273
+    object MenuItem1: TMenuItem
+      Caption = 'PopupMenu Sale Price'
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Item 02'
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Item 03'
+    end
+    object Item041: TMenuItem
+      Caption = 'Item04'
+      object MenuItem4: TMenuItem
+        Caption = 'Subitem 01'
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'Subitem 02'
       end
     end
   end
