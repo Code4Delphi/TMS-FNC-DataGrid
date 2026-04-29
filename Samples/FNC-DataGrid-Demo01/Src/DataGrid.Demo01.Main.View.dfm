@@ -3375,8 +3375,8 @@ object DataGridDemo01MainView: TDataGridDemo01MainView
         OnClick = ckFilterEditorClick
       end
       object ckBanding: TCheckBox
-        Left = 247
-        Top = 80
+        Left = 245
+        Top = 85
         Width = 112
         Height = 17
         Cursor = crHandPoint
@@ -3388,7 +3388,7 @@ object DataGridDemo01MainView: TDataGridDemo01MainView
     object gBoxColumnCustomized: TGroupBox
       Left = 571
       Top = 0
-      Width = 552
+      Width = 334
       Height = 145
       Align = alLeft
       Caption = ' Column Customized '
@@ -3453,6 +3453,15 @@ object DataGridDemo01MainView: TDataGridDemo01MainView
         TabOrder = 4
         OnClick = btnColumnCustomizedRadioButtonClick
       end
+    end
+    object Button1: TButton
+      Left = 921
+      Top = 68
+      Width = 75
+      Height = 25
+      Caption = 'Button1'
+      TabOrder = 2
+      OnClick = Button1Click
     end
   end
 end
