@@ -1,9 +1,9 @@
-object FindDialogMain: TFindDialogMain
+object ReplaceDialogMain: TReplaceDialogMain
   Left = 0
   Top = 0
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Find Dialog'
+  Caption = 'TMS FNC DataGrid - Replace Dialog'
   ClientHeight = 671
   ClientWidth = 1261
   Color = clBtnFace
@@ -33,35 +33,35 @@ object FindDialogMain: TFindDialogMain
     Left = 0
     Top = 0
     Width = 1261
-    Height = 145
+    Height = 201
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = -6
     object GroupBox1: TGroupBox
       Left = 370
       Top = 0
-      Width = 185
-      Height = 145
+      Width = 215
+      Height = 201
       Align = alLeft
-      Caption = ' Find '
+      Caption = ' Replace '
       TabOrder = 0
-      object btnShowFindDialogDataGrid: TButton
-        Left = 11
-        Top = 19
-        Width = 166
+      ExplicitHeight = 145
+      object btnShowReplaceDialogDataGrid: TButton
+        Left = 6
+        Top = 25
+        Width = 203
         Height = 25
         Cursor = crHandPoint
-        Caption = 'Show Find Dialog'
+        Caption = 'Show Replace Dialog'
         TabOrder = 0
-        OnClick = btnShowFindDialogDataGridClick
+        OnClick = btnShowReplaceDialogDataGridClick
       end
     end
     object rdGroupUILanguage: TRadioGroup
       Left = 185
       Top = 0
       Width = 185
-      Height = 145
+      Height = 201
       Cursor = crHandPoint
       Align = alLeft
       Caption = ' UILanguage '
@@ -70,18 +70,27 @@ object FindDialogMain: TFindDialogMain
         'English'
         'Portuguese')
       TabOrder = 1
+      ExplicitHeight = 145
     end
     object GroupBox2: TGroupBox
       Left = 0
       Top = 0
       Width = 185
-      Height = 145
+      Height = 201
       Align = alLeft
       Caption = ' Configs '
       TabOrder = 2
+      ExplicitHeight = 145
       object Label1: TLabel
         Left = 13
         Top = 90
+        Width = 88
+        Height = 15
+        Caption = 'Find Text Default'
+      end
+      object Label2: TLabel
+        Left = 13
+        Top = 133
         Width = 88
         Height = 15
         Caption = 'Find Text Default'
@@ -124,32 +133,39 @@ object FindDialogMain: TFindDialogMain
         Height = 23
         TabOrder = 3
       end
+      object edtReplaceText: TEdit
+        Left = 13
+        Top = 149
+        Width = 155
+        Height = 23
+        TabOrder = 4
+      end
     end
     object GroupBox3: TGroupBox
-      Left = 555
+      Left = 585
       Top = 0
       Width = 520
-      Height = 145
+      Height = 201
       Align = alLeft
       Caption = ' Log '
       TabOrder = 3
-      ExplicitLeft = 585
-      ExplicitHeight = 201
       object mmLog: TMemo
         Left = 2
         Top = 17
         Width = 516
-        Height = 126
+        Height = 182
         Align = alClient
         TabOrder = 0
+        ExplicitLeft = 0
+        ExplicitTop = 16
       end
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 145
+    Top = 201
     Width = 1261
-    Height = 507
+    Height = 451
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -220,10 +236,11 @@ object FindDialogMain: TFindDialogMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnAfterShowFindDialog = TMSFNCDataGrid1AfterShowFindDialog
-    OnBeforeDialogFind = TMSFNCDataGrid1BeforeDialogFind
-    OnAfterDialogFind = TMSFNCDataGrid1AfterDialogFind
-    OnBeforeShowFindDialog = TMSFNCDataGrid1BeforeShowFindDialog
+    OnAfterShowReplaceDialog = TMSFNCDataGrid1AfterShowReplaceDialog
+    OnBeforeDialogReplace = TMSFNCDataGrid1BeforeDialogReplace
+    OnAfterDialogReplace = TMSFNCDataGrid1AfterDialogReplace
+    OnBeforeShowReplaceDialog = TMSFNCDataGrid1BeforeShowReplaceDialog
     Options.Column.Stretching.Enabled = True
+    ExplicitTop = 195
   end
 end
