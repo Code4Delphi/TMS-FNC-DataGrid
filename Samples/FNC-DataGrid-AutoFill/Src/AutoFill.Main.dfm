@@ -492,10 +492,6 @@ object AutoFillMain: TAutoFillMain
     OnAfterApplyAutoFill = TMSFNCDataGrid1AfterApplyAutoFill
     OnAutoFillGetCustomList = TMSFNCDataGrid1AutoFillGetCustomList
     Options.Column.Stretching.Enabled = True
-    ExplicitLeft = -5
-    ExplicitTop = 124
-    ExplicitWidth = 1000
-    ExplicitHeight = 584
   end
   object Panel1: TPanel
     Left = 0
@@ -507,9 +503,9 @@ object AutoFillMain: TAutoFillMain
     TabOrder = 1
     object lbInstructions: TLabel
       AlignWithMargins = True
-      Left = 712
+      Left = 714
       Top = 3
-      Width = 435
+      Width = 433
       Height = 99
       Align = alRight
       Caption = 
@@ -521,7 +517,8 @@ object AutoFillMain: TAutoFillMain
         'eencher automaticamente. Experimente diferentes colunas para div' +
         'ersos padr'#245'es.'
       WordWrap = True
-      ExplicitHeight = 123
+      ExplicitLeft = 712
+      ExplicitHeight = 90
     end
     object GroupBox2: TGroupBox
       Left = 0
@@ -531,7 +528,6 @@ object AutoFillMain: TAutoFillMain
       Align = alLeft
       Caption = ' AutoFill '
       TabOrder = 0
-      ExplicitHeight = 129
       object btnResetData: TButton
         Left = 10
         Top = 30
@@ -600,8 +596,6 @@ object AutoFillMain: TAutoFillMain
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 327
-        ExplicitHeight = 110
       end
     end
   end

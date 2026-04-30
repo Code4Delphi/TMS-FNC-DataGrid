@@ -52,6 +52,7 @@ type
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     ckBanding: TCheckBox;
     btnColumnCustomizedRadioButton: TButton;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure ckFilteringClick(Sender: TObject);
     procedure ckSortingClick(Sender: TObject);
@@ -69,6 +70,7 @@ type
       var AData: TTMSFNCDataGridCellValue);
     procedure ckBandingClick(Sender: TObject);
     procedure btnColumnCustomizedRadioButtonClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure ConfigDataGrid;
     procedure AddHeaderRows;
@@ -337,6 +339,11 @@ begin
 
   for var I := 1 to Pred(TMSFNCDataGrid1.RowCount) do
     TMSFNCDataGrid1.Cells[9, I] := '';
+end;
+
+procedure TDataGridDemo01MainView.Button1Click(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ShowFindDialog;
 end;
 
 end.
