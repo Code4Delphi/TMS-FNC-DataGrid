@@ -28,6 +28,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 13 - Importação e exportação de dados (CSV, Excel, HTML, PDF e Formato Proprietário)](https://www.youtube.com/watch?v=g8TSbdGm-DA&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 14 - Comentários e PopupMenus em células da Grid (Cell-Comments e Context-Menu)](https://www.youtube.com/watch?v=p1vXXXK3BiE&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 15 - Auto Preenchimento | Dados sequenciais e customizados arrastando colunas (AutoFill)](https://www.youtube.com/watch?v=Yoate7wPCkg&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 16 - Diálogos de Encontrar e Substituir conteúdos](https://www.youtube.com/watch?v=oVLGkJszhZo&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
