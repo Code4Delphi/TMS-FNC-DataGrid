@@ -1,9 +1,9 @@
-object FindDialogMain: TFindDialogMain
+object CellMergingSplittingMain: TCellMergingSplittingMain
   Left = 0
   Top = 0
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Find Dialog'
+  Caption = 'TMS FNC DataGrid - Cell Merging Splitting'
   ClientHeight = 671
   ClientWidth = 1261
   Color = clBtnFace
@@ -37,108 +37,135 @@ object FindDialogMain: TFindDialogMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitTop = -6
     object GroupBox1: TGroupBox
-      Left = 370
-      Top = 0
-      Width = 185
-      Height = 145
-      Align = alLeft
-      Caption = ' Find '
-      TabOrder = 0
-      object btnShowFindDialogDataGrid: TButton
-        Left = 11
-        Top = 19
-        Width = 166
-        Height = 25
-        Cursor = crHandPoint
-        Caption = 'Show Find Dialog'
-        TabOrder = 0
-        OnClick = btnShowFindDialogDataGridClick
-      end
-    end
-    object rdGroupUILanguage: TRadioGroup
-      Left = 185
-      Top = 0
-      Width = 185
-      Height = 145
-      Cursor = crHandPoint
-      Align = alLeft
-      Caption = ' UILanguage '
-      ItemIndex = 0
-      Items.Strings = (
-        'English'
-        'Portuguese')
-      TabOrder = 1
-    end
-    object GroupBox2: TGroupBox
       Left = 0
       Top = 0
-      Width = 185
+      Width = 270
       Height = 145
       Align = alLeft
-      Caption = ' Configs '
-      TabOrder = 2
-      object Label1: TLabel
-        Left = 13
-        Top = 90
-        Width = 88
-        Height = 15
-        Caption = 'Find Text Default'
-      end
-      object ckAutoHistory: TCheckBox
-        Left = 13
-        Top = 19
-        Width = 92
-        Height = 17
+      Caption = ' Programmatic cell merging and splitting '
+      TabOrder = 0
+      object Button1: TButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 20
+        Width = 260
+        Height = 22
         Cursor = crHandPoint
-        Caption = 'Auto History'
-        Checked = True
-        State = cbChecked
+        Align = alTop
+        Caption = 'Merge (2, 3, 3, 2)'
         TabOrder = 0
+        WordWrap = True
+        OnClick = Button1Click
+        ExplicitLeft = 4
+        ExplicitTop = 63
+        ExplicitWidth = 253
       end
-      object ckCaseSensitive: TCheckBox
-        Left = 13
-        Top = 67
-        Width = 155
-        Height = 17
+      object Button2: TButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 48
+        Width = 260
+        Height = 22
         Cursor = crHandPoint
-        Caption = 'Case Sensitive (Checked)'
+        Align = alTop
+        Caption = 'Split (2, 3)'
         TabOrder = 1
+        WordWrap = True
+        OnClick = Button2Click
+        ExplicitLeft = 4
+        ExplicitTop = 91
+        ExplicitWidth = 253
       end
-      object ckCaseSensitiveVisible: TCheckBox
-        Left = 13
-        Top = 42
-        Width = 144
-        Height = 17
+    end
+    object GroupBox2: TGroupBox
+      Left = 270
+      Top = 0
+      Width = 270
+      Height = 145
+      Align = alLeft
+      Caption = ' Merge Range with mouse click selection '
+      TabOrder = 1
+      object Label1: TLabel
+        AlignWithMargins = True
+        Left = 9
+        Top = 27
+        Width = 252
+        Height = 30
+        Margins.Left = 7
+        Margins.Top = 10
+        Margins.Right = 7
+        Align = alTop
+        Caption = 'Use the mouse click in combination with the Ctrl or Shift keys.'
+        WordWrap = True
+        ExplicitWidth = 238
+      end
+      object Button3: TButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 63
+        Width = 260
+        Height = 22
         Cursor = crHandPoint
-        Caption = 'Case Sensitive (Visible)'
-        Checked = True
-        State = cbChecked
-        TabOrder = 2
+        Align = alTop
+        Caption = 'Merge'
+        TabOrder = 0
+        WordWrap = True
+        OnClick = Button3Click
+        ExplicitWidth = 253
       end
-      object edtFindText: TEdit
-        Left = 13
-        Top = 106
-        Width = 155
-        Height = 23
-        TabOrder = 3
+      object Button4: TButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 91
+        Width = 260
+        Height = 22
+        Cursor = crHandPoint
+        Align = alTop
+        Caption = 'Split'
+        TabOrder = 1
+        WordWrap = True
+        OnClick = Button4Click
+        ExplicitLeft = 3
+        ExplicitWidth = 253
       end
     end
     object GroupBox3: TGroupBox
-      Left = 555
+      Left = 540
       Top = 0
-      Width = 520
+      Width = 270
       Height = 145
       Align = alLeft
-      Caption = ' Log '
-      TabOrder = 3
-      object mmLog: TMemo
-        Left = 2
-        Top = 17
-        Width = 516
-        Height = 126
-        Align = alClient
+      Caption = ' Shortcuts '
+      TabOrder = 2
+      ExplicitLeft = 541
+      ExplicitTop = -6
+      object Label2: TLabel
+        AlignWithMargins = True
+        Left = 9
+        Top = 27
+        Width = 252
+        Height = 30
+        Margins.Left = 7
+        Margins.Top = 10
+        Margins.Right = 7
+        Align = alTop
+        Caption = 
+          'CTRL + M: merge a selection of cells.'#13#10'CTRL + S: split a merged ' +
+          'cell.'
+        WordWrap = True
+        ExplicitWidth = 195
+      end
+      object ckEnableShortcuts: TCheckBox
+        Left = 11
+        Top = 65
+        Width = 121
+        Height = 17
+        Cursor = crHandPoint
+        Caption = 'Enable shortcuts'
         TabOrder = 0
+        OnClick = ckEnableShortcutsClick
       end
     end
   end
@@ -147,6 +174,7 @@ object FindDialogMain: TFindDialogMain
     Top = 145
     Width = 1261
     Height = 507
+    Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -184,11 +212,12 @@ object FindDialogMain: TFindDialogMain
     CellAppearance.FixedSelectedLayout.Font.Height = -12
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
+    CellAppearance.FocusedLayout.Fill.Color = 16750605
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FocusedLayout.Font.Color = clBlack
     CellAppearance.FocusedLayout.Font.Height = -12
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
-    CellAppearance.FocusedLayout.Font.Style = []
+    CellAppearance.FocusedLayout.Font.Style = [fsBold]
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.GroupLayout.Font.Color = clBlack
     CellAppearance.GroupLayout.Font.Height = -12
@@ -199,6 +228,7 @@ object FindDialogMain: TFindDialogMain
     CellAppearance.NormalLayout.Font.Height = -12
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
+    CellAppearance.SelectedLayout.Fill.Color = 16755772
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.SelectedLayout.Font.Color = clBlack
     CellAppearance.SelectedLayout.Font.Height = -12
@@ -217,11 +247,8 @@ object FindDialogMain: TFindDialogMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnAfterShowFindDialog = TMSFNCDataGrid1AfterShowFindDialog
-    OnBeforeDialogFind = TMSFNCDataGrid1BeforeDialogFind
-    OnAfterDialogFind = TMSFNCDataGrid1AfterDialogFind
-    OnBeforeShowFindDialog = TMSFNCDataGrid1BeforeShowFindDialog
     Options.Column.Stretching.Enabled = True
+    Options.Editing.Enabled = False
     ExplicitTop = 139
   end
 end

@@ -107,7 +107,7 @@ begin
 
   if rdGroupUILanguage.ItemIndex = 1 then
   begin
-    AFindDialog.UILanguage.Caption := 'Localizar';
+    AFindDialog.UILanguage.Caption := 'Pesquisar';
     AFindDialog.UILanguage.FindWhat := 'Localizar:';
     AFindDialog.UILanguage.Find := 'Buscar';
     AFindDialog.UILanguage.Next := 'Próximo';

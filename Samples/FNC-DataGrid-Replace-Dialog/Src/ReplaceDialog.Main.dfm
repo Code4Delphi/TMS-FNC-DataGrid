@@ -45,10 +45,11 @@ object ReplaceDialogMain: TReplaceDialogMain
       Align = alLeft
       Caption = ' Replace '
       TabOrder = 0
-      ExplicitHeight = 145
+      ExplicitLeft = 366
+      ExplicitTop = -6
       object btnShowReplaceDialogDataGrid: TButton
         Left = 6
-        Top = 25
+        Top = 19
         Width = 203
         Height = 25
         Cursor = crHandPoint
@@ -70,7 +71,6 @@ object ReplaceDialogMain: TReplaceDialogMain
         'English'
         'Portuguese')
       TabOrder = 1
-      ExplicitHeight = 145
     end
     object GroupBox2: TGroupBox
       Left = 0
@@ -80,7 +80,6 @@ object ReplaceDialogMain: TReplaceDialogMain
       Align = alLeft
       Caption = ' Configs '
       TabOrder = 2
-      ExplicitHeight = 145
       object Label1: TLabel
         Left = 13
         Top = 90
@@ -91,9 +90,9 @@ object ReplaceDialogMain: TReplaceDialogMain
       object Label2: TLabel
         Left = 13
         Top = 133
-        Width = 88
+        Width = 67
         Height = 15
-        Caption = 'Find Text Default'
+        Caption = 'Replace with'
       end
       object ckAutoHistory: TCheckBox
         Left = 13
@@ -156,8 +155,6 @@ object ReplaceDialogMain: TReplaceDialogMain
         Height = 182
         Align = alClient
         TabOrder = 0
-        ExplicitLeft = 0
-        ExplicitTop = 16
       end
     end
   end
