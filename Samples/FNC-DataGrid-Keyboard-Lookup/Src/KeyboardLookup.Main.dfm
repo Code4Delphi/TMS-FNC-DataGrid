@@ -32,131 +32,75 @@ object KeyboardLookupMain: TKeyboardLookupMain
     Left = 0
     Top = 0
     Width = 1261
-    Height = 145
+    Height = 169
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 270
-      Height = 145
+      Width = 265
+      Height = 169
       Align = alLeft
-      Caption = ' Programmatic cell merging and splitting '
+      Caption = ' Config Lookup '
       TabOrder = 0
-      object Button1: TButton
-        AlignWithMargins = True
-        Left = 5
-        Top = 20
-        Width = 260
-        Height = 22
-        Cursor = crHandPoint
-        Align = alTop
-        Caption = 'Merge (2, 3, 3, 2)'
-        TabOrder = 0
-        WordWrap = True
-        OnClick = Button1Click
-      end
-      object Button2: TButton
-        AlignWithMargins = True
-        Left = 5
-        Top = 48
-        Width = 260
-        Height = 22
-        Cursor = crHandPoint
-        Align = alTop
-        Caption = 'Split (2, 3)'
-        TabOrder = 1
-        WordWrap = True
-      end
-    end
-    object GroupBox2: TGroupBox
-      Left = 270
-      Top = 0
-      Width = 270
-      Height = 145
-      Align = alLeft
-      Caption = ' Merge Range with mouse click selection '
-      TabOrder = 1
+      ExplicitTop = -6
+      ExplicitHeight = 137
       object Label1: TLabel
-        AlignWithMargins = True
-        Left = 9
-        Top = 27
-        Width = 252
-        Height = 30
-        Margins.Left = 7
-        Margins.Top = 10
-        Margins.Right = 7
-        Align = alTop
-        Caption = 'Use the mouse click in combination with the Ctrl or Shift keys.'
-        WordWrap = True
-        ExplicitWidth = 238
+        Left = 16
+        Top = 94
+        Width = 70
+        Height = 15
+        Caption = 'Reset Interval'
       end
-      object Button3: TButton
-        AlignWithMargins = True
-        Left = 5
-        Top = 63
-        Width = 260
-        Height = 22
-        Cursor = crHandPoint
-        Align = alTop
-        Caption = 'Merge'
-        TabOrder = 0
-        WordWrap = True
-      end
-      object Button4: TButton
-        AlignWithMargins = True
-        Left = 5
-        Top = 91
-        Width = 260
-        Height = 22
-        Cursor = crHandPoint
-        Align = alTop
-        Caption = 'Split'
-        TabOrder = 1
-        WordWrap = True
-      end
-    end
-    object GroupBox3: TGroupBox
-      Left = 540
-      Top = 0
-      Width = 270
-      Height = 145
-      Align = alLeft
-      Caption = ' Shortcuts '
-      TabOrder = 2
-      object Label2: TLabel
-        AlignWithMargins = True
-        Left = 9
-        Top = 27
-        Width = 252
-        Height = 30
-        Margins.Left = 7
-        Margins.Top = 10
-        Margins.Right = 7
-        Align = alTop
-        Caption = 
-          'CTRL + M: merge a selection of cells.'#13#10'CTRL + S: split a merged ' +
-          'cell.'
-        WordWrap = True
-        ExplicitWidth = 195
-      end
-      object ckEnableShortcuts: TCheckBox
-        Left = 11
-        Top = 65
-        Width = 121
+      object ckIncremental: TCheckBox
+        Left = 16
+        Top = 48
+        Width = 97
         Height = 17
-        Cursor = crHandPoint
-        Caption = 'Enable shortcuts'
+        Caption = 'Incremental'
+        Checked = True
+        State = cbChecked
         TabOrder = 0
+        OnClick = ckIncrementalClick
+      end
+      object ckCaseSensitive: TCheckBox
+        Left = 16
+        Top = 71
+        Width = 97
+        Height = 17
+        Caption = 'Case Sensitive'
+        TabOrder = 1
+        OnClick = ckIncrementalClick
+      end
+      object ckEnabled: TCheckBox
+        Left = 16
+        Top = 25
+        Width = 97
+        Height = 17
+        Caption = 'Enabled'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+        OnClick = ckIncrementalClick
+      end
+      object edtResetInterval: TEdit
+        Left = 16
+        Top = 112
+        Width = 121
+        Height = 23
+        NumbersOnly = True
+        TabOrder = 3
+        Text = '2000'
+        OnChange = edtResetIntervalChange
       end
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 145
+    Top = 169
     Width = 1261
-    Height = 507
+    Height = 483
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -227,9 +171,12 @@ object KeyboardLookupMain: TKeyboardLookupMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnAfterLookup = TMSFNCDataGrid1AfterLookup
+    OnBeforeLookup = TMSFNCDataGrid1BeforeLookup
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
+    ExplicitTop = 163
   end
 end
