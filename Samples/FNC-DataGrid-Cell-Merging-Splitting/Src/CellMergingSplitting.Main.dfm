@@ -37,7 +37,6 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = -6
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -46,7 +45,7 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Align = alLeft
       Caption = ' Programmatic cell merging and splitting '
       TabOrder = 0
-      object Button1: TButton
+      object btnProgrammaticMerge: TButton
         AlignWithMargins = True
         Left = 5
         Top = 20
@@ -57,12 +56,9 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
         Caption = 'Merge (2, 3, 3, 2)'
         TabOrder = 0
         WordWrap = True
-        OnClick = Button1Click
-        ExplicitLeft = 4
-        ExplicitTop = 63
-        ExplicitWidth = 253
+        OnClick = btnProgrammaticMergeClick
       end
-      object Button2: TButton
+      object btnProgrammaticSplit: TButton
         AlignWithMargins = True
         Left = 5
         Top = 48
@@ -73,10 +69,7 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
         Caption = 'Split (2, 3)'
         TabOrder = 1
         WordWrap = True
-        OnClick = Button2Click
-        ExplicitLeft = 4
-        ExplicitTop = 91
-        ExplicitWidth = 253
+        OnClick = btnProgrammaticSplitClick
       end
     end
     object GroupBox2: TGroupBox
@@ -101,7 +94,7 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
         WordWrap = True
         ExplicitWidth = 238
       end
-      object Button3: TButton
+      object btnRangeMouseMerge: TButton
         AlignWithMargins = True
         Left = 5
         Top = 63
@@ -112,10 +105,9 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
         Caption = 'Merge'
         TabOrder = 0
         WordWrap = True
-        OnClick = Button3Click
-        ExplicitWidth = 253
+        OnClick = btnRangeMouseMergeClick
       end
-      object Button4: TButton
+      object btnRangeMouseSplit: TButton
         AlignWithMargins = True
         Left = 5
         Top = 91
@@ -126,9 +118,7 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
         Caption = 'Split'
         TabOrder = 1
         WordWrap = True
-        OnClick = Button4Click
-        ExplicitLeft = 3
-        ExplicitWidth = 253
+        OnClick = btnRangeMouseSplitClick
       end
     end
     object GroupBox3: TGroupBox
@@ -139,8 +129,6 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Align = alLeft
       Caption = ' Shortcuts '
       TabOrder = 2
-      ExplicitLeft = 541
-      ExplicitTop = -6
       object Label2: TLabel
         AlignWithMargins = True
         Left = 9
@@ -249,6 +237,5 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
     FilterAppearance.Font.Style = []
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
-    ExplicitTop = 139
   end
 end

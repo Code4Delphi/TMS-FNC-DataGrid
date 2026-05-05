@@ -37,20 +37,20 @@ type
     Panel1: TPanel;
     GroupBox1: TGroupBox;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Button1: TButton;
-    Button2: TButton;
+    btnProgrammaticMerge: TButton;
+    btnProgrammaticSplit: TButton;
     GroupBox2: TGroupBox;
     Label1: TLabel;
-    Button3: TButton;
-    Button4: TButton;
+    btnRangeMouseMerge: TButton;
+    btnRangeMouseSplit: TButton;
     GroupBox3: TGroupBox;
     ckEnableShortcuts: TCheckBox;
     Label2: TLabel;
     procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
+    procedure btnProgrammaticMergeClick(Sender: TObject);
+    procedure btnProgrammaticSplitClick(Sender: TObject);
+    procedure btnRangeMouseMergeClick(Sender: TObject);
+    procedure btnRangeMouseSplitClick(Sender: TObject);
     procedure ckEnableShortcutsClick(Sender: TObject);
   private
 
@@ -74,22 +74,22 @@ begin
   TMSFNCDataGrid1.Options.Selection.Mode := gsmCellRange;
 end;
 
-procedure TCellMergingSplittingMain.Button1Click(Sender: TObject);
+procedure TCellMergingSplittingMain.btnProgrammaticMergeClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.MergeCells(2, 3, 3, 2);
 end;
 
-procedure TCellMergingSplittingMain.Button2Click(Sender: TObject);
+procedure TCellMergingSplittingMain.btnProgrammaticSplitClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.SplitCell(MakeCell(2, 3));
 end;
 
-procedure TCellMergingSplittingMain.Button3Click(Sender: TObject);
+procedure TCellMergingSplittingMain.btnRangeMouseMergeClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.MergeRange(TMSFNCDataGrid1.Selection);
 end;
 
-procedure TCellMergingSplittingMain.Button4Click(Sender: TObject);
+procedure TCellMergingSplittingMain.btnRangeMouseSplitClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.SplitCell(TMSFNCDataGrid1.Selection.StartCell);
 end;
