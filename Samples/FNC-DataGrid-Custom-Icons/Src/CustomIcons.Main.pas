@@ -28,6 +28,8 @@ uses
   VCL.TMSFNCDataGridBase,
   VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCBitmapContainer,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCDataGrid;
 
@@ -36,20 +38,10 @@ type
     StatusBar1: TStatusBar;
     Panel1: TPanel;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    GroupBox1: TGroupBox;
-    ckIncremental: TCheckBox;
-    ckCaseSensitive: TCheckBox;
-    ckEnabled: TCheckBox;
-    Label1: TLabel;
-    edtResetInterval: TEdit;
+    TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);
-    procedure ckIncrementalClick(Sender: TObject);
-    procedure edtResetIntervalChange(Sender: TObject);
-    procedure TMSFNCDataGrid1AfterLookup(Sender: TObject; ALookupString: string);
-    procedure TMSFNCDataGrid1BeforeLookup(Sender: TObject; var ALookupString: string; var ACanLookup: Boolean);
   private
     procedure ConfigIcons;
-
   public
 
   end;
@@ -72,44 +64,19 @@ end;
 
 procedure TCustomIconsMain.ConfigIcons;
 begin
-  TMSFNCDataGrid1.Icons.SortAscendingIcon  := MyAscIcon;
-  TMSFNCDataGrid1.Icons.SortDescendingIcon := MyDescIcon;
-  TMSFNCDataGrid1.Icons.FilterIcon         := MyFilterIcon;
-  TMSFNCDataGrid1.Icons.FilterActiveIcon   := MyFilterActiveIcon;  // shown when a filter is active
-  TMSFNCDataGrid1.Icons.FilterClearIcon    := MyClearIcon;
-  TMSFNCDataGrid1.Icons.FilterTypeIcon     := MyFilterTypeIcon;
-  TMSFNCDataGrid1.Icons.ExpandIcon         := MyExpandIcon;
-  TMSFNCDataGrid1.Icons.CollapseIcon       := MyCollapseIcon;
-  TMSFNCDataGrid1.Icons.CloseIcon          := MyCloseIcon;         // header group close button
-  TMSFNCDataGrid1.Icons.FirstPageIcon      := MyFirstPageIcon;
-  TMSFNCDataGrid1.Icons.PreviousPageIcon   := MyPrevPageIcon;
-  TMSFNCDataGrid1.Icons.NextPageIcon       := MyNextPageIcon;
-TMSFNCDataGrid1.Icons.LastPageIcon       := MyLastPageIcon;
-end;
-
-procedure TCustomIconsMain.ckIncrementalClick(Sender: TObject);
-begin
-  Self.ConfigLookup;
-end;
-
-procedure TCustomIconsMain.edtResetIntervalChange(Sender: TObject);
-begin
-  Self.ConfigLookup;
-end;
-
-procedure TCustomIconsMain.TMSFNCDataGrid1BeforeLookup(Sender: TObject; var ALookupString: string;
-  var ACanLookup: Boolean);
-begin
-  if ALookupString = 'delete' then
-  begin
-    ACanLookup := False;
-    ShowMessage('The word "delete" could not be searched.');
-  end;
-end;
-
-procedure TCustomIconsMain.TMSFNCDataGrid1AfterLookup(Sender: TObject; ALookupString: string);
-begin
-  StatusBar1.Panels[0].Text := 'Lookup: ' + ALookupString;
+  TMSFNCDataGrid1.Icons.SortAscendingIcon  := TMSFNCBitmapContainer1.FindBitmap('SortAscendingIcon');
+  TMSFNCDataGrid1.Icons.SortDescendingIcon := TMSFNCBitmapContainer1.FindBitmap('SortDescendingIcon');
+  TMSFNCDataGrid1.Icons.FilterIcon         := TMSFNCBitmapContainer1.FindBitmap('FilterIcon');
+  TMSFNCDataGrid1.Icons.FilterActiveIcon   := TMSFNCBitmapContainer1.FindBitmap('FilterActiveIcon');  // shown when a filter is active
+  TMSFNCDataGrid1.Icons.FilterClearIcon    := TMSFNCBitmapContainer1.FindBitmap('FilterClearIcon');
+  TMSFNCDataGrid1.Icons.FilterTypeIcon     := TMSFNCBitmapContainer1.FindBitmap('FilterTypeIcon');
+  TMSFNCDataGrid1.Icons.ExpandIcon         := TMSFNCBitmapContainer1.FindBitmap('ExpandIcon');
+  TMSFNCDataGrid1.Icons.CollapseIcon       := TMSFNCBitmapContainer1.FindBitmap('CollapseIcon');
+  TMSFNCDataGrid1.Icons.CloseIcon          := TMSFNCBitmapContainer1.FindBitmap('CloseIcon');         // header group close button
+  TMSFNCDataGrid1.Icons.FirstPageIcon      := TMSFNCBitmapContainer1.FindBitmap('FirstPageIcon');
+  TMSFNCDataGrid1.Icons.PreviousPageIcon   := TMSFNCBitmapContainer1.FindBitmap('PreviousPageIcon');
+  TMSFNCDataGrid1.Icons.NextPageIcon       := TMSFNCBitmapContainer1.FindBitmap('NextPageIcon');
+  TMSFNCDataGrid1.Icons.LastPageIcon       := TMSFNCBitmapContainer1.FindBitmap('LastPageIcon');
 end;
 
 end.
