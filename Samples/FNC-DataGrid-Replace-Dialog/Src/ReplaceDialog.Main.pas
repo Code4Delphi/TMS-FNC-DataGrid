@@ -160,6 +160,13 @@ begin
     ShowMessage('Please enter at least 2 characters.');
     ACanReplace := False;
   end;
+
+  //cancel search for very short strings
+  if Length(AReplaceText) < 2 then
+  begin
+    ShowMessage('Please enter at least 2 characters.');
+    ACanReplace := False;
+  end;
 end;
 
 //After replace completes; reports total replacement count

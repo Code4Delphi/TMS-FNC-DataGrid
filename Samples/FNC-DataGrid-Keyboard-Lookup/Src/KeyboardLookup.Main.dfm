@@ -1,9 +1,8 @@
-object FindDialogMain: TFindDialogMain
+object KeyboardLookupMain: TKeyboardLookupMain
   Left = 0
   Top = 0
   Cursor = crHandPoint
-  ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - Find Dialog'
+  Caption = 'TMS FNC DataGrid - Keyboard Lookup'
   ClientHeight = 671
   ClientWidth = 1261
   Color = clBtnFace
@@ -33,120 +32,73 @@ object FindDialogMain: TFindDialogMain
     Left = 0
     Top = 0
     Width = 1261
-    Height = 145
+    Height = 105
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object GroupBox1: TGroupBox
-      Left = 370
-      Top = 0
-      Width = 185
-      Height = 145
-      Align = alLeft
-      Caption = ' Find '
-      TabOrder = 0
-      object btnShowFindDialogDataGrid: TButton
-        Left = 11
-        Top = 19
-        Width = 166
-        Height = 25
-        Cursor = crHandPoint
-        Caption = 'Show Find Dialog'
-        TabOrder = 0
-        OnClick = btnShowFindDialogDataGridClick
-      end
-    end
-    object rdGroupUILanguage: TRadioGroup
-      Left = 185
-      Top = 0
-      Width = 185
-      Height = 145
-      Cursor = crHandPoint
-      Align = alLeft
-      Caption = ' UILanguage '
-      ItemIndex = 0
-      Items.Strings = (
-        'English'
-        'Portuguese')
-      TabOrder = 1
-    end
-    object GroupBox2: TGroupBox
       Left = 0
       Top = 0
-      Width = 185
-      Height = 145
+      Width = 297
+      Height = 105
       Align = alLeft
-      Caption = ' Configs '
-      TabOrder = 2
+      Caption = ' Config Lookup '
+      TabOrder = 0
       object Label1: TLabel
-        Left = 13
-        Top = 90
-        Width = 88
+        Left = 139
+        Top = 21
+        Width = 70
         Height = 15
-        Caption = 'Find Text Default'
+        Caption = 'Reset Interval'
       end
-      object ckAutoHistory: TCheckBox
-        Left = 13
-        Top = 19
-        Width = 92
+      object ckIncremental: TCheckBox
+        Left = 16
+        Top = 48
+        Width = 97
         Height = 17
-        Cursor = crHandPoint
-        Caption = 'Auto History'
+        Caption = 'Incremental'
         Checked = True
         State = cbChecked
         TabOrder = 0
+        OnClick = ckIncrementalClick
       end
       object ckCaseSensitive: TCheckBox
-        Left = 13
-        Top = 67
-        Width = 155
+        Left = 16
+        Top = 71
+        Width = 97
         Height = 17
-        Cursor = crHandPoint
-        Caption = 'Case Sensitive (Checked)'
+        Caption = 'Case Sensitive'
         TabOrder = 1
+        OnClick = ckIncrementalClick
       end
-      object ckCaseSensitiveVisible: TCheckBox
-        Left = 13
-        Top = 42
-        Width = 144
+      object ckEnabled: TCheckBox
+        Left = 16
+        Top = 25
+        Width = 97
         Height = 17
-        Cursor = crHandPoint
-        Caption = 'Case Sensitive (Visible)'
+        Caption = 'Enabled'
         Checked = True
         State = cbChecked
         TabOrder = 2
+        OnClick = ckIncrementalClick
       end
-      object edtFindText: TEdit
-        Left = 13
-        Top = 106
-        Width = 155
+      object edtResetInterval: TEdit
+        Left = 139
+        Top = 39
+        Width = 121
         Height = 23
+        NumbersOnly = True
         TabOrder = 3
-      end
-    end
-    object GroupBox3: TGroupBox
-      Left = 555
-      Top = 0
-      Width = 520
-      Height = 145
-      Align = alLeft
-      Caption = ' Log '
-      TabOrder = 3
-      object mmLog: TMemo
-        Left = 2
-        Top = 17
-        Width = 516
-        Height = 126
-        Align = alClient
-        TabOrder = 0
+        Text = '2000'
+        OnChange = edtResetIntervalChange
       end
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 145
+    Top = 105
     Width = 1261
-    Height = 507
+    Height = 547
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -217,11 +169,13 @@ object FindDialogMain: TFindDialogMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnAfterShowFindDialog = TMSFNCDataGrid1AfterShowFindDialog
-    OnBeforeDialogFind = TMSFNCDataGrid1BeforeDialogFind
-    OnAfterDialogFind = TMSFNCDataGrid1AfterDialogFind
-    OnBeforeShowFindDialog = TMSFNCDataGrid1BeforeShowFindDialog
+    OnAfterLookup = TMSFNCDataGrid1AfterLookup
+    OnBeforeLookup = TMSFNCDataGrid1BeforeLookup
+    Options.Filtering.Enabled = True
+    Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 139
+    Options.Editing.Enabled = False
+    ExplicitTop = 169
+    ExplicitHeight = 483
   end
 end
