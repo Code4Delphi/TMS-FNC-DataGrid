@@ -33,7 +33,7 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
     Left = 0
     Top = 0
     Width = 1261
-    Height = 145
+    Height = 121
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
@@ -41,10 +41,11 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Left = 0
       Top = 0
       Width = 270
-      Height = 145
+      Height = 121
       Align = alLeft
       Caption = ' Programmatic cell merging and splitting '
       TabOrder = 0
+      ExplicitHeight = 145
       object btnProgrammaticMerge: TButton
         AlignWithMargins = True
         Left = 5
@@ -76,10 +77,11 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Left = 270
       Top = 0
       Width = 270
-      Height = 145
+      Height = 121
       Align = alLeft
       Caption = ' Merge Range with mouse click selection '
       TabOrder = 1
+      ExplicitHeight = 145
       object Label1: TLabel
         AlignWithMargins = True
         Left = 9
@@ -125,10 +127,11 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Left = 540
       Top = 0
       Width = 270
-      Height = 145
+      Height = 121
       Align = alLeft
       Caption = ' Shortcuts '
       TabOrder = 2
+      ExplicitHeight = 145
       object Label2: TLabel
         AlignWithMargins = True
         Left = 9
@@ -159,9 +162,9 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 145
+    Top = 121
     Width = 1261
-    Height = 507
+    Height = 531
     Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
@@ -237,5 +240,7 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
     FilterAppearance.Font.Style = []
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
+    ExplicitTop = 145
+    ExplicitHeight = 507
   end
 end

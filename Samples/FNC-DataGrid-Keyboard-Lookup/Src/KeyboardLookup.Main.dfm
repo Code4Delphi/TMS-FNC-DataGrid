@@ -32,23 +32,21 @@ object KeyboardLookupMain: TKeyboardLookupMain
     Left = 0
     Top = 0
     Width = 1261
-    Height = 169
+    Height = 105
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 265
-      Height = 169
+      Width = 297
+      Height = 105
       Align = alLeft
       Caption = ' Config Lookup '
       TabOrder = 0
-      ExplicitTop = -6
-      ExplicitHeight = 137
       object Label1: TLabel
-        Left = 16
-        Top = 94
+        Left = 139
+        Top = 21
         Width = 70
         Height = 15
         Caption = 'Reset Interval'
@@ -85,8 +83,8 @@ object KeyboardLookupMain: TKeyboardLookupMain
         OnClick = ckIncrementalClick
       end
       object edtResetInterval: TEdit
-        Left = 16
-        Top = 112
+        Left = 139
+        Top = 39
         Width = 121
         Height = 23
         NumbersOnly = True
@@ -98,9 +96,9 @@ object KeyboardLookupMain: TKeyboardLookupMain
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 169
+    Top = 105
     Width = 1261
-    Height = 483
+    Height = 547
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -177,6 +175,7 @@ object KeyboardLookupMain: TKeyboardLookupMain
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
-    ExplicitTop = 163
+    ExplicitTop = 169
+    ExplicitHeight = 483
   end
 end

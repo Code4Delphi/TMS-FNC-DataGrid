@@ -67,12 +67,12 @@ begin
   TMSFNCDataGrid1.Icons.SortAscendingIcon  := TMSFNCBitmapContainer1.FindBitmap('SortAscendingIcon');
   TMSFNCDataGrid1.Icons.SortDescendingIcon := TMSFNCBitmapContainer1.FindBitmap('SortDescendingIcon');
   TMSFNCDataGrid1.Icons.FilterIcon         := TMSFNCBitmapContainer1.FindBitmap('FilterIcon');
-  TMSFNCDataGrid1.Icons.FilterActiveIcon   := TMSFNCBitmapContainer1.FindBitmap('FilterActiveIcon');  // shown when a filter is active
+  TMSFNCDataGrid1.Icons.FilterActiveIcon   := TMSFNCBitmapContainer1.FindBitmap('FilterActiveIcon');
   TMSFNCDataGrid1.Icons.FilterClearIcon    := TMSFNCBitmapContainer1.FindBitmap('FilterClearIcon');
   TMSFNCDataGrid1.Icons.FilterTypeIcon     := TMSFNCBitmapContainer1.FindBitmap('FilterTypeIcon');
   TMSFNCDataGrid1.Icons.ExpandIcon         := TMSFNCBitmapContainer1.FindBitmap('ExpandIcon');
   TMSFNCDataGrid1.Icons.CollapseIcon       := TMSFNCBitmapContainer1.FindBitmap('CollapseIcon');
-  TMSFNCDataGrid1.Icons.CloseIcon          := TMSFNCBitmapContainer1.FindBitmap('CloseIcon');         // header group close button
+  TMSFNCDataGrid1.Icons.CloseIcon          := TMSFNCBitmapContainer1.FindBitmap('CloseIcon');
   TMSFNCDataGrid1.Icons.FirstPageIcon      := TMSFNCBitmapContainer1.FindBitmap('FirstPageIcon');
   TMSFNCDataGrid1.Icons.PreviousPageIcon   := TMSFNCBitmapContainer1.FindBitmap('PreviousPageIcon');
   TMSFNCDataGrid1.Icons.NextPageIcon       := TMSFNCBitmapContainer1.FindBitmap('NextPageIcon');

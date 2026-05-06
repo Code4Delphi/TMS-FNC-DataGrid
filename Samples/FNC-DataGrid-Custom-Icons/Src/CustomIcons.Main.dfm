@@ -117,8 +117,6 @@ object CustomIconsMain: TCustomIconsMain
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
-    ExplicitTop = 163
-    ExplicitHeight = 483
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 776
       Top = 373
