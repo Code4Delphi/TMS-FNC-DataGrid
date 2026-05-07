@@ -13,5 +13,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.Title := 'TMS FNC DataGrid - AutoComplete';
   Application.CreateForm(TAutoCompleteMain, AutoCompleteMain);
+  Application.CreateForm(TAutoCompleteNormal, AutoCompleteNormal);
+  Application.CreateForm(TAutoCompleteLookupList, AutoCompleteLookupList);
   Application.Run;
 end.

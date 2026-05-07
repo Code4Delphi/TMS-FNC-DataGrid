@@ -13,20 +13,19 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.StdCtrls,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls,
+  AutoComplete.LookupList,
+  AutoComplete.Normal;
 
 type
   TAutoCompleteMain = class(TForm)
     pnlContent: TPanel;
-    lblTitle: TLabel;
-    lblDescription: TLabel;
     btnNormal: TButton;
     btnLookupList: TButton;
     procedure btnNormalClick(Sender: TObject);
     procedure btnLookupListClick(Sender: TObject);
   private
-    procedure OpenNormalSample;
-    procedure OpenLookupListSample;
+
   public
 
   end;
@@ -36,44 +35,16 @@ var
 
 implementation
 
-uses
-  AutoComplete.LookupList,
-  AutoComplete.Normal;
-
 {$R *.dfm}
 
 procedure TAutoCompleteMain.btnLookupListClick(Sender: TObject);
 begin
-  OpenLookupListSample;
+  AutoCompleteLookupList.ShowModal;
 end;
 
 procedure TAutoCompleteMain.btnNormalClick(Sender: TObject);
 begin
-  OpenNormalSample;
-end;
-
-procedure TAutoCompleteMain.OpenLookupListSample;
-var
-  LForm: TAutoCompleteLookupList;
-begin
-  LForm := TAutoCompleteLookupList.Create(Self);
-  try
-    LForm.ShowModal;
-  finally
-    LForm.Free;
-  end;
-end;
-
-procedure TAutoCompleteMain.OpenNormalSample;
-var
-  LForm: TAutoCompleteNormal;
-begin
-  LForm := TAutoCompleteNormal.Create(Self);
-  try
-    LForm.ShowModal;
-  finally
-    LForm.Free;
-  end;
+  AutoCompleteNormal.ShowModal
 end;
 
 end.

@@ -42,6 +42,9 @@ type
 
   end;
 
+var
+  AutoCompleteLookupList: TAutoCompleteLookupList;
+
 implementation
 
 {$R *.dfm}

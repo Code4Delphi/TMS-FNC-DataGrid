@@ -43,6 +43,9 @@ type
 
   end;
 
+var
+  AutoCompleteNormal: TAutoCompleteNormal;
+
 implementation
 
 {$R *.dfm}

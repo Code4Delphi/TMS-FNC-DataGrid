@@ -2,8 +2,8 @@ object AutoCompleteMain: TAutoCompleteMain
   Left = 0
   Top = 0
   Caption = 'TMS FNC DataGrid - AutoComplete'
-  ClientHeight = 220
-  ClientWidth = 420
+  ClientHeight = 191
+  ClientWidth = 425
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,8 +15,8 @@ object AutoCompleteMain: TAutoCompleteMain
   object pnlContent: TPanel
     Left = 0
     Top = 0
-    Width = 420
-    Height = 220
+    Width = 425
+    Height = 191
     Align = alClient
     BevelOuter = bvNone
     Padding.Left = 24
@@ -24,32 +24,11 @@ object AutoCompleteMain: TAutoCompleteMain
     Padding.Right = 24
     Padding.Bottom = 24
     TabOrder = 0
-    object lblTitle: TLabel
-      Left = 24
-      Top = 20
-      Width = 214
-      Height = 25
-      Caption = 'DataGrid AutoComplete'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblDescription: TLabel
-      Left = 24
-      Top = 56
-      Width = 317
-      Height = 30
-      Caption = 
-        'Escolha um exemplo para ver cada modo de AutoComplete em um grid' +
-        ' separado.'
-      WordWrap = True
-    end
+    ExplicitWidth = 420
+    ExplicitHeight = 220
     object btnNormal: TButton
-      Left = 24
-      Top = 112
+      Left = 34
+      Top = 72
       Width = 170
       Height = 42
       Caption = 'gactNormal'
@@ -58,7 +37,7 @@ object AutoCompleteMain: TAutoCompleteMain
     end
     object btnLookupList: TButton
       Left = 210
-      Top = 112
+      Top = 72
       Width = 170
       Height = 42
       Caption = 'gactLookupList'
