@@ -75,6 +75,9 @@
         <Projects Include="FNC-DataGrid-AutoComplete\FNC_DataGrid_AutoComplete.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNC-DataGrid-DropFiles\FNC_DataGrid_Drop_Files.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -299,14 +302,23 @@
     <Target Name="FNC_DataGrid_AutoComplete:Make">
         <MSBuild Projects="FNC-DataGrid-AutoComplete\FNC_DataGrid_AutoComplete.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNC_DataGrid_Drop_Files">
+        <MSBuild Projects="FNC-DataGrid-DropFiles\FNC_DataGrid_Drop_Files.dproj"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Drop_Files:Clean">
+        <MSBuild Projects="FNC-DataGrid-DropFiles\FNC_DataGrid_Drop_Files.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNC_DataGrid_Drop_Files:Make">
+        <MSBuild Projects="FNC-DataGrid-DropFiles\FNC_DataGrid_Drop_Files.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering;FNC_DataGrid_Sorting;FNC_DataGrid_Localization;FNC_DataGrid_Pagination;FNC_DataGrid_CellControls;FNC_DataGrid_Grouping;FNC_DataGrid_Grouping_Visual;FNC_DataGrid_Master_Detail;FNC_DataGrid_Cell_Coloring;FNC_DataGrid_Cell_Formatting;FNC_DataGrid_Import_Export;FNC_DataGrid_Cell_Comments;FNC_DataGrid_Context_Menu;FNC_DataGrid_AutoFill;FNC_DataGrid_Find_Dialog;FNC_DataGrid_Replace_Dialog;FNC_DataGrid_Cell_Merging_Splitting;FNC_DataGrid_Keyboard_Lookup;FNC_DataGrid_Custom_Icons;FNC_DataGrid_AutoComplete"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01;FNC_DataGrid_LoadingData;FNC_DataGrid_Calculations;FNC_DataGrid_Calculations_FMX;FNC_DataGrid_Filtering;FNC_DataGrid_Sorting;FNC_DataGrid_Localization;FNC_DataGrid_Pagination;FNC_DataGrid_CellControls;FNC_DataGrid_Grouping;FNC_DataGrid_Grouping_Visual;FNC_DataGrid_Master_Detail;FNC_DataGrid_Cell_Coloring;FNC_DataGrid_Cell_Formatting;FNC_DataGrid_Import_Export;FNC_DataGrid_Cell_Comments;FNC_DataGrid_Context_Menu;FNC_DataGrid_AutoFill;FNC_DataGrid_Find_Dialog;FNC_DataGrid_Replace_Dialog;FNC_DataGrid_Cell_Merging_Splitting;FNC_DataGrid_Keyboard_Lookup;FNC_DataGrid_Custom_Icons;FNC_DataGrid_AutoComplete;FNC_DataGrid_Drop_Files"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean;FNC_DataGrid_Sorting:Clean;FNC_DataGrid_Localization:Clean;FNC_DataGrid_Pagination:Clean;FNC_DataGrid_CellControls:Clean;FNC_DataGrid_Grouping:Clean;FNC_DataGrid_Grouping_Visual:Clean;FNC_DataGrid_Master_Detail:Clean;FNC_DataGrid_Cell_Coloring:Clean;FNC_DataGrid_Cell_Formatting:Clean;FNC_DataGrid_Import_Export:Clean;FNC_DataGrid_Cell_Comments:Clean;FNC_DataGrid_Context_Menu:Clean;FNC_DataGrid_AutoFill:Clean;FNC_DataGrid_Find_Dialog:Clean;FNC_DataGrid_Replace_Dialog:Clean;FNC_DataGrid_Cell_Merging_Splitting:Clean;FNC_DataGrid_Keyboard_Lookup:Clean;FNC_DataGrid_Custom_Icons:Clean;FNC_DataGrid_AutoComplete:Clean"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Clean;FNC_DataGrid_LoadingData:Clean;FNC_DataGrid_Calculations:Clean;FNC_DataGrid_Calculations_FMX:Clean;FNC_DataGrid_Filtering:Clean;FNC_DataGrid_Sorting:Clean;FNC_DataGrid_Localization:Clean;FNC_DataGrid_Pagination:Clean;FNC_DataGrid_CellControls:Clean;FNC_DataGrid_Grouping:Clean;FNC_DataGrid_Grouping_Visual:Clean;FNC_DataGrid_Master_Detail:Clean;FNC_DataGrid_Cell_Coloring:Clean;FNC_DataGrid_Cell_Formatting:Clean;FNC_DataGrid_Import_Export:Clean;FNC_DataGrid_Cell_Comments:Clean;FNC_DataGrid_Context_Menu:Clean;FNC_DataGrid_AutoFill:Clean;FNC_DataGrid_Find_Dialog:Clean;FNC_DataGrid_Replace_Dialog:Clean;FNC_DataGrid_Cell_Merging_Splitting:Clean;FNC_DataGrid_Keyboard_Lookup:Clean;FNC_DataGrid_Custom_Icons:Clean;FNC_DataGrid_AutoComplete:Clean;FNC_DataGrid_Drop_Files:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make;FNC_DataGrid_Sorting:Make;FNC_DataGrid_Localization:Make;FNC_DataGrid_Pagination:Make;FNC_DataGrid_CellControls:Make;FNC_DataGrid_Grouping:Make;FNC_DataGrid_Grouping_Visual:Make;FNC_DataGrid_Master_Detail:Make;FNC_DataGrid_Cell_Coloring:Make;FNC_DataGrid_Cell_Formatting:Make;FNC_DataGrid_Import_Export:Make;FNC_DataGrid_Cell_Comments:Make;FNC_DataGrid_Context_Menu:Make;FNC_DataGrid_AutoFill:Make;FNC_DataGrid_Find_Dialog:Make;FNC_DataGrid_Replace_Dialog:Make;FNC_DataGrid_Cell_Merging_Splitting:Make;FNC_DataGrid_Keyboard_Lookup:Make;FNC_DataGrid_Custom_Icons:Make;FNC_DataGrid_AutoComplete:Make"/>
+        <CallTarget Targets="FNC_DataGrid_Demo01:Make;FNC_DataGrid_LoadingData:Make;FNC_DataGrid_Calculations:Make;FNC_DataGrid_Calculations_FMX:Make;FNC_DataGrid_Filtering:Make;FNC_DataGrid_Sorting:Make;FNC_DataGrid_Localization:Make;FNC_DataGrid_Pagination:Make;FNC_DataGrid_CellControls:Make;FNC_DataGrid_Grouping:Make;FNC_DataGrid_Grouping_Visual:Make;FNC_DataGrid_Master_Detail:Make;FNC_DataGrid_Cell_Coloring:Make;FNC_DataGrid_Cell_Formatting:Make;FNC_DataGrid_Import_Export:Make;FNC_DataGrid_Cell_Comments:Make;FNC_DataGrid_Context_Menu:Make;FNC_DataGrid_AutoFill:Make;FNC_DataGrid_Find_Dialog:Make;FNC_DataGrid_Replace_Dialog:Make;FNC_DataGrid_Cell_Merging_Splitting:Make;FNC_DataGrid_Keyboard_Lookup:Make;FNC_DataGrid_Custom_Icons:Make;FNC_DataGrid_AutoComplete:Make;FNC_DataGrid_Drop_Files:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
