@@ -4,7 +4,7 @@ object ClipboardOptionsMain: TClipboardOptionsMain
   Cursor = crHandPoint
   Caption = 'TMS FNC DataGrid - Clipboard Options'
   ClientHeight = 671
-  ClientWidth = 1261
+  ClientWidth = 1292
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object ClipboardOptionsMain: TClipboardOptionsMain
   object StatusBar1: TStatusBar
     Left = 0
     Top = 652
-    Width = 1261
+    Width = 1292
     Height = 19
     Panels = <
       item
@@ -27,24 +27,39 @@ object ClipboardOptionsMain: TClipboardOptionsMain
       item
         Width = 50
       end>
+    ExplicitWidth = 1261
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1261
-    Height = 105
+    Width = 1292
+    Height = 137
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     ExplicitTop = -6
+    ExplicitWidth = 1261
+    object Label2: TLabel
+      Left = 789
+      Top = 54
+      Width = 492
+      Height = 30
+      Caption = 
+        'Dica: voc'#234' pode copiar e colar dados de uma planilha ou de qualq' +
+        'uer outra fonte de dados.'#13#10'Tip: you can copy and paste data from' +
+        ' a spreadsheet or any other data source.'
+    end
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 513
-      Height = 105
+      Width = 500
+      Height = 137
       Align = alLeft
       Caption = ' Config Clipboard Options '
       TabOrder = 0
+      ExplicitLeft = -4
+      ExplicitTop = -6
+      ExplicitHeight = 131
       object Label1: TLabel
         Left = 16
         Top = 48
@@ -57,8 +72,13 @@ object ClipboardOptionsMain: TClipboardOptionsMain
         Top = 25
         Width = 109
         Height = 17
+        Hint = 
+          'Add linhas se os dados colados excederem a altura da grade / add' +
+          ' rows if pasted data exceeds grid height'
         Caption = 'AllowRowGrow'
         Checked = True
+        ParentShowHint = False
+        ShowHint = True
         State = cbChecked
         TabOrder = 0
         OnClick = ckEnabledClick
@@ -68,7 +88,12 @@ object ClipboardOptionsMain: TClipboardOptionsMain
         Top = 25
         Width = 126
         Height = 17
+        Hint = 
+          'Add colunas se os dados colados excederem a largura da grade / a' +
+          'dd columns if pasted data exceeds grid width'
         Caption = 'AllowColumnGrow'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
         OnClick = ckEnabledClick
       end
@@ -102,17 +127,40 @@ object ClipboardOptionsMain: TClipboardOptionsMain
         Top = 25
         Width = 111
         Height = 17
+        Hint = 'Colar em c'#233'lulas somente leitura / Paste into read-only cells'
         Caption = 'IgnoreReadOnly'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 4
         OnClick = ckEnabledClick
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 500
+      Top = 0
+      Width = 285
+      Height = 137
+      Align = alLeft
+      Caption = ' Log '
+      TabOrder = 1
+      object mmLog: TMemo
+        Left = 2
+        Top = 17
+        Width = 281
+        Height = 118
+        Align = alClient
+        ScrollBars = ssVertical
+        TabOrder = 0
+        ExplicitWidth = 496
+        ExplicitHeight = 86
       end
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 105
-    Width = 1261
-    Height = 547
+    Top = 137
+    Width = 1292
+    Height = 515
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -183,10 +231,19 @@ object ClipboardOptionsMain: TClipboardOptionsMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnAfterCopyToClipboard = TMSFNCDataGrid1AfterCopyToClipboard
+    OnAfterCutToClipboard = TMSFNCDataGrid1AfterCutToClipboard
+    OnAfterPasteFromClipboard = TMSFNCDataGrid1AfterPasteFromClipboard
+    OnBeforeCopyToClipboard = TMSFNCDataGrid1BeforeCopyToClipboard
+    OnBeforeCutToClipboard = TMSFNCDataGrid1BeforeCutToClipboard
+    OnBeforePasteFromClipboard = TMSFNCDataGrid1BeforePasteFromClipboard
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
     Options.Selection.Mode = gsmCellRange
+    ExplicitTop = 111
+    ExplicitWidth = 1261
+    ExplicitHeight = 547
   end
 end

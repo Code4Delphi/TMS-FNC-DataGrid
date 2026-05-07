@@ -43,9 +43,18 @@ type
     Label1: TLabel;
     cBoxPasteAction: TComboBox;
     ckIgnoreReadOnly: TCheckBox;
+    GroupBox2: TGroupBox;
+    mmLog: TMemo;
+    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure ckEnabledClick(Sender: TObject);
     procedure cBoxPasteActionChange(Sender: TObject);
+    procedure TMSFNCDataGrid1AfterCopyToClipboard(Sender: TObject);
+    procedure TMSFNCDataGrid1AfterCutToClipboard(Sender: TObject);
+    procedure TMSFNCDataGrid1AfterPasteFromClipboard(Sender: TObject);
+    procedure TMSFNCDataGrid1BeforeCopyToClipboard(Sender: TObject; var ACanExecute: Boolean);
+    procedure TMSFNCDataGrid1BeforeCutToClipboard(Sender: TObject; var ACanExecute: Boolean);
+    procedure TMSFNCDataGrid1BeforePasteFromClipboard(Sender: TObject; var ACanExecute: Boolean);
   private
     procedure ConfigDataGrid;
   public
@@ -94,6 +103,36 @@ begin
   TMSFNCDataGrid1.Options.Clipboard.AllowColumnGrow := ckAllowColumnGrow.Checked;
   // Colar em células somente leitura / Paste into read-only cells
   TMSFNCDataGrid1.Options.Clipboard.IgnoreReadOnly := ckIgnoreReadOnly.Checked;
+end;
+
+procedure TClipboardOptionsMain.TMSFNCDataGrid1BeforeCopyToClipboard(Sender: TObject; var ACanExecute: Boolean);
+begin
+  mmLog.Lines.Add('1 - BeforeCopyToClipboard');
+end;
+
+procedure TClipboardOptionsMain.TMSFNCDataGrid1AfterCopyToClipboard(Sender: TObject);
+begin
+  mmLog.Lines.Add('2 - AfterCopyToClipboard');
+end;
+
+procedure TClipboardOptionsMain.TMSFNCDataGrid1BeforeCutToClipboard(Sender: TObject; var ACanExecute: Boolean);
+begin
+  mmLog.Lines.Add('3 - BeforeCutToClipboard');
+end;
+
+procedure TClipboardOptionsMain.TMSFNCDataGrid1AfterCutToClipboard(Sender: TObject);
+begin
+  mmLog.Lines.Add('4 - AfterCutToClipboard');
+end;
+
+procedure TClipboardOptionsMain.TMSFNCDataGrid1BeforePasteFromClipboard(Sender: TObject; var ACanExecute: Boolean);
+begin
+  mmLog.Lines.Add('5 - BeforePasteFromClipboard');
+end;
+
+procedure TClipboardOptionsMain.TMSFNCDataGrid1AfterPasteFromClipboard(Sender: TObject);
+begin
+  mmLog.Lines.Add('6 - AfterPasteFromClipboard');
 end;
 
 end.
