@@ -2,7 +2,7 @@ object AutoCompleteLookupList: TAutoCompleteLookupList
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'AutoComplete - gactLookupList'
+  Caption = 'TMS FNC DataGrid - AutoComplete - gactLookupList'
   ClientHeight = 600
   ClientWidth = 1000
   Color = clBtnFace

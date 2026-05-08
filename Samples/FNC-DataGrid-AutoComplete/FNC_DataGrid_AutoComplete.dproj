@@ -133,10 +133,13 @@
         </DCCReference>
         <DCCReference Include="Src\AutoComplete.Normal.pas">
             <Form>AutoCompleteNormal</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Src\AutoComplete.LookupList.pas">
             <Form>AutoCompleteLookupList</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\AutoComplete.LookupList.Automatic.pas">
+            <Form>AutoCompleteLookupListAutomatic</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

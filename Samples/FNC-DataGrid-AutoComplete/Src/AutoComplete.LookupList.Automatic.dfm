@@ -1,8 +1,8 @@
-object AutoCompleteNormal: TAutoCompleteNormal
+object AutoCompleteLookupListAutomatic: TAutoCompleteLookupListAutomatic
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataGrid - AutoComplete - gactNormal'
+  Caption = 'TMS FNC DataGrid - AutoComplete - Lookup List Automatic'
   ClientHeight = 600
   ClientWidth = 1000
   Color = clBtnFace
@@ -21,9 +21,7 @@ object AutoCompleteNormal: TAutoCompleteNormal
     Height = 19
     Panels = <
       item
-        Text = 
-          'Type = gactNormal: suggestions come from existing values in the ' +
-          'edited column'
+        Text = 'Type = gactLookupList: suggestions come from AutoComplete.Items'
         Width = 700
       end>
   end
@@ -119,6 +117,7 @@ object AutoCompleteNormal: TAutoCompleteNormal
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnBeforeOpenInplaceEditor = TMSFNCDataGrid1BeforeOpenInplaceEditor
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True

@@ -3,7 +3,7 @@ object AutoCompleteMain: TAutoCompleteMain
   Top = 0
   Caption = 'TMS FNC DataGrid - AutoComplete'
   ClientHeight = 191
-  ClientWidth = 425
+  ClientWidth = 580
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,7 +15,7 @@ object AutoCompleteMain: TAutoCompleteMain
   object pnlContent: TPanel
     Left = 0
     Top = 0
-    Width = 425
+    Width = 580
     Height = 191
     Align = alClient
     BevelOuter = bvNone
@@ -24,8 +24,7 @@ object AutoCompleteMain: TAutoCompleteMain
     Padding.Right = 24
     Padding.Bottom = 24
     TabOrder = 0
-    ExplicitWidth = 420
-    ExplicitHeight = 220
+    ExplicitWidth = 425
     object btnNormal: TButton
       Left = 34
       Top = 72
@@ -43,6 +42,15 @@ object AutoCompleteMain: TAutoCompleteMain
       Caption = 'gactLookupList'
       TabOrder = 1
       OnClick = btnLookupListClick
+    end
+    object btnLookupListAutomatic: TButton
+      Left = 386
+      Top = 72
+      Width = 170
+      Height = 42
+      Caption = 'gactLookupList Automatic'
+      TabOrder = 2
+      OnClick = btnLookupListAutomaticClick
     end
   end
 end
