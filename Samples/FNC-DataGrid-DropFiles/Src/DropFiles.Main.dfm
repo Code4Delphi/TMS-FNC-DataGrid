@@ -38,7 +38,7 @@ object DropFilesMain: TDropFilesMain
     BevelOuter = bvNone
     TabOrder = 1
     object Label1: TLabel
-      Left = 152
+      Left = 103
       Top = 20
       Width = 430
       Height = 15
@@ -137,6 +137,5 @@ object DropFilesMain: TDropFilesMain
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
-    ExplicitTop = 51
   end
 end

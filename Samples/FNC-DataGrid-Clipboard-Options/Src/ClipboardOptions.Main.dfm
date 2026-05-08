@@ -27,7 +27,6 @@ object ClipboardOptionsMain: TClipboardOptionsMain
       item
         Width = 50
       end>
-    ExplicitWidth = 1261
   end
   object Panel1: TPanel
     Left = 0
@@ -37,12 +36,10 @@ object ClipboardOptionsMain: TClipboardOptionsMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = -6
-    ExplicitWidth = 1261
     object Label2: TLabel
       Left = 789
       Top = 54
-      Width = 492
+      Width = 480
       Height = 30
       Caption = 
         'Dica: voc'#234' pode copiar e colar dados de uma planilha ou de qualq' +
@@ -57,9 +54,6 @@ object ClipboardOptionsMain: TClipboardOptionsMain
       Align = alLeft
       Caption = ' Config Clipboard Options '
       TabOrder = 0
-      ExplicitLeft = -4
-      ExplicitTop = -6
-      ExplicitHeight = 131
       object Label1: TLabel
         Left = 16
         Top = 48
@@ -92,8 +86,10 @@ object ClipboardOptionsMain: TClipboardOptionsMain
           'Add colunas se os dados colados excederem a largura da grade / a' +
           'dd columns if pasted data exceeds grid width'
         Caption = 'AllowColumnGrow'
+        Checked = True
         ParentShowHint = False
         ShowHint = True
+        State = cbChecked
         TabOrder = 1
         OnClick = ckEnabledClick
       end
@@ -151,8 +147,6 @@ object ClipboardOptionsMain: TClipboardOptionsMain
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 496
-        ExplicitHeight = 86
       end
     end
   end
@@ -242,8 +236,6 @@ object ClipboardOptionsMain: TClipboardOptionsMain
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
     Options.Selection.Mode = gsmCellRange
-    ExplicitTop = 111
-    ExplicitWidth = 1261
-    ExplicitHeight = 547
+    ExplicitTop = 141
   end
 end
