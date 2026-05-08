@@ -2,7 +2,7 @@ object AutoCompleteNormal: TAutoCompleteNormal
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'AutoComplete - gactNormal'
+  Caption = 'TMS FNC DataGrid - AutoComplete - gactNormal'
   ClientHeight = 600
   ClientWidth = 1000
   Color = clBtnFace

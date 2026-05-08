@@ -59,7 +59,7 @@ end;
 procedure TAutoCompleteLookupList.ConfigureAutoComplete;
 begin
   TMSFNCDataGrid1.Options.Editing.AutoComplete.&Type := gactLookupList;
-  TMSFNCDataGrid1.Options.Editing.DirectDropDown := True;
+  TMSFNCDataGrid1.Options.Editing.DirectDropDown := False;
   Self.UpdateCaseSensitive;
 
   TMSFNCDataGrid1.Options.Editing.AutoComplete.Items.Clear;

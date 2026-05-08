@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   AutoComplete.Main in 'Src\AutoComplete.Main.pas' {AutoCompleteMain},
   AutoComplete.Normal in 'Src\AutoComplete.Normal.pas' {AutoCompleteNormal},
-  AutoComplete.LookupList in 'Src\AutoComplete.LookupList.pas' {AutoCompleteLookupList};
+  AutoComplete.LookupList in 'Src\AutoComplete.LookupList.pas' {AutoCompleteLookupList},
+  AutoComplete.LookupList.Automatic in 'Src\AutoComplete.LookupList.Automatic.pas' {AutoCompleteLookupListAutomatic};
 
 {$R *.res}
 
@@ -15,5 +16,6 @@ begin
   Application.CreateForm(TAutoCompleteMain, AutoCompleteMain);
   Application.CreateForm(TAutoCompleteNormal, AutoCompleteNormal);
   Application.CreateForm(TAutoCompleteLookupList, AutoCompleteLookupList);
+  Application.CreateForm(TAutoCompleteLookupListAutomatic, AutoCompleteLookupListAutomatic);
   Application.Run;
 end.
