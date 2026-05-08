@@ -24,7 +24,6 @@ object AutoCompleteMain: TAutoCompleteMain
     Padding.Right = 24
     Padding.Bottom = 24
     TabOrder = 0
-    ExplicitHeight = 191
     object btnNormal: TButton
       Left = 386
       Top = 72
@@ -35,21 +34,21 @@ object AutoCompleteMain: TAutoCompleteMain
       OnClick = btnNormalClick
     end
     object btnLookupList: TButton
-      Left = 210
-      Top = 72
-      Width = 170
-      Height = 42
-      Caption = 'gactLookupList'
-      TabOrder = 1
-      OnClick = btnLookupListClick
-    end
-    object btnLookupListAutomatic: TButton
       Left = 34
       Top = 72
       Width = 170
       Height = 42
-      Caption = 'gactLookupList Automatic'
+      Caption = 'gactLookupList'
       TabOrder = 0
+      OnClick = btnLookupListClick
+    end
+    object btnLookupListAutomatic: TButton
+      Left = 210
+      Top = 72
+      Width = 170
+      Height = 42
+      Caption = 'gactLookupList Automatic'
+      TabOrder = 1
       OnClick = btnLookupListAutomaticClick
     end
   end
