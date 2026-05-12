@@ -222,6 +222,5 @@ object FindDialogMain: TFindDialogMain
     OnAfterDialogFind = TMSFNCDataGrid1AfterDialogFind
     OnBeforeShowFindDialog = TMSFNCDataGrid1BeforeShowFindDialog
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 139
   end
 end

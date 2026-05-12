@@ -45,7 +45,6 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Align = alLeft
       Caption = ' Programmatic cell merging and splitting '
       TabOrder = 0
-      ExplicitHeight = 145
       object btnProgrammaticMerge: TButton
         AlignWithMargins = True
         Left = 5
@@ -81,7 +80,6 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Align = alLeft
       Caption = ' Merge Range with mouse click selection '
       TabOrder = 1
-      ExplicitHeight = 145
       object Label1: TLabel
         AlignWithMargins = True
         Left = 9
@@ -131,7 +129,6 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
       Align = alLeft
       Caption = ' Shortcuts '
       TabOrder = 2
-      ExplicitHeight = 145
       object Label2: TLabel
         AlignWithMargins = True
         Left = 9
@@ -240,7 +237,6 @@ object CellMergingSplittingMain: TCellMergingSplittingMain
     FilterAppearance.Font.Style = []
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
-    ExplicitTop = 145
-    ExplicitHeight = 507
+    ExplicitTop = 119
   end
 end

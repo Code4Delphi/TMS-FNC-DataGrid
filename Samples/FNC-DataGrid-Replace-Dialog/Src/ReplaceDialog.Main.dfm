@@ -45,8 +45,6 @@ object ReplaceDialogMain: TReplaceDialogMain
       Align = alLeft
       Caption = ' Replace '
       TabOrder = 0
-      ExplicitLeft = 366
-      ExplicitTop = -6
       object btnShowReplaceDialogDataGrid: TButton
         Left = 6
         Top = 19
@@ -80,6 +78,7 @@ object ReplaceDialogMain: TReplaceDialogMain
       Align = alLeft
       Caption = ' Configs '
       TabOrder = 2
+      ExplicitTop = -6
       object Label1: TLabel
         Left = 13
         Top = 90
@@ -238,6 +237,5 @@ object ReplaceDialogMain: TReplaceDialogMain
     OnAfterDialogReplace = TMSFNCDataGrid1AfterDialogReplace
     OnBeforeShowReplaceDialog = TMSFNCDataGrid1BeforeShowReplaceDialog
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 195
   end
 end

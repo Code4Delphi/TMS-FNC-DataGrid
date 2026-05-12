@@ -54,6 +54,8 @@ object ClipboardOptionsMain: TClipboardOptionsMain
       Align = alLeft
       Caption = ' Config Clipboard Options '
       TabOrder = 0
+      ExplicitLeft = -4
+      ExplicitTop = -6
       object Label1: TLabel
         Left = 16
         Top = 48
@@ -236,6 +238,5 @@ object ClipboardOptionsMain: TClipboardOptionsMain
     Options.Column.Stretching.Enabled = True
     Options.Editing.Enabled = False
     Options.Selection.Mode = gsmCellRange
-    ExplicitTop = 141
   end
 end

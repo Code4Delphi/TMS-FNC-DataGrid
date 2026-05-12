@@ -1,0 +1,7 @@
+Product,Category,Supplier,Status
+FIRST PRODUCT FROM BRANCH 01,Cables USB,Tech BRANCH 01,Available
+Cables USB 2m,Cables USB,Tech Distrib,Available
+Cables USB Type C,Cables USB,Global Parts,Backorder
+Cables USB Type C 2m,Cables USB,Global Parts,Backorder
+Cables VGA 1.5m,Cables Video,Tech Distrib,Available
+Cables VGA 3m,Cables Video,Global Parts,Discontinued

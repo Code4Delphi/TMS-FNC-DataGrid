@@ -492,6 +492,7 @@ object AutoFillMain: TAutoFillMain
     OnAfterApplyAutoFill = TMSFNCDataGrid1AfterApplyAutoFill
     OnAutoFillGetCustomList = TMSFNCDataGrid1AutoFillGetCustomList
     Options.Column.Stretching.Enabled = True
+    ExplicitLeft = -5
   end
   object Panel1: TPanel
     Left = 0
@@ -517,7 +518,6 @@ object AutoFillMain: TAutoFillMain
         'eencher automaticamente. Experimente diferentes colunas para div' +
         'ersos padr'#245'es.'
       WordWrap = True
-      ExplicitLeft = 712
       ExplicitHeight = 90
     end
     object GroupBox2: TGroupBox
