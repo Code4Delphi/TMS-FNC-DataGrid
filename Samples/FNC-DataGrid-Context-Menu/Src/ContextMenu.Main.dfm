@@ -121,6 +121,7 @@ object ContextMenuMain: TContextMenuMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitTop = -6
     object GroupBox2: TGroupBox
       Left = 0
       Top = 0

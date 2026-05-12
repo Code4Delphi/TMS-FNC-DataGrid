@@ -131,6 +131,7 @@
             <Form>ExcelBehaviorsMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Src\ImportExport.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

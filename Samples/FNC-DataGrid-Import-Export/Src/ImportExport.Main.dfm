@@ -108,6 +108,7 @@ object ImportExportMain: TImportExportMain
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitTop = -6
     object GroupBox1: TGroupBox
       Left = 185
       Top = 0
@@ -116,7 +117,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' CSV '
       TabOrder = 0
-      ExplicitLeft = 355
       DesignSize = (
         170
         129)
@@ -173,7 +173,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' Excel (xls) '
       TabOrder = 1
-      ExplicitLeft = 525
       DesignSize = (
         170
         129)
@@ -206,7 +205,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' Proprietary file format '
       TabOrder = 2
-      ExplicitLeft = 961
       DesignSize = (
         170
         129)
@@ -239,7 +237,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' HTML files '
       TabOrder = 3
-      ExplicitLeft = 695
       DesignSize = (
         88
         129)
@@ -289,7 +286,6 @@ object ImportExportMain: TImportExportMain
       Align = alLeft
       Caption = ' PDF '
       TabOrder = 5
-      ExplicitLeft = 783
       DesignSize = (
         88
         129)

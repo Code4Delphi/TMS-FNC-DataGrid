@@ -31,9 +31,9 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 129
+    Top = 153
     Width = 1261
-    Height = 523
+    Height = 499
     Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
@@ -113,15 +113,57 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitLeft = 8
     ExplicitTop = 131
+    ExplicitHeight = 523
+    object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
+      Left = 515
+      Top = 119
+      Width = 26
+      Height = 26
+      Visible = True
+      DataGrid = TMSFNCDataGrid1
+      Options.ExportOverwriteMessage = 'File %s already exists'#13'Ok to overwrite ?'
+      UseUnicode = False
+      Version = '3.24'
+    end
+    object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
+      Left = 703
+      Top = 135
+      Width = 26
+      Height = 26
+      Visible = True
+      DataGrid = TMSFNCDataGrid1
+      Options.DefaultFont.Name = 'Arial'
+      Options.Header = 'TMS PDF Header'
+      Options.Footer = 'TMS PDF Footer'
+      Options.Margins.Left = 20.000000000000000000
+      Options.Margins.Top = 50.000000000000000000
+      Options.Margins.Right = 20.000000000000000000
+      Options.Margins.Bottom = 50.000000000000000000
+      Options.HeaderFont.Name = 'Arial'
+      Options.FooterFont.Name = 'Arial'
+      Options.HeaderMargins.Left = 20.000000000000000000
+      Options.HeaderMargins.Top = 5.000000000000000000
+      Options.HeaderMargins.Right = 20.000000000000000000
+      Options.HeaderMargins.Bottom = 5.000000000000000000
+      Options.FooterMargins.Left = 20.000000000000000000
+      Options.FooterMargins.Top = 5.000000000000000000
+      Options.FooterMargins.Right = 20.000000000000000000
+      Options.FooterMargins.Bottom = 5.000000000000000000
+      Options.PageNumberMargins.Left = 20.000000000000000000
+      Options.PageNumberMargins.Top = 5.000000000000000000
+      Options.PageNumberMargins.Right = 20.000000000000000000
+      Options.PageNumberMargins.Bottom = 5.000000000000000000
+      Options.PageNumberFormat = '%d'
+      Options.PageNumberFont.Name = 'Arial'
+    end
   end
   object PageControl1: TPageControl
     Left = 0
     Top = 0
     Width = 1261
-    Height = 129
-    ActivePage = TabSheet6
+    Height = 153
+    ActivePage = TabSheet9
     Align = alTop
     TabOrder = 2
     object TabSheet1: TTabSheet
@@ -130,7 +172,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
@@ -139,7 +181,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Left = 0
           Top = 0
           Width = 270
-          Height = 99
+          Height = 123
           Align = alLeft
           Caption = ' Merge Range with mouse click selection '
           TabOrder = 0
@@ -172,7 +214,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           end
           object btnRangeMouseSplit: TButton
             AlignWithMargins = True
-            Left = 136
+            Left = 137
             Top = 58
             Width = 127
             Height = 22
@@ -187,7 +229,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Left = 270
           Top = 0
           Width = 270
-          Height = 99
+          Height = 123
           Align = alLeft
           Caption = ' Shortcuts '
           TabOrder = 1
@@ -230,7 +272,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
@@ -252,7 +294,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Left = 0
           Top = 0
           Width = 500
-          Height = 99
+          Height = 123
           Align = alLeft
           Caption = ' Config Clipboard Options '
           TabOrder = 0
@@ -345,10 +387,11 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitHeight = 99
         object Label5: TLabel
           Left = 16
           Top = 36
@@ -379,6 +422,16 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           OnClick = ckEnableShortcutsClick
         end
       end
+      object Panel11: TPanel
+        Left = 0
+        Top = 0
+        Width = 1253
+        Height = 123
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 1
+        ExplicitHeight = 99
+      end
     end
     object TabSheet4: TTabSheet
       Caption = 'Auto Complete'
@@ -387,10 +440,11 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitHeight = 99
         object ckAutoCompleteCaseSensitive: TCheckBox
           Left = 12
           Top = 38
@@ -412,6 +466,16 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           OnClick = ckEnableShortcutsClick
         end
       end
+      object Panel12: TPanel
+        Left = 0
+        Top = 0
+        Width = 1253
+        Height = 123
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 1
+        ExplicitHeight = 99
+      end
     end
     object TabSheet5: TTabSheet
       Caption = 'Find / Replace'
@@ -420,12 +484,13 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
         ExplicitLeft = -3
         ExplicitTop = -2
+        ExplicitHeight = 99
         object btnShowFindDialogDataGrid: TButton
           AlignWithMargins = True
           Left = 11
@@ -457,18 +522,18 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
         ExplicitTop = -2
+        ExplicitHeight = 99
         object lbInstructions: TLabel
           AlignWithMargins = True
-          Left = 817
+          Left = 120
           Top = 3
-          Width = 433
+          Width = 1130
           Height = 93
-          Align = alRight
           Caption = 
             'Tip: Select cells with seed values (rows 1-2), then drag the fil' +
             'l handle (small square at selection corner) to auto-fill. Try di' +
@@ -478,7 +543,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             'eencher automaticamente. Experimente diferentes colunas para div' +
             'ersos padr'#245'es.'
           WordWrap = True
-          ExplicitHeight = 90
         end
         object ckAutoFillEnabled: TCheckBox
           Left = 20
@@ -494,16 +558,346 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
       end
     end
     object TabSheet7: TTabSheet
-      Caption = 'TabSheet7'
+      Caption = 'Context Menu'
       ImageIndex = 6
       object Panel8: TPanel
         Left = 0
         Top = 0
         Width = 1253
-        Height = 99
+        Height = 123
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitTop = -2
+        ExplicitHeight = 99
+        object ckPopupMenuForAll: TCheckBox
+          Left = 16
+          Top = 18
+          Width = 169
+          Height = 17
+          Caption = 'Set PopupMenu for all cells'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+          OnClick = ckEnableShortcutsClick
+        end
+      end
+    end
+    object TabSheet8: TTabSheet
+      Caption = 'Comments'
+      ImageIndex = 7
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 1253
+        Height = 123
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitTop = -2
+        ExplicitHeight = 99
+        object Label6: TLabel
+          AlignWithMargins = True
+          Left = 160
+          Top = 4
+          Width = 713
+          Height = 93
+          Caption = 
+            'Tip: To add a comment, right-click on a cell and select '#8220'Add Com' +
+            'ment'#8221#13#10#13#10'Dica: Para adicionar um coment'#225'rio, clique com o bot'#227'o ' +
+            'direito do mouse sobre uma c'#233'lula e selecione "Add Comment"'
+          WordWrap = True
+        end
+        object btnClearComments: TButton
+          Left = 8
+          Top = 18
+          Width = 129
+          Height = 25
+          Caption = 'Clear comments'
+          TabOrder = 0
+          OnClick = btnClearCommentsClick
+        end
+      end
+    end
+    object TabSheet9: TTabSheet
+      Caption = 'Import / Export'
+      ImageIndex = 8
+      object Panel9: TPanel
+        Left = 0
+        Top = 0
+        Width = 1253
+        Height = 123
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitTop = -2
+        ExplicitHeight = 99
+        object GroupBox2: TGroupBox
+          Left = 185
+          Top = 0
+          Width = 170
+          Height = 123
+          Align = alLeft
+          Caption = ' CSV '
+          TabOrder = 0
+          ExplicitHeight = 129
+          DesignSize = (
+            170
+            123)
+          object Label7: TLabel
+            Left = 7
+            Top = 20
+            Width = 48
+            Height = 15
+            Caption = 'Delimiter'
+          end
+          object btnImportCSV: TButton
+            Left = 7
+            Top = 87
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Import'
+            TabOrder = 0
+            OnClick = btnImportCSVClick
+            ExplicitTop = 93
+          end
+          object btnExportCSV: TButton
+            Left = 88
+            Top = 87
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Export'
+            TabOrder = 1
+            OnClick = btnExportCSVClick
+            ExplicitTop = 93
+          end
+          object edtDelimiterCSV: TEdit
+            Left = 7
+            Top = 37
+            Width = 157
+            Height = 23
+            MaxLength = 1
+            TabOrder = 2
+            Text = ';'
+          end
+          object ckQuoteEmptyCells: TCheckBox
+            Left = 7
+            Top = 66
+            Width = 128
+            Height = 17
+            Caption = 'Quote Empty Cells'
+            TabOrder = 3
+          end
+        end
+        object GroupBox5: TGroupBox
+          Left = 355
+          Top = 0
+          Width = 170
+          Height = 123
+          Align = alLeft
+          Caption = ' Excel (xls) '
+          TabOrder = 1
+          ExplicitHeight = 129
+          DesignSize = (
+            170
+            123)
+          object btnImportarExcel: TButton
+            Left = 6
+            Top = 23
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Import'
+            TabOrder = 0
+            OnClick = btnImportarExcelClick
+          end
+          object btnExportExcel: TButton
+            Left = 88
+            Top = 23
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Export'
+            TabOrder = 1
+            OnClick = btnExportExcelClick
+            ExplicitTop = 29
+          end
+        end
+        object GroupBox6: TGroupBox
+          Left = 701
+          Top = 0
+          Width = 170
+          Height = 123
+          Align = alLeft
+          Caption = ' Proprietary file format '
+          TabOrder = 2
+          ExplicitHeight = 129
+          DesignSize = (
+            170
+            123)
+          object btnImportProprietary: TButton
+            Left = 7
+            Top = 23
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Import'
+            TabOrder = 0
+            OnClick = btnImportProprietaryClick
+            ExplicitTop = 29
+          end
+          object btnExportProprietary: TButton
+            Left = 88
+            Top = 23
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Export'
+            TabOrder = 1
+            OnClick = btnExportProprietaryClick
+            ExplicitTop = 29
+          end
+        end
+        object GroupBox7: TGroupBox
+          Left = 525
+          Top = 0
+          Width = 88
+          Height = 123
+          Align = alLeft
+          Caption = ' HTML files '
+          TabOrder = 3
+          ExplicitHeight = 129
+          DesignSize = (
+            88
+            123)
+          object btnExportHTML: TButton
+            Left = 6
+            Top = 23
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Export'
+            TabOrder = 0
+            OnClick = btnExportHTMLClick
+            ExplicitTop = 29
+          end
+        end
+        object GroupBox8: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 185
+          Height = 123
+          Align = alLeft
+          Caption = ' Configs general '
+          TabOrder = 4
+          ExplicitLeft = 1
+          ExplicitTop = -2
+          object btnClear2: TButton
+            Left = 13
+            Top = 50
+            Width = 124
+            Height = 25
+            Caption = 'Clear Grid'
+            TabOrder = 0
+            OnClick = btnClearGridClick
+          end
+          object ckOpenAfterCreation: TCheckBox
+            Left = 13
+            Top = 27
+            Width = 132
+            Height = 17
+            Caption = 'Open After Creation'
+            TabOrder = 1
+            OnClick = ckEnableShortcutsClick
+          end
+        end
+        object GroupBox9: TGroupBox
+          Left = 613
+          Top = 0
+          Width = 88
+          Height = 123
+          Align = alLeft
+          Caption = ' PDF '
+          TabOrder = 5
+          ExplicitHeight = 129
+          DesignSize = (
+            88
+            123)
+          object btnExportPDF: TButton
+            Left = 7
+            Top = 23
+            Width = 75
+            Height = 25
+            Anchors = [akLeft, akBottom]
+            Caption = 'Export'
+            TabOrder = 0
+            OnClick = btnExportPDFClick
+          end
+        end
+      end
+    end
+    object TabSheet10: TTabSheet
+      Caption = 'TabSheet10'
+      ImageIndex = 9
+      object Panel10: TPanel
+        Left = 0
+        Top = 0
+        Width = 1253
+        Height = 123
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = -2
+        ExplicitHeight = 99
+      end
+    end
+    object TabSheet11: TTabSheet
+      Caption = 'TabSheet11'
+      ImageIndex = 10
+    end
+    object TabSheet12: TTabSheet
+      Caption = 'TabSheet12'
+      ImageIndex = 11
+    end
+  end
+  object PopupMenuCell: TPopupMenu
+    Left = 333
+    Top = 249
+    object Merge1: TMenuItem
+      Caption = 'Merge'
+      OnClick = btnRangeMouseMergeClick
+    end
+    object Split1: TMenuItem
+      Caption = 'Split'
+      OnClick = btnRangeMouseSplitClick
+    end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object AddComment1: TMenuItem
+      Caption = 'Add Comment'
+      OnClick = AddComment1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object GetHeaderAndValueOuther1: TMenuItem
+      Caption = 'Get Header and Value'
+      OnClick = GetHeaderAndValueOuther1Click
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object Item031: TMenuItem
+      Caption = 'Item 03'
+      object Subitem011: TMenuItem
+        Caption = 'Subitem 01'
+      end
+      object Subitem021: TMenuItem
+        Caption = 'Subitem 02'
       end
     end
   end

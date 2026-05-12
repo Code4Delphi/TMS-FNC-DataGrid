@@ -2,7 +2,8 @@ program FNC_DataGrid_Excel_Behaviors;
 
 uses
   Vcl.Forms,
-  ExcelBehaviors.Main in 'Src\ExcelBehaviors.Main.pas' {ExcelBehaviorsMain};
+  ExcelBehaviors.Main in 'Src\ExcelBehaviors.Main.pas' {ExcelBehaviorsMain},
+  ImportExport.Utils in 'Src\ImportExport.Utils.pas';
 
 {$R *.res}
 
