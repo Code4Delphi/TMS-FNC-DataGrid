@@ -4,7 +4,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Excel Behaviors'
-  ClientHeight = 671
+  ClientHeight = 681
   ClientWidth = 1261
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
   TextHeight = 15
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 652
+    Top = 662
     Width = 1261
     Height = 19
     Panels = <
@@ -33,7 +33,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Left = 0
     Top = 153
     Width = 1261
-    Height = 499
+    Height = 509
     Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
@@ -73,7 +73,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     CellAppearance.FixedSelectedLayout.Font.Height = -12
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Fill.Color = 16750605
+    CellAppearance.FocusedLayout.Fill.Color = 16773087
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FocusedLayout.Font.Color = clBlack
     CellAppearance.FocusedLayout.Font.Height = -12
@@ -108,16 +108,18 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnAfterCloseInplaceEditor = TMSFNCDataGrid1AfterCloseInplaceEditor
     OnBeforeOpenInplaceEditor = TMSFNCDataGrid1BeforeOpenInplaceEditor
     OnDropFiles = TMSFNCDataGrid1DropFiles
+    OnGetCellFormatting = TMSFNCDataGrid1GetCellFormatting
+    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 131
-    ExplicitHeight = 523
+    ExplicitTop = 155
     object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
-      Left = 515
-      Top = 119
+      Left = 503
+      Top = 103
       Width = 26
       Height = 26
       Visible = True
@@ -127,8 +129,8 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
       Version = '3.24'
     end
     object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
-      Left = 703
-      Top = 135
+      Left = 705
+      Top = 103
       Width = 26
       Height = 26
       Visible = True
@@ -176,7 +178,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitHeight = 243
         object GroupBox3: TGroupBox
           Left = 0
           Top = 0
@@ -185,7 +186,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Merge Range with mouse click selection '
           TabOrder = 0
-          ExplicitHeight = 243
           object Label1: TLabel
             AlignWithMargins = True
             Left = 9
@@ -233,7 +233,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Shortcuts '
           TabOrder = 1
-          ExplicitHeight = 243
           object Label2: TLabel
             AlignWithMargins = True
             Left = 9
@@ -276,10 +275,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 264
-        ExplicitTop = 24
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object Label4: TLabel
           Left = 508
           Top = 32
@@ -298,9 +293,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Config Clipboard Options '
           TabOrder = 0
-          ExplicitLeft = 2
-          ExplicitTop = -2
-          ExplicitHeight = 91
           object Label3: TLabel
             Left = 16
             Top = 45
@@ -391,7 +383,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitHeight = 99
         object Label5: TLabel
           Left = 16
           Top = 36
@@ -430,7 +421,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitHeight = 99
       end
     end
     object TabSheet4: TTabSheet
@@ -444,7 +434,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitHeight = 99
         object ckAutoCompleteCaseSensitive: TCheckBox
           Left = 12
           Top = 38
@@ -474,7 +463,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitHeight = 99
       end
     end
     object TabSheet5: TTabSheet
@@ -488,9 +476,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = -3
-        ExplicitTop = -2
-        ExplicitHeight = 99
         object btnShowFindDialogDataGrid: TButton
           AlignWithMargins = True
           Left = 11
@@ -526,14 +511,12 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = -2
-        ExplicitHeight = 99
         object lbInstructions: TLabel
           AlignWithMargins = True
           Left = 120
           Top = 3
-          Width = 1130
-          Height = 93
+          Width = 1108
+          Height = 60
           Caption = 
             'Tip: Select cells with seed values (rows 1-2), then drag the fil' +
             'l handle (small square at selection corner) to auto-fill. Try di' +
@@ -568,8 +551,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = -2
-        ExplicitHeight = 99
         object ckPopupMenuForAll: TCheckBox
           Left = 16
           Top = 18
@@ -594,14 +575,12 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = -2
-        ExplicitHeight = 99
         object Label6: TLabel
           AlignWithMargins = True
           Left = 160
           Top = 4
-          Width = 713
-          Height = 93
+          Width = 637
+          Height = 45
           Caption = 
             'Tip: To add a comment, right-click on a cell and select '#8220'Add Com' +
             'ment'#8221#13#10#13#10'Dica: Para adicionar um coment'#225'rio, clique com o bot'#227'o ' +
@@ -630,8 +609,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = -2
-        ExplicitHeight = 99
         object GroupBox2: TGroupBox
           Left = 185
           Top = 0
@@ -640,7 +617,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' CSV '
           TabOrder = 0
-          ExplicitHeight = 129
           DesignSize = (
             170
             123)
@@ -660,7 +636,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             Caption = 'Import'
             TabOrder = 0
             OnClick = btnImportCSVClick
-            ExplicitTop = 93
           end
           object btnExportCSV: TButton
             Left = 88
@@ -671,7 +646,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             Caption = 'Export'
             TabOrder = 1
             OnClick = btnExportCSVClick
-            ExplicitTop = 93
           end
           object edtDelimiterCSV: TEdit
             Left = 7
@@ -699,7 +673,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Excel (xls) '
           TabOrder = 1
-          ExplicitHeight = 129
+          ExplicitTop = -2
           DesignSize = (
             170
             123)
@@ -722,7 +696,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             Caption = 'Export'
             TabOrder = 1
             OnClick = btnExportExcelClick
-            ExplicitTop = 29
           end
         end
         object GroupBox6: TGroupBox
@@ -733,7 +706,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Proprietary file format '
           TabOrder = 2
-          ExplicitHeight = 129
           DesignSize = (
             170
             123)
@@ -746,7 +718,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             Caption = 'Import'
             TabOrder = 0
             OnClick = btnImportProprietaryClick
-            ExplicitTop = 29
           end
           object btnExportProprietary: TButton
             Left = 88
@@ -757,7 +728,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             Caption = 'Export'
             TabOrder = 1
             OnClick = btnExportProprietaryClick
-            ExplicitTop = 29
           end
         end
         object GroupBox7: TGroupBox
@@ -768,7 +738,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' HTML files '
           TabOrder = 3
-          ExplicitHeight = 129
           DesignSize = (
             88
             123)
@@ -781,7 +750,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
             Caption = 'Export'
             TabOrder = 0
             OnClick = btnExportHTMLClick
-            ExplicitTop = 29
           end
         end
         object GroupBox8: TGroupBox
@@ -792,8 +760,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Configs general '
           TabOrder = 4
-          ExplicitLeft = 1
-          ExplicitTop = -2
           object btnClear2: TButton
             Left = 13
             Top = 50
@@ -821,7 +787,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' PDF '
           TabOrder = 5
-          ExplicitHeight = 129
           DesignSize = (
             88
             123)
@@ -849,9 +814,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = -2
-        ExplicitHeight = 99
       end
     end
     object TabSheet11: TTabSheet

@@ -147,6 +147,12 @@ type
     procedure btnExportPDFClick(Sender: TObject);
     procedure btnImportProprietaryClick(Sender: TObject);
     procedure btnExportProprietaryClick(Sender: TObject);
+    procedure TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord; ACancel: Boolean;
+      AValue: TTMSFNCDataGridCellValue);
+    procedure TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+      AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
+      var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
+    procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
   private
     procedure ConfigDataGrid;
     procedure ConfigClipboardOptions;
@@ -156,6 +162,7 @@ type
     procedure ConfigAutoFill;
     procedure ConfigContextMenu;
     procedure ConfigDataGridExcel;
+    procedure AddRowCalculation;
   public
 
   end;
@@ -174,6 +181,7 @@ begin
   TMSFNCDataGrid1.LoadFromCSVData('..\Data\products.csv');
 
   Self.ConfigDataGrid;
+  Self.AddRowCalculation;
 end;
 
 procedure TExcelBehaviorsMain.ckEnableShortcutsClick(Sender: TObject);
@@ -198,6 +206,44 @@ begin
 
   //Abrir arquivo após exportações / Open file after export operations
   TMSFNCDataGrid1.Options.IO.OpenAfterCreation := ckOpenAfterCreation.Checked;
+
+  //Cor da celula com foco / Cell color in focus
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := $00FFD9B3; //$00FF980D
+  //Cor das celulas selecionadas / Color of selected cells
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := $00FFD9B3; //$00FFAC3C;
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Style := [TFontStyle.fsBold]
+end;
+
+procedure TExcelBehaviorsMain.AddRowCalculation;
+begin
+  TMSFNCDataGrid1.RowCount := TMSFNCDataGrid1.RowCount + 2;
+  TMSFNCDataGrid1.FixedBottomRowCount := 2;
+
+  var LRowTitles := Pred(TMSFNCDataGrid1.RowCount);
+
+  TMSFNCDataGrid1.Cells[0, LRowTitles] := 'Count';
+  TMSFNCDataGrid1.Cells[2, LRowTitles] := 'Distinct';
+  TMSFNCDataGrid1.Cells[4, LRowTitles] := 'SUM';
+  TMSFNCDataGrid1.Cells[5, LRowTitles] := 'AVG';
+  TMSFNCDataGrid1.Cells[6, LRowTitles] := 'MAX';
+
+  TMSFNCDataGrid1.ColumnCalculations[0, 'Count'] := [CreateNormalColumnCalculation(gcmCount)];
+  TMSFNCDataGrid1.ColumnCalculations[2, 'Distinct'] := [CreateNormalColumnCalculation(gcmDistinct)];
+  TMSFNCDataGrid1.ColumnCalculations[4, 'Sum'] := [CreateNormalColumnCalculation(gcmSum)];
+  TMSFNCDataGrid1.ColumnCalculations[5, 'AVG'] := [CreateNormalColumnCalculation(gcmAverage)];
+  TMSFNCDataGrid1.ColumnCalculations[6, 'MAX'] := [CreateNormalColumnCalculation(gcmMax)];
+
+  TMSFNCDataGrid1.UpdateCalculations;
+end;
+
+procedure TExcelBehaviorsMain.TMSFNCDataGrid1AfterCloseInplaceEditor(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+  ACancel: Boolean; AValue: TTMSFNCDataGridCellValue);
+begin
+  if ACancel then
+    Exit;
+
+  //WHEN VALUE OF A CELL IS CHANGED, THE TOTALS ARE RECALCULATED / QUANDO VALOR DE UMA CELULA E ALTERADO, OS TOTAIS SAO RECALCULADOS
+  TMSFNCDataGrid1.UpdateCalculations;
 end;
 
 procedure TExcelBehaviorsMain.ConfigClipboardOptions;
@@ -258,6 +304,10 @@ begin
   TMSFNCDataGrid1.Clear;
   TMSFNCDataGrid1.RowCount := 1;
   TMSFNCDataGrid1.ColumnCount := 1;
+  TMSFNCDataGrid1.FixedRowCount := 0;
+  TMSFNCDataGrid1.FixedBottomRowCount := 0;
+  TMSFNCDataGrid1.FixedColumnCount := 0;
+  TMSFNCDataGrid1.FixedRightColumnCount := 0;
 end;
 
 procedure TExcelBehaviorsMain.btnRangeMouseMergeClick(Sender: TObject);
@@ -289,9 +339,7 @@ begin
         Break;
       end
       else
-      begin
         ShowMessage('Files with the '+ ExtractFileExt(LControlDropFiles.Files[i]) + ' extension are not accepted.');
-      end;
     end;
 
     Accept := LAccept;
@@ -455,6 +503,73 @@ end;
 procedure TExcelBehaviorsMain.btnExportProprietaryClick(Sender: TObject);
 begin
   TMSFNCDataGrid1.SaveToFileData(TUtils.GetNameFileProprietary);
+end;
+
+procedure TExcelBehaviorsMain.TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+  AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
+  var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
+begin
+  //IGNORE CELLS WITH TITLES IN THE HEADER AND FOOTER
+  if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Row = Pred(TMSFNCDataGrid1.RowCount)) then
+    Exit;
+
+  var LValueStr := TMSFNCDataGrid1.ValueToString(AData);
+  var LValueDouble: Double := 0;
+  if TryStrToFloat(LValueStr, LValueDouble) then
+  begin
+    ACanFormat := True;
+    AFormatting.&Type := gdftFloat;
+    AFormatting.Format := '#,##0.00';
+  end;
+end;
+
+procedure TExcelBehaviorsMain.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
+begin
+  //IF ROW OR COLUMN IS FIXED IN TOP
+  if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Column < TMSFNCDataGrid1.FixedColumnCount) then
+  begin
+    ACell.Layout.Font.Color := clHotLight;
+    ACell.Layout.Font.Style := ACell.Layout.Font.Style + [TFontStyle.fsBold];
+    Exit;
+  end;
+
+  //IF IT IS A CELL PHONE THAT IS SELECTED / SE FOR UMA CELULA QUE ESTA SELECIONADA
+  if TMSFNCDataGrid1.SelectedCells[ACell.Column, ACell.Row] then
+    Exit;
+
+  //IF THE ROW IS SELECTED/FOCUSED
+  if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
+  begin
+    ACell.Layout.Fill.Color := $00FFEFDF;
+  end
+  //IF THE CELL IS NOT SELECTED/FOCUSED
+  else
+  begin
+    //ZEBRAR
+    if Odd(ACell.Row) then
+      ACell.Layout.Fill.Color := $00F5F5F5
+    else
+      ACell.Layout.Fill.Color := $00E4E4E4;
+  end;
+
+  //IF THE ROW AND COLUMN IS SELECTED/FOCUSED
+  if (ACell.Row = TMSFNCDataGrid1.FocusedCell.Row) and  (ACell.Column = TMSFNCDataGrid1.FocusedCell.Column) then
+    ACell.Layout.Font.Style := ACell.Layout.Font.Style + [fsUnderline];
+
+  //ALIGNMENT
+  var LValueStr := TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;; //TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
+  var LValueDouble: Double := 0;
+  if TryStrToFloat(LValueStr, LValueDouble) then
+  begin
+    ACell.Layout.TextAlign := gtaTrailing;
+  end;
+
+  //FIXED LINES AT THE BOTTOM / LINHAS FIXAS NO RODAPE
+  if ACell.Row >= TMSFNCDataGrid1.RowCount - TMSFNCDataGrid1.FixedBottomRowCount then
+  begin
+    ACell.Layout.Font.Style := ACell.Layout.Font.Style + [fsBold];
+    ACell.Layout.TextAlign := gtaTrailing;
+  end;
 end;
 
 end.

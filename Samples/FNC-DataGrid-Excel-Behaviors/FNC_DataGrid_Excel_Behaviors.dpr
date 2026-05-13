@@ -10,7 +10,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'TMS FNC DataGrid - Cell Merging Splitting';
+  Application.Title := 'TMS FNC DataGrid - Excel Behaviors';
   Application.CreateForm(TExcelBehaviorsMain, ExcelBehaviorsMain);
   Application.Run;
 end.
