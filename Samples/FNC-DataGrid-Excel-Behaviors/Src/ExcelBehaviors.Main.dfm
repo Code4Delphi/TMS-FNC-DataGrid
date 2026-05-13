@@ -116,6 +116,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
+    ExplicitLeft = 8
     ExplicitTop = 155
     object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
       Left = 503
@@ -165,7 +166,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Top = 0
     Width = 1261
     Height = 153
-    ActivePage = TabSheet9
+    ActivePage = tabKeyboard
     Align = alTop
     TabOrder = 2
     object TabSheet1: TTabSheet
@@ -803,10 +804,10 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         end
       end
     end
-    object TabSheet10: TTabSheet
-      Caption = 'TabSheet10'
+    object tabKeyboard: TTabSheet
+      Caption = 'Keyboard'
       ImageIndex = 9
-      object Panel10: TPanel
+      object pnKeyboard: TPanel
         Left = 0
         Top = 0
         Width = 1253
@@ -814,6 +815,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitTop = -2
       end
     end
     object TabSheet11: TTabSheet

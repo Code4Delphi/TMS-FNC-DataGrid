@@ -99,10 +99,10 @@ type
     TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
     TabSheet9: TTabSheet;
-    TabSheet10: TTabSheet;
+    tabKeyboard: TTabSheet;
     TabSheet11: TTabSheet;
     TabSheet12: TTabSheet;
-    Panel10: TPanel;
+    pnKeyboard: TPanel;
     Panel11: TPanel;
     Panel12: TPanel;
     Panel9: TPanel;
@@ -163,6 +163,7 @@ type
     procedure ConfigContextMenu;
     procedure ConfigDataGridExcel;
     procedure AddRowCalculation;
+    procedure ConfigKeyboardOptions;
   public
 
   end;
@@ -203,6 +204,7 @@ begin
   Self.ConfigAutoComplete;
   Self.ConfigAutoFill;
   Self.ConfigContextMenu;
+  Self.ConfigKeyboardOptions;
 
   //Abrir arquivo após exportações / Open file after export operations
   TMSFNCDataGrid1.Options.IO.OpenAfterCreation := ckOpenAfterCreation.Checked;
@@ -292,6 +294,11 @@ begin
 
   if ckPopupMenuForAll.Checked then
     TMSFNCDataGrid1.CellPopupMenu := PopupMenuCell;
+end;
+
+procedure TExcelBehaviorsMain.ConfigKeyboardOptions;
+begin
+
 end;
 
 procedure TExcelBehaviorsMain.btnClearGridClick(Sender: TObject);
