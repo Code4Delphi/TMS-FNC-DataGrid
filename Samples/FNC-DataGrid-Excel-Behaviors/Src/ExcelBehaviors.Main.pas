@@ -39,7 +39,6 @@ uses
 
 type
   TExcelBehaviorsMain = class(TForm)
-    StatusBar1: TStatusBar;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     PageControl1: TPageControl;
     tabMergeSplit: TTabSheet;

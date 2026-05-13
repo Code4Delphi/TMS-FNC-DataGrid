@@ -4,7 +4,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
   Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Excel Behaviors'
-  ClientHeight = 681
+  ClientHeight = 691
   ClientWidth = 1261
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,29 +16,16 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 662
-    Width = 1261
-    Height = 19
-    Panels = <
-      item
-        Width = 500
-      end
-      item
-        Width = 50
-      end>
-  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 153
     Width = 1261
-    Height = 509
+    Height = 538
     Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 0
     OnDragOver = TMSFNCDataGrid1DragOver
     OnKeyDown = TMSFNCDataGrid1KeyDown
     ShowAcceleratorChar = False
@@ -117,7 +104,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitTop = 155
+    ExplicitHeight = 509
     object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
       Left = 503
       Top = 103
@@ -166,9 +153,9 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Top = 0
     Width = 1261
     Height = 153
-    ActivePage = TabSheet9
+    ActivePage = tabMergeSplit
     Align = alTop
-    TabOrder = 2
+    TabOrder = 1
     TabStop = False
     object tabMergeSplit: TTabSheet
       Caption = 'Merge / Split'
