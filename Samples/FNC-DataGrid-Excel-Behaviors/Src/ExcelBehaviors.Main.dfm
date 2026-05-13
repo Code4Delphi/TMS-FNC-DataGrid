@@ -116,7 +116,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitLeft = 8
     ExplicitTop = 155
     object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
       Left = 503
@@ -414,15 +413,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           OnClick = ckEnableShortcutsClick
         end
       end
-      object Panel11: TPanel
-        Left = 0
-        Top = 0
-        Width = 1253
-        Height = 123
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 1
-      end
     end
     object TabSheet4: TTabSheet
       Caption = 'Auto Complete'
@@ -450,20 +440,9 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Width = 73
           Height = 17
           Caption = 'Enabled'
-          Checked = True
-          State = cbChecked
           TabOrder = 1
           OnClick = ckEnableShortcutsClick
         end
-      end
-      object Panel12: TPanel
-        Left = 0
-        Top = 0
-        Width = 1253
-        Height = 123
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 1
       end
     end
     object TabSheet5: TTabSheet
@@ -674,7 +653,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alLeft
           Caption = ' Excel (xls) '
           TabOrder = 1
-          ExplicitTop = -2
           DesignSize = (
             170
             123)
@@ -815,16 +793,362 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = -2
+        object gBoxTabKey: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 217
+          Height = 123
+          Align = alLeft
+          Caption = ' Tab Key '
+          TabOrder = 0
+          object lbTabKeyHandling: TLabel
+            Left = 8
+            Top = 20
+            Width = 71
+            Height = 15
+            Caption = 'Key Handling'
+          end
+          object lbTabKeyDirection: TLabel
+            Left = 8
+            Top = 66
+            Width = 70
+            Height = 15
+            Caption = 'Key Direction'
+          end
+          object cBoxTabKeyHandling: TComboBox
+            Left = 8
+            Top = 36
+            Width = 122
+            Height = 23
+            Hint = 'Define como a tecla Tab se comporta dentro do grid.'
+            Style = csDropDownList
+            ItemIndex = 1
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            Text = 'Next Cell'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'Next Control'
+              'Next Cell'
+              'Mixed')
+          end
+          object cBoxTabKeyDirection: TComboBox
+            Left = 8
+            Top = 82
+            Width = 122
+            Height = 23
+            Hint = 'Define se a tecla Tab avanca por coluna ou por linha.'
+            Style = csDropDownList
+            ItemIndex = 0
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            Text = 'Next Column Cell'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'Next Column Cell'
+              'Next Row Cell')
+          end
+          object ckTabKeyDirectEdit: TCheckBox
+            Left = 135
+            Top = 39
+            Width = 76
+            Height = 17
+            Hint = 
+              'Inicia a edicao automaticamente quando a tecla Tab chega em uma ' +
+              'celula.'
+            Caption = 'Direct Edit'
+            Checked = True
+            ParentShowHint = False
+            ShowHint = True
+            State = cbChecked
+            TabOrder = 2
+            OnClick = ckEnableShortcutsClick
+          end
+        end
+        object gBoxEnterKey: TGroupBox
+          Left = 217
+          Top = 0
+          Width = 212
+          Height = 123
+          Align = alLeft
+          Caption = ' Enter Key '
+          TabOrder = 1
+          object lbEnterKeyHandling: TLabel
+            Left = 8
+            Top = 20
+            Width = 71
+            Height = 15
+            Caption = 'Key Handling'
+          end
+          object cBoxEnterKeyHandling: TComboBox
+            Left = 8
+            Top = 36
+            Width = 197
+            Height = 23
+            Hint = 'Define a acao executada ao pressionar Enter no grid.'
+            Style = csDropDownList
+            ItemIndex = 2
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            Text = 'Next Row'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'None'
+              'Next Column'
+              'Next Row'
+              'Next Column In Row'
+              'Next Row In Column'
+              'Next Column And Append'
+              'Next Row And Append'
+              'Next Row And Column Append'
+              'Next Column And Row Append')
+          end
+          object ckEnterKeyDirectEdit: TCheckBox
+            Left = 8
+            Top = 72
+            Width = 76
+            Height = 17
+            Hint = 
+              'Inicia a edicao automaticamente quando Enter move para outra cel' +
+              'ula.'
+            Caption = 'Direct Edit'
+            Checked = True
+            ParentShowHint = False
+            ShowHint = True
+            State = cbChecked
+            TabOrder = 1
+            OnClick = ckEnableShortcutsClick
+          end
+        end
+        object gBoxArrowKeys: TGroupBox
+          Left = 429
+          Top = 0
+          Width = 234
+          Height = 123
+          Align = alLeft
+          Caption = ' Arrow Keys '
+          TabOrder = 2
+          object ckAppendRowOnArrowKeyDown: TCheckBox
+            Left = 8
+            Top = 24
+            Width = 206
+            Height = 17
+            Hint = 
+              'Adiciona uma nova linha ao navegar para baixo alem da ultima lin' +
+              'ha.'
+            Caption = 'Append Row On Arrow Key Down'
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            OnClick = ckEnableShortcutsClick
+          end
+          object ckAppendColumnOnArrowKeyRight: TCheckBox
+            Left = 8
+            Top = 50
+            Width = 222
+            Height = 17
+            Hint = 
+              'Adiciona uma nova coluna ao navegar para a direita alem da ultim' +
+              'a coluna.'
+            Caption = 'Append Column On Arrow Key Right'
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            OnClick = ckEnableShortcutsClick
+          end
+          object ckArrowKeyDirectEdit: TCheckBox
+            Left = 8
+            Top = 76
+            Width = 86
+            Height = 17
+            Hint = 'Inicia a edicao automaticamente ao navegar com as setas.'
+            Caption = 'Direct Edit'
+            Checked = True
+            ParentShowHint = False
+            ShowHint = True
+            State = cbChecked
+            TabOrder = 2
+            OnClick = ckEnableShortcutsClick
+          end
+        end
+        object gBoxOtherKeys: TGroupBox
+          Left = 663
+          Top = 0
+          Width = 590
+          Height = 123
+          Align = alClient
+          Caption = ' Other Keys '
+          TabOrder = 3
+          ExplicitLeft = 665
+          ExplicitTop = -2
+          object lbDeleteKeyHandling: TLabel
+            Left = 8
+            Top = 20
+            Width = 85
+            Height = 15
+            Caption = 'Delete Handling'
+          end
+          object lbInsertKeyHandling: TLabel
+            Left = 148
+            Top = 20
+            Width = 81
+            Height = 15
+            Caption = 'Insert Handling'
+          end
+          object lbHomeKeyHandling: TLabel
+            Left = 286
+            Top = 20
+            Width = 85
+            Height = 15
+            Caption = 'Home Handling'
+          end
+          object lbEndKeyHandling: TLabel
+            Left = 402
+            Top = 20
+            Width = 72
+            Height = 15
+            Caption = 'End Handling'
+          end
+          object lbPageScrollSize: TLabel
+            Left = 8
+            Top = 88
+            Width = 81
+            Height = 15
+            Caption = 'Page Scroll Size'
+          end
+          object cBoxDeleteKeyHandling: TComboBox
+            Left = 8
+            Top = 36
+            Width = 133
+            Height = 23
+            Hint = 'Define o que a tecla Delete faz no grid.'
+            Style = csDropDownList
+            ItemIndex = 2
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            Text = 'Clear Selected Cells'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'None'
+              'Delete Row'
+              'Clear Selected Cells')
+          end
+          object cBoxInsertKeyHandling: TComboBox
+            Left = 148
+            Top = 36
+            Width = 133
+            Height = 23
+            Hint = 'Define o que a tecla Insert faz no grid.'
+            Style = csDropDownList
+            ItemIndex = 1
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            Text = 'Insert Row Before'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'None'
+              'Insert Row Before'
+              'Insert Row After')
+          end
+          object cBoxHomeKeyHandling: TComboBox
+            Left = 286
+            Top = 36
+            Width = 112
+            Height = 23
+            Hint = 'Define para onde a tecla Home navega.'
+            Style = csDropDownList
+            ItemIndex = 2
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+            Text = 'First Column'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'None'
+              'First Row'
+              'First Column')
+          end
+          object cBoxEndKeyHandling: TComboBox
+            Left = 402
+            Top = 36
+            Width = 112
+            Height = 23
+            Hint = 'Define para onde a tecla End navega.'
+            Style = csDropDownList
+            ItemIndex = 2
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 3
+            Text = 'Last Column'
+            OnChange = ckEnableShortcutsClick
+            Items.Strings = (
+              'None'
+              'Last Row'
+              'Last Column')
+          end
+          object edtPageScrollSize: TEdit
+            Left = 92
+            Top = 84
+            Width = 41
+            Height = 23
+            Hint = 
+              'Define a quantidade de linhas roladas por Page Up e Page Down. U' +
+              'se 0 para uma pagina.'
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 4
+            Text = '0'
+            OnChange = ckEnableShortcutsClick
+          end
+          object ckFindShortcut: TCheckBox
+            Left = 152
+            Top = 86
+            Width = 84
+            Height = 17
+            Hint = 'Habilita o atalho Ctrl+F para abrir a janela de pesquisa.'
+            Caption = 'Find Ctrl+F'
+            Checked = True
+            ParentShowHint = False
+            ShowHint = True
+            State = cbChecked
+            TabOrder = 5
+            OnClick = ckEnableShortcutsClick
+          end
+          object ckReplaceShortcut: TCheckBox
+            Left = 241
+            Top = 86
+            Width = 106
+            Height = 17
+            Hint = 'Habilita o atalho Ctrl+H para abrir a janela de substituir.'
+            Caption = 'Replace Ctrl+H'
+            Checked = True
+            ParentShowHint = False
+            ShowHint = True
+            State = cbChecked
+            TabOrder = 6
+            OnClick = ckEnableShortcutsClick
+          end
+          object ckCellMergeShortcut: TCheckBox
+            Left = 353
+            Top = 86
+            Width = 141
+            Height = 17
+            Hint = 'Habilita os atalhos para mesclar e dividir celulas.'
+            Caption = 'Merge / Split Shortcut'
+            Checked = True
+            ParentShowHint = False
+            ShowHint = True
+            State = cbChecked
+            TabOrder = 7
+            OnClick = ckEnableShortcutsClick
+          end
+        end
       end
-    end
-    object TabSheet11: TTabSheet
-      Caption = 'TabSheet11'
-      ImageIndex = 10
-    end
-    object TabSheet12: TTabSheet
-      Caption = 'TabSheet12'
-      ImageIndex = 11
     end
   end
   object PopupMenuCell: TPopupMenu

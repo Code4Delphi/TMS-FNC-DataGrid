@@ -100,11 +100,7 @@ type
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
     TabSheet9: TTabSheet;
     tabKeyboard: TTabSheet;
-    TabSheet11: TTabSheet;
-    TabSheet12: TTabSheet;
     pnKeyboard: TPanel;
-    Panel11: TPanel;
-    Panel12: TPanel;
     Panel9: TPanel;
     GroupBox2: TGroupBox;
     Label7: TLabel;
@@ -125,6 +121,34 @@ type
     GroupBox9: TGroupBox;
     btnExportPDF: TButton;
     ckOpenAfterCreation: TCheckBox;
+    gBoxTabKey: TGroupBox;
+    lbTabKeyHandling: TLabel;
+    lbTabKeyDirection: TLabel;
+    cBoxTabKeyHandling: TComboBox;
+    cBoxTabKeyDirection: TComboBox;
+    ckTabKeyDirectEdit: TCheckBox;
+    gBoxEnterKey: TGroupBox;
+    lbEnterKeyHandling: TLabel;
+    cBoxEnterKeyHandling: TComboBox;
+    ckEnterKeyDirectEdit: TCheckBox;
+    gBoxArrowKeys: TGroupBox;
+    ckAppendRowOnArrowKeyDown: TCheckBox;
+    ckAppendColumnOnArrowKeyRight: TCheckBox;
+    ckArrowKeyDirectEdit: TCheckBox;
+    gBoxOtherKeys: TGroupBox;
+    lbDeleteKeyHandling: TLabel;
+    lbInsertKeyHandling: TLabel;
+    lbHomeKeyHandling: TLabel;
+    lbEndKeyHandling: TLabel;
+    lbPageScrollSize: TLabel;
+    cBoxDeleteKeyHandling: TComboBox;
+    cBoxInsertKeyHandling: TComboBox;
+    cBoxHomeKeyHandling: TComboBox;
+    cBoxEndKeyHandling: TComboBox;
+    ckFindShortcut: TCheckBox;
+    ckReplaceShortcut: TCheckBox;
+    ckCellMergeShortcut: TCheckBox;
+    edtPageScrollSize: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnRangeMouseMergeClick(Sender: TObject);
     procedure btnRangeMouseSplitClick(Sender: TObject);
@@ -187,6 +211,11 @@ end;
 
 procedure TExcelBehaviorsMain.ckEnableShortcutsClick(Sender: TObject);
 begin
+  if Sender = ckEnableShortcuts then
+    ckCellMergeShortcut.Checked := ckEnableShortcuts.Checked
+  else if Sender = ckCellMergeShortcut then
+    ckEnableShortcuts.Checked := ckCellMergeShortcut.Checked;
+
   Self.ConfigDataGrid;
 end;
 
@@ -298,7 +327,93 @@ end;
 
 procedure TExcelBehaviorsMain.ConfigKeyboardOptions;
 begin
+  case cBoxTabKeyHandling.ItemIndex of
+    0:
+      TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhNextControl;
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhNextCell;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhMixed;
+  end;
 
+  case cBoxTabKeyDirection.ItemIndex of
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.TabKeyDirection := gtkdNextRowCell;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.TabKeyDirection := gtkdNextColumnCell;
+  end;
+
+  case cBoxEnterKeyHandling.ItemIndex of
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumn;
+    2:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRow;
+    3:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnInRow;
+    4:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowInColumn;
+    5:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnAndAppend;
+    6:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowAndAppend;
+    7:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowAndColumnAppend;
+    8:
+      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnAndRowAppend;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNone;
+  end;
+
+  case cBoxDeleteKeyHandling.ItemIndex of
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhDeleteRow;
+    2:
+      TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhClearSelectedCells;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhNone;
+  end;
+
+  case cBoxInsertKeyHandling.ItemIndex of
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowBefore;
+    2:
+      TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowAfter;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhNone;
+  end;
+
+  case cBoxHomeKeyHandling.ItemIndex of
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhFirstRow;
+    2:
+      TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhFirstColumn;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhNone;
+  end;
+
+  case cBoxEndKeyHandling.ItemIndex of
+    1:
+      TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhLastRow;
+    2:
+      TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhLastColumn;
+  else
+    TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhNone;
+  end;
+
+  TMSFNCDataGrid1.Options.Keyboard.TabKeyDirectEdit := ckTabKeyDirectEdit.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.EnterKeyDirectEdit := ckEnterKeyDirectEdit.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.AppendRowOnArrowKeyDown := ckAppendRowOnArrowKeyDown.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.AppendColumnOnArrowKeyRight := ckAppendColumnOnArrowKeyRight.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.ArrowKeyDirectEdit := ckArrowKeyDirectEdit.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.FindShortcut := ckFindShortcut.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.ReplaceShortcut := ckReplaceShortcut.Checked;
+  TMSFNCDataGrid1.Options.Keyboard.CellMergeShortCut := ckCellMergeShortcut.Checked;
+
+  var LPageScrollSize := 0;
+  if not TryStrToInt(edtPageScrollSize.Text, LPageScrollSize) then
+    edtPageScrollSize.Text := '0';
+
+  TMSFNCDataGrid1.Options.Keyboard.PageScrollSize := LPageScrollSize;
 end;
 
 procedure TExcelBehaviorsMain.btnClearGridClick(Sender: TObject);
