@@ -42,7 +42,7 @@ type
     StatusBar1: TStatusBar;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
+    tabMergeSplit: TTabSheet;
     Panel2: TPanel;
     GroupBox3: TGroupBox;
     Label1: TLabel;
@@ -177,6 +177,7 @@ type
       AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
       var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
     procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
+    procedure TMSFNCDataGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     procedure ConfigDataGrid;
     procedure ConfigClipboardOptions;
@@ -207,6 +208,8 @@ begin
 
   Self.ConfigDataGrid;
   Self.AddRowCalculation;
+
+  tabMergeSplit.Show;
 end;
 
 procedure TExcelBehaviorsMain.ckEnableShortcutsClick(Sender: TObject);
@@ -328,74 +331,55 @@ end;
 procedure TExcelBehaviorsMain.ConfigKeyboardOptions;
 begin
   case cBoxTabKeyHandling.ItemIndex of
-    0:
-      TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhNextControl;
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhNextCell;
+    0: TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhNextControl;
+    1: TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhNextCell;
   else
     TMSFNCDataGrid1.Options.Keyboard.TabKeyHandling := gtkhMixed;
   end;
 
   case cBoxTabKeyDirection.ItemIndex of
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.TabKeyDirection := gtkdNextRowCell;
+    1: TMSFNCDataGrid1.Options.Keyboard.TabKeyDirection := gtkdNextRowCell;
   else
     TMSFNCDataGrid1.Options.Keyboard.TabKeyDirection := gtkdNextColumnCell;
   end;
 
   case cBoxEnterKeyHandling.ItemIndex of
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumn;
-    2:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRow;
-    3:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnInRow;
-    4:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowInColumn;
-    5:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnAndAppend;
-    6:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowAndAppend;
-    7:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowAndColumnAppend;
-    8:
-      TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnAndRowAppend;
+    1: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumn;
+    2: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRow;
+    3: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnInRow;
+    4: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowInColumn;
+    5: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnAndAppend;
+    6: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowAndAppend;
+    7: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextRowAndColumnAppend;
+    8: TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNextColumnAndRowAppend;
   else
     TMSFNCDataGrid1.Options.Keyboard.EnterKeyHandling := gekhNone;
   end;
 
   case cBoxDeleteKeyHandling.ItemIndex of
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhDeleteRow;
-    2:
-      TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhClearSelectedCells;
+    1: TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhDeleteRow;
+    2: TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhClearSelectedCells;
   else
     TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhNone;
   end;
 
   case cBoxInsertKeyHandling.ItemIndex of
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowBefore;
-    2:
-      TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowAfter;
+    1: TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowBefore;
+    2: TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowAfter;
   else
     TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhNone;
   end;
 
   case cBoxHomeKeyHandling.ItemIndex of
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhFirstRow;
-    2:
-      TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhFirstColumn;
+    1: TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhFirstRow;
+    2: TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhFirstColumn;
   else
     TMSFNCDataGrid1.Options.Keyboard.HomeKeyHandling := ghkhNone;
   end;
 
   case cBoxEndKeyHandling.ItemIndex of
-    1:
-      TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhLastRow;
-    2:
-      TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhLastColumn;
+    1: TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhLastRow;
+    2: TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhLastColumn;
   else
     TMSFNCDataGrid1.Options.Keyboard.EndKeyHandling := genkhNone;
   end;
@@ -691,6 +675,39 @@ begin
   begin
     ACell.Layout.Font.Style := ACell.Layout.Font.Style + [fsBold];
     ACell.Layout.TextAlign := gtaTrailing;
+  end;
+end;
+
+procedure TExcelBehaviorsMain.TMSFNCDataGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if ssCtrl in Shift then
+  begin
+    if TMSFNCDataGrid1.ColumnCount <= TMSFNCDataGrid1.FixedColumnCount + TMSFNCDataGrid1.FixedRightColumnCount then
+      Exit;
+
+    if TMSFNCDataGrid1.RowCount <= TMSFNCDataGrid1.FixedRowCount + TMSFNCDataGrid1.FixedBottomRowCount then
+      Exit;
+
+    case Key of
+      VK_HOME:
+      begin
+        var LCell := MakeCell(TMSFNCDataGrid1.FocusedCell.Column, TMSFNCDataGrid1.FixedRowCount);
+        TMSFNCDataGrid1.SelectCell(LCell);
+        TMSFNCDataGrid1.LeftColumn := LCell.Column;
+        TMSFNCDataGrid1.TopRow := LCell.Row;
+        Key := 0;
+      end;
+      VK_END:
+      begin
+        var LCell := MakeCell(
+          TMSFNCDataGrid1.FocusedCell.Column,
+          Pred(TMSFNCDataGrid1.RowCount - TMSFNCDataGrid1.FixedBottomRowCount));
+        TMSFNCDataGrid1.SelectCell(LCell);
+        TMSFNCDataGrid1.LeftColumn := LCell.Column;
+        TMSFNCDataGrid1.TopRow := LCell.Row;
+        Key := 0;
+      end;
+    end;
   end;
 end;
 

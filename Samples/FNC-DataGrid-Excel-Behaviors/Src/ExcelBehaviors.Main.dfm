@@ -40,6 +40,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     DoubleBuffered = True
     TabOrder = 1
     OnDragOver = TMSFNCDataGrid1DragOver
+    OnKeyDown = TMSFNCDataGrid1KeyDown
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -165,10 +166,11 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Top = 0
     Width = 1261
     Height = 153
-    ActivePage = tabKeyboard
+    ActivePage = TabSheet9
     Align = alTop
     TabOrder = 2
-    object TabSheet1: TTabSheet
+    TabStop = False
+    object tabMergeSplit: TTabSheet
       Caption = 'Merge / Split'
       object Panel2: TPanel
         Left = 0
@@ -520,30 +522,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
         end
       end
     end
-    object TabSheet7: TTabSheet
-      Caption = 'Context Menu'
-      ImageIndex = 6
-      object Panel8: TPanel
-        Left = 0
-        Top = 0
-        Width = 1253
-        Height = 123
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 0
-        object ckPopupMenuForAll: TCheckBox
-          Left = 16
-          Top = 18
-          Width = 169
-          Height = 17
-          Caption = 'Set PopupMenu for all cells'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-          OnClick = ckEnableShortcutsClick
-        end
-      end
-    end
     object TabSheet8: TTabSheet
       Caption = 'Comments'
       ImageIndex = 7
@@ -575,6 +553,30 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Caption = 'Clear comments'
           TabOrder = 0
           OnClick = btnClearCommentsClick
+        end
+      end
+    end
+    object TabSheet7: TTabSheet
+      Caption = 'Context Menu'
+      ImageIndex = 6
+      object Panel8: TPanel
+        Left = 0
+        Top = 0
+        Width = 1253
+        Height = 123
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 0
+        object ckPopupMenuForAll: TCheckBox
+          Left = 16
+          Top = 18
+          Width = 169
+          Height = 17
+          Caption = 'Set PopupMenu for all cells'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+          OnClick = ckEnableShortcutsClick
         end
       end
     end
@@ -982,8 +984,6 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
           Align = alClient
           Caption = ' Other Keys '
           TabOrder = 3
-          ExplicitLeft = 665
-          ExplicitTop = -2
           object lbDeleteKeyHandling: TLabel
             Left = 8
             Top = 20
