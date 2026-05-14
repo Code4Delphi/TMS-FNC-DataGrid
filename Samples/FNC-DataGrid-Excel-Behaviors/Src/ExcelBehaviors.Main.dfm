@@ -104,7 +104,7 @@ object ExcelBehaviorsMain: TExcelBehaviorsMain
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
-    ExplicitHeight = 509
+    ExplicitTop = 155
     object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
       Left = 503
       Top = 103
