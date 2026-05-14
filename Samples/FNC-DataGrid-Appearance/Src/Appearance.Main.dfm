@@ -2,7 +2,6 @@ object AppearanceMain: TAppearanceMain
   Left = 0
   Top = 0
   Cursor = crHandPoint
-  ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Appearance'
   ClientHeight = 671
   ClientWidth = 1261
@@ -16,37 +15,15 @@ object AppearanceMain: TAppearanceMain
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 652
-    Width = 1261
-    Height = 19
-    Panels = <
-      item
-        Width = 500
-      end
-      item
-        Width = 50
-      end>
-  end
-  object Panel1: TPanel
+  object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 0
     Width = 1261
-    Height = 17
-    Align = alTop
-    BevelOuter = bvNone
-    TabOrder = 1
-  end
-  object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Left = 0
-    Top = 17
-    Width = 1261
-    Height = 635
+    Height = 671
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 2
+    TabOrder = 0
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -113,10 +90,12 @@ object AppearanceMain: TAppearanceMain
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnAfterDrawCell = TMSFNCDataGrid1AfterDrawCell
+    OnBeforeDrawCell = TMSFNCDataGrid1BeforeDrawCell
+    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
-    Options.Column.Stretching.Enabled = True
-    Options.Editing.Enabled = False
-    ExplicitTop = 11
+    ExplicitTop = 8
+    ExplicitHeight = 652
   end
 end
