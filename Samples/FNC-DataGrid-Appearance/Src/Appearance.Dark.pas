@@ -99,9 +99,9 @@ begin
     TMSFNCDataGrid1.Options.IO.Delimiter := ';';
     TMSFNCDataGrid1.Options.IO.StartColumn := 0;
     TMSFNCDataGrid1.Options.IO.StartRow := 0;
-    TMSFNCDataGrid1.Options.Editing.Enabled := False;
-    TMSFNCDataGrid1.Options.Filtering.Enabled := False;
-    TMSFNCDataGrid1.Options.Sorting.Enabled := False;
+    TMSFNCDataGrid1.Options.Editing.Enabled := True;
+    TMSFNCDataGrid1.Options.Filtering.Enabled := True;
+    TMSFNCDataGrid1.Options.Sorting.Enabled := True;
     TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
     TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
     TMSFNCDataGrid1.DefaultRowHeight := 76;
