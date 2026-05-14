@@ -45,7 +45,6 @@ type
     procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
   private
     procedure ConfigDataGrid;
-    procedure ConfigColumns;
     procedure ConfigAppearance;
     function AvatarColor(ARow: Integer): TColor;
     procedure DrawPill(AGraphics: TTMSFNCGraphics; const ARect: TRectF; AColor: TColor);
@@ -89,7 +88,6 @@ begin
   FormatSettings.DecimalSeparator := '.';
   Self.ConfigDataGrid;
   TMSFNCDataGrid1.LoadFromCSVData('..\Data\customers.csv');
-  Self.ConfigColumns;
   Self.ConfigAppearance;
 end;
 
@@ -148,24 +146,6 @@ begin
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
-end;
-
-procedure TAppearanceMain.ConfigColumns;
-begin
-  TMSFNCDataGrid1.Columns[COL_CUSTOMER_ID].Width := 190;
-  TMSFNCDataGrid1.Columns[COL_NAME].Width := 290;
-  TMSFNCDataGrid1.Columns[COL_JOINED].Width := 190;
-  TMSFNCDataGrid1.Columns[COL_STATUS].Width := 190;
-  TMSFNCDataGrid1.Columns[COL_PROGRESS].Width := 190;
-  TMSFNCDataGrid1.Columns[COL_TARGET].Width := 190;
-
-  for var LRow := 0 to Pred(TMSFNCDataGrid1.RowCount) do
-  begin
-    if LRow = 0 then
-      TMSFNCDataGrid1.RowHeights[LRow] := 78
-    else
-      TMSFNCDataGrid1.RowHeights[LRow] := 76;
-  end;
 end;
 
 function TAppearanceMain.FormatTarget(AValue: Double): string;
