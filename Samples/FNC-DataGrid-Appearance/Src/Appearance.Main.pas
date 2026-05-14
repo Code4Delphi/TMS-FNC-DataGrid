@@ -281,6 +281,8 @@ begin
 
   if ACell.Column = COL_PROGRESS then
   begin
+    ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
+
     if ACell.IsProgressBarCell then
       ACell.AsProgressBarCell.Value := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
   end;
