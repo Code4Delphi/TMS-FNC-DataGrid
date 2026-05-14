@@ -149,6 +149,9 @@ end;
 procedure TAppearanceMain.ConfigProgressColumn;
 begin
   TMSFNCDataGrid1.AddDataProgressBarColumn(COL_PROGRESS);
+
+  for var LRow := TMSFNCDataGrid1.FixedRowCount to Pred(TMSFNCDataGrid1.RowCount) do
+    TMSFNCDataGrid1.ControlPositions[COL_PROGRESS, LRow] := gcpCenterCenter;
 end;
 
 function TAppearanceMain.FormatTarget(AValue: Double): string;
@@ -283,8 +286,8 @@ begin
   begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
 
-    if ACell.IsProgressBarCell then
-      ACell.AsProgressBarCell.Value := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
+    //if ACell.IsProgressBarCell then
+    //  ACell.AsProgressBarCell.Value := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
   end;
 
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then

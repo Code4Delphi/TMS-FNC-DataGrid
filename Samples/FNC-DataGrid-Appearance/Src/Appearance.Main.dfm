@@ -95,7 +95,5 @@ object AppearanceMain: TAppearanceMain
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
-    ExplicitTop = 8
-    ExplicitHeight = 652
   end
 end
