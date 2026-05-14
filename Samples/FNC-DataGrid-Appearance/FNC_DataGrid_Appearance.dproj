@@ -127,6 +127,14 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="Src\Appearance.Light.pas">
+            <Form>AppearanceLight</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Src\Appearance.Dark.pas">
+            <Form>AppearanceDark</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="Src\Appearance.Main.pas">
             <Form>AppearanceMain</Form>
             <FormType>dfm</FormType>
