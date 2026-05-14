@@ -11,7 +11,6 @@ uses
   System.UITypes,
   System.Rtti,
   System.Types,
-  System.Math,
   Data.DB,
   Vcl.Graphics,
   Vcl.Controls,
@@ -46,10 +45,10 @@ type
   private
     procedure ConfigDataGrid;
     procedure ConfigAppearance;
+    procedure ConfigProgressColumn;
     function AvatarColor(ARow: Integer): TColor;
     procedure DrawPill(AGraphics: TTMSFNCGraphics; const ARect: TRectF; AColor: TColor);
     function FormatTarget(AValue: Double): string;
-    function ProgressRect(const ACellRect: TRectF; APercent: Integer): TRectF;
     function StatusColor(const AStatus: string): TColor;
     function StatusTextColor(const AStatus: string): TColor;
   public
@@ -78,8 +77,6 @@ const
   COLOR_MUTED_TEXT = $00C8D0D7;
   COLOR_SELECTION = $00704A2D;
   COLOR_SELECTION_BORDER = $00E89B32;
-  COLOR_PROGRESS_FILL = $00F1B77F;
-  COLOR_PROGRESS_EMPTY = $00E8D7BE;
   COLOR_TARGET_POSITIVE = $005DD15D;
   COLOR_TARGET_NEGATIVE = $003D3DFF;
 
@@ -88,6 +85,7 @@ begin
   FormatSettings.DecimalSeparator := '.';
   Self.ConfigDataGrid;
   TMSFNCDataGrid1.LoadFromCSVData('..\Data\customers.csv');
+  Self.ConfigProgressColumn;
   Self.ConfigAppearance;
 end;
 
@@ -148,6 +146,11 @@ begin
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
 end;
 
+procedure TAppearanceMain.ConfigProgressColumn;
+begin
+  TMSFNCDataGrid1.AddDataProgressBarColumn(COL_PROGRESS);
+end;
+
 function TAppearanceMain.FormatTarget(AValue: Double): string;
 begin
   Result := FormatFloat('#,##0.00', Abs(AValue));
@@ -159,12 +162,6 @@ begin
     Result := '$ -' + Result
   else
     Result := '$ ' + Result;
-end;
-
-function TAppearanceMain.ProgressRect(const ACellRect: TRectF; APercent: Integer): TRectF;
-begin
-  Result := RectF(ACellRect.Left + 18, ACellRect.Top + 24, ACellRect.Right - 18, ACellRect.Bottom - 24);
-  Result.Right := Result.Left + ((Result.Right - Result.Left) * EnsureRange(APercent, 0, 100) / 100);
 end;
 
 function TAppearanceMain.StatusColor(const AStatus: string): TColor;
@@ -230,14 +227,6 @@ begin
     AGraphics.DrawText(LPillRect, LStatus, False, gtaCenter, gtaCenter);
   end;
 
-  if ACell.Column = COL_PROGRESS then
-  begin
-    var LPercent := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
-    var LBackgroundRect := RectF(ACell.Rect.Left + 18, ACell.Rect.Top + 24, ACell.Rect.Right - 18, ACell.Rect.Bottom - 24);
-    Self.DrawPill(AGraphics, LBackgroundRect, COLOR_PROGRESS_EMPTY);
-    Self.DrawPill(AGraphics, Self.ProgressRect(ACell.Rect, LPercent), COLOR_PROGRESS_FILL);
-  end;
-
   if ACell.Column = COL_TARGET then
   begin
     var LValue := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
@@ -259,7 +248,7 @@ begin
   if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
     Exit;
 
-  if ACell.Column in [COL_NAME, COL_STATUS, COL_PROGRESS, COL_TARGET] then
+  if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
     ACell.DrawElements := [gcdFill, gcdStroke];
 end;
 
@@ -290,7 +279,13 @@ begin
   else
     ACell.Layout.Fill.Color := COLOR_BACKGROUND;
 
-  if ACell.Column in [COL_NAME, COL_STATUS, COL_PROGRESS, COL_TARGET] then
+  if ACell.Column = COL_PROGRESS then
+  begin
+    if ACell.IsProgressBarCell then
+      ACell.AsProgressBarCell.Value := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
+  end;
+
+  if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
 
   if ACell.Column = COL_TARGET then
