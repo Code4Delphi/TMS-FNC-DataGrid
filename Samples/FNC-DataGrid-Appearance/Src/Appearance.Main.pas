@@ -287,11 +287,22 @@ begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
 
     if ACell.IsProgressBarCell then
+    begin
       ACell.AsProgressBarCell.Value := TMSFNCDataGrid1.Ints[ACell.Column, ACell.Row];
+
+      var LProgressBar := ACell.AsProgressBarCell.ProgressBar;
+      if Assigned(LProgressBar) then
+      begin
+        //LProgressBar.Width := 160;
+        LProgressBar.Height := 20;
+      end;
+    end;
   end;
 
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
+  begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
+  end;
 
   if ACell.Column = COL_TARGET then
     ACell.Layout.TextAlign := gtaTrailing;
