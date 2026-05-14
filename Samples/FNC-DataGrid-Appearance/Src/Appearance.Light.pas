@@ -69,16 +69,19 @@ const
   COL_STATUS = 3;
   COL_PROGRESS = 4;
   COL_TARGET = 5;
-  COLOR_BACKGROUND = $0033322F;
-  COLOR_HEADER = $004D4B45;
-  COLOR_GRID_LINE = $00635F5A;
-  COLOR_HEADER_TEXT = $00D6B38D;
-  COLOR_TEXT = $00F5F5F5;
-  COLOR_MUTED_TEXT = $00C8D0D7;
-  COLOR_SELECTION = $00704A2D;
-  COLOR_SELECTION_BORDER = $00E89B32;
-  COLOR_TARGET_POSITIVE = $005DD15D;
-  COLOR_TARGET_NEGATIVE = $003D3DFF;
+  COLOR_BACKGROUND = $00FFFFFF;
+  COLOR_ALTERNATE_BACKGROUND = $00FBF7F2;
+  COLOR_HEADER = $00F7F0EA;
+  COLOR_GRID_LINE = $00F7F0EA;
+  COLOR_HEADER_TEXT = $0045413E;
+  COLOR_TEXT = $00817D78;
+  COLOR_SELECTED_TEXT = $0045413E;
+  COLOR_MUTED_TEXT = $00908C86;
+  COLOR_SELECTION = $00FBF2EA;
+  COLOR_SELECTION_BORDER = $00F1D745;
+  COLOR_TARGET_POSITIVE = $004FC64A;
+  COLOR_TARGET_NEGATIVE = $002930D9;
+  COLOR_PILL_TEXT = $00FFFFFF;
 
 procedure TAppearanceLight.FormCreate(Sender: TObject);
 begin
@@ -181,10 +184,7 @@ end;
 
 function TAppearanceLight.StatusTextColor(const AStatus: string): TColor;
 begin
-  if SameText(AStatus, 'On Leave') then
-    Result := $00233142
-  else
-    Result := $003B332F;
+  Result := COLOR_PILL_TEXT;
 end;
 
 procedure TAppearanceLight.TMSFNCDataGrid1AfterDrawCell(Sender: TObject; AGraphics: TTMSFNCGraphics;
@@ -204,14 +204,14 @@ begin
     AGraphics.Font.Name := 'Segoe UI';
     AGraphics.Font.Size := 10;
     AGraphics.Font.Style := [TFontStyle.fsBold];
-    AGraphics.Font.Color := COLOR_BACKGROUND;
+    AGraphics.Font.Color := COLOR_PILL_TEXT;
     AGraphics.DrawText(LAvatarRect, Copy(TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, 1, 1), False, gtaCenter, gtaCenter);
 
     var LNameRect := RectF(ACell.Rect.Left + 66, ACell.Rect.Top, ACell.Rect.Right - 10, ACell.Rect.Bottom);
     AGraphics.Font.Size := 18;
     AGraphics.Font.Style := [];
     if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
-      AGraphics.Font.Color := $00FFB14C
+      AGraphics.Font.Color := COLOR_SELECTED_TEXT
     else
       AGraphics.Font.Color := COLOR_TEXT;
     AGraphics.DrawText(LNameRect, TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, False, gtaLeading, gtaCenter);
@@ -277,10 +277,12 @@ begin
   begin
     ACell.Layout.Fill.Color := COLOR_SELECTION;
     ACell.Layout.Stroke.Color := COLOR_SELECTION_BORDER;
-    ACell.Layout.Font.Color := $00FFB14C;
+    ACell.Layout.Font.Color := COLOR_SELECTED_TEXT;
   end
+  else if Odd(ACell.Row) then
+    ACell.Layout.Fill.Color := COLOR_BACKGROUND
   else
-    ACell.Layout.Fill.Color := COLOR_BACKGROUND;
+    ACell.Layout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
 
   if ACell.Column = COL_PROGRESS then
   begin
@@ -293,8 +295,8 @@ begin
       var LProgressBar := ACell.AsProgressBarCell.ProgressBar;
       if Assigned(LProgressBar) then
       begin
-        //LProgressBar.Width := 160;
-        LProgressBar.Height := 20;
+        LProgressBar.Width := 160;
+        LProgressBar.Height := 24;
       end;
     end;
   end;
