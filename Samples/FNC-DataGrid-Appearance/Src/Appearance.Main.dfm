@@ -3,7 +3,7 @@ object AppearanceMain: TAppearanceMain
   Top = 0
   Caption = 'TMS FNC DataGrid - Appearance'
   ClientHeight = 193
-  ClientWidth = 417
+  ClientWidth = 508
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,14 +15,12 @@ object AppearanceMain: TAppearanceMain
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 417
+    Width = 508
     Height = 193
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitWidth = 524
-    ExplicitHeight = 189
+    ExplicitWidth = 417
     object btnLightMode: TButton
       Left = 72
       Top = 83
@@ -40,6 +38,15 @@ object AppearanceMain: TAppearanceMain
       Caption = 'Dark Mode'
       TabOrder = 1
       OnClick = btnDarkModeClick
+    end
+    object btnDarkModeGroup: TButton
+      Left = 342
+      Top = 83
+      Width = 129
+      Height = 25
+      Caption = 'Dark Mode Group'
+      TabOrder = 2
+      OnClick = btnDarkModeGroupClick
     end
   end
 end

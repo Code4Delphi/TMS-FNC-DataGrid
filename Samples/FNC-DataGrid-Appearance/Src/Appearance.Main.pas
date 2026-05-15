@@ -12,16 +12,21 @@ uses
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
   Appearance.Light,
-  Appearance.Dark, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Appearance.Dark,
+  Appearance.Grouping;
 
 type
   TAppearanceMain = class(TForm)
     Panel1: TPanel;
     btnLightMode: TButton;
     btnDarkMode: TButton;
+    btnDarkModeGroup: TButton;
     procedure btnLightModeClick(Sender: TObject);
     procedure btnDarkModeClick(Sender: TObject);
+    procedure btnDarkModeGroupClick(Sender: TObject);
   private
 
   public
@@ -43,6 +48,11 @@ end;
 procedure TAppearanceMain.btnDarkModeClick(Sender: TObject);
 begin
   AppearanceDark.ShowModal;
+end;
+
+procedure TAppearanceMain.btnDarkModeGroupClick(Sender: TObject);
+begin
+  AppearanceGrouping.ShowModal;
 end;
 
 end.
