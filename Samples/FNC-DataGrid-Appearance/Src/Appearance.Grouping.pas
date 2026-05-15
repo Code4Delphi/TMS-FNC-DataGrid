@@ -85,7 +85,6 @@ type
     GroupBox4: TGroupBox;
     btnSortingInventoryColumnAsc: TButton;
     Button1: TButton;
-    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);

@@ -96,5 +96,7 @@ object AppearanceDark: TAppearanceDark
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Editing.Enabled = False
+    ExplicitLeft = 8
+    ExplicitTop = -8
   end
 end

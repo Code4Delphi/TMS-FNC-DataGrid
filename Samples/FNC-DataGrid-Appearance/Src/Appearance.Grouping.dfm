@@ -73,15 +73,6 @@ object AppearanceGrouping: TAppearanceGrouping
       Align = alLeft
       Caption = ' Grouping '
       TabOrder = 1
-      object Label1: TLabel
-        Left = 208
-        Top = 56
-        Width = 34
-        Height = 15
-        Caption = 'Label1'
-        Color = 5065542
-        ParentColor = False
-      end
       object btnGroup: TButton
         Left = 16
         Top = 19
