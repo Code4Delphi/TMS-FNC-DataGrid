@@ -70,6 +70,7 @@ const
   COL_PROGRESS = 4;
   COL_TARGET = 5;
   COLOR_BACKGROUND = $0033322F;
+  COLOR_BAND = $004D4B46;
   COLOR_HEADER = $004D4B45;
   COLOR_GRID_LINE = $00635F5A;
   COLOR_HEADER_TEXT = $00D6B38D;
@@ -120,6 +121,7 @@ begin
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.Font.Size := 16;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
+  TMSFNCDataGrid1.Options.Banding.Enabled := True;
 
   //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Kind := gfkSolid;

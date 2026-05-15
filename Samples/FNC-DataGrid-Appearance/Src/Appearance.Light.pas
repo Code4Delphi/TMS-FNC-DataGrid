@@ -116,13 +116,16 @@ end;
 
 procedure TAppearanceLight.ConfigAppearance;
 begin
+  //ALTERA A COR DE FUNDO DO FORMULÁRIO / ALTERS THE FORM BACKGROUND COLOR
   Self.Color := COLOR_BACKGROUND;
 
+  //ALTERA A APARÊNCIA GERAL DA GRID / ALTERS THE GENERAL GRID APPEARANCE
   TMSFNCDataGrid1.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.Font.Size := 18;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
 
+  //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -130,6 +133,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 18;
 
+  //ALTERA A APARÊNCIA DAS LINHAS FIXAS / ALTERS THE APPEARANCE OF FIXED ROWS
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Color := COLOR_HEADER;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -138,11 +142,13 @@ begin
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Size := 18;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [TFontStyle.fsBold];
 
+  //ALTERA A APARÊNCIA DAS LINHAS SELECIONADAS / ALTERS THE APPEARANCE OF SELECTED ROWS
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
 
+  //ALTERA A APARÊNCIA DA LINHA COM FOCO / ALTERS THE APPEARANCE OF THE FOCUSED ROW
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
@@ -190,9 +196,11 @@ end;
 procedure TAppearanceLight.TMSFNCDataGrid1AfterDrawCell(Sender: TObject; AGraphics: TTMSFNCGraphics;
   ACell: TTMSFNCDataGridCell);
 begin
- if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
+  //IGNORA AS LINHAS FIXAS / IGNORES FIXED ROWS
+  if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
     Exit;
 
+  //DESENHA O AVATAR E O NOME DO CLIENTE / DRAWS THE CUSTOMER AVATAR AND NAME
   if ACell.Column = COL_NAME then
   begin
     var LAvatarRect := RectF(ACell.Rect.Left + 18, ACell.Rect.Top + 21, ACell.Rect.Left + 52, ACell.Rect.Top + 55);
@@ -217,6 +225,7 @@ begin
     AGraphics.DrawText(LNameRect, TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, False, gtaLeading, gtaCenter);
   end;
 
+  //DESENHA O STATUS COMO UMA ETIQUETA ARREDONDADA / DRAWS THE STATUS AS A ROUNDED LABEL
   if ACell.Column = COL_STATUS then
   begin
     var LStatus := TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
@@ -230,6 +239,7 @@ begin
     AGraphics.DrawText(LPillRect, LStatus, False, gtaCenter, gtaCenter);
   end;
 
+  //DESENHA O TARGET COM COR POSITIVA OU NEGATIVA / DRAWS THE TARGET WITH POSITIVE OR NEGATIVE COLOR
   if ACell.Column = COL_TARGET then
   begin
     var LValue := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
@@ -248,15 +258,18 @@ end;
 procedure TAppearanceLight.TMSFNCDataGrid1BeforeDrawCell(Sender: TObject; AGraphics: TTMSFNCGraphics;
   ACell: TTMSFNCDataGridCell; var ACanDraw: Boolean);
 begin
+  //IGNORA AS LINHAS FIXAS / IGNORES FIXED ROWS
   if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
     Exit;
 
+  //MANTÉM APENAS FUNDO E BORDA PARA CÉLULAS DESENHADAS MANUALMENTE / KEEPS ONLY FILL AND STROKE FOR MANUALLY DRAWN CELLS
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
     ACell.DrawElements := [gcdFill, gcdStroke];
 end;
 
 procedure TAppearanceLight.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
+  //DEFINE A APARÊNCIA PADRÃO DA CÉLULA / DEFINES THE DEFAULT CELL APPEARANCE
   ACell.Layout.Fill.Kind := gfkSolid;
   ACell.Layout.Stroke.Color := COLOR_GRID_LINE;
   ACell.Layout.Font.Name := 'Segoe UI';
@@ -265,6 +278,7 @@ begin
   ACell.Layout.TextAlign := gtaLeading;
   ACell.Layout.VerticalTextAlign := gtaCenter;
 
+  //DEFINE A APARÊNCIA DAS LINHAS FIXAS / DEFINES THE APPEARANCE OF FIXED ROWS
   if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
   begin
     ACell.Layout.Fill.Color := COLOR_HEADER;
@@ -273,17 +287,20 @@ begin
     Exit;
   end;
 
+  //DEFINE A APARÊNCIA DA LINHA COM FOCO / DEFINES THE APPEARANCE OF THE FOCUSED ROW
   if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
   begin
     ACell.Layout.Fill.Color := COLOR_SELECTION;
     ACell.Layout.Stroke.Color := COLOR_SELECTION_BORDER;
     ACell.Layout.Font.Color := COLOR_SELECTED_TEXT;
   end
+  //DEFINE A COR ALTERNADA DAS LINHAS / DEFINES THE ALTERNATING ROW COLOR
   else if Odd(ACell.Row) then
     ACell.Layout.Fill.Color := COLOR_BACKGROUND
   else
     ACell.Layout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
 
+  //CONFIGURA A CÉLULA DE PROGRESSO E ESCONDE O TEXTO / CONFIGURES THE PROGRESS CELL AND HIDES THE TEXT
   if ACell.Column = COL_PROGRESS then
   begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
@@ -301,11 +318,13 @@ begin
     end;
   end;
 
+  //ESCONDE O TEXTO PADRÃO DAS CÉLULAS DESENHADAS MANUALMENTE / HIDES DEFAULT TEXT OF MANUALLY DRAWN CELLS
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
   begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
   end;
 
+  //ALINHA O TARGET À DIREITA / ALIGNS THE TARGET TO THE RIGHT
   if ACell.Column = COL_TARGET then
     ACell.Layout.TextAlign := gtaTrailing;
 end;
@@ -319,6 +338,7 @@ end;
 
 procedure TAppearanceLight.DrawPill(AGraphics: TTMSFNCGraphics; const ARect: TRectF; AColor: TColor);
 begin
+  //DESENHA UMA ETIQUETA ARREDONDADA USANDO UM RETÂNGULO E DUAS ELIPSES / DRAWS A ROUNDED LABEL USING A RECTANGLE AND TWO ELLIPSES
   var LRadius := (ARect.Bottom - ARect.Top) / 2;
   var LBodyRect := RectF(ARect.Left + LRadius, ARect.Top, ARect.Right - LRadius, ARect.Bottom);
   var LLeftRect := RectF(ARect.Left, ARect.Top, ARect.Left + (LRadius * 2), ARect.Bottom);

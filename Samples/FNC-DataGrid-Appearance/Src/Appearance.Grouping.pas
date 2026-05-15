@@ -1,4 +1,4 @@
-unit Appearance.Grouping;
+﻿unit Appearance.Grouping;
 
 interface
 
@@ -136,46 +136,50 @@ end;
 procedure TAppearanceGrouping.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
+  try
+    //CONFIGURA O AGRUPAMENTO VISUAL DA GRID / CONFIGURES THE GRID VISUAL GROUPING
+    TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
+    TMSFNCDataGrid1.Header.Visible := True;
+    TMSFNCDataGrid1.Header.Bar.Visible := True;
+    TMSFNCDataGrid1.Header.Bar.Size := 35;
 
-  //SETTINGS FOR VISUAL GROUP
-  TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
-  TMSFNCDataGrid1.Header.Visible := True;
-  TMSFNCDataGrid1.Header.Bar.Visible := True;
-  TMSFNCDataGrid1.Header.Bar.Size := 35;
+    //ADICIONA BOTÕES ABAIXO DOS LINKS DE AGRUPAMENTO / ADDS BUTTONS BELOW THE GROUP LINKS
+    var LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+    LGridButton.OnClick := Self.DoCollapseAllNodesClick;
+    LGridButton.Width := 100;
+    LGridButton.Text := 'Collapse';
 
-  //Buttons displayed below group links
-  var LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
-  LGridButton.OnClick := Self.DoCollapseAllNodesClick;
-  LGridButton.Width := 100;
-  LGridButton.Text := 'Collapse';
+    LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+    LGridButton.OnClick := Self.DoExpandAllNodesClick;
+    LGridButton.Width := 100;
+    LGridButton.Text := 'Expand';
 
-  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
-  LGridButton.OnClick := Self.DoExpandAllNodesClick;
-  LGridButton.Width := 100;
-  LGridButton.Text := 'Expand';
+    LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+    LGridButton.OnClick := Self.DoUngroupClick;
+    LGridButton.Width := 100;
+    LGridButton.Text := 'Ungroup';
 
-  LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
-  LGridButton.OnClick := Self.DoUngroupClick;
-  LGridButton.Width := 100;
-  LGridButton.Text := 'Ungroup';
+    //CONFIGURA O ADAPTADOR DO BANCO DE DADOS / CONFIGURES THE DATABASE ADAPTER
+    TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
+    TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
 
-  //DatabaseAdapter
-  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
-  //Required for use in grouping
-  TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
-
-  Self.ConfigAppearance;
-
-  TMSFNCDataGrid1.EndUpdate;
+    //APLICA A APARÊNCIA DARK DA GRID / APPLIES THE GRID DARK APPEARANCE
+    Self.ConfigAppearance;
+  finally
+    TMSFNCDataGrid1.EndUpdate;
+  end;
 end;
 
 procedure TAppearanceGrouping.ConfigAppearance;
 begin
+  //ALTERA A APARÊNCIA GERAL DA GRID / ALTERS THE GENERAL GRID APPEARANCE
   TMSFNCDataGrid1.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.Font.Size := 10;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
+  TMSFNCDataGrid1.Options.Banding.Enabled := True;
 
+  //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -183,6 +187,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 10;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Color := COLOR_TEXT;
 
+  //ALTERA A APARÊNCIA DAS LINHAS ALTERNADAS / ALTERS THE APPEARANCE OF BANDED ROWS
   TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_BAND;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -190,6 +195,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Size := 10;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
 
+  //ALTERA A APARÊNCIA DAS LINHAS FIXAS / ALTERS THE APPEARANCE OF FIXED ROWS
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Color := COLOR_HEADER;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -198,6 +204,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Color := COLOR_HEADER_TEXT;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [TFontStyle.fsBold];
 
+  //ALTERA A APARÊNCIA DAS LINHAS DE GRUPO / ALTERS THE APPEARANCE OF GROUP ROWS
   TMSFNCDataGrid1.CellAppearance.GroupLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.GroupLayout.Fill.Color := COLOR_GROUP;
   TMSFNCDataGrid1.CellAppearance.GroupLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -206,6 +213,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.GroupLayout.Font.Color := COLOR_TEXT;
   TMSFNCDataGrid1.CellAppearance.GroupLayout.Font.Style := [TFontStyle.fsBold];
 
+  //ALTERA A APARÊNCIA DAS LINHAS DE RESUMO / ALTERS THE APPEARANCE OF SUMMARY ROWS
   TMSFNCDataGrid1.CellAppearance.SummaryLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.SummaryLayout.Fill.Color := COLOR_SUMMARY;
   TMSFNCDataGrid1.CellAppearance.SummaryLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -214,6 +222,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.SummaryLayout.Font.Color := COLOR_HEADER_TEXT;
   TMSFNCDataGrid1.CellAppearance.SummaryLayout.Font.Style := [TFontStyle.fsBold];
 
+  //ALTERA A APARÊNCIA DAS LINHAS SELECIONADAS / ALTERS THE APPEARANCE OF SELECTED ROWS
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
@@ -221,6 +230,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Size := 10;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
 
+  //ALTERA A APARÊNCIA DA LINHA COM FOCO / ALTERS THE APPEARANCE OF THE FOCUSED ROW
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
@@ -228,6 +238,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Size := 10;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
 
+  //ALTERA A APARÊNCIA DA ÁREA DE AGRUPAMENTO VISUAL / ALTERS THE APPEARANCE OF THE VISUAL GROUPING AREA
   TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Kind := gfkSolid;
   TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationStroke.Color := COLOR_SELECTION_BORDER;
@@ -350,12 +361,16 @@ end;
 procedure TAppearanceGrouping.TMSFNCDataGrid1GetCustomGroup(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
   AData: TTMSFNCDataGridCellValue; ALevel: Integer; var AGroup: string);
 begin
+  //ADICIONA ÍCONE AO GRUPO DE CÓDIGO / ADDS AN ICON TO THE CODE GROUP
   if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Group code') then
     AGroup := '<img src="group.svg" height="95%"/> ' + AGroup
+  //ADICIONA ÍCONE AO GRUPO DE CONDIÇÃO / ADDS AN ICON TO THE CONDITION GROUP
   else if ACell.Column = TMSFNCDataGrid1.ColumnIndexByHeader('Condition') then
   begin
+    //USA O ÍCONE DE PRODUTO NOVO / USES THE NEW PRODUCT ICON
     if AData.AsString = 'New' then
       AGroup := '<img src="new.svg" height="95%"/> ' + AGroup
+    //USA O ÍCONE DE PRODUTO USADO / USES THE USED PRODUCT ICON
     else
       AGroup := '<img src="used.svg" height="95%"/> ' + AGroup
   end;
