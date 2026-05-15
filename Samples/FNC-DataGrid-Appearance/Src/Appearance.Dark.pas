@@ -112,13 +112,16 @@ end;
 
 procedure TAppearanceDark.ConfigAppearance;
 begin
+  //ALTERA A COR DE FUNDO DO FORMULÁRIO / ALTERS THE FORM BACKGROUND COLOR
   Self.Color := COLOR_BACKGROUND;
 
+  //ALTERA A APARÊNCIA GERAL DA GRID / ALTERS THE GENERAL GRID APPEARANCE
   TMSFNCDataGrid1.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.Font.Size := 16;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
 
+  //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -126,6 +129,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 16;
 
+  //ALTERA A APARÊNCIA DAS LINHAS FIXAS / ALTERS THE APPEARANCE OF FIXED ROWS
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Color := COLOR_HEADER;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Stroke.Color := COLOR_GRID_LINE;
@@ -134,11 +138,13 @@ begin
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Size := 16;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [TFontStyle.fsBold];
 
+  //ALTERA A APARÊNCIA DAS LINHAS SELECIONADAS / ALTERS THE APPEARANCE OF SELECTED ROWS
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
 
+  //ALTERA A APARÊNCIA DA LINHA COM FOCO / ALTERS THE APPEARANCE OF THE FOCUSED ROW
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
