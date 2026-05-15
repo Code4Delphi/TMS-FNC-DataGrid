@@ -122,8 +122,11 @@ begin
   //ALTERA A APARÊNCIA GERAL DA GRID / ALTERS THE GENERAL GRID APPEARANCE
   TMSFNCDataGrid1.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.Font.Size := 18;
+  TMSFNCDataGrid1.Font.Size := 16;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
+
+  //ATIVA O RECURSO PARA ZEBRAR A GRID / ENABLE THE GRID CLEARANCE FEATURE
+  TMSFNCDataGrid1.Options.Banding.Enabled := True;
 
   //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Kind := gfkSolid;
@@ -131,7 +134,17 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Stroke.Color := COLOR_GRID_LINE;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Color := COLOR_TEXT;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 18;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 16;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.TextAlign := gtaLeading;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.VerticalTextAlign := gtaCenter;
+
+  //ALTERA A APARÊNCIA DAS LINHAS ALTERNADAS / ALTERS THE APPEARANCE OF BANDED ROWS
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Kind := gfkSolid;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Stroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Size := 16;
 
   //ALTERA A APARÊNCIA DAS LINHAS FIXAS / ALTERS THE APPEARANCE OF FIXED ROWS
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
@@ -147,12 +160,16 @@ begin
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Size := 16;
 
   //ALTERA A APARÊNCIA DA LINHA COM FOCO / ALTERS THE APPEARANCE OF THE FOCUSED ROW
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Size := 16;
 end;
 
 procedure TAppearanceLight.ConfigProgressColumn;
@@ -216,7 +233,7 @@ begin
     AGraphics.DrawText(LAvatarRect, Copy(TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, 1, 1), False, gtaCenter, gtaCenter);
 
     var LNameRect := RectF(ACell.Rect.Left + 66, ACell.Rect.Top, ACell.Rect.Right - 10, ACell.Rect.Bottom);
-    AGraphics.Font.Size := 18;
+    AGraphics.Font.Size := 16;
     AGraphics.Font.Style := [];
     if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
       AGraphics.Font.Color := COLOR_SELECTED_TEXT
@@ -233,7 +250,7 @@ begin
     Self.DrawPill(AGraphics, LPillRect, Self.StatusColor(LStatus));
 
     AGraphics.Font.Name := 'Segoe UI';
-    AGraphics.Font.Size := 18;
+    AGraphics.Font.Size := 16;
     AGraphics.Font.Style := [];
     AGraphics.Font.Color := Self.StatusTextColor(LStatus);
     AGraphics.DrawText(LPillRect, LStatus, False, gtaCenter, gtaCenter);
@@ -245,7 +262,7 @@ begin
     var LValue := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
     var LTargetRect := RectF(ACell.Rect.Left + 8, ACell.Rect.Top, ACell.Rect.Right - 8, ACell.Rect.Bottom);
     AGraphics.Font.Name := 'Segoe UI';
-    AGraphics.Font.Size := 18;
+    AGraphics.Font.Size := 16;
     AGraphics.Font.Style := [];
     if LValue < 0 then
       AGraphics.Font.Color := COLOR_TARGET_NEGATIVE
@@ -269,11 +286,14 @@ end;
 
 procedure TAppearanceLight.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
+  //DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO //DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO
+  (*
+
   //DEFINE A APARÊNCIA PADRÃO DA CÉLULA / DEFINES THE DEFAULT CELL APPEARANCE
   ACell.Layout.Fill.Kind := gfkSolid;
   ACell.Layout.Stroke.Color := COLOR_GRID_LINE;
   ACell.Layout.Font.Name := 'Segoe UI';
-  ACell.Layout.Font.Size := 18;
+  ACell.Layout.Font.Size := 16;
   ACell.Layout.Font.Color := COLOR_TEXT;
   ACell.Layout.TextAlign := gtaLeading;
   ACell.Layout.VerticalTextAlign := gtaCenter;
@@ -299,6 +319,10 @@ begin
     ACell.Layout.Fill.Color := COLOR_BACKGROUND
   else
     ACell.Layout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
+  *)
+
+  if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
+    Exit;
 
   //CONFIGURA A CÉLULA DE PROGRESSO E ESCONDE O TEXTO / CONFIGURES THE PROGRESS CELL AND HIDES THE TEXT
   if ACell.Column = COL_PROGRESS then
@@ -320,9 +344,7 @@ begin
 
   //ESCONDE O TEXTO PADRÃO DAS CÉLULAS DESENHADAS MANUALMENTE / HIDES DEFAULT TEXT OF MANUALLY DRAWN CELLS
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
-  begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
-  end;
 
   //ALINHA O TARGET À DIREITA / ALIGNS THE TARGET TO THE RIGHT
   if ACell.Column = COL_TARGET then

@@ -95,5 +95,6 @@ object AppearanceLight: TAppearanceLight
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
+    Options.Editing.Enabled = False
   end
 end

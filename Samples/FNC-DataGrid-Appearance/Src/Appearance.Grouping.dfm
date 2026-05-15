@@ -73,15 +73,6 @@ object AppearanceGrouping: TAppearanceGrouping
       Align = alLeft
       Caption = ' Grouping '
       TabOrder = 1
-      object Label1: TLabel
-        Left = 208
-        Top = 56
-        Width = 34
-        Height = 15
-        Caption = 'Label1'
-        Color = 5065542
-        ParentColor = False
-      end
       object btnGroup: TButton
         Left = 16
         Top = 19
@@ -268,6 +259,7 @@ object AppearanceGrouping: TAppearanceGrouping
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
+    Options.Editing.Enabled = False
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
