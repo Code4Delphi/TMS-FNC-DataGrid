@@ -159,6 +159,91 @@ begin
     TMSFNCDataGrid1.ControlPositions[COL_PROGRESS, LRow] := gcpCenterCenter;
 end;
 
+procedure TAppearanceDark.TMSFNCDataGrid1AfterDrawCell(Sender: TObject; AGraphics: TTMSFNCGraphics;
+  ACell: TTMSFNCDataGridCell);
+begin
+  //IGNORA AS LINHAS FIXAS / IGNORES FIXED ROWS
+ if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
+    Exit;
+
+  //DESENHA O AVATAR E O NOME DO CLIENTE / DRAWS THE CUSTOMER AVATAR AND NAME
+  if ACell.Column = COL_NAME then
+  begin
+    var LAvatarRect := RectF(ACell.Rect.Left + 18, ACell.Rect.Top + 21, ACell.Rect.Left + 52, ACell.Rect.Top + 55);
+    AGraphics.Fill.Kind := gfkSolid;
+    AGraphics.Fill.Color := Self.AvatarColor(ACell.Row);
+    AGraphics.Stroke.Color := Self.AvatarColor(ACell.Row);
+    AGraphics.DrawEllipse(LAvatarRect);
+
+    AGraphics.Font.Name := 'Segoe UI';
+    AGraphics.Font.Size := 10;
+    AGraphics.Font.Style := [TFontStyle.fsBold];
+    AGraphics.Font.Color := COLOR_BACKGROUND;
+    AGraphics.DrawText(LAvatarRect, Copy(TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, 1, 1), False, gtaCenter, gtaCenter);
+
+    var LNameRect := RectF(ACell.Rect.Left + 66, ACell.Rect.Top, ACell.Rect.Right - 10, ACell.Rect.Bottom);
+    AGraphics.Font.Size := 18;
+    AGraphics.Font.Style := [];
+    if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
+      AGraphics.Font.Color := $00FFB14C
+    else
+      AGraphics.Font.Color := COLOR_TEXT;
+    AGraphics.DrawText(LNameRect, TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, False, gtaLeading, gtaCenter);
+  end;
+
+  //DESENHA O STATUS COMO UMA ETIQUETA ARREDONDADA / DRAWS THE STATUS AS A ROUNDED LABEL
+  if ACell.Column = COL_STATUS then
+  begin
+    var LStatus := TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
+    var LPillRect := RectF(ACell.Rect.Left + 20, ACell.Rect.Top + 22, ACell.Rect.Right - 20, ACell.Rect.Bottom - 22);
+    Self.DrawPill(AGraphics, LPillRect, Self.StatusColor(LStatus));
+
+    AGraphics.Font.Name := 'Segoe UI';
+    AGraphics.Font.Size := 18;
+    AGraphics.Font.Style := [];
+    AGraphics.Font.Color := Self.StatusTextColor(LStatus);
+    AGraphics.DrawText(LPillRect, LStatus, False, gtaCenter, gtaCenter);
+  end;
+
+  //DESENHA O TARGET COM COR POSITIVA OU NEGATIVA / DRAWS THE TARGET WITH POSITIVE OR NEGATIVE COLOR
+  if ACell.Column = COL_TARGET then
+  begin
+    var LValue := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
+    var LTargetRect := RectF(ACell.Rect.Left + 8, ACell.Rect.Top, ACell.Rect.Right - 8, ACell.Rect.Bottom);
+    AGraphics.Font.Name := 'Segoe UI';
+    AGraphics.Font.Size := 18;
+    AGraphics.Font.Style := [];
+    if LValue < 0 then
+      AGraphics.Font.Color := COLOR_TARGET_NEGATIVE
+    else
+      AGraphics.Font.Color := COLOR_TARGET_POSITIVE;
+    AGraphics.DrawText(LTargetRect, Self.FormatTarget(LValue), False, gtaTrailing, gtaCenter);
+  end;
+end;
+
+function TAppearanceDark.AvatarColor(ARow: Integer): TColor;
+const
+  AVATAR_COLORS: array[0..5] of TColor = ($00D8C77A, $008DD4F5, $00B991F0,  $0098DDAA, $00E6A587, $00D68DB5);
+begin
+  Result := AVATAR_COLORS[ARow mod Length(AVATAR_COLORS)];
+end;
+
+procedure TAppearanceDark.DrawPill(AGraphics: TTMSFNCGraphics; const ARect: TRectF; AColor: TColor);
+begin
+  //DESENHA UMA ETIQUETA ARREDONDADA USANDO UM RETÂNGULO E DUAS ELIPSES / DRAWS A ROUNDED LABEL USING A RECTANGLE AND TWO ELLIPSES
+  var LRadius := (ARect.Bottom - ARect.Top) / 2;
+  var LBodyRect := RectF(ARect.Left + LRadius, ARect.Top, ARect.Right - LRadius, ARect.Bottom);
+  var LLeftRect := RectF(ARect.Left, ARect.Top, ARect.Left + (LRadius * 2), ARect.Bottom);
+  var LRightRect := RectF(ARect.Right - (LRadius * 2), ARect.Top, ARect.Right, ARect.Bottom);
+
+  AGraphics.Fill.Kind := gfkSolid;
+  AGraphics.Fill.Color := AColor;
+  AGraphics.Stroke.Color := AColor;
+  AGraphics.DrawRectangle(LBodyRect);
+  AGraphics.DrawEllipse(LLeftRect);
+  AGraphics.DrawEllipse(LRightRect);
+end;
+
 function TAppearanceDark.FormatTarget(AValue: Double): string;
 begin
   Result := FormatFloat('#,##0.00', Abs(AValue));
@@ -192,76 +277,21 @@ begin
     Result := $003B332F;
 end;
 
-procedure TAppearanceDark.TMSFNCDataGrid1AfterDrawCell(Sender: TObject; AGraphics: TTMSFNCGraphics;
-  ACell: TTMSFNCDataGridCell);
-begin
- if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
-    Exit;
-
-  if ACell.Column = COL_NAME then
-  begin
-    var LAvatarRect := RectF(ACell.Rect.Left + 18, ACell.Rect.Top + 21, ACell.Rect.Left + 52, ACell.Rect.Top + 55);
-    AGraphics.Fill.Kind := gfkSolid;
-    AGraphics.Fill.Color := Self.AvatarColor(ACell.Row);
-    AGraphics.Stroke.Color := Self.AvatarColor(ACell.Row);
-    AGraphics.DrawEllipse(LAvatarRect);
-
-    AGraphics.Font.Name := 'Segoe UI';
-    AGraphics.Font.Size := 10;
-    AGraphics.Font.Style := [TFontStyle.fsBold];
-    AGraphics.Font.Color := COLOR_BACKGROUND;
-    AGraphics.DrawText(LAvatarRect, Copy(TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, 1, 1), False, gtaCenter, gtaCenter);
-
-    var LNameRect := RectF(ACell.Rect.Left + 66, ACell.Rect.Top, ACell.Rect.Right - 10, ACell.Rect.Bottom);
-    AGraphics.Font.Size := 18;
-    AGraphics.Font.Style := [];
-    if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
-      AGraphics.Font.Color := $00FFB14C
-    else
-      AGraphics.Font.Color := COLOR_TEXT;
-    AGraphics.DrawText(LNameRect, TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString, False, gtaLeading, gtaCenter);
-  end;
-
-  if ACell.Column = COL_STATUS then
-  begin
-    var LStatus := TMSFNCDataGrid1.Cells[ACell.Column, ACell.Row].AsString;
-    var LPillRect := RectF(ACell.Rect.Left + 20, ACell.Rect.Top + 22, ACell.Rect.Right - 20, ACell.Rect.Bottom - 22);
-    Self.DrawPill(AGraphics, LPillRect, Self.StatusColor(LStatus));
-
-    AGraphics.Font.Name := 'Segoe UI';
-    AGraphics.Font.Size := 18;
-    AGraphics.Font.Style := [];
-    AGraphics.Font.Color := Self.StatusTextColor(LStatus);
-    AGraphics.DrawText(LPillRect, LStatus, False, gtaCenter, gtaCenter);
-  end;
-
-  if ACell.Column = COL_TARGET then
-  begin
-    var LValue := TMSFNCDataGrid1.Floats[ACell.Column, ACell.Row];
-    var LTargetRect := RectF(ACell.Rect.Left + 8, ACell.Rect.Top, ACell.Rect.Right - 8, ACell.Rect.Bottom);
-    AGraphics.Font.Name := 'Segoe UI';
-    AGraphics.Font.Size := 18;
-    AGraphics.Font.Style := [];
-    if LValue < 0 then
-      AGraphics.Font.Color := COLOR_TARGET_NEGATIVE
-    else
-      AGraphics.Font.Color := COLOR_TARGET_POSITIVE;
-    AGraphics.DrawText(LTargetRect, Self.FormatTarget(LValue), False, gtaTrailing, gtaCenter);
-  end;
-end;
-
 procedure TAppearanceDark.TMSFNCDataGrid1BeforeDrawCell(Sender: TObject; AGraphics: TTMSFNCGraphics;
   ACell: TTMSFNCDataGridCell; var ACanDraw: Boolean);
 begin
+  //IGNORA AS LINHAS FIXAS / IGNORES FIXED ROWS
   if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
     Exit;
 
+  //MANTÉM APENAS FUNDO E BORDA PARA CÉLULAS DESENHADAS MANUALMENTE / KEEPS ONLY FILL AND STROKE FOR MANUALLY DRAWN CELLS
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
     ACell.DrawElements := [gcdFill, gcdStroke];
 end;
 
 procedure TAppearanceDark.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
+  //DEFINE A APARÊNCIA PADRÃO DA CÉLULA / DEFINES THE DEFAULT CELL APPEARANCE
   ACell.Layout.Fill.Kind := gfkSolid;
   ACell.Layout.Stroke.Color := COLOR_GRID_LINE;
   ACell.Layout.Font.Name := 'Segoe UI';
@@ -270,6 +300,7 @@ begin
   ACell.Layout.TextAlign := gtaLeading;
   ACell.Layout.VerticalTextAlign := gtaCenter;
 
+  //DEFINE A APARÊNCIA DAS LINHAS FIXAS / DEFINES THE APPEARANCE OF FIXED ROWS
   if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
   begin
     ACell.Layout.Fill.Color := COLOR_HEADER;
@@ -278,6 +309,7 @@ begin
     Exit;
   end;
 
+  //DEFINE A APARÊNCIA DA LINHA COM FOCO / DEFINES THE APPEARANCE OF THE FOCUSED ROW
   if ACell.Row = TMSFNCDataGrid1.FocusedCell.Row then
   begin
     ACell.Layout.Fill.Color := COLOR_SELECTION;
@@ -287,6 +319,7 @@ begin
   else
     ACell.Layout.Fill.Color := COLOR_BACKGROUND;
 
+  //CONFIGURA A CÉLULA DE PROGRESSO E ESCONDE O TEXTO / CONFIGURES THE PROGRESS CELL AND HIDES THE TEXT
   if ACell.Column = COL_PROGRESS then
   begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
@@ -304,35 +337,13 @@ begin
     end;
   end;
 
+  //ESCONDE O TEXTO PADRÃO DAS CÉLULAS DESENHADAS MANUALMENTE / HIDES DEFAULT TEXT OF MANUALLY DRAWN CELLS
   if ACell.Column in [COL_NAME, COL_STATUS, COL_TARGET] then
-  begin
     ACell.Layout.Font.Color := ACell.Layout.Fill.Color;
-  end;
 
+  //ALINHA O TARGET À DIREITA / ALIGNS THE TARGET TO THE RIGHT
   if ACell.Column = COL_TARGET then
     ACell.Layout.TextAlign := gtaTrailing;
-end;
-
-function TAppearanceDark.AvatarColor(ARow: Integer): TColor;
-const
-  AVATAR_COLORS: array[0..5] of TColor = ($00D8C77A, $008DD4F5, $00B991F0,  $0098DDAA, $00E6A587, $00D68DB5);
-begin
-  Result := AVATAR_COLORS[ARow mod Length(AVATAR_COLORS)];
-end;
-
-procedure TAppearanceDark.DrawPill(AGraphics: TTMSFNCGraphics; const ARect: TRectF; AColor: TColor);
-begin
-  var LRadius := (ARect.Bottom - ARect.Top) / 2;
-  var LBodyRect := RectF(ARect.Left + LRadius, ARect.Top, ARect.Right - LRadius, ARect.Bottom);
-  var LLeftRect := RectF(ARect.Left, ARect.Top, ARect.Left + (LRadius * 2), ARect.Bottom);
-  var LRightRect := RectF(ARect.Right - (LRadius * 2), ARect.Top, ARect.Right, ARect.Bottom);
-
-  AGraphics.Fill.Kind := gfkSolid;
-  AGraphics.Fill.Color := AColor;
-  AGraphics.Stroke.Color := AColor;
-  AGraphics.DrawRectangle(LBodyRect);
-  AGraphics.DrawEllipse(LLeftRect);
-  AGraphics.DrawEllipse(LRightRect);
 end;
 
 end.
