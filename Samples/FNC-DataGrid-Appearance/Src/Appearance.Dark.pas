@@ -131,6 +131,14 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 16;
 
+  //ALTERA A APARÊNCIA DAS LINHAS ALTERNADAS / ALTERS THE APPEARANCE OF BANDED ROWS
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Kind := gfkSolid;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_BAND;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Stroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Size := 16;
+
   //ALTERA A APARÊNCIA DAS LINHAS FIXAS / ALTERS THE APPEARANCE OF FIXED ROWS
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Color := COLOR_HEADER;
@@ -293,6 +301,8 @@ end;
 
 procedure TAppearanceDark.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
+  //*DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO //DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO
+  (*
   //DEFINE A APARÊNCIA PADRÃO DA CÉLULA / DEFINES THE DEFAULT CELL APPEARANCE
   ACell.Layout.Fill.Kind := gfkSolid;
   ACell.Layout.Stroke.Color := COLOR_GRID_LINE;
@@ -318,8 +328,15 @@ begin
     ACell.Layout.Stroke.Color := COLOR_SELECTION_BORDER;
     ACell.Layout.Font.Color := $00FFB14C;
   end
+  //DEFINE A COR ALTERNADA DAS LINHAS / DEFINES THE ALTERNATING ROW COLOR
+  else if Odd(ACell.Row) then
+    ACell.Layout.Fill.Color := COLOR_BACKGROUND
   else
-    ACell.Layout.Fill.Color := COLOR_BACKGROUND;
+    ACell.Layout.Fill.Color := COLOR_BAND;
+  *)
+
+  if ACell.Row < TMSFNCDataGrid1.FixedRowCount then
+    Exit;
 
   //CONFIGURA A CÉLULA DE PROGRESSO E ESCONDE O TEXTO / CONFIGURES THE PROGRESS CELL AND HIDES THE TEXT
   if ACell.Column = COL_PROGRESS then
