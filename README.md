@@ -31,6 +31,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 16 - Diálogos de Encontrar e Substituir conteúdos](https://www.youtube.com/watch?v=oVLGkJszhZo&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 17 - Mesclagem e Divisão de células / Consulta por teclado / Ícones personalizados](https://www.youtube.com/watch?v=AxQ4kZw9wM4&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 18 - Autocompletar / Drop Files / Clipboard Options](https://www.youtube.com/watch?v=cmu8F_p_EFw&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 19 - Transformando o DataGrid em uma planilha](https://www.youtube.com/watch?v=udAgp3S4Jvg&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
