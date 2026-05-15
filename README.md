@@ -42,6 +42,8 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 
 <img width="1961" height="1156" alt="image" src="https://github.com/user-attachments/assets/3a9acad5-7349-4cc2-bb89-6a1b51e62434" />
 
+<img width="1961" height="1156" alt="image" src="https://github.com/user-attachments/assets/c48a11bd-0035-419c-b1cc-39d958d05879" />
+
 <img width="1271" height="653" alt="image" src="https://github.com/user-attachments/assets/1b97d8d2-87ee-4a23-9f7f-6613b9c1a8ed" />
 
 <img width="1176" height="892" alt="image" src="https://github.com/user-attachments/assets/19a73476-fdee-4964-8916-5e7dd483ce3f" />
