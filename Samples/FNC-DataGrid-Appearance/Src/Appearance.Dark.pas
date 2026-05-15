@@ -70,7 +70,7 @@ const
   COL_PROGRESS = 4;
   COL_TARGET = 5;
   COLOR_BACKGROUND = $0033322F;
-  COLOR_BAND = $004D4B46;
+  COLOR_ALTERNATE_BACKGROUND = $004D4B46;
   COLOR_HEADER = $004D4B45;
   COLOR_GRID_LINE = $00635F5A;
   COLOR_HEADER_TEXT = $00D6B38D;
@@ -100,7 +100,7 @@ begin
     TMSFNCDataGrid1.Options.IO.Delimiter := ';';
     TMSFNCDataGrid1.Options.IO.StartColumn := 0;
     TMSFNCDataGrid1.Options.IO.StartRow := 0;
-    TMSFNCDataGrid1.Options.Editing.Enabled := True;
+    TMSFNCDataGrid1.Options.Editing.Enabled := False;
     TMSFNCDataGrid1.Options.Filtering.Enabled := True;
     TMSFNCDataGrid1.Options.Sorting.Enabled := True;
     TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
@@ -121,6 +121,8 @@ begin
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.Font.Size := 16;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
+
+  //ATIVA O RECURSO PARA ZEBRAR A GRID / ENABLE THE GRID CLEARANCE FEATURE
   TMSFNCDataGrid1.Options.Banding.Enabled := True;
 
   //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
@@ -130,10 +132,12 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Color := COLOR_TEXT;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 16;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.TextAlign := gtaLeading;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.VerticalTextAlign := gtaCenter;
 
   //ALTERA A APARÊNCIA DAS LINHAS ALTERNADAS / ALTERS THE APPEARANCE OF BANDED ROWS
   TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Kind := gfkSolid;
-  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_BAND;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Stroke.Color := COLOR_GRID_LINE;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Name := 'Segoe UI';
@@ -145,7 +149,7 @@ begin
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Stroke.Color := COLOR_GRID_LINE;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Color := COLOR_HEADER_TEXT;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Size := 16;
+  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Size := 18;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [TFontStyle.fsBold];
 
   //ALTERA A APARÊNCIA DAS LINHAS SELECIONADAS / ALTERS THE APPEARANCE OF SELECTED ROWS
@@ -153,12 +157,16 @@ begin
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Size := 16;
 
   //ALTERA A APARÊNCIA DA LINHA COM FOCO / ALTERS THE APPEARANCE OF THE FOCUSED ROW
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Size := 16;
 end;
 
 procedure TAppearanceDark.ConfigProgressColumn;
@@ -301,8 +309,9 @@ end;
 
 procedure TAppearanceDark.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 begin
-  //*DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO //DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO
+  //DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO //DESCOMENTE PARA FAZER AS MESMAS CONFIGURACOES DO METODO ConfigAppearance VIA EVENTO
   (*
+
   //DEFINE A APARÊNCIA PADRÃO DA CÉLULA / DEFINES THE DEFAULT CELL APPEARANCE
   ACell.Layout.Fill.Kind := gfkSolid;
   ACell.Layout.Stroke.Color := COLOR_GRID_LINE;
@@ -332,7 +341,7 @@ begin
   else if Odd(ACell.Row) then
     ACell.Layout.Fill.Color := COLOR_BACKGROUND
   else
-    ACell.Layout.Fill.Color := COLOR_BAND;
+    ACell.Layout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
   *)
 
   if ACell.Row < TMSFNCDataGrid1.FixedRowCount then

@@ -268,6 +268,7 @@ object AppearanceGrouping: TAppearanceGrouping
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Column.Stretching.Enabled = True
+    Options.Editing.Enabled = False
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
