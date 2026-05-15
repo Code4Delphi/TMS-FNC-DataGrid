@@ -85,6 +85,7 @@ type
     GroupBox4: TGroupBox;
     btnSortingInventoryColumnAsc: TButton;
     Button1: TButton;
+    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
@@ -115,6 +116,7 @@ implementation
 
 const
   COLOR_BACKGROUND = $0033322F;
+  COLOR_BAND = $004D4B46;
   COLOR_HEADER = $004D4B45;
   COLOR_GROUP = $003B3A36;
   COLOR_SUMMARY = $0045413E;
@@ -180,6 +182,13 @@ begin
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 10;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Color := COLOR_TEXT;
+
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Kind := gfkSolid;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_BAND;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Stroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
 
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Color := COLOR_HEADER;
