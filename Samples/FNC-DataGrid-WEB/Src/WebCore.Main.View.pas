@@ -68,11 +68,8 @@ const
   COLOR_GRID_LINE = $00635F5A;
   COLOR_HEADER_TEXT = $00D6B38D;
   COLOR_TEXT = $00F5F5F5;
-  COLOR_MUTED_TEXT = $00C8D0D7;
   COLOR_SELECTION = $00704A2D;
   COLOR_SELECTION_BORDER = $00E89B32;
-  COLOR_TARGET_POSITIVE = $005DD15D;
-  COLOR_TARGET_NEGATIVE = $003D3DFF;
 
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
@@ -220,10 +217,6 @@ begin
 end;
 
 procedure TMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-var
-  LFormatSettings: TFormatSettings;
-  LInventory: Double;
-  LText: string;
 begin
   if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Column < TMSFNCDataGrid1.FixedColumnCount) then
     Exit;
