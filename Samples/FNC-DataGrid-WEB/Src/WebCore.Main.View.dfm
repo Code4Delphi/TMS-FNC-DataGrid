@@ -91,7 +91,5 @@ object MainView: TMainView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    ExplicitLeft = 25
-    ExplicitTop = 35
   end
 end

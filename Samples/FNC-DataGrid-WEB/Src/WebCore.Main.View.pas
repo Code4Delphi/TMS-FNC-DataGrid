@@ -35,10 +35,10 @@ type
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure WebFormCreate(Sender: TObject);
   private
+    procedure AddProduct(ARow: Integer; AProductCode: Integer; AGroupCode: Integer; ABrandCode: Integer; AInventory: Double; ACostPrice: Double; ASalePrice: Double; const ACondition: string);
     procedure ConfigAppearance;
     procedure ConfigDataGrid;
-    procedure ConfigProgressColumn;
-    procedure LoadCustomersCSV;
+    procedure LoadProducts;
   public
 
   end;
@@ -51,12 +51,16 @@ implementation
 {$R *.dfm}
 
 const
-  COL_CUSTOMER_ID = 0;
+  COL_PRODUCT_CODE = 0;
   COL_NAME = 1;
-  COL_JOINED = 2;
-  COL_STATUS = 3;
-  COL_PROGRESS = 4;
-  COL_TARGET = 5;
+  COL_GROUP_CODE = 2;
+  COL_BRAND_NAME = 3;
+  COL_INVENTORY = 4;
+  COL_COST_PRICE = 5;
+  COL_SALE_PRICE = 6;
+  COL_CONDITION = 7;
+  PRODUCT_COLUMN_COUNT = 8;
+  PRODUCT_COUNT = 100;
   COLOR_BACKGROUND = $0033322F;
   COLOR_ALTERNATE_BACKGROUND = $004D4B46;
   COLOR_HEADER = $004D4B45;
@@ -73,28 +77,8 @@ procedure TMainView.WebFormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
   Self.ConfigDataGrid;
-  Self.LoadCustomersCSV;
-end;
-
-procedure TMainView.LoadCustomersCSV;
-var
-  LStream: TMemoryStream;
-begin
-  {$IFDEF WEBLIB}
-  LStream := TMemoryStream.Create;
-  LStream.LoadFromFile('Data/customers.csv',
-    procedure
-    begin
-      TMSFNCDataGrid1.LoadFromCSVStreamData(LStream);
-      LStream.Free;
-      Self.ConfigProgressColumn;
-      Self.ConfigAppearance;
-    end);
-  {$ELSE}
-  TMSFNCDataGrid1.LoadFromCSVData('Data\customers.csv');
-  Self.ConfigProgressColumn;
+  Self.LoadProducts;
   Self.ConfigAppearance;
-  {$ENDIF}
 end;
 
 procedure TMainView.ConfigDataGrid;
@@ -104,9 +88,8 @@ begin
     TMSFNCDataGrid1.Clear;
     TMSFNCDataGrid1.FixedRowCount := 1;
     TMSFNCDataGrid1.FixedColumnCount := 0;
-    TMSFNCDataGrid1.Options.IO.Delimiter := ';';
-    TMSFNCDataGrid1.Options.IO.StartColumn := 0;
-    TMSFNCDataGrid1.Options.IO.StartRow := 0;
+    TMSFNCDataGrid1.ColumnCount := PRODUCT_COLUMN_COUNT;
+    TMSFNCDataGrid1.RowCount := Succ(PRODUCT_COUNT);
     TMSFNCDataGrid1.Options.Editing.Enabled := False;
     TMSFNCDataGrid1.Options.Filtering.Enabled := True;
     TMSFNCDataGrid1.Options.Sorting.Enabled := True;
@@ -180,15 +163,58 @@ begin
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Size := 16;
 end;
 
-procedure TMainView.ConfigProgressColumn;
+procedure TMainView.LoadProducts;
 var
+  LBrandCode: Integer;
+  LCondition: string;
+  LCostPrice: Double;
+  LGroupCode: Integer;
+  LInventory: Double;
+  LProductCode: Integer;
   LRow: Integer;
+  LSalePrice: Double;
 begin
-  TMSFNCDataGrid1.AddDataProgressBarColumn(COL_PROGRESS);
+  TMSFNCDataGrid1.BeginUpdate;
+  try
+    TMSFNCDataGrid1.Cells[COL_PRODUCT_CODE, 0] := 'Product code';
+    TMSFNCDataGrid1.Cells[COL_NAME, 0] := 'Name';
+    TMSFNCDataGrid1.Cells[COL_GROUP_CODE, 0] := 'Group code';
+    TMSFNCDataGrid1.Cells[COL_BRAND_NAME, 0] := 'Brand name';
+    TMSFNCDataGrid1.Cells[COL_INVENTORY, 0] := 'Inventory';
+    TMSFNCDataGrid1.Cells[COL_COST_PRICE, 0] := 'Cost price';
+    TMSFNCDataGrid1.Cells[COL_SALE_PRICE, 0] := 'Sale price';
+    TMSFNCDataGrid1.Cells[COL_CONDITION, 0] := 'Condition';
 
-  //for var LRow := TMSFNCDataGrid1.FixedRowCount to Pred(TMSFNCDataGrid1.RowCount) do
-  for LRow := TMSFNCDataGrid1.FixedRowCount to Pred(TMSFNCDataGrid1.RowCount) do
-    TMSFNCDataGrid1.ControlPositions[COL_PROGRESS, LRow] := gcpCenterCenter;
+    for LProductCode := 1 to PRODUCT_COUNT do
+    begin
+      LRow := LProductCode;
+      LGroupCode := Succ(LProductCode mod 5);
+      LBrandCode := Succ(LProductCode mod 5);
+      LInventory := 100 + (LProductCode * 3.63);
+      LCostPrice := 20 + (LProductCode * 7.59);
+      LSalePrice := 150 + (LProductCode * 11.78);
+
+      LCondition := 'Used';
+      if LProductCode mod 4 = 0 then
+        LCondition := 'New';
+
+      Self.AddProduct(LRow, LProductCode, LGroupCode, LBrandCode, LInventory, LCostPrice, LSalePrice, LCondition);
+    end;
+  finally
+    TMSFNCDataGrid1.EndUpdate;
+  end;
+end;
+
+procedure TMainView.AddProduct(ARow: Integer; AProductCode: Integer; AGroupCode: Integer; ABrandCode: Integer; AInventory: Double; ACostPrice: Double; ASalePrice: Double; const ACondition: string);
+begin
+  TMSFNCDataGrid1.Cells[COL_PRODUCT_CODE, ARow] := AProductCode;
+  TMSFNCDataGrid1.Cells[COL_NAME, ARow] := 'Product test ' + AProductCode.ToString;
+  TMSFNCDataGrid1.Cells[COL_GROUP_CODE, ARow] := AGroupCode;
+  TMSFNCDataGrid1.Cells[COL_BRAND_NAME, ARow] := 'Brand test ' + ABrandCode.ToString;
+  TMSFNCDataGrid1.Cells[COL_INVENTORY, ARow] := FormatFloat('0.00', AInventory);
+  TMSFNCDataGrid1.Cells[COL_COST_PRICE, ARow] := FormatFloat('0.00', ACostPrice);
+  TMSFNCDataGrid1.Cells[COL_SALE_PRICE, ARow] := FormatFloat('0.00', ASalePrice);
+  TMSFNCDataGrid1.Cells[COL_CONDITION, ARow] := ACondition;
 end;
 
 end.
