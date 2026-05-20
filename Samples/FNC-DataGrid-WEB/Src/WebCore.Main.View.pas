@@ -221,24 +221,18 @@ end;
 
 procedure TMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
 var
-  LValue: Double;
+  LFormatSettings: TFormatSettings;
+  LInventory: Double;
+  LText: string;
 begin
-  if ACell.Column = COL_INVENTORY then
-  begin
-    ACell.Layout.Font.Color := clGreen;
-  end;
+  if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Column < TMSFNCDataGrid1.FixedColumnCount) then
+    Exit;
 
-  //ROW OR COLUMN IS FIXED
-  if ACell.Row >= TMSFNCDataGrid1.FixedRowCount then
-  begin
-    if ACell.Column in [4, 5, 6] then
-    begin
-      //COLUMN 1 ALIGNED TO THE LEFT AND THE REST TO THE RIGHT
-      ACell.Layout.TextAlign := gtaTrailing;
-      if ACell.Column = 0 then
-        ACell.Layout.TextAlign := gtaLeading;
-    end;
-  end;
+  if ACell.Column in [COL_INVENTORY, COL_COST_PRICE, COL_SALE_PRICE] then
+    ACell.Layout.TextAlign := gtaTrailing;
+
+  if ACell.Column = COL_INVENTORY then
+    ACell.Layout.Font.Color := clGreen;
 end;
 
 end.
