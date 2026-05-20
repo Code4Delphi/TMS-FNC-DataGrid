@@ -37,6 +37,7 @@ type
   private
     procedure AddProduct(ARow: Integer; AProductCode: Integer; AGroupCode: Integer; ABrandCode: Integer; AInventory: Double; ACostPrice: Double; ASalePrice: Double; const ACondition: string);
     procedure ConfigAppearance;
+    procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
     procedure ConfigDataGrid;
     procedure LoadProducts;
   public
@@ -72,6 +73,7 @@ const
   COLOR_SELECTION_BORDER = $00E89B32;
   COLOR_TARGET_POSITIVE = $005DD15D;
   COLOR_TARGET_NEGATIVE = $003D3DFF;
+  COLOR_INVENTORY_FONT = $000000FF;
 
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
@@ -79,8 +81,14 @@ begin
   Self.ConfigDataGrid;
   Self.LoadProducts;
   Self.ConfigAppearance;
+  TMSFNCDataGrid1.OnGetCellLayout := Self.TMSFNCDataGrid1GetCellLayout;
 end;
 
+procedure TMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
+begin
+  if ACell.Column = COL_INVENTORY then
+    ACell.Layout.Font.Color := COLOR_INVENTORY_FONT;
+end;
 procedure TMainView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
