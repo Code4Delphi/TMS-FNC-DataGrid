@@ -34,10 +34,10 @@ type
   TMainView = class(TWebForm)
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure WebFormCreate(Sender: TObject);
+    procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
   private
     procedure AddProduct(ARow: Integer; AProductCode: Integer; AGroupCode: Integer; ABrandCode: Integer; AInventory: Double; ACostPrice: Double; ASalePrice: Double; const ACondition: string);
     procedure ConfigAppearance;
-    procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
     procedure ConfigDataGrid;
     procedure LoadProducts;
   public
@@ -73,22 +73,16 @@ const
   COLOR_SELECTION_BORDER = $00E89B32;
   COLOR_TARGET_POSITIVE = $005DD15D;
   COLOR_TARGET_NEGATIVE = $003D3DFF;
-  COLOR_INVENTORY_FONT = $000000FF;
 
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
+  Randomize;
   FormatSettings.DecimalSeparator := '.';
   Self.ConfigDataGrid;
   Self.LoadProducts;
   Self.ConfigAppearance;
-  TMSFNCDataGrid1.OnGetCellLayout := Self.TMSFNCDataGrid1GetCellLayout;
 end;
 
-procedure TMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-begin
-  if ACell.Column = COL_INVENTORY then
-    ACell.Layout.Font.Color := COLOR_INVENTORY_FONT;
-end;
 procedure TMainView.ConfigDataGrid;
 begin
   TMSFNCDataGrid1.BeginUpdate;
@@ -198,7 +192,7 @@ begin
       LRow := LProductCode;
       LGroupCode := Succ(LProductCode mod 5);
       LBrandCode := Succ(LProductCode mod 5);
-      LInventory := 100 + (LProductCode * 3.63);
+      LInventory := Random(20001) / 100;
       LCostPrice := 20 + (LProductCode * 7.59);
       LSalePrice := 150 + (LProductCode * 11.78);
 
@@ -223,6 +217,28 @@ begin
   TMSFNCDataGrid1.Cells[COL_COST_PRICE, ARow] := FormatFloat('0.00', ACostPrice);
   TMSFNCDataGrid1.Cells[COL_SALE_PRICE, ARow] := FormatFloat('0.00', ASalePrice);
   TMSFNCDataGrid1.Cells[COL_CONDITION, ARow] := ACondition;
+end;
+
+procedure TMainView.TMSFNCDataGrid1GetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
+var
+  LValue: Double;
+begin
+  if ACell.Column = COL_INVENTORY then
+  begin
+    ACell.Layout.Font.Color := clGreen;
+  end;
+
+  //ROW OR COLUMN IS FIXED
+  if ACell.Row >= TMSFNCDataGrid1.FixedRowCount then
+  begin
+    if ACell.Column in [4, 5, 6] then
+    begin
+      //COLUMN 1 ALIGNED TO THE LEFT AND THE REST TO THE RIGHT
+      ACell.Layout.TextAlign := gtaTrailing;
+      if ACell.Column = 0 then
+        ACell.Layout.TextAlign := gtaLeading;
+    end;
+  end;
 end;
 
 end.

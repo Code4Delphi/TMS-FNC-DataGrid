@@ -91,5 +91,6 @@ object MainView: TMainView
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
+    OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
   end
 end
