@@ -80,5 +80,6 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
-Samples/FNC-DataGrid-LoadingData/Bin/Temp.xls
-Samples/FNC-DataGrid-Calculations/Bin/Temp.csv
+TMSWeb/
+/Samples/FNC-DataGrid-WEB/TMSWeb
+Samples/FNC-DataGrid-WEB/TMSWeb/Debug/FNC_DataGrid_WEB.js

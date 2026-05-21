@@ -1,25 +1,26 @@
-object AppearanceDark: TAppearanceDark
-  Left = 0
-  Top = 0
-  Cursor = crHandPoint
-  Caption = 'TMS FNC DataGrid - Appearance Dark'
-  ClientHeight = 671
-  ClientWidth = 1261
-  Color = clBtnFace
+object MainView: TMainView
+  Width = 986
+  Height = 734
+  Color = 2235164
+  CSSLibrary = cssBootstrap
+  ElementFont = efCSS
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = 'Segoe UI'
+  Font.Height = -15
+  Font.Name = 'Tahoma'
   Font.Style = []
-  KeyPreview = True
-  Position = poScreenCenter
-  OnCreate = FormCreate
-  TextHeight = 15
+  ParentFont = False
+  OnCreate = WebFormCreate
   object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Left = 0
-    Top = 0
-    Width = 1261
-    Height = 671
+    AlignWithMargins = True
+    Left = 30
+    Top = 30
+    Width = 926
+    Height = 674
+    Margins.Left = 30
+    Margins.Top = 30
+    Margins.Right = 30
+    Margins.Bottom = 30
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -90,11 +91,8 @@ object AppearanceDark: TAppearanceDark
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
-    OnAfterDrawCell = TMSFNCDataGrid1AfterDrawCell
-    OnBeforeDrawCell = TMSFNCDataGrid1BeforeDrawCell
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
-    Options.Filtering.Enabled = True
-    Options.Sorting.Enabled = True
-    Options.Editing.Enabled = False
+    ExplicitLeft = 25
+    ExplicitTop = 25
   end
 end
