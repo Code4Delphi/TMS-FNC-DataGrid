@@ -120,7 +120,6 @@
         </DCCReference>
         <None Include="Index.html"/>
         <None Include="Index.css"/>
-        <None Include="Data\customers.csv"/>
         <RcItem Include="FavIcon.ico">
             <ResourceType>ICON</ResourceType>
             <ResourceId>Icon_1</ResourceId>
@@ -156,7 +155,25 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
+                <DeployFile LocalName="Bin\Win32\Debug\FNC_DataGrid_WEB.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>FNC_DataGrid_WEB.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataGrid-WEB\Index.css" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataGrid-WEB\Index.css" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataGrid-WEB\Index.html" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -201,12 +218,6 @@
                 <DeployFile LocalName="bootstrap.min.css" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Data\customers.csv" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\Data</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

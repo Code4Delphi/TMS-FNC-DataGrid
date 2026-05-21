@@ -40,6 +40,9 @@ type
     procedure ConfigAppearance;
     procedure ConfigDataGrid;
     procedure LoadProducts;
+    procedure DoCollapseAllNodesClick(Sender: TObject);
+    procedure DoExpandAllNodesClick(Sender: TObject);
+    procedure DoUngroupClick(Sender: TObject);
   public
 
   end;
@@ -51,23 +54,36 @@ implementation
 
 {$R *.dfm}
 
+//const
+//  COL_PRODUCT_CODE = 0;
+//  COL_NAME = 1;
+//  COL_GROUP_CODE = 2;
+//  COL_BRAND_NAME = 3;
+//  COL_INVENTORY = 4;
+//  COL_COST_PRICE = 5;
+//  COL_SALE_PRICE = 6;
+//  COL_CONDITION = 7;
+//  PRODUCT_COLUMN_COUNT = 8;
+//  PRODUCT_COUNT = 100;
+//  COLOR_BACKGROUND = $0033322F;
+//  COLOR_ALTERNATE_BACKGROUND = $004D4B46;
+//  COLOR_HEADER = $004D4B45;
+//  COLOR_GRID_LINE = $00635F5A;
+//  COLOR_HEADER_TEXT = $00D6B38D;
+//  COLOR_TEXT = $00F5F5F5;
+//  COLOR_SELECTION = $00704A2D;
+//  COLOR_SELECTION_BORDER = $00E89B32;
+
 const
-  COL_PRODUCT_CODE = 0;
-  COL_NAME = 1;
-  COL_GROUP_CODE = 2;
-  COL_BRAND_NAME = 3;
-  COL_INVENTORY = 4;
-  COL_COST_PRICE = 5;
-  COL_SALE_PRICE = 6;
-  COL_CONDITION = 7;
-  PRODUCT_COLUMN_COUNT = 8;
-  PRODUCT_COUNT = 100;
   COLOR_BACKGROUND = $0033322F;
-  COLOR_ALTERNATE_BACKGROUND = $004D4B46;
+  COLOR_BAND = $004D4B46;
   COLOR_HEADER = $004D4B45;
+  COLOR_GROUP = $003B3A36;
+  COLOR_SUMMARY = $0045413E;
   COLOR_GRID_LINE = $00635F5A;
   COLOR_HEADER_TEXT = $00D6B38D;
   COLOR_TEXT = $00F5F5F5;
+  COLOR_MUTED_TEXT = $00C8D0D7;
   COLOR_SELECTION = $00704A2D;
   COLOR_SELECTION_BORDER = $00E89B32;
 
@@ -81,20 +97,39 @@ begin
 end;
 
 procedure TMainView.ConfigDataGrid;
+var
+  LGridButton: TTMSFNCDataGridButton;
 begin
-  TMSFNCDataGrid1.BeginUpdate;
+ TMSFNCDataGrid1.BeginUpdate;
   try
-    TMSFNCDataGrid1.Clear;
-    TMSFNCDataGrid1.FixedRowCount := 1;
-    TMSFNCDataGrid1.FixedColumnCount := 0;
-    TMSFNCDataGrid1.ColumnCount := PRODUCT_COLUMN_COUNT;
-    TMSFNCDataGrid1.RowCount := Succ(PRODUCT_COUNT);
-    TMSFNCDataGrid1.Options.Editing.Enabled := False;
-    TMSFNCDataGrid1.Options.Filtering.Enabled := True;
-    TMSFNCDataGrid1.Options.Sorting.Enabled := True;
-    TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
-    TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
-    TMSFNCDataGrid1.DefaultRowHeight := 76;
+    //CONFIGURA O AGRUPAMENTO VISUAL DA GRID / CONFIGURES THE GRID VISUAL GROUPING
+    TMSFNCDataGrid1.Options.Mouse.ColumnDragging := True;
+    TMSFNCDataGrid1.Header.Visible := True;
+    TMSFNCDataGrid1.Header.Bar.Visible := True;
+    TMSFNCDataGrid1.Header.Bar.Size := 35;
+
+    //ADICIONA BOTÕES ABAIXO DOS LINKS DE AGRUPAMENTO / ADDS BUTTONS BELOW THE GROUP LINKS
+    LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+    LGridButton.OnClick := Self.DoCollapseAllNodesClick;
+    LGridButton.Width := 100;
+    LGridButton.Text := 'Collapse';
+
+    LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+    LGridButton.OnClick := Self.DoExpandAllNodesClick;
+    LGridButton.Width := 100;
+    LGridButton.Text := 'Expand';
+
+    LGridButton := TMSFNCDataGrid1.Header.Bar.Buttons.Add;
+    LGridButton.OnClick := Self.DoUngroupClick;
+    LGridButton.Width := 100;
+    LGridButton.Text := 'Ungroup';
+
+    //CONFIGURA O ADAPTADOR DO BANCO DE DADOS / CONFIGURES THE DATABASE ADAPTER
+    //TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := True;
+    //TMSFNCDataGridDatabaseAdapter1.LoadMode := almAllRecords;
+
+    //APLICA A APARÊNCIA DARK DA GRID / APPLIES THE GRID DARK APPEARANCE
+    Self.ConfigAppearance;
   finally
     TMSFNCDataGrid1.EndUpdate;
   end;
@@ -102,64 +137,89 @@ end;
 
 procedure TMainView.ConfigAppearance;
 begin
-  //ALTERA A COR DE FUNDO DO FORMULÁRIO / ALTERS THE FORM BACKGROUND COLOR
-  Self.Color := COLOR_BACKGROUND;
-
   //ALTERA A APARÊNCIA GERAL DA GRID / ALTERS THE GENERAL GRID APPEARANCE
   TMSFNCDataGrid1.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.Font.Size := 16;
+  TMSFNCDataGrid1.Font.Size := 10;
   TMSFNCDataGrid1.Font.Color := COLOR_TEXT;
-
-  //ATIVA O RECURSO PARA ZEBRAR A GRID / ENABLE THE GRID CLEARANCE FEATURE
   TMSFNCDataGrid1.Options.Banding.Enabled := True;
 
   //ALTERA A APARÊNCIA DAS LINHAS NORMAIS / ALTERS THE APPEARANCE OF NORMAL ROWS
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Fill.Color := COLOR_BACKGROUND;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Stroke.Color := COLOR_GRID_LINE;
-  TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Color := COLOR_TEXT;
   TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 16;
-  TMSFNCDataGrid1.CellAppearance.NormalLayout.TextAlign := gtaLeading;
-  TMSFNCDataGrid1.CellAppearance.NormalLayout.VerticalTextAlign := gtaCenter;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.NormalLayout.Font.Color := COLOR_TEXT;
 
   //ALTERA A APARÊNCIA DAS LINHAS ALTERNADAS / ALTERS THE APPEARANCE OF BANDED ROWS
   TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Kind := gfkSolid;
-  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_ALTERNATE_BACKGROUND;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Fill.Color := COLOR_BAND;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Stroke.Color := COLOR_GRID_LINE;
-  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
   TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Size := 16;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.BandLayout.Font.Color := COLOR_TEXT;
 
   //ALTERA A APARÊNCIA DAS LINHAS FIXAS / ALTERS THE APPEARANCE OF FIXED ROWS
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Fill.Color := COLOR_HEADER;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Stroke.Color := COLOR_GRID_LINE;
-  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Color := COLOR_HEADER_TEXT;
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Size := 18;
-  {$IFDEF WEBLIB}
-  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [WEBLib.Graphics.TFontStyle.fsBold];
-  {$ELSE}
-  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [Vcl.Graphics.TFontStyle.fsBold];
-  {$ENDIF}
+  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [TFontStyle.fsBold];
+
+  //ALTERA A APARÊNCIA DAS LINHAS DE GRUPO / ALTERS THE APPEARANCE OF GROUP ROWS
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Fill.Kind := gfkSolid;
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Fill.Color := COLOR_GROUP;
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Stroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Font.Color := COLOR_TEXT;
+  TMSFNCDataGrid1.CellAppearance.GroupLayout.Font.Style := [TFontStyle.fsBold];
+
+  //ALTERA A APARÊNCIA DAS LINHAS DE RESUMO / ALTERS THE APPEARANCE OF SUMMARY ROWS
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Fill.Kind := gfkSolid;
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Fill.Color := COLOR_SUMMARY;
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Stroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.CellAppearance.SummaryLayout.Font.Style := [TFontStyle.fsBold];
 
   //ALTERA A APARÊNCIA DAS LINHAS SELECIONADAS / ALTERS THE APPEARANCE OF SELECTED ROWS
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
-  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
   TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Size := 16;
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.SelectedLayout.Font.Color := COLOR_HEADER_TEXT;
 
   //ALTERA A APARÊNCIA DA LINHA COM FOCO / ALTERS THE APPEARANCE OF THE FOCUSED ROW
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Kind := gfkSolid;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Fill.Color := COLOR_SELECTION;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Stroke.Color := COLOR_SELECTION_BORDER;
-  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
   TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Name := 'Segoe UI';
-  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Size := 16;
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Size := 10;
+  TMSFNCDataGrid1.CellAppearance.FocusedLayout.Font.Color := COLOR_HEADER_TEXT;
+
+  //ALTERA A APARÊNCIA DA ÁREA DE AGRUPAMENTO VISUAL / ALTERS THE APPEARANCE OF THE VISUAL GROUPING AREA
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Kind := gfkSolid;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationFill.Color := COLOR_SELECTION;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelActiveIndicationStroke.Color := COLOR_SELECTION_BORDER;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelIndicationFill.Kind := gfkSolid;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelIndicationFill.Color := COLOR_HEADER;
+  TMSFNCDataGrid1.Header.VisualGrouping.LevelIndicationStroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionLines := True;
+  TMSFNCDataGrid1.Header.VisualGrouping.ConnectionStroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.TextAlign := gtaCenter;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Fill.Kind := gfkSolid;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Fill.Color := COLOR_HEADER;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Stroke.Color := COLOR_GRID_LINE;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Font.Name := 'Segoe UI';
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Font.Size := 10;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Font.Color := COLOR_HEADER_TEXT;
+  TMSFNCDataGrid1.Header.VisualGrouping.Layout.Font.Style := [TFontStyle.fsBold];
 end;
 
 procedure TMainView.LoadProducts;
@@ -227,5 +287,21 @@ begin
   if ACell.Column = COL_INVENTORY then
     ACell.Layout.Font.Color := clGreen;
 end;
+
+procedure TMainView.DoCollapseAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.CollapseAllNodes;
+end;
+
+procedure TMainView.DoExpandAllNodesClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ExpandAllNodes;
+end;
+
+procedure TMainView.DoUngroupClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.UnGroup;
+end;
+
 
 end.
