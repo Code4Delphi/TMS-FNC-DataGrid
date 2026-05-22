@@ -39,6 +39,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 18 - Autocompletar / Drop Files / Clipboard Options](https://www.youtube.com/watch?v=cmu8F_p_EFw&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 19 - Transformando o DataGrid em uma planilha](https://www.youtube.com/watch?v=udAgp3S4Jvg&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 20 - Grids bonitas e modernas | Configurações de aparência | Visual Dark e Light](https://www.youtube.com/watch?v=MJ0bH53o5jM&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 21 - Grid em aplicações web | Leve o poder das grids para a Web com Delphi](https://www.youtube.com/watch?v=HFPdBTrY39o&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
