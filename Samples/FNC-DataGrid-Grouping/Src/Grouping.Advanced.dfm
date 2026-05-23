@@ -236,10 +236,8 @@ object GroupingAdvanced: TGroupingAdvanced
     Options.Filtering.Enabled = True
     Options.Sorting.Enabled = True
     Options.Banding.Enabled = True
-    Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    ExplicitTop = 125
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 784
       Top = 229
