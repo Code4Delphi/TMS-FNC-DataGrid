@@ -62,11 +62,6 @@ type
     GroupBox2: TGroupBox;
     btnClose: TButton;
     btnOpenQuery: TButton;
-    GroupBox1: TGroupBox;
-    btnDescriptionRemove: TButton;
-    btnDescriptionAdd: TButton;
-    GroupBox3: TGroupBox;
-    btnAddColumn: TButton;
     GroupBox4: TGroupBox;
     ckShowMemoFields: TCheckBox;
     ckShowBooleanFields: TCheckBox;
@@ -75,17 +70,17 @@ type
     FDQuery1Description: TWideMemoField;
     FDQuery1Active: TBooleanField;
     FDQuery1Image: TBlobField;
-    FDQuery1Limited: TWideMemoField;
+    FDQuery1Limited: TIntegerField;
+    ckCheckBoxField: TCheckBox;
+    ckShowPictureFields: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
-    procedure btnDescriptionRemoveClick(Sender: TObject);
-    procedure btnDescriptionAddClick(Sender: TObject);
-    procedure btnAddColumnClick(Sender: TObject);
     procedure ckShowMemoFieldsClick(Sender: TObject);
+    procedure ckCheckBoxFieldClick(Sender: TObject);
+    procedure ckShowPictureFieldsClick(Sender: TObject);
   private
     procedure Configs;
-
   public
 
   end;
@@ -109,22 +104,35 @@ begin
   Self.Configs;
 end;
 
+procedure TMemoBooleanImageView.ckCheckBoxFieldClick(Sender: TObject);
+begin
+  Self.Configs;
+  FDQuery1.Refresh;
+end;
+
+procedure TMemoBooleanImageView.ckShowPictureFieldsClick(Sender: TObject);
+begin
+  Self.Configs;
+  FDQuery1.Refresh;
+end;
+
 procedure TMemoBooleanImageView.Configs;
 begin
-  TMSFNCDataGridDatabaseAdapter1.Columns[TMSFNCDataGrid1.ColumnIndexByHeader('Image')].PictureField := True;
+  //Memo Fields
   TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := ckShowMemoFields.Checked;
 
+  //Boolean Fields
   TMSFNCDataGridDatabaseAdapter1.ShowBooleanFields := ckShowBooleanFields.Checked;
-
-  //COLUMN Limited
+  //Exibir CheckBox em campos diferentes de booleanos / Display CheckBox in fields other than booleans.
   var LLimitedIndex := TMSFNCDataGrid1.ColumnIndexByHeader('Limited');
   var LLimitedCoumn := TMSFNCDataGrid1.Columns[LLimitedIndex];
+  LLimitedCoumn.Binding.BooleanFalseValue := '1';
+  LLimitedCoumn.Binding.BooleanTrueValue := '2';
+  TMSFNCDataGridDatabaseAdapter1.Columns[LLimitedIndex].CheckBoxField := ckCheckBoxField.Checked;
 
-  LLimitedCoumn.Binding.BooleanTrueValue := 'Yes';
-  LLimitedCoumn.Binding.BooleanFalseValue := 'No';
-
-  TMSFNCDataGridDatabaseAdapter1.Columns[LLimitedIndex].CheckBoxField := True;
-  TMSFNCDataGridDatabaseAdapter1.Update;
+  // Image Blobs
+  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := ckShowPictureFields.Checked;
+  TMSFNCDataGridDatabaseAdapter1.Columns[TMSFNCDataGrid1.ColumnIndexByHeader('Image')].PictureField := ckShowPictureFields.Checked;
 end;
 
 procedure TMemoBooleanImageView.btnOpenQueryClick(Sender: TObject);
@@ -136,33 +144,6 @@ end;
 procedure TMemoBooleanImageView.btnCloseClick(Sender: TObject);
 begin
   FDQuery1.Close;
-end;
-
-procedure TMemoBooleanImageView.btnDescriptionAddClick(Sender: TObject);
-begin
-  TMSFNCDataGridDatabaseAdapter1.Columns[2].Header := 'Description';
-  TMSFNCDataGridDatabaseAdapter1.Columns[2].HTMLTemplate := '<font color="gcBlue">The description is: </FONT> <B><#Description> </B>';
-  TMSFNCDataGrid1.AutoSizeColumns;
-end;
-
-procedure TMemoBooleanImageView.btnDescriptionRemoveClick(Sender: TObject);
-begin
-  TMSFNCDataGridDatabaseAdapter1.Columns[2].HTMLTemplate := '';
-end;
-
-procedure TMemoBooleanImageView.btnAddColumnClick(Sender: TObject);
-begin
-  if not FDQuery1.Active then
-    FDQuery1.Open;
-
-  if TMSFNCDataGrid1.ColumnIndexByHeader('Department / Limit') >= 0 then
-    Exit;
-
-  var LColumn := TMSFNCDataGridDatabaseAdapter1.Columns.Add;
-  LColumn.Header := 'Department / Limit';
-  LColumn.HTMLTemplate := '<B><#Department></B><BR><font color="gcGreen">Limit: <#LimitValue></font>';
-
-  TMSFNCDataGrid1.AutoSizeGrid;
 end;
 
 end.

@@ -33,7 +33,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
       Padding.Top = 2
       Padding.Right = 4
       TabOrder = 0
-      ExplicitHeight = 87
       object btnClose: TButton
         AlignWithMargins = True
         Left = 6
@@ -65,86 +64,14 @@ object MemoBooleanImageView: TMemoBooleanImageView
         OnClick = btnOpenQueryClick
       end
     end
-    object GroupBox1: TGroupBox
-      Left = 316
-      Top = 1
-      Width = 185
-      Height = 111
-      Align = alLeft
-      Caption = ' Field Description '
-      Padding.Left = 4
-      Padding.Top = 2
-      Padding.Right = 4
-      TabOrder = 1
-      ExplicitHeight = 87
-      object btnDescriptionRemove: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 47
-        Width = 173
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Remove HTML Template'
-        TabOrder = 0
-        OnClick = btnDescriptionRemoveClick
-      end
-      object btnDescriptionAdd: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 19
-        Width = 173
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Add HTML Template'
-        TabOrder = 1
-        OnClick = btnDescriptionAddClick
-      end
-    end
-    object GroupBox3: TGroupBox
-      Left = 501
-      Top = 1
-      Width = 185
-      Height = 111
-      Cursor = crHandPoint
-      Align = alLeft
-      Caption = ' Add column '
-      Padding.Left = 4
-      Padding.Top = 2
-      Padding.Right = 4
-      TabOrder = 2
-      ExplicitHeight = 87
-      object btnAddColumn: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 19
-        Width = 173
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Add Column'
-        TabOrder = 0
-        OnClick = btnAddColumnClick
-      end
-    end
     object GroupBox4: TGroupBox
       Left = 131
       Top = 1
-      Width = 185
+      Width = 230
       Height = 111
       Align = alLeft
       Caption = ' Configs '
-      TabOrder = 3
+      TabOrder = 1
       ExplicitLeft = 134
       ExplicitTop = -4
       object ckShowMemoFields: TCheckBox
@@ -160,7 +87,7 @@ object MemoBooleanImageView: TMemoBooleanImageView
       end
       object ckShowBooleanFields: TCheckBox
         Left = 16
-        Top = 46
+        Top = 44
         Width = 145
         Height = 17
         Caption = 'Show Boolean Fields'
@@ -168,6 +95,28 @@ object MemoBooleanImageView: TMemoBooleanImageView
         State = cbChecked
         TabOrder = 1
         OnClick = ckShowMemoFieldsClick
+      end
+      object ckCheckBoxField: TCheckBox
+        Left = 16
+        Top = 65
+        Width = 193
+        Height = 17
+        Caption = 'Column Limited CheckBoxField'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+        OnClick = ckCheckBoxFieldClick
+      end
+      object ckShowPictureFields: TCheckBox
+        Left = 16
+        Top = 87
+        Width = 145
+        Height = 17
+        Caption = 'Show Picture Fields'
+        Checked = True
+        State = cbChecked
+        TabOrder = 3
+        OnClick = ckShowPictureFieldsClick
       end
     end
   end
@@ -292,7 +241,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Appearance.SummaryLayout.Font.Height = -12
         Appearance.SummaryLayout.Font.Name = 'Segoe UI'
         Appearance.SummaryLayout.Font.Style = []
-        Header = 'Id'
       end
       item
         Appearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
@@ -345,7 +293,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Appearance.SummaryLayout.Font.Height = -12
         Appearance.SummaryLayout.Font.Name = 'Segoe UI'
         Appearance.SummaryLayout.Font.Style = []
-        Header = 'Name'
         Width = 200.000000000000000000
       end
       item
@@ -399,7 +346,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Appearance.SummaryLayout.Font.Height = -12
         Appearance.SummaryLayout.Font.Name = 'Segoe UI'
         Appearance.SummaryLayout.Font.Style = []
-        Header = 'Description'
         Width = 200.000000000000000000
       end
       item
@@ -453,7 +399,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Appearance.SummaryLayout.Font.Height = -12
         Appearance.SummaryLayout.Font.Name = 'Segoe UI'
         Appearance.SummaryLayout.Font.Style = []
-        Header = 'Active'
         Width = 50.000000000000000000
       end
       item
@@ -507,7 +452,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Appearance.SummaryLayout.Font.Height = -12
         Appearance.SummaryLayout.Font.Name = 'Segoe UI'
         Appearance.SummaryLayout.Font.Style = []
-        Header = 'Limited'
         Width = 50.000000000000000000
       end
       item
@@ -561,7 +505,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Appearance.SummaryLayout.Font.Height = -12
         Appearance.SummaryLayout.Font.Name = 'Segoe UI'
         Appearance.SummaryLayout.Font.Style = []
-        Header = 'Image'
         Width = 64.000000000000000000
       end>
     FilterActions = <>
@@ -574,7 +517,6 @@ object MemoBooleanImageView: TMemoBooleanImageView
     Options.Mouse.FixedColumnSizing = True
     Options.Mouse.FixedRowSizing = True
     RowCount = 31
-    ExplicitLeft = 8
     ExplicitTop = 118
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
@@ -622,13 +564,11 @@ object MemoBooleanImageView: TMemoBooleanImageView
     FetchOptions.AssignedValues = [evMode, evCursorKind]
     FetchOptions.Mode = fmAll
     FetchOptions.CursorKind = ckForwardOnly
-    Connected = True
     LoginPrompt = False
     Left = 904
     Top = 166
   end
   object FDQuery1: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from DemoFields')
@@ -656,11 +596,9 @@ object MemoBooleanImageView: TMemoBooleanImageView
       Origin = 'Active'
       Required = True
     end
-    object FDQuery1Limited: TWideMemoField
+    object FDQuery1Limited: TIntegerField
       FieldName = 'Limited'
       Origin = 'Limited'
-      Required = True
-      BlobType = ftWideMemo
     end
     object FDQuery1Image: TBlobField
       FieldName = 'Image'
