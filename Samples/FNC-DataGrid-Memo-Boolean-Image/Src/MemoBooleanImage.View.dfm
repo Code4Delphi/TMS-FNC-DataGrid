@@ -72,13 +72,12 @@ object MemoBooleanImageView: TMemoBooleanImageView
       Align = alLeft
       Caption = ' Configs '
       TabOrder = 1
-      ExplicitLeft = 134
-      ExplicitTop = -4
       object ckShowMemoFields: TCheckBox
         Left = 16
         Top = 23
         Width = 145
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Show Memo Fields'
         Checked = True
         State = cbChecked
@@ -90,6 +89,7 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Top = 44
         Width = 145
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Show Boolean Fields'
         Checked = True
         State = cbChecked
@@ -101,6 +101,7 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Top = 65
         Width = 193
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Column Limited CheckBoxField'
         Checked = True
         State = cbChecked
@@ -112,6 +113,7 @@ object MemoBooleanImageView: TMemoBooleanImageView
         Top = 87
         Width = 145
         Height = 17
+        Cursor = crHandPoint
         Caption = 'Show Picture Fields'
         Checked = True
         State = cbChecked
@@ -516,8 +518,8 @@ object MemoBooleanImageView: TMemoBooleanImageView
     Options.Mouse.ColumnSizing = True
     Options.Mouse.FixedColumnSizing = True
     Options.Mouse.FixedRowSizing = True
-    RowCount = 31
-    ExplicitTop = 118
+    RowCount = 1
+    ExplicitTop = 111
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 904

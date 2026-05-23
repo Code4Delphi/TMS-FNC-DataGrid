@@ -1,6 +1,7 @@
 object HTMLTemplatesView: THTMLTemplatesView
   Left = 0
   Top = 0
+  Cursor = crHandPoint
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - HTML Templates'
   ClientHeight = 612
@@ -212,7 +213,7 @@ object HTMLTemplatesView: THTMLTemplatesView
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     RowCount = 1
-    ExplicitLeft = 1
+    ExplicitLeft = 8
     ExplicitTop = 94
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter

@@ -112,8 +112,9 @@ end;
 
 procedure THTMLTemplatesView.btnDescriptionAddClick(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.Columns[2].Header := 'Description';
-  TMSFNCDataGridDatabaseAdapter1.Columns[2].HTMLTemplate := '<font color="gcBlue">The description is: </FONT> <B><#Description> </B>';
+  var LCoumn := TMSFNCDataGridDatabaseAdapter1.Columns[2];
+  LCoumn.Header := 'Description';
+  LCoumn.HTMLTemplate := '<font color="gcBlue">The description is: </FONT> <B><#Description> </B> ';
   TMSFNCDataGrid1.AutoSizeColumns;
 end;
 
