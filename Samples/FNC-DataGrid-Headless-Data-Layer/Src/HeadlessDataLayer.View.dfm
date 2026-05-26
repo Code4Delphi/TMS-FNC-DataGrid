@@ -31,11 +31,11 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Width = 50
       end>
   end
-  object Panel1: TPanel
+  object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1292
-    Height = 73
+    Height = 201
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1

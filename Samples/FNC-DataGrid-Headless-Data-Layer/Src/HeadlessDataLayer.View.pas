@@ -25,7 +25,7 @@ uses
 type
   THeadlessDataLayerView = class(TForm)
     StatusBar1: TStatusBar;
-    Panel1: TPanel;
+    pnTop: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
