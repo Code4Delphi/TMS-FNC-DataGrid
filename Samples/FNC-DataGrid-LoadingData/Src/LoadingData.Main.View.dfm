@@ -1,6 +1,6 @@
 object LoadingDataMainView: TLoadingDataMainView
-  Left = 0
-  Top = 0
+  Left = 70
+  Top = 200
   Caption = 'TMS FNC DataGrid - Loading Data from Multiple Sources'
   ClientHeight = 253
   ClientWidth = 462
@@ -10,7 +10,7 @@ object LoadingDataMainView: TLoadingDataMainView
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poScreenCenter
+  Position = poDesigned
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -49,7 +49,7 @@ object LoadingDataMainView: TLoadingDataMainView
     end
     object btnDatabaseData: TButton
       Left = 62
-      Top = 149
+      Top = 150
       Width = 329
       Height = 25
       Caption = 'Loading database data'
