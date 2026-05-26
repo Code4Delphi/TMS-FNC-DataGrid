@@ -18,7 +18,9 @@ uses
   Vcl.Dialogs,
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls,
+  //VCL.TMSFNCDataGrid,
+  VCL.TMSFNCDataGridData;
 
 type
   THeadlessDataLayerView = class(TForm)
