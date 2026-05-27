@@ -21,7 +21,6 @@ object FilteringMainView: TFilteringMainView
     Height = 121
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -5
     object gBoxConfigs: TGroupBox
       Left = 137
       Top = 1
@@ -154,6 +153,8 @@ object FilteringMainView: TFilteringMainView
       Align = alLeft
       Caption = ' Add filters via code '
       TabOrder = 4
+      ExplicitLeft = 448
+      ExplicitTop = -3
       object Label1: TLabel
         Left = 9
         Top = 24
@@ -186,7 +187,6 @@ object FilteringMainView: TFilteringMainView
       Align = alLeft
       Caption = ' Custom filter '
       TabOrder = 5
-      ExplicitTop = -3
       object Label2: TLabel
         Left = 11
         Top = 24
@@ -280,7 +280,7 @@ object FilteringMainView: TFilteringMainView
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 3
+    TabOrder = 2
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
