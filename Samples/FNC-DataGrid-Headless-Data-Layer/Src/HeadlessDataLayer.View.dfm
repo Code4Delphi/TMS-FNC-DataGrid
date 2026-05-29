@@ -74,7 +74,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Carregar CSV'
         TabOrder = 0
         OnClick = btnLoadCSVClick
-        ExplicitWidth = 127
       end
       object btnManualData: TButton
         AlignWithMargins = True
@@ -87,7 +86,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Manual data'
         TabOrder = 1
         OnClick = btnManualDataClick
-        ExplicitWidth = 127
       end
     end
     object GroupBox3: TGroupBox
@@ -98,7 +96,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
       Align = alLeft
       Caption = ' Add filters '
       TabOrder = 1
-      ExplicitLeft = 137
       DesignSize = (
         256
         193)
@@ -119,7 +116,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Filter'
         TabOrder = 0
         OnClick = btnFilterClick
-        ExplicitLeft = 101
       end
       object edtFilter: TEdit
         Left = 5
@@ -128,7 +124,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
-        ExplicitWidth = 206
       end
       object btnFilterCondition: TButton
         AlignWithMargins = True
@@ -141,7 +136,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Filter '#39'Used'#39' from '#39'Condition'#39' field'
         TabOrder = 2
         OnClick = btnFilterConditionClick
-        ExplicitWidth = 206
       end
       object btnRemoveFilter: TButton
         AlignWithMargins = True
@@ -154,7 +148,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'RemoveFilter'
         TabOrder = 3
         OnClick = btnRemoveFilterClick
-        ExplicitWidth = 206
       end
     end
     object GroupBox1: TGroupBox
@@ -165,7 +158,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
       Align = alLeft
       Caption = ' Order '
       TabOrder = 2
-      ExplicitLeft = 393
       object btnOrderByInventoryAsc: TButton
         AlignWithMargins = True
         Left = 5
@@ -177,7 +169,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Order by Inventory (asc)'
         TabOrder = 0
         OnClick = btnOrderByInventoryAscClick
-        ExplicitWidth = 265
       end
       object btnOrderByInventoryAndCondition: TButton
         AlignWithMargins = True
@@ -190,7 +181,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Order by Inventory (asc) and Condition (desc)'
         TabOrder = 1
         OnClick = btnOrderByInventoryAndConditionClick
-        ExplicitWidth = 265
       end
       object btnOrderByInventoryDesc: TButton
         AlignWithMargins = True
@@ -203,7 +193,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Order by Inventory (desc)'
         TabOrder = 2
         OnClick = btnOrderByInventoryDescClick
-        ExplicitWidth = 265
       end
     end
     object GroupBox2: TGroupBox
@@ -214,7 +203,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
       Align = alLeft
       Caption = ' Export '
       TabOrder = 3
-      ExplicitLeft = 713
       object btnExport: TButton
         AlignWithMargins = True
         Left = 5
@@ -226,7 +214,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Export CSV'
         TabOrder = 0
         OnClick = btnExportClick
-        ExplicitWidth = 107
       end
     end
     object GroupBox4: TGroupBox
@@ -237,8 +224,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
       Align = alLeft
       Caption = ' Group '
       TabOrder = 4
-      ExplicitLeft = 866
-      ExplicitTop = -6
       object btnGroup: TButton
         AlignWithMargins = True
         Left = 5
