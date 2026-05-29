@@ -1,17 +1,17 @@
 Product code,Name,Group code,Brand name,Inventory,Cost price,Sale price,Condition
-1,Product test 1,4,Brand test 1,113.63,378.31,922.78,Used
-2,Product test 2,3,Brand test 5,409.76,77.59,855.91,Used
-3,Product test 3,5,Brand test 4,487.20,305.86,584.01,Used
-4,Product test 4,3,Brand test 3,473.98,23.90,174.34,New
-5,Product test 5,2,Brand test 5,388.87,304.92,577.37,New
-6,Product test 6,3,Brand test 1,222.44,18.13,148.21,Used
-7,Product test 7,4,Brand test 2,114.89,36.17,592.59,Used
-8,Column test 8,2,Brand test 2,134.86,380.45,503.85,New
-9,Product test 9,5,Brand test 3,449.67,26.18,839.13,New
+1,Product test 01,4,Brand test 1,110.63,378.31,922.78,Used
+2,Product test 02,3,Brand test 5,409.76,77.59,855.91,Used
+3,Product test 03,5,Brand test 4,487.20,305.86,584.01,Used
+4,Product test 04,3,Brand test 3,4.88,23.90,174.34,New
+5,Product test 05,2,Brand test 5,388.87,304.92,577.37,New
+6,Product test 06,3,Brand test 1,222.44,18.13,148.21,Used
+7,Product test 07,4,Brand test 2,114.89,36.17,592.59,Used
+8,Product test 08,2,Brand test 2,134.86,380.45,503.85,New
+9,Product test 09,5,Brand test 3,449.67,26.18,839.13,New
 10,Product test 10,4,Brand test 1,373.52,383.64,940.47,New
 11,Product test 11,3,Brand test 4,489.54,243.81,696.36,Used
 12,Product test 12,4,Brand test 2,191.23,26.59,756.91,New
-13,Row test 13,2,Brand test 4,448.05,279.87,757.77,Used
+13,Product test 13,2,Brand test 4,448.05,279.87,757.77,Used
 14,Service test 14,4,Brand test 3,357.63,354.13,748.33,Used
 15,Product test 15,5,Brand test 5,430.02,337.23,927.34,Used
 16,Product test 16,4,Brand test 3,160.21,55.88,990.11,Used
@@ -22,11 +22,11 @@ Product code,Name,Group code,Brand name,Inventory,Cost price,Sale price,Conditio
 21,Product test 21,2,Brand test 2,282.15,288.83,545.73,New
 22,Product test 22,2,Brand test 3,208.93,10.85,617.28,New
 23,FNC datagrid test 23,4,Brand test 3,96.01,159.00,201.39,New
-24,Product test 24,5,Brand test 4,218.59,470.31,873.00,New
+24,Service test 24,5,Brand test 4,218.59,470.31,873.00,New
 25,Product test 25,2,Brand test 4,344.63,274.78,467.42,New
-26,Product test 26,4,Brand test 1,286.88,240.56,677.10,Used
+26,Service test 26,4,Brand test 1,286.88,240.56,677.10,Used
 27,Product test 27,2,Brand test 5,62.75,339.11,452.34,New
-28,Product test 28,2,Brand test 5,194.38,439.21,643.82,Used
+28,Product test 28,2,Brand test 5,4.88,439.21,643.82,Used
 29,Product test 29,4,Brand test 4,266.22,78.89,809.99,New
 30,Product test 30,2,Brand test 1,345.33,356.26,787.17,Used
 31,Product test 31,4,Brand test 1,97.65,339.30,367.21,New

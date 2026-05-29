@@ -6,6 +6,7 @@ uses
   Winapi.Windows,
   Winapi.Messages,
   System.SysUtils,
+  System.StrUtils,
   System.Variants,
   System.Classes,
   System.UITypes,
@@ -23,7 +24,7 @@ uses
   VCL.TMSFNCDataGridData;
 
 type
-  TProductColumn = record
+  TColNumber = record
   public const
     Code = 0;
     Name = 1;
@@ -41,12 +42,6 @@ type
     gBoxLoad: TGroupBox;
     btnLoadCSV: TButton;
     btnManualData: TButton;
-    gBoxProcess: TGroupBox;
-    btnSort: TButton;
-    btnGroup: TButton;
-    btnTypedValues: TButton;
-    btnExport: TButton;
-    btnCompleteFlow: TButton;
     lBoxLog: TListBox;
     GroupBox3: TGroupBox;
     Label1: TLabel;
@@ -54,33 +49,37 @@ type
     edtFilter: TEdit;
     btnFilterCondition: TButton;
     GroupBox1: TGroupBox;
-    btnOrderByInventory: TButton;
-    Button1: TButton;
+    btnOrderByInventoryAsc: TButton;
+    btnOrderByInventoryAndCondition: TButton;
+    btnOrderByInventoryDesc: TButton;
+    btnRemoveFilter: TButton;
+    GroupBox2: TGroupBox;
+    btnExport: TButton;
+    GroupBox4: TGroupBox;
+    btnGroup: TButton;
+    btnUnGroup: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnLoadCSVClick(Sender: TObject);
     procedure btnManualDataClick(Sender: TObject);
     procedure btnFilterConditionClick(Sender: TObject);
-    procedure btnSortClick(Sender: TObject);
     procedure btnGroupClick(Sender: TObject);
-    procedure btnTypedValuesClick(Sender: TObject);
     procedure btnExportClick(Sender: TObject);
-    procedure btnCompleteFlowClick(Sender: TObject);
     procedure btnFilterClick(Sender: TObject);
-    procedure btnOrderByInventoryClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnOrderByInventoryAscClick(Sender: TObject);
+    procedure btnOrderByInventoryAndConditionClick(Sender: TObject);
+    procedure btnOrderByInventoryDescClick(Sender: TObject);
+    procedure btnRemoveFilterClick(Sender: TObject);
+    procedure btnUnGroupClick(Sender: TObject);
   private
     FData: TTMSFNCDataGridData;
     procedure ClearLog;
     procedure AddLog(const AText: string);
     procedure LoadCSVProducts;
-    procedure LoadManualProducts;
     procedure LogDisplayedItems;
     procedure LogGroupedResult;
     procedure UpdateStatusBar;
     function CountDisplayedRows: Integer;
-    function GetDataFileName: string;
-    function GetExportFileName: string;
   public
 
   end;
@@ -108,6 +107,14 @@ begin
   FData.Free;
 end;
 
+procedure THeadlessDataLayerView.LoadCSVProducts;
+begin
+  FData.ClearData;
+  FData.FixedRowCount := 1;
+  FData.LoadFromCSVData('..\Data\products.csv');
+  FData.ClearFilter;
+end;
+
 procedure THeadlessDataLayerView.AddLog(const AText: string);
 begin
   lBoxLog.Items.Add(AText);
@@ -128,49 +135,46 @@ begin
       Inc(Result);
 end;
 
+procedure THeadlessDataLayerView.btnManualDataClick(Sender: TObject);
+var
+  I: Integer;
+begin
+  FData.ClearData;
+  FData.ColumnCount := 8;
+  FData.FixedRowCount := 0;
+  FData.RowCount := 20;
+
+  for I := FData.FixedRowCount to Pred(FData.RowCount) do
+  begin
+    FData.Ints[TColNumber.Code, I] := I;
+    FData.Strings[TColNumber.Name, I] := 'Headless sample ' + I.ToString;
+    FData.Ints[TColNumber.GroupCode, I] := 1;
+    FData.Strings[TColNumber.BrandName, I] := 'Brand sample ' + I.ToString;
+    FData.Floats[TColNumber.Inventory, I] := I * 10.5;
+    FData.Floats[TColNumber.CostPrice, I] := I * 3;
+    FData.Floats[TColNumber.SalePrice, I] := I * 4.4;
+    FData.Strings[TColNumber.Condition, I] := IfThen(Odd(I), 'New', 'Used');
+  end;
+
+  lBoxLog.Items.Clear;
+  for I := FData.FixedRowCount to Pred(FData.RowCount) do
+  begin
+    lBoxLog.Items.Add(Format('%-8s %-40s %12.2f %12.2f   %-15s', [
+      FData.Strings[TColNumber.Code, I],
+      FData.Strings[TColNumber.Name, I],
+      FData.Floats[TColNumber.Inventory, I],
+      FData.Floats[TColNumber.SalePrice, I],
+      FData.Strings[TColNumber.Condition, I]
+    ]));
+  end;
+
+  StatusBar1.Panels[0].Text := 'Items: ' + FData.RowCount.ToString;
+end;
+
 procedure THeadlessDataLayerView.btnLoadCSVClick(Sender: TObject);
 begin
   Self.LoadCSVProducts;
   Self.LogDisplayedItems;
-  Self.UpdateStatusBar;
-end;
-
-procedure THeadlessDataLayerView.LoadCSVProducts;
-begin
-  FData.ClearData;
-  FData.FixedRowCount := 1;
-  FData.LoadFromCSVData(Self.GetDataFileName);
-  FData.ClearFilter;
-end;
-
-procedure THeadlessDataLayerView.btnCompleteFlowClick(Sender: TObject);
-begin
-  Self.LoadCSVProducts;
-
-  FData.Filter.Clear;
-  FData.Filter.Add(TProductColumn.Condition, gftEqual, 'New');
-  FData.ApplyFilter;
-  FData.Sort(TProductColumn.SalePrice, gsdDescending);
-  FData.SaveToCSVData(Self.GetExportFileName);
-
-  Self.LogDisplayedItems;
-  Self.AddLog('');
-  Self.AddLog('CSV exportado em: ' + Self.GetExportFileName);
-  Self.UpdateStatusBar;
-end;
-
-procedure THeadlessDataLayerView.btnExportClick(Sender: TObject);
-begin
-  Self.LoadCSVProducts;
-
-  FData.Filter.Clear;
-  FData.Filter.Add(TProductColumn.BrandName, gftEqual, 'Brand test 1');
-  FData.ApplyFilter;
-  FData.Sort(TProductColumn.Inventory, gsdDescending);
-  FData.SaveToCSVData(Self.GetExportFileName);
-
-  Self.AddLog(Format('%d linhas filtradas por Brand test 1 foram exportadas.', [Self.CountDisplayedRows]));
-  Self.AddLog(Self.GetExportFileName);
   Self.UpdateStatusBar;
 end;
 
@@ -181,156 +185,104 @@ begin
   Self.ClearLog;
 
   FData.Filter.Clear;
-  FData.Filter.Add(TProductColumn.Condition, gftEqual, 'Used');
+  FData.Filter.Add(TColNumber.Condition, gftEqual, 'Used');
   FData.ApplyFilter;
 
+  lBoxLog.Items.Clear;
   for i := FData.FixedRowCount to Pred(FData.RowCount) do
     if FData.IsRowDisplayed(i) then
-      Self.AddLog(FData.Strings[TProductColumn.Name, i] + ' - ' + FData.Strings[TProductColumn.Condition, i]);
+      lBoxLog.Items.Add(FData.Strings[TColNumber.Name, i] + ' | ' + FData.Strings[TColNumber.Condition, i]);
+
+  Self.UpdateStatusBar;
 end;
 
 procedure THeadlessDataLayerView.btnFilterClick(Sender: TObject);
 begin
   FData.Filter.Clear;
   FData.Filter
-    .Add(TProductColumn.Name, gftContains, edtFilter.Text)
-    .&or(TProductColumn.Condition, gftContains, edtFilter.Text);
+    .Add(TColNumber.Name, gftContains, edtFilter.Text)
+    .&or(TColNumber.Condition, gftContains, edtFilter.Text);
   FData.ApplyFilter;
 
-  Self.LogDisplayedItems;
+  lBoxLog.Items.Clear;
+  for var i := FData.FixedRowCount to Pred(FData.RowCount) do
+    if FData.IsRowDisplayed(i) then
+      lBoxLog.Items.Add(FData.Strings[TColNumber.Name, i] + ' | ' + FData.Strings[TColNumber.Condition, i]);
+
   Self.UpdateStatusBar;
+end;
+
+procedure THeadlessDataLayerView.btnRemoveFilterClick(Sender: TObject);
+begin
+  FData.RemoveFilter;
+
+  lBoxLog.Items.Clear;
+  for var i := FData.FixedRowCount to Pred(FData.RowCount) do
+    if FData.IsRowDisplayed(i) then
+      lBoxLog.Items.Add(FData.Strings[TColNumber.Name, i] + ' | ' + FData.Strings[TColNumber.Condition, i]);
+
+  Self.UpdateStatusBar;
+end;
+
+procedure THeadlessDataLayerView.btnOrderByInventoryAscClick(Sender: TObject);
+begin
+  FData.Sort(TColNumber.Inventory, gsdAscending);
+  Self.LogDisplayedItems;
+end;
+
+procedure THeadlessDataLayerView.btnOrderByInventoryDescClick(Sender: TObject);
+begin
+  FData.Sort(TColNumber.Inventory, gsdDescending);
+  Self.LogDisplayedItems;
+end;
+
+procedure THeadlessDataLayerView.btnOrderByInventoryAndConditionClick(Sender: TObject);
+begin
+  FData.Sort([TColNumber.Inventory, TColNumber.Condition], [gsdAscending, gsdDescending]);
+  Self.LogDisplayedItems;
+end;
+
+procedure THeadlessDataLayerView.btnExportClick(Sender: TObject);
+begin
+  var LFileName := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName)) + 'headless-products-export.csv';
+  FData.SaveToCSVData(LFileName);
+  ShowMessage('Exported data' + sLineBreak + LFileName);
 end;
 
 procedure THeadlessDataLayerView.btnGroupClick(Sender: TObject);
 begin
   Self.LoadCSVProducts;
 
-  FData.Group(TProductColumn.Condition);
-  FData.GroupCount(TProductColumn.Condition);
-  FData.GroupSum(TProductColumn.SalePrice);
+  FData.Group(TColNumber.Condition);
+  FData.GroupCount(TColNumber.Condition);
+  FData.GroupSum(TColNumber.SalePrice);
 
   Self.LogGroupedResult;
-  FData.UnGroup;
   Self.UpdateStatusBar;
-end;
-
-procedure THeadlessDataLayerView.btnManualDataClick(Sender: TObject);
-begin
-  Self.LoadManualProducts;
-  Self.AddLog('Dados inseridos diretamente em FData.Cells.');
-  Self.LogDisplayedItems;
-  Self.UpdateStatusBar;
-end;
-
-procedure THeadlessDataLayerView.btnSortClick(Sender: TObject);
-begin
-  Self.LoadCSVProducts;
-
-  FData.Filter.Clear;
-  FData.Filter.Add(TProductColumn.Condition, gftEqual, 'New');
-  FData.ApplyFilter;
-  FData.Sort(TProductColumn.SalePrice, gsdDescending);
-
-  Self.AddLog('Filtro Condition = New e ordenacao por Sale price desc.');
-  Self.LogDisplayedItems;
-  Self.UpdateStatusBar;
-end;
-
-procedure THeadlessDataLayerView.btnTypedValuesClick(Sender: TObject);
-begin
-  Self.LoadCSVProducts;
-
-  for var LItem := FData.FixedRowCount to Pred(FData.RowCount) do
-    if FData.IsRowDisplayed(LItem) then
-    begin
-      var LName := FData.Strings[TProductColumn.Name, LItem];
-      var LInventory := FData.Floats[TProductColumn.Inventory, LItem];
-      var LSalePrice := FData.Floats[TProductColumn.SalePrice, LItem];
-      Self.AddLog(Format('%s | estoque %.2f | venda %.2f', [LName, LInventory, LSalePrice]));
-
-      //if mmLog.Lines.Count >= 12 then
-      //  Break;
-    end;
-
-  Self.UpdateStatusBar;
-end;
-
-function THeadlessDataLayerView.GetDataFileName: string;
-begin
-  Result := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName)) + '..\Data\products.csv';
-end;
-
-function THeadlessDataLayerView.GetExportFileName: string;
-begin
-  Result := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName)) + 'headless-products-export.csv';
-end;
-
-procedure THeadlessDataLayerView.LoadManualProducts;
-begin
-  FData.ClearData;
-  FData.ColumnCount := 8;
-  FData.FixedRowCount := 1;
-  FData.RowCount := 5;
-
-  FData.Cells[TProductColumn.Code, 0] := 'Product code';
-  FData.Cells[TProductColumn.Name, 0] := 'Name';
-  FData.Cells[TProductColumn.GroupCode, 0] := 'Group code';
-  FData.Cells[TProductColumn.BrandName, 0] := 'Brand name';
-  FData.Cells[TProductColumn.Inventory, 0] := 'Inventory';
-  FData.Cells[TProductColumn.CostPrice, 0] := 'Cost price';
-  FData.Cells[TProductColumn.SalePrice, 0] := 'Sale price';
-  FData.Cells[TProductColumn.Condition, 0] := 'Condition';
-
-  FData.Ints[TProductColumn.Code, 1] := 1001;
-  FData.Strings[TProductColumn.Name, 1] := 'Headless sample A';
-  FData.Ints[TProductColumn.GroupCode, 1] := 1;
-  FData.Strings[TProductColumn.BrandName, 1] := 'Brand sample';
-  FData.Floats[TProductColumn.Inventory, 1] := 45.5;
-  FData.Floats[TProductColumn.CostPrice, 1] := 19.9;
-  FData.Floats[TProductColumn.SalePrice, 1] := 39.9;
-  FData.Strings[TProductColumn.Condition, 1] := 'New';
-
-  FData.Ints[TProductColumn.Code, 2] := 1002;
-  FData.Strings[TProductColumn.Name, 2] := 'Headless sample B';
-  FData.Ints[TProductColumn.GroupCode, 2] := 2;
-  FData.Strings[TProductColumn.BrandName, 2] := 'Brand sample';
-  FData.Floats[TProductColumn.Inventory, 2] := 18.0;
-  FData.Floats[TProductColumn.CostPrice, 2] := 12.5;
-  FData.Floats[TProductColumn.SalePrice, 2] := 29.9;
-  FData.Strings[TProductColumn.Condition, 2] := 'Used';
-
-  FData.Ints[TProductColumn.Code, 3] := 1003;
-  FData.Strings[TProductColumn.Name, 3] := 'Headless sample C';
-  FData.Ints[TProductColumn.GroupCode, 3] := 1;
-  FData.Strings[TProductColumn.BrandName, 3] := 'Another brand';
-  FData.Floats[TProductColumn.Inventory, 3] := 82.0;
-  FData.Floats[TProductColumn.CostPrice, 3] := 51.25;
-  FData.Floats[TProductColumn.SalePrice, 3] := 99.9;
-  FData.Strings[TProductColumn.Condition, 3] := 'New';
-
-  FData.Ints[TProductColumn.Code, 4] := 1004;
-  FData.Strings[TProductColumn.Name, 4] := 'Headless sample D';
-  FData.Ints[TProductColumn.GroupCode, 4] := 3;
-  FData.Strings[TProductColumn.BrandName, 4] := 'Another brand';
-  FData.Floats[TProductColumn.Inventory, 4] := 10.0;
-  FData.Floats[TProductColumn.CostPrice, 4] := 7.15;
-  FData.Floats[TProductColumn.SalePrice, 4] := 14.9;
-  FData.Strings[TProductColumn.Condition, 4] := 'Used';
 end;
 
 procedure THeadlessDataLayerView.LogGroupedResult;
 begin
+  lBoxLog.Items.Clear;
+
   for var LItem := FData.FixedRowCount to Pred(FData.RowCount) do
   begin
     if FData.IsRowNode(LItem) then
-      Self.AddLog(FData.Strings[FData.FixedColumnCount, LItem])
+      lBoxLog.Items.Add(FData.Strings[FData.FixedColumnCount, LItem])
     else if FData.IsRowSummary(LItem) then
-      Self.AddLog(Format('  count=%.0f | sale sum=%.2f',
-        [
-          FData.Floats[TProductColumn.Condition, LItem],
-          FData.Floats[TProductColumn.SalePrice, LItem]
-        ]));
+    begin
+      lBoxLog.Items.Add(Format('  Count: %.0f | Sale Price Sum: %.2f',
+        [FData.Floats[TColNumber.Condition, LItem], FData.Floats[TColNumber.SalePrice, LItem]]));
+    end;
   end;
+end;
+
+procedure THeadlessDataLayerView.btnUnGroupClick(Sender: TObject);
+begin
+  FData.UnGroup;
+
+  Self.LogDisplayedItems;
+  Self.UpdateStatusBar;
 end;
 
 procedure THeadlessDataLayerView.UpdateStatusBar;
@@ -348,25 +300,13 @@ begin
     if FData.IsRowDisplayed(LRow) then
     begin
       Self.AddLog(Format('%-8s %-40s %12.2f %12.2f   %-15s', [
-        FData.Strings[TProductColumn.Code, LRow],
-        FData.Strings[TProductColumn.Name, LRow],
-        FData.Floats[TProductColumn.Inventory, LRow],
-        FData.Floats[TProductColumn.SalePrice, LRow],
-        FData.Strings[TProductColumn.Condition, LRow]
+        FData.Strings[TColNumber.Code, LRow],
+        FData.Strings[TColNumber.Name, LRow],
+        FData.Floats[TColNumber.Inventory, LRow],
+        FData.Floats[TColNumber.SalePrice, LRow],
+        FData.Strings[TColNumber.Condition, LRow]
       ]));
     end;
-end;
-
-procedure THeadlessDataLayerView.btnOrderByInventoryClick(Sender: TObject);
-begin
-  FData.Sort(TProductColumn.Inventory, gsdAscending);
-  Self.LogDisplayedItems;
-end;
-
-procedure THeadlessDataLayerView.Button1Click(Sender: TObject);
-begin
-  FData.Sort([TProductColumn.Inventory, TProductColumn.Condition], [gsdAscending, gsdDescending]);
-  Self.LogDisplayedItems;
 end;
 
 end.
