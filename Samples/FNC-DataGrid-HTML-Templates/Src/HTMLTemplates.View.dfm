@@ -105,6 +105,7 @@ object HTMLTemplatesView: THTMLTemplatesView
         Caption = 'Add HTML Template'
         TabOrder = 1
         OnClick = btnDescriptionAddClick
+        ExplicitLeft = 8
       end
     end
     object GroupBox3: TGroupBox
@@ -213,8 +214,6 @@ object HTMLTemplatesView: THTMLTemplatesView
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     RowCount = 1
-    ExplicitLeft = 8
-    ExplicitTop = 94
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 464

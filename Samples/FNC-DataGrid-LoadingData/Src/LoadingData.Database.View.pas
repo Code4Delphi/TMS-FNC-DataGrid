@@ -83,9 +83,6 @@ type
 
   end;
 
-var
-  LoadingDataDatabaseView: TLoadingDataDatabaseView;
-
 implementation
 
 {$R *.dfm}

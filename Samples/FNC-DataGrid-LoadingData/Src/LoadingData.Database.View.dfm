@@ -1,10 +1,10 @@
 object LoadingDataDatabaseView: TLoadingDataDatabaseView
-  Left = 0
-  Top = 0
+  Left = 5
+  Top = 100
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Loading database data'
-  ClientHeight = 684
-  ClientWidth = 1204
+  ClientHeight = 564
+  ClientWidth = 585
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,64 +12,63 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  Position = poScreenCenter
+  Position = poDesigned
   OnCreate = FormCreate
   TextHeight = 15
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1204
-    Height = 90
+    Width = 585
+    Height = 76
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object Label1: TLabel
-      Left = 263
-      Top = 17
+      Left = 127
+      Top = 9
       Width = 181
       Height = 15
       Caption = 'Filter Department and Description '
     end
     object btnClose: TButton
-      Left = 24
-      Top = 17
-      Width = 208
+      Left = 8
+      Top = 9
+      Width = 97
       Height = 25
       Caption = 'Close'
       TabOrder = 0
       OnClick = btnCloseClick
     end
     object btnOpenQuery: TButton
-      Left = 24
-      Top = 48
-      Width = 208
+      Left = 8
+      Top = 40
+      Width = 97
       Height = 25
       Caption = 'Open query'
       TabOrder = 1
       OnClick = btnOpenQueryClick
     end
     object btnFilter: TButton
-      Left = 534
-      Top = 35
-      Width = 177
+      Left = 451
+      Top = 27
+      Width = 119
       Height = 25
       Caption = 'Filter'
       TabOrder = 2
       OnClick = btnFilterClick
     end
     object edtFilter: TEdit
-      Left = 263
-      Top = 36
-      Width = 265
+      Left = 127
+      Top = 28
+      Width = 321
       Height = 23
       TabOrder = 3
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 90
-    Width = 1204
-    Height = 575
+    Top = 76
+    Width = 585
+    Height = 469
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -417,11 +416,11 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     Stroke.Color = clDarkgray
-    ExplicitTop = 84
+    ExplicitTop = 71
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 760
-    Top = 264
+    Left = 216
+    Top = 280
     Width = 26
     Height = 26
     Visible = True
@@ -430,8 +429,8 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 665
-    Width = 1204
+    Top = 545
+    Width = 585
     Height = 19
     Panels = <
       item
@@ -444,15 +443,15 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
   object DataSource1: TDataSource
     DataSet = FDQuery1
     OnDataChange = DataSource1DataChange
-    Left = 760
-    Top = 198
+    Left = 216
+    Top = 214
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
       'select * from departments')
-    Left = 760
-    Top = 142
+    Left = 216
+    Top = 158
     object FDQuery1Id: TIntegerField
       FieldName = 'Id'
       Origin = 'Id'
@@ -494,7 +493,7 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     FetchOptions.Mode = fmAll
     FetchOptions.CursorKind = ckForwardOnly
     LoginPrompt = False
-    Left = 760
-    Top = 86
+    Left = 216
+    Top = 102
   end
 end

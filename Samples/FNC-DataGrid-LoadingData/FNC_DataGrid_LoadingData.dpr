@@ -18,6 +18,5 @@ begin
   Application.CreateForm(TLoadingDataManualView, LoadingDataManualView);
   Application.CreateForm(TLoadingDataCSVView, LoadingDataCSVView);
   Application.CreateForm(TLoadingDataExcelView, LoadingDataExcelView);
-  Application.CreateForm(TLoadingDataDatabaseView, LoadingDataDatabaseView);
   Application.Run;
 end.

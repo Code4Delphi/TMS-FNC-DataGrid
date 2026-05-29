@@ -114,7 +114,7 @@ procedure THTMLTemplatesView.btnDescriptionAddClick(Sender: TObject);
 begin
   var LCoumn := TMSFNCDataGridDatabaseAdapter1.Columns[2];
   LCoumn.Header := 'Description';
-  LCoumn.HTMLTemplate := '<font color="gcBlue">The description is: </FONT> <B><#Description> </B> ';
+  LCoumn.HTMLTemplate := '<font color="gcBlue">The description is: </FONT> <B><#Description> - <#LimitValue> </B> ';
   TMSFNCDataGrid1.AutoSizeColumns;
 end;
 

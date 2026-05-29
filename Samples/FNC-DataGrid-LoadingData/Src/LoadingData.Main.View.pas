@@ -60,7 +60,12 @@ end;
 
 procedure TLoadingDataMainView.btnDatabaseDataClick(Sender: TObject);
 begin
-  LoadingDataDatabaseView.ShowModal;
+  var LView := TLoadingDataDatabaseView.Create(nil);
+  try
+    LView.ShowModal;
+  finally
+    LView.Free
+  end;
 end;
 
 end.
