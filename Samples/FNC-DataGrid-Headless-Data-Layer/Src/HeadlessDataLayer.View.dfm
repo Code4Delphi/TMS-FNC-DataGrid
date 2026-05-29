@@ -139,13 +139,11 @@ object HeadlessDataLayerView: THeadlessDataLayerView
     object GroupBox3: TGroupBox
       Left = 153
       Top = 0
-      Width = 232
+      Width = 230
       Height = 193
       Align = alLeft
       Caption = ' Add filters '
       TabOrder = 2
-      ExplicitLeft = 159
-      ExplicitTop = -6
       object Label1: TLabel
         Left = 12
         Top = 97
@@ -172,11 +170,38 @@ object HeadlessDataLayerView: THeadlessDataLayerView
       object btnFilterCondition: TButton
         Left = 6
         Top = 36
-        Width = 208
+        Width = 214
         Height = 25
         Caption = 'Filter '#39'Used'#39' from '#39'Condition'#39' field'
         TabOrder = 2
         OnClick = btnFilterConditionClick
+      end
+    end
+    object GroupBox1: TGroupBox
+      Left = 383
+      Top = 0
+      Width = 282
+      Height = 193
+      Align = alLeft
+      Caption = ' Order '
+      TabOrder = 3
+      object btnOrderByInventory: TButton
+        Left = 6
+        Top = 36
+        Width = 265
+        Height = 25
+        Caption = 'Order by Inventory (asc)'
+        TabOrder = 0
+        OnClick = btnOrderByInventoryClick
+      end
+      object Button1: TButton
+        Left = 6
+        Top = 66
+        Width = 265
+        Height = 25
+        Caption = 'Order by Inventory (asc) and Condition (desc)'
+        TabOrder = 1
+        OnClick = Button1Click
       end
     end
   end

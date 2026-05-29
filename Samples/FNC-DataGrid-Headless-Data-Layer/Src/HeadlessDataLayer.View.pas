@@ -53,6 +53,9 @@ type
     btnFilter: TButton;
     edtFilter: TEdit;
     btnFilterCondition: TButton;
+    GroupBox1: TGroupBox;
+    btnOrderByInventory: TButton;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnLoadCSVClick(Sender: TObject);
@@ -64,6 +67,8 @@ type
     procedure btnExportClick(Sender: TObject);
     procedure btnCompleteFlowClick(Sender: TObject);
     procedure btnFilterClick(Sender: TObject);
+    procedure btnOrderByInventoryClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     FData: TTMSFNCDataGridData;
     procedure ClearLog;
@@ -173,6 +178,7 @@ procedure THeadlessDataLayerView.btnFilterConditionClick(Sender: TObject);
 var
   i: Integer;
 begin
+  Self.ClearLog;
 
   FData.Filter.Clear;
   FData.Filter.Add(TProductColumn.Condition, gftEqual, 'Used');
@@ -349,6 +355,18 @@ begin
         FData.Strings[TProductColumn.Condition, LRow]
       ]));
     end;
+end;
+
+procedure THeadlessDataLayerView.btnOrderByInventoryClick(Sender: TObject);
+begin
+  FData.Sort(TProductColumn.Inventory, gsdAscending);
+  Self.LogDisplayedItems;
+end;
+
+procedure THeadlessDataLayerView.Button1Click(Sender: TObject);
+begin
+  FData.Sort([TProductColumn.Inventory, TProductColumn.Condition], [gsdAscending, gsdDescending]);
+  Self.LogDisplayedItems;
 end;
 
 end.
