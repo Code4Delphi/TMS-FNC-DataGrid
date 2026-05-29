@@ -6,6 +6,7 @@ uses
   Winapi.Windows,
   Winapi.Messages,
   System.SysUtils,
+  System.StrUtils,
   System.Variants,
   System.Classes,
   System.UITypes,
@@ -74,7 +75,6 @@ type
     procedure ClearLog;
     procedure AddLog(const AText: string);
     procedure LoadCSVProducts;
-    procedure LoadManualProducts;
     procedure LogDisplayedItems;
     procedure LogGroupedResult;
     procedure UpdateStatusBar;
@@ -215,8 +215,35 @@ begin
 end;
 
 procedure THeadlessDataLayerView.btnManualDataClick(Sender: TObject);
+var
+  I: Integer;
 begin
-  Self.LoadManualProducts;
+  FData.ClearData;
+  FData.ColumnCount := 8;
+  FData.FixedRowCount := 1;
+  FData.RowCount := 21;
+
+  FData.Cells[TProductColumn.Code, 0] := 'Product code';
+  FData.Cells[TProductColumn.Name, 0] := 'Name';
+  FData.Cells[TProductColumn.GroupCode, 0] := 'Group code';
+  FData.Cells[TProductColumn.BrandName, 0] := 'Brand name';
+  FData.Cells[TProductColumn.Inventory, 0] := 'Inventory';
+  FData.Cells[TProductColumn.CostPrice, 0] := 'Cost price';
+  FData.Cells[TProductColumn.SalePrice, 0] := 'Sale price';
+  FData.Cells[TProductColumn.Condition, 0] := 'Condition';
+
+  for I := 1 to 20 do
+  begin
+    FData.Ints[TProductColumn.Code, I] := I;
+    FData.Strings[TProductColumn.Name, I] := 'Headless sample ' + I.ToString;
+    FData.Ints[TProductColumn.GroupCode, I] := 1;
+    FData.Strings[TProductColumn.BrandName, I] := 'Brand sample ' + I.ToString;
+    FData.Floats[TProductColumn.Inventory, I] := I * 10.5;
+    FData.Floats[TProductColumn.CostPrice, I] := I * 3;
+    FData.Floats[TProductColumn.SalePrice, I] := I * 4.4;
+    FData.Strings[TProductColumn.Condition, I] := IfThen(Odd(I), 'New', 'Used');
+  end;
+
   Self.AddLog('Dados inseridos diretamente em FData.Cells.');
   Self.LogDisplayedItems;
   Self.UpdateStatusBar;
@@ -263,59 +290,6 @@ end;
 function THeadlessDataLayerView.GetExportFileName: string;
 begin
   Result := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName)) + 'headless-products-export.csv';
-end;
-
-procedure THeadlessDataLayerView.LoadManualProducts;
-begin
-  FData.ClearData;
-  FData.ColumnCount := 8;
-  FData.FixedRowCount := 1;
-  FData.RowCount := 5;
-
-  FData.Cells[TProductColumn.Code, 0] := 'Product code';
-  FData.Cells[TProductColumn.Name, 0] := 'Name';
-  FData.Cells[TProductColumn.GroupCode, 0] := 'Group code';
-  FData.Cells[TProductColumn.BrandName, 0] := 'Brand name';
-  FData.Cells[TProductColumn.Inventory, 0] := 'Inventory';
-  FData.Cells[TProductColumn.CostPrice, 0] := 'Cost price';
-  FData.Cells[TProductColumn.SalePrice, 0] := 'Sale price';
-  FData.Cells[TProductColumn.Condition, 0] := 'Condition';
-
-  FData.Ints[TProductColumn.Code, 1] := 1001;
-  FData.Strings[TProductColumn.Name, 1] := 'Headless sample A';
-  FData.Ints[TProductColumn.GroupCode, 1] := 1;
-  FData.Strings[TProductColumn.BrandName, 1] := 'Brand sample';
-  FData.Floats[TProductColumn.Inventory, 1] := 45.5;
-  FData.Floats[TProductColumn.CostPrice, 1] := 19.9;
-  FData.Floats[TProductColumn.SalePrice, 1] := 39.9;
-  FData.Strings[TProductColumn.Condition, 1] := 'New';
-
-  FData.Ints[TProductColumn.Code, 2] := 1002;
-  FData.Strings[TProductColumn.Name, 2] := 'Headless sample B';
-  FData.Ints[TProductColumn.GroupCode, 2] := 2;
-  FData.Strings[TProductColumn.BrandName, 2] := 'Brand sample';
-  FData.Floats[TProductColumn.Inventory, 2] := 18.0;
-  FData.Floats[TProductColumn.CostPrice, 2] := 12.5;
-  FData.Floats[TProductColumn.SalePrice, 2] := 29.9;
-  FData.Strings[TProductColumn.Condition, 2] := 'Used';
-
-  FData.Ints[TProductColumn.Code, 3] := 1003;
-  FData.Strings[TProductColumn.Name, 3] := 'Headless sample C';
-  FData.Ints[TProductColumn.GroupCode, 3] := 1;
-  FData.Strings[TProductColumn.BrandName, 3] := 'Another brand';
-  FData.Floats[TProductColumn.Inventory, 3] := 82.0;
-  FData.Floats[TProductColumn.CostPrice, 3] := 51.25;
-  FData.Floats[TProductColumn.SalePrice, 3] := 99.9;
-  FData.Strings[TProductColumn.Condition, 3] := 'New';
-
-  FData.Ints[TProductColumn.Code, 4] := 1004;
-  FData.Strings[TProductColumn.Name, 4] := 'Headless sample D';
-  FData.Ints[TProductColumn.GroupCode, 4] := 3;
-  FData.Strings[TProductColumn.BrandName, 4] := 'Another brand';
-  FData.Floats[TProductColumn.Inventory, 4] := 10.0;
-  FData.Floats[TProductColumn.CostPrice, 4] := 7.15;
-  FData.Floats[TProductColumn.SalePrice, 4] := 14.9;
-  FData.Strings[TProductColumn.Condition, 4] := 'Used';
 end;
 
 procedure THeadlessDataLayerView.LogGroupedResult;

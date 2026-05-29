@@ -32,7 +32,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
     ItemHeight = 14
     ParentFont = False
     TabOrder = 2
-    ExplicitTop = 199
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -63,7 +62,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
       Align = alLeft
       Caption = ' Carregamento '
       TabOrder = 0
-      ExplicitTop = -6
       object btnLoadCSV: TButton
         Left = 12
         Top = 21
