@@ -74,7 +74,6 @@ type
   private
     FData: TTMSFNCDataGridData;
     procedure ClearLog;
-    procedure AddLog(const AText: string);
     procedure LoadCSVProducts;
     procedure LogDisplayedItems;
     procedure LogGroupedResult;
@@ -105,19 +104,6 @@ end;
 procedure THeadlessDataLayerView.FormDestroy(Sender: TObject);
 begin
   FData.Free;
-end;
-
-procedure THeadlessDataLayerView.LoadCSVProducts;
-begin
-  FData.ClearData;
-  FData.FixedRowCount := 1;
-  FData.LoadFromCSVData('..\Data\products.csv');
-  FData.ClearFilter;
-end;
-
-procedure THeadlessDataLayerView.AddLog(const AText: string);
-begin
-  lBoxLog.Items.Add(AText);
 end;
 
 procedure THeadlessDataLayerView.ClearLog;
@@ -176,6 +162,14 @@ begin
   Self.LoadCSVProducts;
   Self.LogDisplayedItems;
   Self.UpdateStatusBar;
+end;
+
+procedure THeadlessDataLayerView.LoadCSVProducts;
+begin
+  FData.ClearData;
+  FData.FixedRowCount := 1;
+  FData.LoadFromCSVData('..\Data\products.csv');
+  FData.ClearFilter;
 end;
 
 procedure THeadlessDataLayerView.btnFilterConditionClick(Sender: TObject);
@@ -293,13 +287,13 @@ end;
 procedure THeadlessDataLayerView.LogDisplayedItems;
 begin
   lBoxLog.Clear;
-  Self.AddLog(Format('%-8s %-40s %12s %12s   %-15s', [ 'Code', 'Name', 'Inventory', 'Sale price', 'Condition']));
-  Self.AddLog(StringOfChar('-', 95));
+  lBoxLog.Items.Add(Format('%-8s %-40s %12s %12s   %-15s', [ 'Code', 'Name', 'Inventory', 'Sale price', 'Condition']));
+  lBoxLog.Items.Add(StringOfChar('-', 95));
 
   for var LRow := FData.FixedRowCount to Pred(FData.RowCount) do
     if FData.IsRowDisplayed(LRow) then
     begin
-      Self.AddLog(Format('%-8s %-40s %12.2f %12.2f   %-15s', [
+      lBoxLog.Items.Add(Format('%-8s %-40s %12.2f %12.2f   %-15s', [
         FData.Strings[TColNumber.Code, LRow],
         FData.Strings[TColNumber.Name, LRow],
         FData.Floats[TColNumber.Inventory, LRow],
