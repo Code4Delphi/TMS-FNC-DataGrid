@@ -144,7 +144,7 @@ begin
   FData.FixedRowCount := 0;
   FData.RowCount := 20;
 
-  for I := 0 to 20 do
+  for I := FData.FixedRowCount to Pred(FData.RowCount) do
   begin
     FData.Ints[TColNumber.Code, I] := I;
     FData.Strings[TColNumber.Name, I] := 'Headless sample ' + I.ToString;

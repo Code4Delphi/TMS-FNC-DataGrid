@@ -58,7 +58,7 @@ object HeadlessDataLayerView: THeadlessDataLayerView
     object gBoxLoad: TGroupBox
       Left = 0
       Top = 0
-      Width = 137
+      Width = 193
       Height = 193
       Align = alLeft
       Caption = ' Load '
@@ -67,49 +67,50 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         AlignWithMargins = True
         Left = 5
         Top = 56
-        Width = 127
+        Width = 183
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Carregar CSV'
         TabOrder = 0
         OnClick = btnLoadCSVClick
-        ExplicitWidth = 143
+        ExplicitWidth = 127
       end
       object btnManualData: TButton
         AlignWithMargins = True
         Left = 5
         Top = 20
-        Width = 127
+        Width = 183
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Manual data'
         TabOrder = 1
         OnClick = btnManualDataClick
-        ExplicitWidth = 143
+        ExplicitWidth = 127
       end
     end
     object GroupBox3: TGroupBox
-      Left = 137
+      Left = 193
       Top = 0
-      Width = 216
+      Width = 256
       Height = 193
       Align = alLeft
       Caption = ' Add filters '
       TabOrder = 1
+      ExplicitLeft = 137
       DesignSize = (
-        216
+        256
         193)
       object Label1: TLabel
         Left = 5
         Top = 59
-        Width = 199
+        Width = 187
         Height = 15
         Caption = 'Filter by Name and Condition fields'
       end
       object btnFilter: TButton
-        Left = 101
+        Left = 141
         Top = 106
         Width = 110
         Height = 30
@@ -118,127 +119,125 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Filter'
         TabOrder = 0
         OnClick = btnFilterClick
-        ExplicitLeft = 115
+        ExplicitLeft = 101
       end
       object edtFilter: TEdit
         Left = 5
         Top = 77
-        Width = 206
+        Width = 246
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
-        ExplicitWidth = 220
+        ExplicitWidth = 206
       end
       object btnFilterCondition: TButton
         AlignWithMargins = True
         Left = 5
         Top = 20
-        Width = 206
+        Width = 246
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Filter '#39'Used'#39' from '#39'Condition'#39' field'
         TabOrder = 2
         OnClick = btnFilterConditionClick
-        ExplicitWidth = 220
+        ExplicitWidth = 206
       end
       object btnRemoveFilter: TButton
         AlignWithMargins = True
         Left = 5
         Top = 158
-        Width = 206
+        Width = 246
         Height = 30
         Cursor = crHandPoint
         Align = alBottom
         Caption = 'RemoveFilter'
         TabOrder = 3
         OnClick = btnRemoveFilterClick
-        ExplicitLeft = 6
-        ExplicitTop = 157
+        ExplicitWidth = 206
       end
     end
     object GroupBox1: TGroupBox
-      Left = 353
+      Left = 449
       Top = 0
-      Width = 275
+      Width = 320
       Height = 193
       Align = alLeft
       Caption = ' Order '
       TabOrder = 2
+      ExplicitLeft = 393
       object btnOrderByInventoryAsc: TButton
         AlignWithMargins = True
         Left = 5
         Top = 20
-        Width = 265
+        Width = 310
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Order by Inventory (asc)'
         TabOrder = 0
         OnClick = btnOrderByInventoryAscClick
-        ExplicitWidth = 272
+        ExplicitWidth = 265
       end
       object btnOrderByInventoryAndCondition: TButton
         AlignWithMargins = True
         Left = 5
         Top = 92
-        Width = 265
+        Width = 310
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Order by Inventory (asc) and Condition (desc)'
         TabOrder = 1
         OnClick = btnOrderByInventoryAndConditionClick
-        ExplicitWidth = 272
+        ExplicitWidth = 265
       end
       object btnOrderByInventoryDesc: TButton
         AlignWithMargins = True
         Left = 5
         Top = 56
-        Width = 265
+        Width = 310
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Order by Inventory (desc)'
         TabOrder = 2
         OnClick = btnOrderByInventoryDescClick
-        ExplicitWidth = 272
+        ExplicitWidth = 265
       end
     end
     object GroupBox2: TGroupBox
-      Left = 628
+      Left = 769
       Top = 0
-      Width = 117
+      Width = 152
       Height = 193
       Align = alLeft
       Caption = ' Export '
       TabOrder = 3
-      ExplicitLeft = 629
-      ExplicitTop = -6
+      ExplicitLeft = 713
       object btnExport: TButton
         AlignWithMargins = True
         Left = 5
         Top = 20
-        Width = 107
+        Width = 142
         Height = 30
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Export CSV'
         TabOrder = 0
         OnClick = btnExportClick
-        ExplicitLeft = 6
-        ExplicitWidth = 175
+        ExplicitWidth = 107
       end
     end
     object GroupBox4: TGroupBox
-      Left = 745
+      Left = 921
       Top = 0
       Width = 185
       Height = 193
       Align = alLeft
       Caption = ' Group '
       TabOrder = 4
-      ExplicitLeft = 746
+      ExplicitLeft = 866
       ExplicitTop = -6
       object btnGroup: TButton
         AlignWithMargins = True
@@ -251,9 +250,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'Agrupar / Calculate'
         TabOrder = 0
         OnClick = btnGroupClick
-        ExplicitLeft = 40
-        ExplicitTop = 47
-        ExplicitWidth = 145
       end
       object btnUnGroup: TButton
         AlignWithMargins = True
@@ -266,8 +262,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
         Caption = 'UnGroup'
         TabOrder = 1
         OnClick = btnUnGroupClick
-        ExplicitLeft = 21
-        ExplicitTop = 132
       end
     end
   end
