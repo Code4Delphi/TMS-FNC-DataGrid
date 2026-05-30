@@ -41,6 +41,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 20 - Grids bonitas e modernas | Configurações de aparência | Visual Dark e Light](https://www.youtube.com/watch?v=MJ0bH53o5jM&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 21 - Grid em aplicações web | Leve o poder das grids para a Web com Delphi](https://www.youtube.com/watch?v=HFPdBTrY39o&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 22 - HTML Templates | Global Font | Memo Fields, Boolean Fields & Image Blobs](https://www.youtube.com/watch?v=Zt2_DmmEWv4&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 23 - VARIÁVEIS COM PODERES de DataGrid: Filtro, Ordenação, Agrupamento e muito mais](https://www.youtube.com/watch?v=2gxA-9UvT28&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 <br>
 
 ## Multiplataforma
