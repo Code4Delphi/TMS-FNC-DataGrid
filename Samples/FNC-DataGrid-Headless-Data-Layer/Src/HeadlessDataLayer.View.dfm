@@ -32,7 +32,6 @@ object HeadlessDataLayerView: THeadlessDataLayerView
     ItemHeight = 14
     ParentFont = False
     TabOrder = 2
-    ExplicitTop = 194
   end
   object StatusBar1: TStatusBar
     Left = 0

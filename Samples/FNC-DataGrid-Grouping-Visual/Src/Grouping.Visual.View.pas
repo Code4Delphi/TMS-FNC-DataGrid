@@ -56,15 +56,11 @@ uses
 type
   TGroupingVisualView = class(TForm)
     pnTop: TPanel;
-    GroupBox2: TGroupBox;
-    btnClose: TButton;
-    btnOpenQuery: TButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     DataSource1: TDataSource;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
-    GroupBox3: TGroupBox;
     StatusBar1: TStatusBar;
     FDQuery1product_code: TIntegerField;
     FDQuery1name: TWideMemoField;
@@ -74,13 +70,19 @@ type
     FDQuery1cost_price: TFloatField;
     FDQuery1sale_price: TFloatField;
     FDQuery1condition: TWideMemoField;
-    btnGroup: TButton;
+    TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
+    Panel1: TPanel;
+    GroupBox2: TGroupBox;
+    btnClose: TButton;
+    btnOpenQuery: TButton;
     GroupBox1: TGroupBox;
     ckGroupingHideColumns: TCheckBox;
+    Panel2: TPanel;
+    GroupBox3: TGroupBox;
+    btnGroup: TButton;
     btnUngroup: TButton;
     btnExpandAllNodes: TButton;
     btnCollapseAllNodes: TButton;
-    TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     GroupBox4: TGroupBox;
     btnSortingInventoryColumnAsc: TButton;
     Button1: TButton;

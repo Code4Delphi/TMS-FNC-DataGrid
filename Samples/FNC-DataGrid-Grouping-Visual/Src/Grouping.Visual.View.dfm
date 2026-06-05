@@ -5,7 +5,7 @@ object GroupingVisualView: TGroupingVisualView
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Visual Grouping'
   ClientHeight = 709
-  ClientWidth = 1188
+  ClientWidth = 595
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,173 +13,216 @@ object GroupingVisualView: TGroupingVisualView
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  Position = poScreenCenter
+  Position = poDesigned
   OnCreate = FormCreate
   TextHeight = 15
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1188
-    Height = 131
+    Width = 595
+    Height = 169
     Align = alTop
+    BevelOuter = bvNone
     TabOrder = 0
-    object GroupBox2: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 140
-      Height = 129
+    ExplicitWidth = 1188
+    object Panel1: TPanel
+      Left = 0
+      Top = 0
+      Width = 170
+      Height = 169
       Align = alLeft
-      Caption = ' Query '
-      Padding.Left = 4
-      Padding.Top = 2
-      Padding.Right = 4
+      BevelOuter = bvNone
       TabOrder = 0
-      object btnClose: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 47
-        Width = 128
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
+      ExplicitLeft = 1
+      ExplicitTop = 1
+      ExplicitHeight = 167
+      object GroupBox2: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 170
+        Height = 80
         Align = alTop
-        Caption = 'Close'
+        Caption = ' Query '
+        Padding.Left = 4
+        Padding.Top = 2
+        Padding.Right = 4
         TabOrder = 0
-        OnClick = btnCloseClick
+        ExplicitLeft = -6
+        ExplicitTop = -6
+        ExplicitWidth = 304
+        object btnClose: TButton
+          AlignWithMargins = True
+          Left = 6
+          Top = 47
+          Width = 158
+          Height = 25
+          Cursor = crHandPoint
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Align = alTop
+          Caption = 'Close'
+          TabOrder = 0
+          OnClick = btnCloseClick
+          ExplicitWidth = 128
+        end
+        object btnOpenQuery: TButton
+          AlignWithMargins = True
+          Left = 6
+          Top = 19
+          Width = 158
+          Height = 25
+          Cursor = crHandPoint
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Align = alTop
+          Caption = 'Open query'
+          TabOrder = 1
+          OnClick = btnOpenQueryClick
+          ExplicitWidth = 150
+        end
       end
-      object btnOpenQuery: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 19
-        Width = 128
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Open query'
+      object GroupBox1: TGroupBox
+        Left = 0
+        Top = 80
+        Width = 170
+        Height = 89
+        Align = alClient
+        Caption = ' Grouping configs '
         TabOrder = 1
-        OnClick = btnOpenQueryClick
+        ExplicitLeft = 310
+        ExplicitTop = -4
+        ExplicitWidth = 164
+        ExplicitHeight = 129
+        object ckGroupingHideColumns: TCheckBox
+          Left = 11
+          Top = 21
+          Width = 150
+          Height = 17
+          Caption = 'Hide Grouped Columns'
+          TabOrder = 0
+        end
       end
     end
-    object GroupBox3: TGroupBox
-      Left = 326
-      Top = 1
-      Width = 443
-      Height = 129
-      Align = alLeft
-      Caption = ' Grouping '
+    object Panel2: TPanel
+      Left = 170
+      Top = 0
+      Width = 425
+      Height = 169
+      Align = alClient
+      BevelOuter = bvNone
       TabOrder = 1
-      object btnGroup: TButton
-        Left = 16
-        Top = 19
-        Width = 401
-        Height = 25
-        Caption = 
-          'Group by multiple columns (Group code,  Brand name and Condition' +
-          ')'
+      ExplicitLeft = 305
+      ExplicitTop = 1
+      ExplicitWidth = 882
+      ExplicitHeight = 129
+      object GroupBox3: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 425
+        Height = 80
+        Align = alTop
+        Caption = ' Grouping '
         TabOrder = 0
-        OnClick = btnGroupClick
+        ExplicitLeft = 1
+        ExplicitTop = 1
+        ExplicitWidth = 880
+        object btnGroup: TButton
+          Left = 16
+          Top = 19
+          Width = 401
+          Height = 25
+          Caption = 
+            'Group by multiple columns (Group code,  Brand name and Condition' +
+            ')'
+          TabOrder = 0
+          OnClick = btnGroupClick
+        end
+        object btnUngroup: TButton
+          Left = 16
+          Top = 46
+          Width = 130
+          Height = 25
+          Caption = 'Ungroup'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+          OnClick = btnUngroupClick
+        end
+        object btnExpandAllNodes: TButton
+          Left = 152
+          Top = 46
+          Width = 130
+          Height = 25
+          Caption = 'Expand All Nodes'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 2
+          OnClick = btnExpandAllNodesClick
+        end
+        object btnCollapseAllNodes: TButton
+          Left = 288
+          Top = 46
+          Width = 130
+          Height = 25
+          Caption = 'Collapse All Nodes'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 3
+          OnClick = btnCollapseAllNodesClick
+        end
       end
-      object btnUngroup: TButton
-        Left = 16
-        Top = 46
-        Width = 130
-        Height = 25
-        Caption = 'Ungroup'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
+      object GroupBox4: TGroupBox
+        Left = 0
+        Top = 80
+        Width = 425
+        Height = 89
+        Align = alClient
+        Caption = ' Group Sort '
         TabOrder = 1
-        OnClick = btnUngroupClick
-      end
-      object btnExpandAllNodes: TButton
-        Left = 16
-        Top = 73
-        Width = 130
-        Height = 25
-        Caption = 'Expand All Nodes'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 2
-        OnClick = btnExpandAllNodesClick
-      end
-      object btnCollapseAllNodes: TButton
-        Left = 16
-        Top = 100
-        Width = 130
-        Height = 25
-        Caption = 'Collapse All Nodes'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 3
-        OnClick = btnCollapseAllNodesClick
-      end
-    end
-    object GroupBox1: TGroupBox
-      Left = 141
-      Top = 1
-      Width = 185
-      Height = 129
-      Align = alLeft
-      Caption = ' Grouping configs '
-      TabOrder = 2
-      object ckGroupingHideColumns: TCheckBox
-        Left = 6
-        Top = 23
-        Width = 176
-        Height = 17
-        Caption = 'Hide Grouped Columns'
-        TabOrder = 0
-      end
-    end
-    object GroupBox4: TGroupBox
-      Left = 769
-      Top = 1
-      Width = 378
-      Height = 129
-      Align = alLeft
-      Caption = ' Group Sort '
-      TabOrder = 3
-      object btnSortingInventoryColumnAsc: TButton
-        Left = 16
-        Top = 19
-        Width = 342
-        Height = 25
-        Caption = 'Sorting by Inventory column (asc)'
-        TabOrder = 0
-        OnClick = btnSortingInventoryColumnAscClick
-      end
-      object Button1: TButton
-        Left = 16
-        Top = 47
-        Width = 342
-        Height = 25
-        Caption = 'Sort by the BrandNname column (asc) and Condition (desc)'
-        TabOrder = 1
-        OnClick = Button1Click
+        ExplicitLeft = 6
+        ExplicitTop = 77
+        ExplicitWidth = 882
+        ExplicitHeight = 207
+        object btnSortingInventoryColumnAsc: TButton
+          Left = 16
+          Top = 19
+          Width = 401
+          Height = 25
+          Caption = 'Sorting by Inventory column (asc)'
+          TabOrder = 0
+          OnClick = btnSortingInventoryColumnAscClick
+        end
+        object Button1: TButton
+          Left = 16
+          Top = 50
+          Width = 402
+          Height = 25
+          Caption = 'Sort by the BrandNname column (asc) and Condition (desc)'
+          TabOrder = 1
+          OnClick = Button1Click
+        end
       end
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 131
-    Width = 1188
-    Height = 559
+    Top = 169
+    Width = 595
+    Height = 521
     Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
@@ -262,11 +305,10 @@ object GroupingVisualView: TGroupingVisualView
     Options.Column.Stretching.Enabled = True
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    ExplicitLeft = 1
-    ExplicitTop = 132
+    ExplicitTop = 163
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
-      Left = 784
-      Top = 229
+      Left = 72
+      Top = 207
       Width = 26
       Height = 26
       Visible = True
@@ -576,8 +618,8 @@ object GroupingVisualView: TGroupingVisualView
     end
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 552
-    Top = 360
+    Left = 296
+    Top = 376
     Width = 26
     Height = 26
     Visible = True
@@ -588,7 +630,7 @@ object GroupingVisualView: TGroupingVisualView
   object StatusBar1: TStatusBar
     Left = 0
     Top = 690
-    Width = 1188
+    Width = 595
     Height = 19
     Panels = <
       item
@@ -597,6 +639,7 @@ object GroupingVisualView: TGroupingVisualView
       item
         Width = 50
       end>
+    ExplicitWidth = 1188
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -608,15 +651,15 @@ object GroupingVisualView: TGroupingVisualView
     FetchOptions.Mode = fmAll
     FetchOptions.CursorKind = ckForwardOnly
     LoginPrompt = False
-    Left = 552
-    Top = 190
+    Left = 296
+    Top = 206
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
       'select * from products')
-    Left = 552
-    Top = 246
+    Left = 296
+    Top = 262
     object FDQuery1product_code: TIntegerField
       DisplayLabel = 'Product code'
       FieldName = 'product_code'
@@ -664,7 +707,7 @@ object GroupingVisualView: TGroupingVisualView
   object DataSource1: TDataSource
     DataSet = FDQuery1
     OnDataChange = DataSource1DataChange
-    Left = 552
-    Top = 302
+    Left = 296
+    Top = 318
   end
 end
