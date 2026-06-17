@@ -676,21 +676,10 @@ object GroupingVisualView: TGroupingVisualView
       FieldName = 'group_code'
       Origin = 'group_code'
     end
-    object FDQuery1brand_name: TWideMemoField
-      DisplayLabel = 'Brand name'
-      FieldName = 'brand_name'
-      Origin = 'brand_name'
-      BlobType = ftWideMemo
-    end
     object FDQuery1inventory: TFloatField
       DisplayLabel = 'Inventory'
       FieldName = 'inventory'
       Origin = 'inventory'
-    end
-    object FDQuery1cost_price: TFloatField
-      DisplayLabel = 'Cost price'
-      FieldName = 'cost_price'
-      Origin = 'cost_price'
     end
     object FDQuery1sale_price: TFloatField
       DisplayLabel = 'Sale price'

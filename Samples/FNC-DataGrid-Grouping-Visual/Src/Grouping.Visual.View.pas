@@ -65,9 +65,7 @@ type
     FDQuery1product_code: TIntegerField;
     FDQuery1name: TWideMemoField;
     FDQuery1group_code: TIntegerField;
-    FDQuery1brand_name: TWideMemoField;
     FDQuery1inventory: TFloatField;
-    FDQuery1cost_price: TFloatField;
     FDQuery1sale_price: TFloatField;
     FDQuery1condition: TWideMemoField;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
