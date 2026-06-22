@@ -72,11 +72,13 @@ type
     btnFilter: TButton;
     Label1: TLabel;
     edtFilter: TEdit;
+    Button1: TButton;
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnFilterClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
 
   public
@@ -114,6 +116,11 @@ begin
     .Add(TMSFNCDataGrid1.ColumnIndexByHeader('Department'), gftContains, edtFilter.Text)
     .&or(TMSFNCDataGrid1.ColumnIndexByHeader('Description'), gftContains, edtFilter.Text);
   TMSFNCDataGrid1.ApplyFilter;
+end;
+
+procedure TLoadingDataDatabaseView.Button1Click(Sender: TObject);
+begin
+  TMSFNCDataGrid1.Options.Editing.Enabled := True;
 end;
 
 end.

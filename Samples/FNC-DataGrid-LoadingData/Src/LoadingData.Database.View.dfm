@@ -63,6 +63,15 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
       Height = 23
       TabOrder = 3
     end
+    object Button1: TButton
+      Left = 361
+      Top = 45
+      Width = 75
+      Height = 25
+      Caption = 'Button1'
+      TabOrder = 4
+      OnClick = Button1Click
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
@@ -416,7 +425,6 @@ object LoadingDataDatabaseView: TLoadingDataDatabaseView
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
     Stroke.Color = clDarkgray
-    ExplicitTop = 71
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 216
