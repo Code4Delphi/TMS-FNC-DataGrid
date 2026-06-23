@@ -10,6 +10,7 @@ uses
   System.Classes,
   System.Rtti,
   System.Character,
+  System.UITypes,
   Vcl.StdCtrls,
   Vcl.Graphics,
   Vcl.Controls,
