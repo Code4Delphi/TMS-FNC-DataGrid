@@ -98,7 +98,8 @@ object CRUDView: TCRUDView
     Options.Keyboard.HomeKeyHandling = ghkhFirstRow
     Options.Keyboard.InsertKeyHandling = gikhInsertRowAfter
     RowCount = 1
-    ExplicitTop = 134
+    ExplicitLeft = 1
+    ExplicitTop = 121
   end
   object pnTop: TPanel
     Left = 0
@@ -325,7 +326,6 @@ object CRUDView: TCRUDView
     Visible = True
     Columns = <>
     DataSource = DataSource1
-    ShowMemoFields = True
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

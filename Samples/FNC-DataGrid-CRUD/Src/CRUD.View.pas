@@ -126,7 +126,6 @@ begin
   TMSFNCDataGrid1.Options.Mouse.ColumnSizing := ckColumnSizing.Checked;
   TMSFNCDataGrid1.Options.Mouse.FixedColumnSizing := ckFixedColumnSizing.Checked;
   TMSFNCDataGrid1.Options.Mouse.ColumnDragging := ckColumnDragging.Checked;
-
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := ckStretching.Checked;
 
   TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := TTMSFNCDataGridInsertKeyHandling(cBoxInsertKeyHandling.ItemIndex);
