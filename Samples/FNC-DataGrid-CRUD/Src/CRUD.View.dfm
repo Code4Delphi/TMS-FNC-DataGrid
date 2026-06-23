@@ -98,8 +98,8 @@ object CRUDView: TCRUDView
     Options.Keyboard.HomeKeyHandling = ghkhFirstRow
     Options.Keyboard.InsertKeyHandling = gikhInsertRowAfter
     RowCount = 1
-    ExplicitLeft = 1
-    ExplicitTop = 121
+    ExplicitLeft = 8
+    ExplicitTop = 134
   end
   object pnTop: TPanel
     Left = 0
@@ -159,8 +159,8 @@ object CRUDView: TCRUDView
       Caption = ' Configs '
       TabOrder = 1
       object ckEditing: TCheckBox
-        Left = 16
-        Top = 23
+        Left = 17
+        Top = 22
         Width = 145
         Height = 17
         Cursor = crHandPoint
@@ -280,8 +280,6 @@ object CRUDView: TCRUDView
       Padding.Left = 6
       Padding.Right = 6
       TabOrder = 3
-      ExplicitLeft = 647
-      ExplicitTop = -4
       object btnInsertRowBefore: TButton
         AlignWithMargins = True
         Left = 8
@@ -296,8 +294,6 @@ object CRUDView: TCRUDView
         Caption = 'Insert a row before the current row'
         TabOrder = 0
         OnClick = btnInsertRowBeforeClick
-        ExplicitLeft = 7
-        ExplicitTop = 19
       end
       object btnInsertRowTheEnd: TButton
         AlignWithMargins = True
@@ -313,8 +309,6 @@ object CRUDView: TCRUDView
         Caption = 'Insert a row at the end of the DataGrid'
         TabOrder = 1
         OnClick = btnInsertRowTheEndClick
-        ExplicitLeft = 7
-        ExplicitTop = 38
       end
     end
   end
@@ -326,6 +320,7 @@ object CRUDView: TCRUDView
     Visible = True
     Columns = <>
     DataSource = DataSource1
+    ShowMemoFields = True
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
