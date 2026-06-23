@@ -79,6 +79,9 @@ type
     cBoxInsertKeyHandling: TComboBox;
     Label2: TLabel;
     cBoxDeleteKeyHandling: TComboBox;
+    GroupBox3: TGroupBox;
+    btnInsertRowBefore: TButton;
+    btnInsertRowTheEnd: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
@@ -89,6 +92,8 @@ type
     procedure TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
       AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
       var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
+    procedure btnInsertRowBeforeClick(Sender: TObject);
+    procedure btnInsertRowTheEndClick(Sender: TObject);
   private
     procedure Configs;
   public
@@ -137,7 +142,6 @@ procedure TCRUDView.TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTM
   AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
   var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
 begin
-  //IGNORE CELLS WITH TITLES IN THE HEADER AND FOOTER
   if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Row = Pred(TMSFNCDataGrid1.RowCount)) then
     Exit;
 
@@ -170,6 +174,17 @@ end;
 procedure TCRUDView.btnCloseClick(Sender: TObject);
 begin
   FDQuery1.Close;
+end;
+
+procedure TCRUDView.btnInsertRowBeforeClick(Sender: TObject);
+begin
+  TMSFNCDataGridDatabaseAdapter1.DataSetInsert;
+end;
+
+procedure TCRUDView.btnInsertRowTheEndClick(Sender: TObject);
+begin
+  FDQuery1.Append;
+  TMSFNCDataGrid1.SetFocus;
 end;
 
 end.

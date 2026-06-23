@@ -98,7 +98,6 @@ object CRUDView: TCRUDView
     Options.Keyboard.HomeKeyHandling = ghkhFirstRow
     Options.Keyboard.InsertKeyHandling = gikhInsertRowAfter
     RowCount = 1
-    ExplicitLeft = 1
     ExplicitTop = 134
   end
   object pnTop: TPanel
@@ -220,29 +219,27 @@ object CRUDView: TCRUDView
     object GroupBox1: TGroupBox
       Left = 306
       Top = 1
-      Width = 399
+      Width = 345
       Height = 127
       Align = alLeft
       Caption = ' Shortcuts '
       TabOrder = 2
-      ExplicitLeft = 312
-      ExplicitTop = -4
       object Label1: TLabel
-        Left = 6
+        Left = 12
         Top = 23
         Width = 50
         Height = 15
         Caption = 'Insert key'
       end
       object Label2: TLabel
-        Left = 6
+        Left = 12
         Top = 71
         Width = 55
         Height = 15
         Caption = 'Delete Key'
       end
       object cBoxInsertKeyHandling: TComboBox
-        Left = 6
+        Left = 12
         Top = 40
         Width = 323
         Height = 23
@@ -257,7 +254,7 @@ object CRUDView: TCRUDView
           'Inserts a row after the current row')
       end
       object cBoxDeleteKeyHandling: TComboBox
-        Left = 6
+        Left = 12
         Top = 88
         Width = 323
         Height = 23
@@ -270,6 +267,53 @@ object CRUDView: TCRUDView
           'None'
           'Deletes the focused row'
           'Clears the content of all selected cells')
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 651
+      Top = 1
+      Width = 270
+      Height = 127
+      Align = alLeft
+      Caption = ' Buttons '
+      Padding.Left = 6
+      Padding.Right = 6
+      TabOrder = 3
+      ExplicitLeft = 647
+      ExplicitTop = -4
+      object btnInsertRowBefore: TButton
+        AlignWithMargins = True
+        Left = 8
+        Top = 17
+        Width = 254
+        Height = 25
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        Caption = 'Insert a row before the current row'
+        TabOrder = 0
+        OnClick = btnInsertRowBeforeClick
+        ExplicitLeft = 7
+        ExplicitTop = 19
+      end
+      object btnInsertRowTheEnd: TButton
+        AlignWithMargins = True
+        Left = 8
+        Top = 45
+        Width = 254
+        Height = 25
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        Caption = 'Insert a row at the end of the DataGrid'
+        TabOrder = 1
+        OnClick = btnInsertRowTheEndClick
+        ExplicitLeft = 7
+        ExplicitTop = 38
       end
     end
   end
@@ -321,7 +365,6 @@ object CRUDView: TCRUDView
     object FDQuery1Active: TBooleanField
       FieldName = 'Active'
       Origin = 'Active'
-      Required = True
     end
     object FDQuery1Limit: TIntegerField
       FieldName = 'Limit'
