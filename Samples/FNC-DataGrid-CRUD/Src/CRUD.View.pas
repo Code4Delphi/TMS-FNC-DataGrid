@@ -57,7 +57,6 @@ type
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     DataSource1: TDataSource;
-    TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     GroupBox2: TGroupBox;
     btnClose: TButton;
     btnOpenQuery: TButton;
@@ -67,13 +66,19 @@ type
     FDQuery1Name: TWideMemoField;
     FDQuery1Description: TWideMemoField;
     FDQuery1Active: TBooleanField;
-    FDQuery1Image: TBlobField;
-    FDQuery1Limited: TIntegerField;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     ckColumnSizing: TCheckBox;
     ckFixedColumnSizing: TCheckBox;
     ckColumnDragging: TCheckBox;
     ckStretching: TCheckBox;
+    FDQuery1Limit: TIntegerField;
+    FDQuery1Value: TFloatField;
+    TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    cBoxInsertKeyHandling: TComboBox;
+    Label2: TLabel;
+    cBoxDeleteKeyHandling: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
@@ -81,6 +86,9 @@ type
     procedure ckCheckBoxFieldClick(Sender: TObject);
     procedure ckShowPictureFieldsClick(Sender: TObject);
     procedure TMSFNCDataGrid1CanDeleteRow(Sender: TObject; ARow: Integer; var ACanDelete: Boolean);
+    procedure TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+      AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
+      var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
   private
     procedure Configs;
   public
@@ -96,7 +104,7 @@ implementation
 
 procedure TCRUDView.FormCreate(Sender: TObject);
 begin
-  FDConnection1.Params.Database := '..\Data\MemoBooleanImage.db';
+  FDConnection1.Params.Database := '..\Data\CRUD.db';
   FDQuery1.Open;
   Self.Configs;
 end;
@@ -116,14 +124,29 @@ begin
 
   TMSFNCDataGrid1.Options.Column.Stretching.Enabled := ckStretching.Checked;
 
-  TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := gikhInsertRowAfter;
-  TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := gdkhDeleteRow;
-
+  TMSFNCDataGrid1.Options.Keyboard.InsertKeyHandling := TTMSFNCDataGridInsertKeyHandling(cBoxInsertKeyHandling.ItemIndex);
+  TMSFNCDataGrid1.Options.Keyboard.DeleteKeyHandling := TTMSFNCDataGridDeleteKeyHandling(cBoxDeleteKeyHandling.ItemIndex);
 end;
 
 procedure TCRUDView.TMSFNCDataGrid1CanDeleteRow(Sender: TObject; ARow: Integer; var ACanDelete: Boolean);
 begin
   ACanDelete := messageDlg('Are you sure you want to delete this row?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
+procedure TCRUDView.TMSFNCDataGrid1GetCellFormatting(Sender: TObject; ACell: TTMSFNCDataGridCellCoord;
+  AData: TTMSFNCDataGridCellValue; var AFormatting: TTMSFNCDataGridDataFormatting;
+  var AConvertSettings: TFormatSettings; var ACanFormat: Boolean);
+begin
+  //IGNORE CELLS WITH TITLES IN THE HEADER AND FOOTER
+  if (ACell.Row < TMSFNCDataGrid1.FixedRowCount) or (ACell.Row = Pred(TMSFNCDataGrid1.RowCount)) then
+    Exit;
+
+  if AData.Kind = TTypeKind.tkFloat then
+  begin
+    AFormatting.&Type := gdftFloat;
+    AFormatting.Format := '#,##0.00';
+    ACanFormat := True;
+  end;
 end;
 
 procedure TCRUDView.ckCheckBoxFieldClick(Sender: TObject);

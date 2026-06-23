@@ -23,7 +23,7 @@ object CRUDView: TCRUDView
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 3
+    TabOrder = 1
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -92,11 +92,14 @@ object CRUDView: TCRUDView
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     OnCanDeleteRow = TMSFNCDataGrid1CanDeleteRow
+    OnGetCellFormatting = TMSFNCDataGrid1GetCellFormatting
     Options.Keyboard.DeleteKeyHandling = gdkhDeleteRow
     Options.Keyboard.EndKeyHandling = genkhLastRow
+    Options.Keyboard.HomeKeyHandling = ghkhFirstRow
     Options.Keyboard.InsertKeyHandling = gikhInsertRowAfter
     RowCount = 1
-    ExplicitTop = 121
+    ExplicitLeft = 1
+    ExplicitTop = 134
   end
   object pnTop: TPanel
     Left = 0
@@ -116,7 +119,6 @@ object CRUDView: TCRUDView
       Padding.Top = 2
       Padding.Right = 4
       TabOrder = 0
-      ExplicitHeight = 111
       object btnClose: TButton
         AlignWithMargins = True
         Left = 6
@@ -151,12 +153,11 @@ object CRUDView: TCRUDView
     object GroupBox4: TGroupBox
       Left = 131
       Top = 1
-      Width = 230
+      Width = 175
       Height = 127
       Align = alLeft
       Caption = ' Configs '
       TabOrder = 1
-      ExplicitHeight = 111
       object ckEditing: TCheckBox
         Left = 16
         Top = 23
@@ -216,6 +217,61 @@ object CRUDView: TCRUDView
         OnClick = ckEditingClick
       end
     end
+    object GroupBox1: TGroupBox
+      Left = 306
+      Top = 1
+      Width = 399
+      Height = 127
+      Align = alLeft
+      Caption = ' Shortcuts '
+      TabOrder = 2
+      ExplicitLeft = 312
+      ExplicitTop = -4
+      object Label1: TLabel
+        Left = 6
+        Top = 23
+        Width = 50
+        Height = 15
+        Caption = 'Insert key'
+      end
+      object Label2: TLabel
+        Left = 6
+        Top = 71
+        Width = 55
+        Height = 15
+        Caption = 'Delete Key'
+      end
+      object cBoxInsertKeyHandling: TComboBox
+        Left = 6
+        Top = 40
+        Width = 323
+        Height = 23
+        Style = csDropDownList
+        ItemIndex = 2
+        TabOrder = 0
+        Text = 'Inserts a row after the current row'
+        OnChange = ckEditingClick
+        Items.Strings = (
+          'None'
+          'Inserts a row before the current row'
+          'Inserts a row after the current row')
+      end
+      object cBoxDeleteKeyHandling: TComboBox
+        Left = 6
+        Top = 88
+        Width = 323
+        Height = 23
+        Style = csDropDownList
+        ItemIndex = 2
+        TabOrder = 1
+        Text = 'Clears the content of all selected cells'
+        OnChange = ckEditingClick
+        Items.Strings = (
+          'None'
+          'Deletes the focused row'
+          'Clears the content of all selected cells')
+      end
+    end
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 280
@@ -223,33 +279,7 @@ object CRUDView: TCRUDView
     Width = 26
     Height = 26
     Visible = True
-    AutoCreateColumns = False
-    AutoRemoveColumns = False
-    Columns = <
-      item
-        FieldName = 'Id'
-        AutoCreated = True
-      end
-      item
-        FieldName = 'Name'
-        AutoCreated = True
-      end
-      item
-        FieldName = 'Description'
-        AutoCreated = True
-      end
-      item
-        FieldName = 'Active'
-        AutoCreated = True
-      end
-      item
-        FieldName = 'Limited'
-        AutoCreated = True
-      end
-      item
-        FieldName = 'Image'
-        AutoCreated = True
-      end>
+    Columns = <>
     DataSource = DataSource1
     ShowMemoFields = True
   end
@@ -257,7 +287,7 @@ object CRUDView: TCRUDView
     Params.Strings = (
       
         'Database=C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataG' +
-        'rid-Memo-Boolean-Image\Data\MemoBooleanImage.db'
+        'rid-CRUD\Data\CRUD.db'
       'DriverID=SQLite')
     FetchOptions.AssignedValues = [evMode, evCursorKind]
     FetchOptions.Mode = fmAll
@@ -269,14 +299,13 @@ object CRUDView: TCRUDView
   object FDQuery1: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
-      'select * from DemoFields')
+      'select * from category')
     Left = 280
     Top = 278
     object FDQuery1Id: TFDAutoIncField
       FieldName = 'Id'
       Origin = 'Id'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = False
     end
     object FDQuery1Name: TWideMemoField
       FieldName = 'Name'
@@ -294,13 +323,13 @@ object CRUDView: TCRUDView
       Origin = 'Active'
       Required = True
     end
-    object FDQuery1Limited: TIntegerField
-      FieldName = 'Limited'
-      Origin = 'Limited'
+    object FDQuery1Limit: TIntegerField
+      FieldName = 'Limit'
+      Origin = '"Limit"'
     end
-    object FDQuery1Image: TBlobField
-      FieldName = 'Image'
-      Origin = 'Image'
+    object FDQuery1Value: TFloatField
+      FieldName = 'Value'
+      Origin = 'Value'
     end
   end
   object DataSource1: TDataSource
