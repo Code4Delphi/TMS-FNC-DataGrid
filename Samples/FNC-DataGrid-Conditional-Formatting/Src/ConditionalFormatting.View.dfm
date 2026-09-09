@@ -17,9 +17,10 @@ object ConditionalFormattingView: TConditionalFormattingView
   TextHeight = 15
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
-    Top = 89
+    Top = 39
     Width = 1313
-    Height = 523
+    Height = 573
+    Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -142,64 +143,72 @@ object ConditionalFormattingView: TConditionalFormattingView
     SortIndicatorAppearance.IndexFont.Name = 'Segoe UI'
     SortIndicatorAppearance.IndexFont.Style = []
     RowCount = 1
-    ExplicitLeft = 528
-    ExplicitTop = 224
-    ExplicitWidth = 660
-    ExplicitHeight = 400
+    ExplicitTop = 89
+    ExplicitHeight = 523
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1313
-    Height = 89
+    Height = 39
     Align = alTop
+    Padding.Left = 5
+    Padding.Top = 5
+    Padding.Right = 5
+    Padding.Bottom = 5
     TabOrder = 0
-    ExplicitWidth = 1248
-    object GroupBox2: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 130
-      Height = 87
+    object btnShowConditionalFormattingEditor: TButton
+      Left = 193
+      Top = 6
+      Width = 241
+      Height = 27
+      Cursor = crHandPoint
+      Margins.Right = 2
       Align = alLeft
-      Caption = ' Query '
-      Padding.Left = 4
-      Padding.Top = 2
-      Padding.Right = 4
+      Caption = 'Show Conditional Formatting Editor'
       TabOrder = 0
-      ExplicitLeft = 145
-      ExplicitHeight = 129
-      object btnClose: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 47
-        Width = 118
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Close'
-        TabOrder = 0
-        OnClick = btnCloseClick
-        ExplicitLeft = 8
-      end
-      object btnOpenQuery: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 19
-        Width = 118
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Open query'
-        TabOrder = 1
-        OnClick = btnOpenQueryClick
-        ExplicitLeft = 8
-      end
+      OnClick = btnShowConditionalFormattingEditorClick
+      ExplicitLeft = 183
+      ExplicitTop = 18
+      ExplicitHeight = 25
+    end
+    object btnOpenQuery: TButton
+      AlignWithMargins = True
+      Left = 6
+      Top = 6
+      Width = 83
+      Height = 27
+      Cursor = crHandPoint
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 2
+      Margins.Bottom = 0
+      Align = alLeft
+      Caption = 'Open query'
+      TabOrder = 1
+      OnClick = btnOpenQueryClick
+      ExplicitLeft = 4
+      ExplicitTop = 19
+      ExplicitHeight = 23
+    end
+    object btnClose: TButton
+      AlignWithMargins = True
+      Left = 91
+      Top = 6
+      Width = 100
+      Height = 27
+      Cursor = crHandPoint
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 2
+      Margins.Bottom = 0
+      Align = alLeft
+      Caption = 'Close Query'
+      TabOrder = 2
+      OnClick = btnCloseClick
+      ExplicitLeft = 89
+      ExplicitTop = 9
+      ExplicitHeight = 34
     end
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
@@ -213,9 +222,6 @@ object ConditionalFormattingView: TConditionalFormattingView
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      
-        'Database=C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataG' +
-        'rid-Conditional-Formatting\Data\Departments.db'
       'DriverID=SQLite')
     FetchOptions.AssignedValues = [evMode, evCursorKind]
     FetchOptions.Mode = fmAll

@@ -66,16 +66,17 @@ type
     FDQuery1Status: TIntegerField;
     DataSource1: TDataSource;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
-    GroupBox2: TGroupBox;
-    btnClose: TButton;
-    btnOpenQuery: TButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     FDQuery1percentage: TIntegerField;
     FDQuery1classification: TIntegerField;
     FDQuery1complete: TIntegerField;
+    btnShowConditionalFormattingEditor: TButton;
+    btnOpenQuery: TButton;
+    btnClose: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure btnShowConditionalFormattingEditorClick(Sender: TObject);
   private
     procedure ConfigDataGrid;
   public
@@ -92,12 +93,13 @@ implementation
 procedure TConditionalFormattingView.FormCreate(Sender: TObject);
 begin
   FDConnection1.Params.Database := '..\Data\Departments.db';
-  Self.ConfigDataGrid;
+  //Self.ConfigDataGrid;
 end;
 
 procedure TConditionalFormattingView.btnOpenQueryClick(Sender: TObject);
 begin
   FDQuery1.Open;
+  Self.ConfigDataGrid;
 end;
 
 procedure TConditionalFormattingView.btnCloseClick(Sender: TObject);
@@ -105,18 +107,64 @@ begin
   FDQuery1.Close;
 end;
 
+procedure TConditionalFormattingView.btnShowConditionalFormattingEditorClick(Sender: TObject);
+begin
+  TMSFNCDataGrid1.ShowConditionalFormattingEditor;
+end;
+
 procedure TConditionalFormattingView.ConfigDataGrid;
+const
+  COL_ID = 0;
+  COL_DEPARTMENT = 1;
+  COL_DESCRIPTION = 2;
+  COL_NUMBER = 3;
+  COL_REGISTRATIONDATE = 4;
+  COL_LIMIT = 5;
+  COL_STATUS = 6;
+  COL_PERCENTAGE = 7;
+  COL_CLASSIFICATION = 8;
+  COL_COMPLETE = 9;
 begin
   TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.Clear;
-  //TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
+  TMSFNCDataGrid1.Options.Column.Stretching.Enabled := True;
+  TMSFNCDataGrid1.ConditionalFormatting.Enabled := True;
 
   //Fonte vermelha onde valor da coluna 3 menor que 5
-  with TMSFNCDataGrid1.ConditionalFormatting.AddCellValueRule(3, gfcLess, '5') do
+  with TMSFNCDataGrid1.ConditionalFormatting.AddCellValueRule(COL_NUMBER, gfcLess, '5') do
     Appearance.Font.Color := gcRed;
 
   //Uma escala de cores transforma uma coluna numérica em um mapa de calor compacto
-  TMSFNCDataGrid1.ConditionalFormatting.AddColorScale(5, gcRed, gcYellow, gcLimegreen);
+  TMSFNCDataGrid1.ConditionalFormatting.AddColorScale(COL_LIMIT, gcRed, gcYellow, gcLimegreen);
+
+  // Barras proporcionais
+  TMSFNCDataGrid1.ConditionalFormatting.AddDataBar(COL_PERCENTAGE, gcDodgerblue);
+
+  // Transforme a satisfação do cliente em um sinal de cinco estrelas
+  TMSFNCDataGrid1.ConditionalFormatting.AddIconSet(COL_CLASSIFICATION, gisStars5);
+
+  // Mostrar a direção do crescimento com semaforos
+  //TMSFNCDataGrid1.ConditionalFormatting.AddIconSet(COL_COMPLETE, gisTrafficLights3);
+
+  // Mostrar a direção do crescimento com setas
+  TMSFNCDataGrid1.ConditionalFormatting.AddIconSet(COL_COMPLETE, gisArrows3);
+
+  // Destaca toda a linha, dos 3 maiores valores da coluna percentagem
+  with TMSFNCDataGrid1.ConditionalFormatting.AddTopBottomRule(COL_PERCENTAGE, rkTop, 3) do
+  begin
+    Priority := 10;
+    ApplyToEntireRow := True;
+    Appearance.Fill.Color := gcLightgoldenrodyellow;
+    Appearance.Font.Style := [TFontStyle.fsBold];
+  end;
+
+  //Expressões Através Das Colunas
+  with TMSFNCDataGrid1.ConditionalFormatting.AddExpressionRule('([Number] = 9) AND ([percentage] >= 64)') do
+  begin
+    ApplyToEntireRow := True;
+    Appearance.Fill.Color := gcMistyrose;
+    Appearance.Font.Color := gcRed;
+  end;
 
   TMSFNCDataGrid1.EndUpdate;
 end;
