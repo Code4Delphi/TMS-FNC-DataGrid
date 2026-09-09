@@ -55,7 +55,6 @@ uses
 type
   TConditionalFormattingView = class(TForm)
     pnTop: TPanel;
-    TMSFNCDataGrid1: TTMSFNCDataGrid;
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDQuery1Id: TIntegerField;
@@ -70,6 +69,10 @@ type
     GroupBox2: TGroupBox;
     btnClose: TButton;
     btnOpenQuery: TButton;
+    TMSFNCDataGrid1: TTMSFNCDataGrid;
+    FDQuery1percentage: TIntegerField;
+    FDQuery1classification: TIntegerField;
+    FDQuery1complete: TIntegerField;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
@@ -104,8 +107,18 @@ end;
 
 procedure TConditionalFormattingView.ConfigDataGrid;
 begin
+  TMSFNCDataGrid1.BeginUpdate;
   TMSFNCDataGrid1.Clear;
-  TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
+  //TMSFNCDataGrid1.Options.Selection.Mode := gsmSingleRow;
+
+  //Fonte vermelha onde valor da coluna 3 menor que 5
+  with TMSFNCDataGrid1.ConditionalFormatting.AddCellValueRule(3, gfcLess, '5') do
+    Appearance.Font.Color := gcRed;
+
+  //Uma escala de cores transforma uma coluna numérica em um mapa de calor compacto
+  TMSFNCDataGrid1.ConditionalFormatting.AddColorScale(5, gcRed, gcYellow, gcLimegreen);
+
+  TMSFNCDataGrid1.EndUpdate;
 end;
 
 end.

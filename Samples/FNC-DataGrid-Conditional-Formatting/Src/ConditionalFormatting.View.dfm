@@ -4,7 +4,7 @@ object ConditionalFormattingView: TConditionalFormattingView
   ActiveControl = TMSFNCDataGrid1
   Caption = 'TMS FNC DataGrid - Conditional Formatting'
   ClientHeight = 612
-  ClientWidth = 1248
+  ClientWidth = 1313
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,70 +15,15 @@ object ConditionalFormattingView: TConditionalFormattingView
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object pnTop: TPanel
-    Left = 0
-    Top = 0
-    Width = 1248
-    Height = 89
-    Align = alTop
-    TabOrder = 0
-    object GroupBox2: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 130
-      Height = 87
-      Align = alLeft
-      Caption = ' Query '
-      Padding.Left = 4
-      Padding.Top = 2
-      Padding.Right = 4
-      TabOrder = 0
-      ExplicitLeft = 145
-      ExplicitHeight = 129
-      object btnClose: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 47
-        Width = 118
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Close'
-        TabOrder = 0
-        OnClick = btnCloseClick
-        ExplicitLeft = 8
-      end
-      object btnOpenQuery: TButton
-        AlignWithMargins = True
-        Left = 6
-        Top = 19
-        Width = 118
-        Height = 25
-        Cursor = crHandPoint
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        Caption = 'Open query'
-        TabOrder = 1
-        OnClick = btnOpenQueryClick
-        ExplicitLeft = 8
-      end
-    end
-  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Left = 0
     Top = 89
-    Width = 1248
+    Width = 1313
     Height = 523
-    Cursor = crHandPoint
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 3
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
@@ -182,103 +127,9 @@ object ConditionalFormattingView: TConditionalFormattingView
     CellAppearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
     CellAppearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
     CellAppearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
-    ColumnCount = 1
+    ColumnCount = 0
     ConditionalFormatting = <>
-    Columns = <
-      item
-        Appearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FilterMatchLayout.Font.Color = clWindowText
-        Appearance.FilterMatchLayout.Font.Height = -12
-        Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
-        Appearance.FilterMatchLayout.Font.Style = []
-        Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FilterInverseMatchLayout.Font.Color = clWindowText
-        Appearance.FilterInverseMatchLayout.Font.Height = -12
-        Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
-        Appearance.FilterInverseMatchLayout.Font.Style = []
-        Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.BandLayout.Font.Color = clBlack
-        Appearance.BandLayout.Font.Height = -12
-        Appearance.BandLayout.Font.Name = 'Segoe UI'
-        Appearance.BandLayout.Font.Style = []
-        Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FixedLayout.Font.Color = clBlack
-        Appearance.FixedLayout.Font.Height = -12
-        Appearance.FixedLayout.Font.Name = 'Segoe UI'
-        Appearance.FixedLayout.Font.Style = []
-        Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FixedSelectedLayout.Font.Color = clBlack
-        Appearance.FixedSelectedLayout.Font.Height = -12
-        Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
-        Appearance.FixedSelectedLayout.Font.Style = []
-        Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FocusedLayout.Font.Color = clBlack
-        Appearance.FocusedLayout.Font.Height = -12
-        Appearance.FocusedLayout.Font.Name = 'Segoe UI'
-        Appearance.FocusedLayout.Font.Style = []
-        Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.GroupLayout.Font.Color = clBlack
-        Appearance.GroupLayout.Font.Height = -12
-        Appearance.GroupLayout.Font.Name = 'Segoe UI'
-        Appearance.GroupLayout.Font.Style = []
-        Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.NormalLayout.Font.Color = clBlack
-        Appearance.NormalLayout.Font.Height = -12
-        Appearance.NormalLayout.Font.Name = 'Segoe UI'
-        Appearance.NormalLayout.Font.Style = []
-        Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.SelectedLayout.Font.Color = clBlack
-        Appearance.SelectedLayout.Font.Height = -12
-        Appearance.SelectedLayout.Font.Name = 'Segoe UI'
-        Appearance.SelectedLayout.Font.Style = []
-        Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
-        Appearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.SummaryLayout.Font.Color = clBlack
-        Appearance.SummaryLayout.Font.Height = -12
-        Appearance.SummaryLayout.Font.Name = 'Segoe UI'
-        Appearance.SummaryLayout.Font.Style = []
-        Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
-        Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
-        Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
-        Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
-        Header = 'ID'
-        Width = 1129.000000000000000000
-      end>
+    Columns = <>
     FilterActions = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
     FilterAppearance.Font.Color = clBlack
@@ -290,13 +141,70 @@ object ConditionalFormattingView: TConditionalFormattingView
     SortIndicatorAppearance.IndexFont.Height = -11
     SortIndicatorAppearance.IndexFont.Name = 'Segoe UI'
     SortIndicatorAppearance.IndexFont.Style = []
-    Options.Column.Stretching.Enabled = True
     RowCount = 1
-    ExplicitTop = 94
+    ExplicitLeft = 528
+    ExplicitTop = 224
+    ExplicitWidth = 660
+    ExplicitHeight = 400
+  end
+  object pnTop: TPanel
+    Left = 0
+    Top = 0
+    Width = 1313
+    Height = 89
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 1248
+    object GroupBox2: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 130
+      Height = 87
+      Align = alLeft
+      Caption = ' Query '
+      Padding.Left = 4
+      Padding.Top = 2
+      Padding.Right = 4
+      TabOrder = 0
+      ExplicitLeft = 145
+      ExplicitHeight = 129
+      object btnClose: TButton
+        AlignWithMargins = True
+        Left = 6
+        Top = 47
+        Width = 118
+        Height = 25
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        Caption = 'Close'
+        TabOrder = 0
+        OnClick = btnCloseClick
+        ExplicitLeft = 8
+      end
+      object btnOpenQuery: TButton
+        AlignWithMargins = True
+        Left = 6
+        Top = 19
+        Width = 118
+        Height = 25
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        Caption = 'Open query'
+        TabOrder = 1
+        OnClick = btnOpenQueryClick
+        ExplicitLeft = 8
+      end
+    end
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 464
-    Top = 440
+    Left = 352
+    Top = 328
     Width = 26
     Height = 26
     Visible = True
@@ -305,20 +213,23 @@ object ConditionalFormattingView: TConditionalFormattingView
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
+      
+        'Database=C:\Code4D\Cursos\TMS\TMS-FNC-DataGrid\Samples\FNC-DataG' +
+        'rid-Conditional-Formatting\Data\Departments.db'
       'DriverID=SQLite')
     FetchOptions.AssignedValues = [evMode, evCursorKind]
     FetchOptions.Mode = fmAll
     FetchOptions.CursorKind = ckForwardOnly
     LoginPrompt = False
-    Left = 464
-    Top = 270
+    Left = 352
+    Top = 158
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
       'select * from departments')
-    Left = 464
-    Top = 326
+    Left = 352
+    Top = 214
     object FDQuery1Id: TIntegerField
       FieldName = 'Id'
       Origin = 'Id'
@@ -352,10 +263,22 @@ object ConditionalFormattingView: TConditionalFormattingView
       FieldName = 'Status'
       Origin = 'Status'
     end
+    object FDQuery1percentage: TIntegerField
+      FieldName = 'percentage'
+      Origin = 'percentage'
+    end
+    object FDQuery1classification: TIntegerField
+      FieldName = 'classification'
+      Origin = 'classification'
+    end
+    object FDQuery1complete: TIntegerField
+      FieldName = 'complete'
+      Origin = 'complete'
+    end
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 464
-    Top = 382
+    Left = 352
+    Top = 270
   end
 end
