@@ -43,6 +43,7 @@ O componente faz parte do TMS FNC UI Pack e foi projetado para ser **multiplataf
 - [DataGrid Delphi 22 - HTML Templates | Global Font | Memo Fields, Boolean Fields & Image Blobs](https://www.youtube.com/watch?v=Zt2_DmmEWv4&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 23 - VARIÁVEIS COM PODERES de DataGrid: Filtro, Ordenação, Agrupamento e muito mais](https://www.youtube.com/watch?v=2gxA-9UvT28&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 - [DataGrid Delphi 24 - CRUD no DataGrid | Alterando dados diretamente no DataGrid](https://www.youtube.com/watch?v=EOdoCSQwVB0&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
+- [DataGrid Delphi 25 - Faça seus dados falarem: Formatação condicional](https://www.youtube.com/watch?v=J5dxvtNao0g&list=PLLHSz4dOnnN0U9_iV_T_ka5ehJ9T-QfTG)
 
 <br>
 
